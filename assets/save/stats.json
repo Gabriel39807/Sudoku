@@ -1,0 +1,12 @@
+{
+byDifficulty: {
+	EASY: {}
+	MEDIUM: {}
+	HARD: {}
+	EXPERT: {
+		played: 1
+	}
+	EVIL: {}
+	MYTHIC: {}
+}
+}

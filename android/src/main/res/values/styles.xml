@@ -1,0 +1,3 @@
+<resources>
+    <style name="GdxTheme" parent="android:style/Theme.NoTitleBar.Fullscreen" />
+</resources>

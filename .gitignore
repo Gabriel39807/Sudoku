@@ -1,0 +1,28 @@
+# Gradle build files and cache
+.gradle/
+build/
+*/build/
+core/build/
+desktop/build/
+android/build/
+.gradle-work/
+
+# IDE files (IntelliJ, VS Code, Eclipse)
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+.metadata/
+bin/
+out/
+
+# Local configurations and SDK paths
+local.properties
+
+# Operating System files
+Thumbs.db
+.DS_Store
