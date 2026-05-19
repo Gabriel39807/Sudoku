@@ -17,10 +17,11 @@ public final class MenuScreen extends BaseScreen {
         Table root = ResponsiveLayout.root();
         stage.addActor(root);
 
-        Label title = label("SUDOKU", "default", 72);
-        Label subtitle = label("Classic Journey", "secondary", 30);
-        root.add(title).padTop(120).row();
-        root.add(subtitle).padTop(10).padBottom(230).row();
+        root.add().expandY().row();
+        Label title = label("SUDOKU", "default", 64);
+        Label subtitle = label("Classic Journey", "secondary", 28);
+        root.add(title).row();
+        root.add(subtitle).padTop(10).padBottom(96).row();
 
         TextButton play = accentButton("JUGAR");
         TextButton stats = button("ESTADISTICAS");
@@ -31,6 +32,7 @@ public final class MenuScreen extends BaseScreen {
         ResponsiveLayout.menuButton(root.add(stats)).row();
         ResponsiveLayout.menuButton(root.add(settings)).row();
         ResponsiveLayout.menuButton(root.add(exit)).row();
+        root.add().height(96).row();
         root.add().expandY();
 
         play.addListener(new ChangeListener() { @Override public void changed(ChangeEvent e, Actor a) {

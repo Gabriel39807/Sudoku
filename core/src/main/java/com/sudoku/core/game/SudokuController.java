@@ -27,6 +27,7 @@ public final class SudokuController {
     public void erase() { if (playing() && selected()) { state.board().cell(state.selectedRow(), state.selectedCol()).clear(); saveManager.saveGame(state); } }
     public void pause() { if (state != null && state.status() == GameStatus.PLAYING) { state.setStatus(GameStatus.PAUSED); saveManager.saveGame(state); } }
     public void resumePause() { if (state != null && state.status() == GameStatus.PAUSED) state.setStatus(GameStatus.PLAYING); }
+    public void saveProgress() { if (state != null && state.status() != GameStatus.WON && state.status() != GameStatus.LOST) saveManager.saveGame(state); }
     public void input(int value) {
         if (!playing() || !selected() || value < 1 || value > 9) return;
         SudokuCell cell = state.board().cell(state.selectedRow(), state.selectedCol());

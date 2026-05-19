@@ -16,7 +16,9 @@ public final class ResponsiveLayout {
     }
 
     public static float boardSize() {
-        return Math.min(Theme.WORLD_WIDTH - 88f, 900f);
+        float target = Theme.WORLD_WIDTH * Theme.BOARD_WIDTH_RATIO;
+        float minimum = Theme.MIN_DESKTOP_CELL * 9f;
+        return Math.max(minimum, target);
     }
 
     public static <T extends Actor> Cell<T> menuButton(Cell<T> cell) {

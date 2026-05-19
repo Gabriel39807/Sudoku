@@ -2,7 +2,10 @@ package com.sudoku.core.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -31,36 +34,38 @@ public final class GameScreen extends BaseScreen {
     @Override public void show() {
         super.show();
         Table root = ResponsiveLayout.root();
-        root.pad(28);
+        root.pad(24);
         stage.addActor(root);
-        root.add(new HudScreen(game, controller, skin, timer, errors)).width(1010).height(150).padBottom(28).row();
-        root.add(boardTable).size(ResponsiveLayout.boardSize()).padBottom(28).row();
+        TextButton exitTop = dangerButton("SALIR");
+        exitTop.addListener(new ChangeListener() { @Override public void changed(ChangeEvent e, Actor a) { showExitConfirmation(); }});
+        root.add(new HudScreen(game, controller, timer, errors, exitTop)).width(1010).height(150).padBottom(24).row();
+        root.add(boardTable).size(ResponsiveLayout.boardSize()).padBottom(24).row();
         buildBoard();
 
         Table numbers = new Table();
         for (int n = 1; n <= 9; n++) {
             final int value = n;
             TextButton b = accentButton(String.valueOf(n));
-            b.getLabel().setFontScale(1.35f);
+            b.getLabel().setFontScale(1.55f);
             b.addListener(new ChangeListener() { @Override public void changed(ChangeEvent e, Actor a) { controller.input(value); refresh(); }});
-            numbers.add(b).size(140, 78).pad(6);
+            numbers.add(b).size(180, 82).pad(7);
             if (n % 3 == 0) numbers.row();
         }
-        root.add(numbers).padBottom(18).row();
+        root.add(numbers).padBottom(14).row();
 
         Table actions = new Table();
-        TextButton pencil = button("PENCIL"), erase = button("BORRAR"), pause = button("PAUSA"), restart = dangerButton("REINICIAR");
+        TextButton pencil = button("PENCIL"), erase = button("BORRAR"), pause = button("PAUSA"), exit = dangerButton("SALIR");
         pencil.addListener(new ChangeListener() { @Override public void changed(ChangeEvent e, Actor a) { controller.togglePencil(); refresh(); }});
         erase.addListener(new ChangeListener() { @Override public void changed(ChangeEvent e, Actor a) { controller.erase(); refresh(); }});
         pause.addListener(new ChangeListener() { @Override public void changed(ChangeEvent e, Actor a) {
             if (controller.state().status() == GameStatus.PAUSED) controller.resumePause(); else controller.pause();
             refresh();
         }});
-        restart.addListener(new ChangeListener() { @Override public void changed(ChangeEvent e, Actor a) { controller.newGame(controller.state().difficulty()); refresh(); }});
-        actions.add(pencil).width(230).height(70).pad(6);
-        actions.add(erase).width(230).height(70).pad(6);
-        actions.add(pause).width(230).height(70).pad(6);
-        actions.add(restart).width(230).height(70).pad(6);
+        exit.addListener(new ChangeListener() { @Override public void changed(ChangeEvent e, Actor a) { showExitConfirmation(); }});
+        actions.add(pencil).width(230).height(76).pad(6);
+        actions.add(erase).width(230).height(76).pad(6);
+        actions.add(pause).width(230).height(76).pad(6);
+        actions.add(exit).width(230).height(76).pad(6);
         root.add(actions).row();
         refresh();
     }
@@ -68,17 +73,18 @@ public final class GameScreen extends BaseScreen {
     private void buildBoard() {
         boardTable.clear();
         boardTable.setBackground(GameSkin.drawable(GameSkin.DRAWABLE_PANEL));
-        boardTable.pad(14);
-        float size = (ResponsiveLayout.boardSize() - 28f) / 9f;
+        boardTable.pad(16);
+        float size = Math.max(Theme.MIN_DESKTOP_CELL, (ResponsiveLayout.boardSize() - 32f) / 9f);
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) {
                 final int rr = r, cc = c;
                 TextButton cell = new RoundedButton("", skin, "cell");
-                cell.getLabel().setFontScale(1.4f);
+                cell.setStyle(new TextButton.TextButtonStyle(cell.getStyle()));
+                cell.getLabel().setFontScale(1.55f);
                 cell.addListener(new ChangeListener() { @Override public void changed(ChangeEvent e, Actor a) { controller.select(rr, cc); refresh(); }});
                 boardTable.add(cell)
                     .size(size)
-                    .pad(c % 3 == 2 ? 5 : 1, r % 3 == 2 ? 5 : 1, 1, 1);
+                    .pad(c % 3 == 2 ? 6 : 1, r % 3 == 2 ? 6 : 1, 1, 1);
             }
             boardTable.row();
         }
@@ -137,6 +143,34 @@ public final class GameScreen extends BaseScreen {
         long minutes = totalSeconds / 60;
         long seconds = totalSeconds % 60;
         return String.format(Locale.ROOT, "%02d:%02d", minutes, seconds);
+    }
+
+    private void showExitConfirmation() {
+        final Stack overlay = new Stack();
+        overlay.setFillParent(true);
+        overlay.add(new Image(GameSkin.drawable(GameSkin.DRAWABLE_DIALOG_SHADE)));
+
+        Table dialog = new Table();
+        dialog.setBackground(GameSkin.drawable(GameSkin.DRAWABLE_PANEL_ACCENT));
+        dialog.pad(34);
+        dialog.add(label("Tienes una partida en progreso", "default", 30)).width(650).padBottom(28).row();
+        Table buttons = new Table();
+        TextButton cancel = button("Cancelar");
+        TextButton exit = dangerButton("Salir");
+        buttons.add(cancel).width(250).height(76).pad(8);
+        buttons.add(exit).width(250).height(76).pad(8);
+        dialog.add(buttons).row();
+
+        Container<Table> centered = new Container<>(dialog);
+        centered.center();
+        overlay.add(centered);
+        stage.addActor(overlay);
+
+        cancel.addListener(new ChangeListener() { @Override public void changed(ChangeEvent event, Actor actor) { overlay.remove(); }});
+        exit.addListener(new ChangeListener() { @Override public void changed(ChangeEvent event, Actor actor) {
+            controller.saveProgress();
+            game.setScreen(new DifficultyScreen(game));
+        }});
     }
 
     @Override public void render(float delta) {

@@ -14,7 +14,8 @@ public final class SudokuGame extends Game {
     private StatsManager statsManager;
     private SudokuGenerator generator;
 
-    @Override public void create() {
+    @Override
+    public void create() {
         difficultyAssets = new DifficultyAssetManager();
         difficultyAssets.queue();
         difficultyAssets.finishLoading();
@@ -23,15 +24,32 @@ public final class SudokuGame extends Game {
         generator = new SudokuGenerator();
         setScreen(new MenuScreen(this));
     }
-    public DifficultyAssetManager difficultyAssets() { return difficultyAssets; }
-    public SaveManager saveManager() { return saveManager; }
-    public StatsManager statsManager() { return statsManager; }
-    public SudokuGenerator generator() { return generator; }
-    @Override public void dispose() {
+
+    public DifficultyAssetManager difficultyAssets() {
+        return difficultyAssets;
+    }
+
+    public SaveManager saveManager() {
+        return saveManager;
+    }
+
+    public StatsManager statsManager() {
+        return statsManager;
+    }
+
+    public SudokuGenerator generator() {
+        return generator;
+    }
+
+    @Override
+    public void dispose() {
         super.dispose();
-        if (difficultyAssets != null) difficultyAssets.close();
+        if (difficultyAssets != null)
+            difficultyAssets.close();
         GameSkin.dispose();
     }
-    // TODO campaign: add a campaign-map flow before free play without changing SudokuController.
-    // TODO economy/events/skins/store: add new application services; keep classic Sudoku domain pure.
+    // TODO campaign: add a campaign-map flow before free play without changing
+    // SudokuController.
+    // TODO economy/events/skins/store: add new application services; keep classic
+    // Sudoku domain pure.
 }

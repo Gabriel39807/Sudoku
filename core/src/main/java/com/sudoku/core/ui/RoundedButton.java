@@ -10,7 +10,7 @@ public final class RoundedButton extends TextButton {
 
     public RoundedButton(String text, Skin skin, String styleName) {
         super(text, skin, styleName);
-        getLabel().setFontScale(1.15f);
-        pad(8f, 20f, 8f, 20f);
+        getLabel().setFontScale(Theme.BUTTON_SIZE / 24f);
+        pad(10f, 22f, 10f, 22f);
     }
 }

@@ -23,6 +23,7 @@ public final class GameSkin {
     public static final String DRAWABLE_CELL_SAME = "ui.cell.same";
     public static final String DRAWABLE_CELL_ERROR = "ui.cell.error";
     public static final String DRAWABLE_LOCK_SHADE = "ui.lock.shade";
+    public static final String DRAWABLE_DIALOG_SHADE = "ui.dialog.shade";
     public static final String STYLE_BUTTON_DEFAULT = "default";
     public static final String STYLE_BUTTON_ACCENT = "accent";
     public static final String STYLE_BUTTON_DANGER = "danger";
@@ -83,6 +84,7 @@ public final class GameSkin {
         registerDrawable(skin, DRAWABLE_CELL_SAME, rounded(UIColorPalette.SAME_NUMBER, Color.valueOf("335270"), 10, 1));
         registerDrawable(skin, DRAWABLE_CELL_ERROR, rounded(Color.valueOf("3A1717"), UIColorPalette.ERROR, 10, 2));
         registerDrawable(skin, DRAWABLE_LOCK_SHADE, rounded(new Color(0f, 0f, 0f, 0.62f), new Color(0f, 0f, 0f, 0f), 18, 0));
+        registerDrawable(skin, DRAWABLE_DIALOG_SHADE, rounded(new Color(0f, 0f, 0f, 0.72f), new Color(0f, 0f, 0f, 0f), 1, 0));
 
         Drawable buttonDefault = rounded(Color.valueOf("24202E"), UIColorPalette.BORDER, 18, 2);
         Drawable buttonDefaultDown = rounded(UIColorPalette.ACCENT_SOFT, UIColorPalette.ACCENT, 18, 2);
