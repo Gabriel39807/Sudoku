@@ -7,6 +7,8 @@ class DifficultyStats {
   final int totalWinTime;
   final int perfectVictories;
   final int hintsUsed;
+  final int completedWithAutocomplete;
+  final int completedWithHints;
 
   const DifficultyStats({
     this.gamesStarted = 0,
@@ -17,6 +19,8 @@ class DifficultyStats {
     this.totalWinTime = 0,
     this.perfectVictories = 0,
     this.hintsUsed = 0,
+    this.completedWithAutocomplete = 0,
+    this.completedWithHints = 0,
   });
 
   int get averageTime => victories == 0 ? 0 : totalWinTime ~/ victories;

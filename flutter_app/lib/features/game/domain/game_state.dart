@@ -57,7 +57,6 @@ class Move {
 }
 
 /// Estado UI completo. Wrappea un GameSession inmutable + UI-only fields.
-/// Getters computados mantienen compatibilidad con todos los widgets.
 class GameState {
   final GameSession? session;
 
@@ -70,6 +69,18 @@ class GameState {
   final int remainingHints;
   final int usedHints;
   final int? lockedNumber;
+  final bool completedWithAutocomplete;
+
+  // Tracking de dígitos completados (1-9 -> count correct placements)
+  final Map<int, int> completedDigits;
+
+  // Sets de filas/columnas/bloques completados para animaciones
+  final Set<int> completedRows;
+  final Set<int> completedCols;
+  final Set<int> completedBlocks;
+
+  // Identificador de evento de animación (cambia al completar fila/col/bloque)
+  final int animationEventId;
 
   // Computed from session
   List<List<SudokuCell>> get board {
@@ -109,6 +120,12 @@ class GameState {
     this.remainingHints = 3,
     this.usedHints = 0,
     this.lockedNumber,
+    this.completedWithAutocomplete = false,
+    this.completedDigits = const {},
+    this.completedRows = const {},
+    this.completedCols = const {},
+    this.completedBlocks = const {},
+    this.animationEventId = 0,
   });
 
   factory GameState.loading(String difficulty) =>
@@ -127,6 +144,12 @@ class GameState {
     int? usedHints,
     int? lockedNumber,
     bool clearLockedNumber = false,
+    bool? completedWithAutocomplete,
+    Map<int, int>? completedDigits,
+    Set<int>? completedRows,
+    Set<int>? completedCols,
+    Set<int>? completedBlocks,
+    int? animationEventId,
   }) {
     return GameState(
       session: clearSession ? null : (session ?? this.session),
@@ -140,6 +163,13 @@ class GameState {
       lockedNumber: clearLockedNumber
           ? null
           : (lockedNumber ?? this.lockedNumber),
+      completedWithAutocomplete:
+          completedWithAutocomplete ?? this.completedWithAutocomplete,
+      completedDigits: completedDigits ?? this.completedDigits,
+      completedRows: completedRows ?? this.completedRows,
+      completedCols: completedCols ?? this.completedCols,
+      completedBlocks: completedBlocks ?? this.completedBlocks,
+      animationEventId: animationEventId ?? this.animationEventId,
     );
   }
 

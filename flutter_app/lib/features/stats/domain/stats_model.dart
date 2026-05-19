@@ -10,6 +10,8 @@ class GameStats {
   final int hintsUsed;
   final int perfectVictories;
   final int victoriesWithHints;
+  final int completedWithAutocomplete;
+  final int completedWithHints;
 
   // Best times in seconds; 0 = never completed
   final int bestEasy;
@@ -37,6 +39,8 @@ class GameStats {
     this.hintsUsed = 0,
     this.perfectVictories = 0,
     this.victoriesWithHints = 0,
+    this.completedWithAutocomplete = 0,
+    this.completedWithHints = 0,
     this.bestEasy = 0,
     this.bestIntermediate = 0,
     this.bestHard = 0,
@@ -88,6 +92,8 @@ class GameStats {
     int? hintsUsed,
     int? perfectVictories,
     int? victoriesWithHints,
+    int? completedWithAutocomplete,
+    int? completedWithHints,
     int? bestEasy,
     int? bestIntermediate,
     int? bestHard,
@@ -111,6 +117,9 @@ class GameStats {
       hintsUsed: hintsUsed ?? this.hintsUsed,
       perfectVictories: perfectVictories ?? this.perfectVictories,
       victoriesWithHints: victoriesWithHints ?? this.victoriesWithHints,
+      completedWithAutocomplete:
+          completedWithAutocomplete ?? this.completedWithAutocomplete,
+      completedWithHints: completedWithHints ?? this.completedWithHints,
       bestEasy: bestEasy ?? this.bestEasy,
       bestIntermediate: bestIntermediate ?? this.bestIntermediate,
       bestHard: bestHard ?? this.bestHard,

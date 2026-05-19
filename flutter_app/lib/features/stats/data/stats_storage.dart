@@ -4,8 +4,6 @@ import '../domain/difficulty_stats.dart';
 import '../domain/stats_model.dart';
 import '../../unlock/unlock_service.dart';
 
-/// Capa de acceso a SharedPreferences para estadísticas y tableros jugados.
-/// Todos los métodos son static — sin estado interno.
 class StatsStorage {
   static const _difficulties = [
     'easy',
@@ -76,6 +74,10 @@ class StatsStorage {
         totalWinTime: prefs.getInt('total_win_time_$d') ?? 0,
         perfectVictories: prefs.getInt('perfect_$d') ?? 0,
         hintsUsed: prefs.getInt('hints_used_$d') ?? 0,
+        completedWithAutocomplete:
+            prefs.getInt('auto_complete_$d') ?? 0,
+        completedWithHints:
+            prefs.getInt('completed_with_hints_$d') ?? 0,
       );
     }
 
@@ -88,6 +90,10 @@ class StatsStorage {
       hintsUsed: prefs.getInt('hints_used') ?? 0,
       perfectVictories: prefs.getInt('perfect_victories') ?? 0,
       victoriesWithHints: prefs.getInt('victories_with_hints') ?? 0,
+      completedWithAutocomplete:
+          prefs.getInt('completed_with_autocomplete') ?? 0,
+      completedWithHints:
+          prefs.getInt('completed_with_hints') ?? 0,
       bestEasy: prefs.getInt('best_easy') ?? 0,
       bestIntermediate: prefs.getInt('best_intermediate') ?? 0,
       bestHard: prefs.getInt('best_hard') ?? 0,
@@ -112,6 +118,7 @@ class StatsStorage {
     int elapsedSeconds, {
     required int mistakes,
     required int hintsUsed,
+    required int completedWithAutocomplete,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final diff = difficulty.toLowerCase();
@@ -141,9 +148,28 @@ class StatsStorage {
         'victories_with_hints',
         (prefs.getInt('victories_with_hints') ?? 0) + 1,
       );
+      await prefs.setInt(
+        'completed_with_hints_$diff',
+        (prefs.getInt('completed_with_hints_$diff') ?? 0) + 1,
+      );
+      await prefs.setInt(
+        'completed_with_hints',
+        (prefs.getInt('completed_with_hints') ?? 0) + 1,
+      );
     }
 
-    if (hintsUsed == 0 && mistakes == 0) {
+    if (completedWithAutocomplete > 0) {
+      await prefs.setInt(
+        'completed_with_autocomplete',
+        (prefs.getInt('completed_with_autocomplete') ?? 0) + 1,
+      );
+      await prefs.setInt(
+        'auto_complete_$diff',
+        (prefs.getInt('auto_complete_$diff') ?? 0) + 1,
+      );
+    }
+
+    if (hintsUsed == 0 && mistakes == 0 && completedWithAutocomplete == 0) {
       await prefs.setInt(
         'perfect_victories',
         (prefs.getInt('perfect_victories') ?? 0) + 1,
@@ -154,7 +180,6 @@ class StatsStorage {
       );
     }
 
-    // Best time — menor es mejor; 0 = no registrado
     final bestKey = 'best_$diff';
     final currentBest = prefs.getInt(bestKey) ?? 0;
     if (currentBest == 0 || elapsedSeconds < currentBest) {
@@ -175,7 +200,7 @@ class StatsStorage {
 
     await prefs.setInt('games_lost', lost);
     await prefs.setInt('losses_$diff', losses);
-    await prefs.setInt('win_streak', 0); // reset streak
+    await prefs.setInt('win_streak', 0);
     await prefs.setInt(
       'total_play_time',
       (prefs.getInt('total_play_time') ?? 0) + elapsedSeconds,
@@ -240,6 +265,8 @@ class StatsStorage {
       'hints_used',
       'perfect_victories',
       'victories_with_hints',
+      'completed_with_autocomplete',
+      'completed_with_hints',
       for (final d in _difficulties) ...['best_$d', 'wins_$d', 'losses_$d'],
       for (final d in _difficulties) ...[
         'started_$d',
@@ -247,6 +274,8 @@ class StatsStorage {
         'total_win_time_$d',
         'perfect_$d',
         'hints_used_$d',
+        'auto_complete_$d',
+        'completed_with_hints_$d',
       ],
     ];
     for (final k in keys) {
@@ -255,7 +284,6 @@ class StatsStorage {
     dev.log('[StatsStorage] Stats reset');
   }
 
-  /// Borra TODO: tableros jugados + estadísticas + claves legacy.
   static Future<void> resetAllGameData() async {
     final prefs = await SharedPreferences.getInstance();
     const legacyKeys = ['last_board', 'active_game', 'game_cache', 'old_moves'];

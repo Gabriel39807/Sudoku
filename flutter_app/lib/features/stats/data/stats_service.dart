@@ -22,12 +22,14 @@ class StatsService {
     int elapsedSeconds, {
     required int mistakes,
     required int hintsUsed,
+    int completedWithAutocomplete = 0,
   }) async {
     await StatsStorage.recordWin(
       difficulty,
       elapsedSeconds,
       mistakes: mistakes,
       hintsUsed: hintsUsed,
+      completedWithAutocomplete: completedWithAutocomplete,
     );
     await onUnlockProgress();
   }

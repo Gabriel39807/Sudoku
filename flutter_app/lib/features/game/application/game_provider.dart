@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:developer' as dev;
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/game_state.dart';
 import '../data/board_repository.dart';
 import '../../hint/hint_service.dart';
+import '../../settings/application/settings_provider.dart';
 import '../../stats/application/stats_provider.dart';
 import '../../stats/data/stats_service.dart';
 import '../../stats/data/stats_storage.dart';
@@ -11,9 +13,26 @@ import '../../stats/data/stats_storage.dart';
 class GameNotifier extends Notifier<GameState> {
   Timer? _timer;
 
+  // Streams para eventos de animación
+  final _rowCompleted = StreamController<int>.broadcast();
+  final _colCompleted = StreamController<int>.broadcast();
+  final _blockCompleted = StreamController<int>.broadcast();
+  final _digitCompleted = StreamController<int>.broadcast();
+
+  Stream<int> get rowCompleted => _rowCompleted.stream;
+  Stream<int> get colCompleted => _colCompleted.stream;
+  Stream<int> get blockCompleted => _blockCompleted.stream;
+  Stream<int> get digitCompleted => _digitCompleted.stream;
+
   @override
   GameState build() {
-    ref.onDispose(() => _timer?.cancel());
+    ref.onDispose(() {
+      _timer?.cancel();
+      _rowCompleted.close();
+      _colCompleted.close();
+      _blockCompleted.close();
+      _digitCompleted.close();
+    });
     return const GameState(isLoading: false);
   }
 
@@ -23,23 +42,10 @@ class GameNotifier extends Notifier<GameState> {
     final diff = difficulty.toLowerCase();
     _timer?.cancel();
 
-    // Estado SIEMPRE limpio — sin rastro de sesión anterior, sin restore
     state = const GameState(isLoading: true);
-
-    dev.log('══════════════════════════════════');
-    dev.log('[GameProvider] init() DIFF=$diff');
 
     try {
       final boardData = await BoardRepository.loadRandomBoard(diff);
-
-      dev.log('[GameProvider] BOARD_ID=${boardData.id}');
-      dev.log(
-        '[GameProvider] PUZZLE[0..19]=${boardData.puzzleFlat.take(20).toList()}',
-      );
-      dev.log(
-        '[GameProvider] SOLUTION[0..19]=${boardData.solutionFlat.take(20).toList()}',
-      );
-
       final session = GameSession.create(
         boardId: boardData.id,
         difficulty: diff,
@@ -47,20 +53,12 @@ class GameNotifier extends Notifier<GameState> {
         solutionFlat: boardData.solutionFlat,
       );
 
-      dev.log(
-        '[GameProvider] SESSION currentBoard[0..19]=${session.currentBoard.take(20).toList()}',
-      );
-      dev.log('[GameProvider] fixedCells count=${session.fixedCells.length}');
-      dev.log(
-        '[GameProvider] mistakes=${session.mistakes}  status=${session.status}',
-      );
-      dev.log('══════════════════════════════════');
-
       final maxHints = HintService.maxHintsFor(diff);
       state = GameState(
         session: session,
         isLoading: false,
         remainingHints: maxHints,
+        completedDigits: _computeCompletedDigits(session),
       );
       await HintService.resetCurrentGame();
       await StatsService.onGameStart(diff);
@@ -83,6 +81,134 @@ class GameNotifier extends Notifier<GameState> {
         session: s.copyWith(elapsed: s.elapsed + const Duration(seconds: 1)),
       );
     });
+  }
+
+  // ── Helpers de tracking ──────────────────────────────────────────────────
+
+  Map<int, int> _computeCompletedDigits(GameSession session) {
+    final counts = <int, int>{};
+    for (var i = 1; i <= 9; i++) { counts[i] = 0; }
+    for (var i = 0; i < 81; i++) {
+      final val = session.currentBoard[i];
+      if (val != 0 && val == session.solution[i]) {
+        counts[val] = counts[val]! + 1;
+      }
+    }
+    return counts;
+  }
+
+  Set<int> _computeCompletedRows(GameSession session) {
+    final rows = <int>{};
+    for (var r = 0; r < 9; r++) {
+      var complete = true;
+      for (var c = 0; c < 9; c++) {
+        final idx = r * 9 + c;
+        if (session.currentBoard[idx] != session.solution[idx]) {
+          complete = false;
+          break;
+        }
+      }
+      if (complete) rows.add(r);
+    }
+    return rows;
+  }
+
+  Set<int> _computeCompletedCols(GameSession session) {
+    final cols = <int>{};
+    for (var c = 0; c < 9; c++) {
+      var complete = true;
+      for (var r = 0; r < 9; r++) {
+        final idx = r * 9 + c;
+        if (session.currentBoard[idx] != session.solution[idx]) {
+          complete = false;
+          break;
+        }
+      }
+      if (complete) cols.add(c);
+    }
+    return cols;
+  }
+
+  Set<int> _computeCompletedBlocks(GameSession session) {
+    final blocks = <int>{};
+    for (var br = 0; br < 3; br++) {
+      for (var bc = 0; bc < 3; bc++) {
+        final blockIdx = br * 3 + bc;
+        var complete = true;
+        for (var dr = 0; dr < 3; dr++) {
+          for (var dc = 0; dc < 3; dc++) {
+            final r = br * 3 + dr;
+            final c = bc * 3 + dc;
+            final idx = r * 9 + c;
+            if (session.currentBoard[idx] != session.solution[idx]) {
+              complete = false;
+              break;
+            }
+          }
+          if (!complete) break;
+        }
+        if (complete) blocks.add(blockIdx);
+      }
+    }
+    return blocks;
+  }
+
+  void _applyBoardChange(
+    GameSession session,
+    GameState oldState, {
+    List<Move>? undoStack,
+  }) {
+    final newDigits = _computeCompletedDigits(session);
+    final newRows = _computeCompletedRows(session);
+    final newCols = _computeCompletedCols(session);
+    final newBlocks = _computeCompletedBlocks(session);
+
+    final oldDigits = oldState.completedDigits;
+    final oldRows = oldState.completedRows;
+    final oldCols = oldState.completedCols;
+    final oldBlocks = oldState.completedBlocks;
+
+    var eventId = oldState.animationEventId;
+
+    for (var d = 1; d <= 9; d++) {
+      final oldCount = oldDigits[d] ?? 0;
+      final newCount = newDigits[d] ?? 0;
+      if (oldCount < 9 && newCount >= 9) {
+        eventId++;
+        _digitCompleted.add(d);
+      }
+    }
+
+    for (final r in newRows) {
+      if (!oldRows.contains(r)) {
+        eventId++;
+        _rowCompleted.add(r);
+      }
+    }
+
+    for (final c in newCols) {
+      if (!oldCols.contains(c)) {
+        eventId++;
+        _colCompleted.add(c);
+      }
+    }
+
+    for (final b in newBlocks) {
+      if (!oldBlocks.contains(b)) {
+        eventId++;
+        _blockCompleted.add(b);
+      }
+    }
+
+    state = oldState.copyWith(
+      session: session,
+      undoStack: undoStack ?? oldState.undoStack,
+      completedDigits: newDigits,
+      completedRows: newRows,
+      completedCols: newCols,
+      completedBlocks: newBlocks,
+      animationEventId: eventId,
+    );
   }
 
   // ── User inputs ──────────────────────────────────────────────────────────
@@ -153,6 +279,7 @@ class GameNotifier extends Notifier<GameState> {
   }
 
   void _handleNumber(GameSession session, int idx, int r, int c, int number) {
+    final oldState = state;
     final oldValue = session.currentBoard[idx];
     final newValue = oldValue == number ? 0 : number;
 
@@ -160,7 +287,7 @@ class GameNotifier extends Notifier<GameState> {
     newBoard[idx] = newValue;
 
     final newNotes = Map<int, Set<int>>.from(session.notes);
-    newNotes.remove(idx); // limpiar notas al escribir número
+    newNotes.remove(idx);
 
     final move = Move(
       row: r,
@@ -178,15 +305,16 @@ class GameNotifier extends Notifier<GameState> {
     );
 
     if (newValue != 0 && newValue != session.solution[idx]) {
+      _vibrateOnError();
       final newMistakes = updatedSession.mistakes + 1;
       if (newMistakes >= 3) {
         updatedSession = updatedSession.copyWith(
           mistakes: newMistakes,
           status: GameStatus.lost,
         );
-        state = state.copyWith(
+        state = oldState.copyWith(
           session: updatedSession,
-          undoStack: [...state.undoStack, move],
+          undoStack: [...oldState.undoStack, move],
         );
         _onLost();
         return;
@@ -194,20 +322,25 @@ class GameNotifier extends Notifier<GameState> {
       updatedSession = updatedSession.copyWith(mistakes: newMistakes);
     }
 
-    state = state.copyWith(
-      session: updatedSession,
-      undoStack: [...state.undoStack, move],
-    );
+    _applyBoardChange(updatedSession, oldState, undoStack: [...oldState.undoStack, move]);
 
     if (newValue != 0) _checkWin();
   }
 
+  void _vibrateOnError() {
+    final settings = ref.read(settingsProvider);
+    if (settings.vibrateOnError) {
+      HapticFeedback.mediumImpact();
+    }
+  }
+
   void undo() {
     if (!_canInput || state.undoStack.isEmpty) return;
-    final newStack = List<Move>.from(state.undoStack);
+    final oldState = state;
+    final newStack = List<Move>.from(oldState.undoStack);
     final last = newStack.removeLast();
 
-    final session = state.session!;
+    final session = oldState.session!;
     final idx = last.row * 9 + last.col;
     final newBoard = List<int>.from(session.currentBoard);
     newBoard[idx] = last.oldValue;
@@ -219,21 +352,21 @@ class GameNotifier extends Notifier<GameState> {
       newNotes[idx] = Set<int>.from(last.oldNotes);
     }
 
-    state = state.copyWith(
-      session: session.copyWith(currentBoard: newBoard, notes: newNotes),
+    _applyBoardChange(
+      session.copyWith(currentBoard: newBoard, notes: newNotes),
+      oldState,
       undoStack: newStack,
-      selectedRow: last.row,
-      selectedCol: last.col,
     );
   }
 
   void erase() {
     if (!_canInput) return;
-    final r = state.selectedRow;
-    final c = state.selectedCol;
+    final oldState = state;
+    final r = oldState.selectedRow;
+    final c = oldState.selectedCol;
     if (r == null || c == null) return;
 
-    final session = state.session!;
+    final session = oldState.session!;
     final idx = r * 9 + c;
     if (session.fixedCells.contains(idx)) return;
     if (session.currentBoard[idx] == 0 &&
@@ -256,9 +389,10 @@ class GameNotifier extends Notifier<GameState> {
     final newNotes = Map<int, Set<int>>.from(session.notes);
     newNotes.remove(idx);
 
-    state = state.copyWith(
-      session: session.copyWith(currentBoard: newBoard, notes: newNotes),
-      undoStack: [...state.undoStack, move],
+    _applyBoardChange(
+      session.copyWith(currentBoard: newBoard, notes: newNotes),
+      oldState,
+      undoStack: [...oldState.undoStack, move],
     );
   }
 
@@ -312,6 +446,7 @@ class GameNotifier extends Notifier<GameState> {
   }
 
   void _revealCell(GameSession session, int idx, int r, int c) {
+    final oldState = state;
     final newBoard = List<int>.from(session.currentBoard);
     final newNotes = Map<int, Set<int>>.from(session.notes);
     final oldNotes = Set<int>.from(session.notes[idx] ?? {});
@@ -328,14 +463,12 @@ class GameNotifier extends Notifier<GameState> {
       timestamp: DateTime.now(),
     );
 
-    state = state.copyWith(
-      session: session.copyWith(currentBoard: newBoard, notes: newNotes),
-      undoStack: [...state.undoStack, move],
-      remainingHints: state.remainingHints > 0
-          ? state.remainingHints - 1
-          : state.remainingHints,
-      usedHints: state.usedHints + 1,
+    _applyBoardChange(
+      session.copyWith(currentBoard: newBoard, notes: newNotes),
+      oldState,
+      undoStack: [...oldState.undoStack, move],
     );
+
     _checkWin();
   }
 
@@ -343,6 +476,38 @@ class GameNotifier extends Notifier<GameState> {
     final session = state.session;
     if (session == null || session.status != GameStatus.playing) return;
     state = state.copyWith(session: session.copyWith(paused: !session.paused));
+  }
+
+  // ── Auto Complete ────────────────────────────────────────────────────────
+
+  void autoComplete() {
+    if (!_canInput) return;
+    final session = state.session;
+    if (session == null) return;
+
+    final oldState = state;
+    final newBoard = List<int>.from(session.currentBoard);
+    final newNotes = Map<int, Set<int>>.from(session.notes);
+
+    for (var i = 0; i < 81; i++) {
+      if (newBoard[i] == 0) {
+        newBoard[i] = session.solution[i];
+        newNotes.remove(i);
+      }
+    }
+
+    final updatedSession = session.copyWith(
+      currentBoard: newBoard,
+      notes: newNotes,
+    );
+
+    _applyBoardChange(updatedSession, oldState, undoStack: oldState.undoStack);
+
+    state = state.copyWith(
+      completedWithAutocomplete: true,
+    );
+
+    _checkWin();
   }
 
   // ── Win / Loss ───────────────────────────────────────────────────────────
@@ -360,10 +525,18 @@ class GameNotifier extends Notifier<GameState> {
       session: session.copyWith(status: GameStatus.won),
       clearLockedNumber: true,
     );
-    _onWon(session.difficulty, session.elapsed.inSeconds, session.boardId);
+    _onWon(
+      session.difficulty,
+      session.elapsed.inSeconds,
+      session.boardId,
+    );
   }
 
-  void _onWon(String diff, int elapsed, String boardId) {
+  void _onWon(
+    String diff,
+    int elapsed,
+    String boardId,
+  ) {
     unawaited(_recordWon(diff, elapsed, boardId));
   }
 
@@ -375,7 +548,11 @@ class GameNotifier extends Notifier<GameState> {
     unawaited(_recordLost(session.difficulty, session.boardId));
   }
 
-  Future<void> _recordWon(String diff, int elapsed, String boardId) async {
+  Future<void> _recordWon(
+    String diff,
+    int elapsed,
+    String boardId,
+  ) async {
     await StatsStorage.markBoardPlayed(diff, boardId);
     final session = state.session;
     await StatsService.onVictory(
@@ -383,6 +560,8 @@ class GameNotifier extends Notifier<GameState> {
       elapsed,
       mistakes: session?.mistakes ?? 0,
       hintsUsed: state.usedHints,
+      completedWithAutocomplete:
+          state.completedWithAutocomplete ? 1 : 0,
     );
   }
 

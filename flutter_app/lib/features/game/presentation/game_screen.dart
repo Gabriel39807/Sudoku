@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../hint/hint_service.dart';
 import '../../onboarding/difficulty_intro_service.dart';
+import '../../settings/application/settings_provider.dart';
 import '../../stats/data/stats_service.dart';
 import '../application/game_provider.dart';
 import '../domain/game_state.dart';
@@ -20,14 +21,62 @@ class GameScreen extends ConsumerStatefulWidget {
 }
 
 class _GameScreenState extends ConsumerState<GameScreen> {
+  OverlayEntry? _digitFeedback;
+
   @override
   void initState() {
     super.initState();
-    // Delay initialization to avoid provider updates during build
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(gameProvider.notifier).init(widget.difficulty);
       if (!mounted) return;
       await _showDifficultyIntroIfNeeded();
+      _listenToDigitCompleted();
+    });
+  }
+
+  void _listenToDigitCompleted() {
+    final notifier = ref.read(gameProvider.notifier);
+    notifier.digitCompleted.listen(_showDigitFeedback);
+  }
+
+  void _showDigitFeedback(int digit) {
+    if (!mounted) return;
+    _digitFeedback?.remove();
+    final overlay = Overlay.of(context);
+    _digitFeedback = OverlayEntry(
+      builder: (context) => Positioned(
+        top: MediaQuery.of(context).padding.top + 100,
+        left: 0,
+        right: 0,
+        child: Material(
+          color: Colors.transparent,
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              decoration: BoxDecoration(
+                color: Colors.greenAccent.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(99),
+                border: Border.all(
+                  color: Colors.greenAccent.withValues(alpha: 0.4),
+                ),
+              ),
+              child: Text(
+                'Digit $digit completed',
+                style: const TextStyle(
+                  color: Colors.greenAccent,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    overlay.insert(_digitFeedback!);
+    Future.delayed(const Duration(seconds: 2), () {
+      _digitFeedback?.remove();
+      _digitFeedback = null;
     });
   }
 
@@ -72,8 +121,15 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   }
 
   @override
+  void dispose() {
+    _digitFeedback?.remove();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = ref.watch(gameProvider);
+    final settings = ref.watch(settingsProvider);
 
     ref.listen<GameState>(gameProvider, (previous, next) {
       if (previous?.status != GameStatus.won && next.status == GameStatus.won) {
@@ -83,6 +139,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         _showDefeatDialog();
       }
     });
+
+    final remainingCells = _countEmpty(state);
 
     return Scaffold(
       body: SafeArea(
@@ -95,7 +153,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                     children: [
                       Column(
                         children: [
-                          // HEADER (Height: 90)
+                          // HEADER
                           SizedBox(
                             height: 90,
                             child: Padding(
@@ -106,7 +164,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  // Difficulty Left
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
@@ -128,8 +185,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                                       ),
                                     ],
                                   ),
-
-                                  // Timer Center
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -148,8 +203,6 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                                       ),
                                     ],
                                   ),
-
-                                  // Errors & Exit Right
                                   Row(
                                     children: [
                                       Column(
@@ -179,7 +232,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                                       ),
                                       const SizedBox(width: 16),
                                       IconButton(
-                                        icon: const Icon(Icons.exit_to_app),
+                                        icon:
+                                            const Icon(Icons.exit_to_app),
                                         onPressed: () =>
                                             _showExitDialog(context),
                                       ),
@@ -200,16 +254,54 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                                 child: const SudokuBoardWidget()
                                     .animate()
                                     .fade(duration: 400.ms)
-                                    .scale(begin: const Offset(0.95, 0.95)),
+                                    .scale(
+                                        begin: const Offset(0.95, 0.95)),
                               ),
                             ),
                           ),
 
                           // ACTIONS ROW
                           const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            padding: EdgeInsets.symmetric(vertical: 8.0),
                             child: ActionsWidget(),
                           ),
+
+                          // AUTO COMPLETE (if conditions met)
+                          if (settings.showAutoComplete &&
+                              remainingCells > 0 &&
+                              remainingCells <= 8)
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: 8.0,
+                                left: 16,
+                                right: 16,
+                              ),
+                              child: SizedBox(
+                                width: 200,
+                                child: OutlinedButton.icon(
+                                  icon: const Icon(Icons.auto_fix_high,
+                                      size: 16),
+                                  label: const Text(
+                                    'AUTO COMPLETE',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  style: OutlinedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    side: BorderSide(
+                                      color: Theme.of(context)
+                                          .primaryColor
+                                          .withValues(alpha: 0.5),
+                                    ),
+                                  ),
+                                  onPressed: () => ref
+                                      .read(gameProvider.notifier)
+                                      .autoComplete(),
+                                ),
+                              ),
+                            ),
 
                           // KEYPAD
                           const Padding(
@@ -282,7 +374,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                                   ),
                                   label: const Text(
                                     'Exit',
-                                    style: TextStyle(color: Colors.redAccent),
+                                    style:
+                                        TextStyle(color: Colors.redAccent),
                                   ),
                                 ),
                               ],
@@ -295,6 +388,13 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         ),
       ),
     );
+  }
+
+  int _countEmpty(GameState state) {
+    if (state.session == null) return 81;
+    return state.session!.currentBoard
+        .where((v) => v == 0)
+        .length;
   }
 
   String _formatTime(int seconds) {
@@ -327,9 +427,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Close dialog
+              Navigator.pop(context);
               ref.read(gameProvider.notifier).abandonGame();
-              context.pop(); // Go back to difficulty screen
+              context.pop();
             },
             child: const Text(
               'Exit',
@@ -348,10 +448,12 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       barrierDismissible: false,
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).cardTheme.color,
-        title: const Text(
-          'VICTORY',
+        title: Text(
+          state.completedWithAutocomplete ? 'COMPLETED' : 'VICTORY',
           style: TextStyle(
-            color: Colors.greenAccent,
+            color: state.completedWithAutocomplete
+                ? Colors.lightBlueAccent
+                : Colors.greenAccent,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),
@@ -363,24 +465,30 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             Text('Difficulty: ${state.difficulty}'),
             Text('Time: ${_formatTime(state.elapsedSeconds)}'),
             Text('Errors: ${state.errors} / 3'),
+            if (state.completedWithAutocomplete)
+              const Text('Completed with auto complete'),
           ],
         ),
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Close dialog
-              context.pop(); // Go home
+              Navigator.pop(context);
+              context.pop();
             },
             child: const Text('Exit', style: TextStyle(color: Colors.white54)),
           ),
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Close dialog
+              Navigator.pop(context);
               ref.read(gameProvider.notifier).init(widget.difficulty);
             },
-            child: const Text(
+            child: Text(
               'Continue',
-              style: TextStyle(color: Colors.greenAccent),
+              style: TextStyle(
+                color: state.completedWithAutocomplete
+                    ? Colors.lightBlueAccent
+                    : Colors.greenAccent,
+              ),
             ),
           ),
         ],
@@ -402,18 +510,20 @@ class _GameScreenState extends ConsumerState<GameScreen> {
             fontSize: 24,
           ),
         ),
-        content: const Text('You have reached the maximum number of errors.'),
+        content: const Text(
+            'You have reached the maximum number of errors.'),
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Close dialog
-              context.pop(); // Go home
+              Navigator.pop(context);
+              context.pop();
             },
-            child: const Text('Exit', style: TextStyle(color: Colors.white54)),
+            child: const Text('Exit',
+                style: TextStyle(color: Colors.white54)),
           ),
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Close dialog
+              Navigator.pop(context);
               ref.read(gameProvider.notifier).init(widget.difficulty);
             },
             child: const Text(

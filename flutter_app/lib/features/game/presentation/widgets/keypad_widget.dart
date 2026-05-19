@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,9 +9,10 @@ class KeypadWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final lockedNumber = ref.watch(
-      gameProvider.select((state) => state.lockedNumber),
-    );
+    final state = ref.watch(gameProvider);
+    final lockedNumber = state.lockedNumber;
+    final completedDigits = state.completedDigits;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final maxWidth = constraints.maxWidth > 350
@@ -29,14 +29,20 @@ class KeypadWidget extends ConsumerWidget {
             childAspectRatio: 2.0,
             children: List.generate(9, (index) {
               final number = index + 1;
+              final digitComplete = (completedDigits[number] ?? 0) >= 9;
               return _KeypadButton(
                     number: number,
                     isLocked: lockedNumber == number,
-                    onTap: () =>
-                        ref.read(gameProvider.notifier).inputNumber(number),
-                    onLongHold: () => ref
-                        .read(gameProvider.notifier)
-                        .toggleLockedNumber(number),
+                    isComplete: digitComplete,
+                    onTap: digitComplete
+                        ? null
+                        : () =>
+                            ref.read(gameProvider.notifier).inputNumber(number),
+                    onLongHold: digitComplete
+                        ? null
+                        : () => ref
+                            .read(gameProvider.notifier)
+                            .toggleLockedNumber(number),
                   )
                   .animate()
                   .fade(delay: (50 * index).ms)
@@ -52,14 +58,16 @@ class KeypadWidget extends ConsumerWidget {
 class _KeypadButton extends StatefulWidget {
   final int number;
   final bool isLocked;
-  final VoidCallback onTap;
-  final VoidCallback onLongHold;
+  final bool isComplete;
+  final VoidCallback? onTap;
+  final VoidCallback? onLongHold;
 
   const _KeypadButton({
     required this.number,
     required this.isLocked,
-    required this.onTap,
-    required this.onLongHold,
+    required this.isComplete,
+    this.onTap,
+    this.onLongHold,
   });
 
   @override
@@ -79,6 +87,7 @@ class _KeypadButtonState extends State<_KeypadButton> {
   }
 
   void _startHold() {
+    if (widget.onLongHold == null) return;
     _holdTimer?.cancel();
     _didLongHold = false;
     setState(() => _isHolding = true);
@@ -86,7 +95,7 @@ class _KeypadButtonState extends State<_KeypadButton> {
       if (!mounted) return;
       _didLongHold = true;
       setState(() => _isHolding = false);
-      widget.onLongHold();
+      widget.onLongHold?.call();
     });
   }
 
@@ -95,7 +104,7 @@ class _KeypadButtonState extends State<_KeypadButton> {
       _didLongHold = false;
       return;
     }
-    widget.onTap();
+    widget.onTap?.call();
   }
 
   void _cancelHold() {
@@ -108,22 +117,33 @@ class _KeypadButtonState extends State<_KeypadButton> {
   @override
   Widget build(BuildContext context) {
     final activeColor = Theme.of(context).primaryColor;
-    final borderColor = widget.isLocked ? activeColor : const Color(0xFF2B2B2B);
-    final bgColor = widget.isLocked
-        ? activeColor.withValues(alpha: 0.18)
-        : _isHolding
-        ? activeColor.withValues(alpha: 0.10)
-        : Theme.of(context).cardTheme.color;
+    final borderColor = widget.isLocked
+        ? activeColor
+        : widget.isComplete
+            ? Colors.greenAccent.withValues(alpha: 0.3)
+            : const Color(0xFF2B2B2B);
+    final bgColor = widget.isComplete
+        ? Colors.greenAccent.withValues(alpha: 0.08)
+        : widget.isLocked
+            ? activeColor.withValues(alpha: 0.18)
+            : _isHolding
+                ? activeColor.withValues(alpha: 0.10)
+                : Theme.of(context).cardTheme.color;
+    final textColor = widget.isComplete
+        ? Colors.greenAccent.withValues(alpha: 0.5)
+        : widget.isLocked
+            ? activeColor
+            : activeColor;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: AnimatedScale(
-        scale: _isHovered ? 1.05 : 1.0,
+        scale: _isHovered && !widget.isComplete ? 1.05 : 1.0,
         duration: const Duration(milliseconds: 100),
         child: InkWell(
-          onTap: _handleTap,
-          onTapDown: (_) => _startHold(),
+          onTap: widget.onTap != null ? _handleTap : null,
+          onTapDown: widget.onTap != null ? (_) => _startHold() : null,
           onTapCancel: _cancelHold,
           onTapUp: (_) => _cancelHold(),
           borderRadius: BorderRadius.circular(12),
@@ -143,14 +163,24 @@ class _KeypadButtonState extends State<_KeypadButton> {
                 Text(
                   widget.number.toString(),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: activeColor,
-                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                    fontWeight: widget.isComplete
+                        ? FontWeight.w300
+                        : FontWeight.bold,
                   ),
                 ),
                 if (widget.isLocked)
                   const Text(
                     'Modo rápido',
                     style: TextStyle(fontSize: 9, color: Colors.white70),
+                  ),
+                if (widget.isComplete && !widget.isLocked)
+                  Text(
+                    '${widget.number} listo',
+                    style: TextStyle(
+                      fontSize: 8,
+                      color: Colors.greenAccent.withValues(alpha: 0.5),
+                    ),
                   ),
               ],
             ),
