@@ -1,3 +1,7 @@
+import 'game_session.dart';
+
+export 'game_session.dart' show GameSession;
+
 enum GameStatus { playing, won, lost }
 
 class SudokuCell {
@@ -20,19 +24,14 @@ class SudokuCell {
   bool get isError => value != 0 && value != solution;
   bool get isEmpty => value == 0;
 
-  SudokuCell copyWith({
-    int? value,
-    Set<int>? notes,
-  }) {
-    return SudokuCell(
-      row: row,
-      col: col,
-      value: value ?? this.value,
-      solution: solution,
-      isFixed: isFixed,
-      notes: notes ?? this.notes,
-    );
-  }
+  SudokuCell copyWith({int? value, Set<int>? notes}) => SudokuCell(
+        row: row,
+        col: col,
+        value: value ?? this.value,
+        solution: solution,
+        isFixed: isFixed,
+        notes: notes ?? this.notes,
+      );
 }
 
 class Move {
@@ -55,70 +54,86 @@ class Move {
   });
 }
 
+/// Estado UI completo. Wrappea un GameSession inmutable + UI-only fields.
+/// Getters computados mantienen compatibilidad con todos los widgets.
 class GameState {
-  final List<List<SudokuCell>> board;
-  final String boardId;
+  final GameSession? session;
+
+  // UI-only
   final int? selectedRow;
   final int? selectedCol;
-  final int errors;
-  final int elapsedSeconds;
   final bool pencilMode;
-  final String difficulty;
-  final GameStatus status;
-  final bool isPaused;
   final List<Move> undoStack;
   final bool isLoading;
 
+  // Computed from session
+  List<List<SudokuCell>> get board {
+    if (session == null) return _emptyBoard();
+    return List.generate(9, (r) {
+      return List.generate(9, (c) {
+        final idx = r * 9 + c;
+        final val = session!.currentBoard[idx];
+        final sol = session!.solution[idx];
+        final notes = session!.notes[idx] ?? const {};
+        return SudokuCell(
+          row: r,
+          col: c,
+          value: val,
+          solution: sol,
+          isFixed: session!.fixedCells.contains(idx),
+          notes: notes,
+        );
+      });
+    });
+  }
+
+  String get boardId     => session?.boardId ?? '';
+  String get difficulty  => session?.difficulty ?? 'easy';
+  int    get errors      => session?.mistakes ?? 0;
+  int    get elapsedSeconds => session?.elapsed.inSeconds ?? 0;
+  bool   get isPaused    => session?.paused ?? false;
+  GameStatus get status  => session?.status ?? GameStatus.playing;
+
   const GameState({
-    required this.board,
-    this.boardId = '',
+    this.session,
     this.selectedRow,
     this.selectedCol,
-    this.errors = 0,
-    this.elapsedSeconds = 0,
     this.pencilMode = false,
-    required this.difficulty,
-    this.status = GameStatus.playing,
-    this.isPaused = false,
     this.undoStack = const [],
     this.isLoading = false,
   });
 
+  factory GameState.loading(String difficulty) => const GameState(isLoading: true);
+
   GameState copyWith({
-    List<List<SudokuCell>>? board,
-    String? boardId,
+    GameSession? session,
+    bool clearSession = false,
     int? selectedRow,
     int? selectedCol,
     bool clearSelection = false,
-    int? errors,
-    int? elapsedSeconds,
     bool? pencilMode,
-    GameStatus? status,
-    bool? isPaused,
     List<Move>? undoStack,
     bool? isLoading,
   }) {
     return GameState(
-      board: board ?? this.board,
-      boardId: boardId ?? this.boardId,
-      selectedRow: clearSelection ? null : (selectedRow ?? this.selectedRow), 
+      session: clearSession ? null : (session ?? this.session),
+      selectedRow: clearSelection ? null : (selectedRow ?? this.selectedRow),
       selectedCol: clearSelection ? null : (selectedCol ?? this.selectedCol),
-      errors: errors ?? this.errors,
-      elapsedSeconds: elapsedSeconds ?? this.elapsedSeconds,
       pencilMode: pencilMode ?? this.pencilMode,
-      difficulty: difficulty,
-      status: status ?? this.status,
-      isPaused: isPaused ?? this.isPaused,
       undoStack: undoStack ?? this.undoStack,
       isLoading: isLoading ?? this.isLoading,
     );
   }
 
-  GameState clearSelection() {
-    return copyWith(clearSelection: true);
-  }
+  GameState clearSelection() => copyWith(clearSelection: true);
+  GameState select(int row, int col) =>
+      copyWith(selectedRow: row, selectedCol: col);
 
-  GameState select(int row, int col) {
-    return copyWith(selectedRow: row, selectedCol: col);
-  }
+  static List<List<SudokuCell>> _emptyBoard() => List.generate(
+        9,
+        (r) => List.generate(
+          9,
+          (c) => SudokuCell(row: r, col: c, value: 0, solution: 0),
+        ),
+      );
 }

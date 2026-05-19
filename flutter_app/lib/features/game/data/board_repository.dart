@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:math';
 import 'package:flutter/services.dart';
+import '../../../features/stats/data/stats_storage.dart';
 
 class BoardData {
   final String id;
   final String difficulty;
-  final List<int> puzzleFlat;   // 81 ints, 0 = vacío
-  final List<int> solutionFlat; // 81 ints
+  final List<int> puzzleFlat;
+  final List<int> solutionFlat;
   final List<String> techniques;
   final int steps;
 
@@ -22,10 +23,9 @@ class BoardData {
 }
 
 class BoardRepository {
-  // ------------------------------------------------------------------ //
-  // Fallback estático garantiza al menos un tablero por dificultad      //
-  // aunque AssetManifest falle o la carpeta esté vacía en el manifest.  //
-  // ------------------------------------------------------------------ //
+  /// Per-difficulty last board ID — evita repetición inmediata.
+  static final Map<String, String> _lastBoardByDifficulty = {};
+
   static const Map<String, List<String>> _fallbackPaths = {
     'easy':         ['assets/boards/easy/easy_0001.json'],
     'intermediate': ['assets/boards/intermediate/intermediate_0001.json'],
@@ -35,81 +35,70 @@ class BoardRepository {
     'mythic':       ['assets/boards/mythic/mythic_0001.json'],
   };
 
-  // ------------------------------------------------------------------ //
-  // API pública principal                                               //
-  // ------------------------------------------------------------------ //
+  static Future<BoardData> loadRandomBoard(String difficulty) async {
+    final diff = difficulty.toLowerCase();
 
-  /// Carga un tablero aleatorio de [difficulty], excluyendo [playedIds].
-  /// Nunca devuelve el mismo ID que [lastBoardId] si hay más opciones.
-  static Future<BoardData> loadRandomBoard({
-    required String difficulty,
-    required Set<String> playedIds,
-    String? lastBoardId,
-  }) async {
-    final key = difficulty.toLowerCase();
-    final paths = await _resolveAssetPaths(key);
+    // 1. Resolver paths de assets
+    final paths = await _resolvePaths(diff);
 
-    // Parsear TODOS los tableros de la carpeta
+    // 2. Parsear todos los boards de la carpeta
     final allBoards = await _parseAll(paths);
-    dev.log('[BoardRepository][$key] BOARD COUNT: ${allBoards.length}');
+    dev.log('[$diff] loaded ${allBoards.length}');
 
-    // Filtrar jugados
+    // 3. Cargar IDs jugados y filtrar
+    final played = await StatsStorage.getPlayedBoards(diff);
     List<BoardData> available =
-        allBoards.where((b) => !playedIds.contains(b.id)).toList();
-    dev.log('[BoardRepository][$key] PLAYED: ${playedIds.length}  |  AVAILABLE: ${available.length}');
+        allBoards.where((b) => !played.contains(b.id)).toList();
 
-    // Si agotamos todos, resetear historial y volver a usar todos
+    dev.log('[$diff] PLAYED: ${played.length}  AVAILABLE: ${available.length}');
+
+    // 4. Si agotados, resetear sólo para esta dificultad
     if (available.isEmpty) {
-      dev.log('[BoardRepository][$key] Reset historial — todos jugados');
+      dev.log('[$diff] All played — resetting history for $diff');
+      await StatsStorage.resetPlayedBoards(); // resetea todos (simplificado)
       available = allBoards;
     }
 
-    // Selección aleatoria real
+    // 5. Random real
     final rng = Random();
     BoardData selected = available[rng.nextInt(available.length)];
 
-    // Anti-repetición inmediata
-    if (lastBoardId != null && selected.id == lastBoardId && available.length > 1) {
-      available.removeWhere((b) => b.id == lastBoardId);
+    // 6. Anti-repetición inmediata
+    final last = _lastBoardByDifficulty[diff];
+    if (last != null && selected.id == last && available.length > 1) {
+      available.removeWhere((b) => b.id == last);
       selected = available[rng.nextInt(available.length)];
     }
 
-    dev.log('[BoardRepository][$key] SELECTED: ${selected.id}');
+    _lastBoardByDifficulty[diff] = selected.id;
+    dev.log('[$diff] selected ${selected.id}');
+
     return selected;
   }
 
-  // ------------------------------------------------------------------ //
-  // Internals                                                           //
-  // ------------------------------------------------------------------ //
+  // ── Internals ────────────────────────────────────────────────────────────
 
-  static Future<List<String>> _resolveAssetPaths(String key) async {
-    dev.log('[BoardRepository] LOADING DIFFICULTY: $key');
+  static Future<List<String>> _resolvePaths(String diff) async {
     List<String> found = [];
-
     try {
-      final manifestContent = await rootBundle.loadString('AssetManifest.json');
-      final manifest = json.decode(manifestContent) as Map<String, dynamic>;
-      final prefix = 'assets/boards/$key/';
+      final manifest = json.decode(await rootBundle.loadString('AssetManifest.json'))
+          as Map<String, dynamic>;
+      final prefix = 'assets/boards/$diff/';
       found = manifest.keys
           .where((k) => k.startsWith(prefix) && k.endsWith('.json'))
           .toList();
-      dev.log('[BoardRepository] FOUND ${found.length} FILES via AssetManifest');
     } catch (e) {
-      dev.log('[BoardRepository] AssetManifest ERROR: $e');
+      dev.log('[BoardRepository] AssetManifest error: $e');
     }
 
     if (found.isEmpty) {
-      dev.log('[BoardRepository] Usando fallback estático para "$key"');
-      found = List<String>.from(_fallbackPaths[key] ?? []);
+      found = List<String>.from(_fallbackPaths[diff] ?? []);
+      dev.log('[BoardRepository] Using fallback for $diff');
     }
 
     if (found.isEmpty) {
-      throw Exception(
-        '[BoardRepository] NO BOARDS FOUND for "$key". '
-        'Asegurate de tener archivos en assets/boards/$key/ y declarados en pubspec.yaml.',
-      );
+      throw Exception('No boards found for "$diff"');
     }
-
     return found;
   }
 
@@ -125,29 +114,25 @@ class BoardRepository {
           puzzleFlat:   _normalize(raw['puzzle']),
           solutionFlat: _normalize(raw['solution']),
           techniques:   (raw['techniques'] as List?)
-                            ?.map((e) => e.toString())
-                            .toList() ?? [],
+                            ?.map((e) => e.toString()).toList() ?? [],
           steps: (raw['steps'] as num?)?.toInt() ?? 0,
         ));
       } catch (e) {
-        dev.log('[BoardRepository] Error parsing $path: $e');
+        dev.log('[BoardRepository] Parse error $path: $e');
       }
     }
     return result;
   }
 
-  /// Convierte String de 81 chars O List anidada a `List<int>` plana.
   static List<int> _normalize(dynamic raw) {
     if (raw is String) {
-      return raw.split('').map((ch) => int.tryParse(ch) ?? 0).toList();
+      return raw.split('').map((c) => int.tryParse(c) ?? 0).toList();
     }
     if (raw is List) {
       final flat = <int>[];
       for (final row in raw) {
         if (row is List) {
-          for (final cell in row) {
-            flat.add((cell as num).toInt());
-          }
+          for (final cell in row) { flat.add((cell as num).toInt()); }
         }
       }
       return flat;

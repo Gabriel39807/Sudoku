@@ -1,170 +1,63 @@
 import 'dart:async';
 import 'dart:developer' as dev;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../domain/game_state.dart';
 import '../data/board_repository.dart';
-
-// ------------------------------------------------------------------ //
-// Provider de historial — persistido por clave played_{difficulty}    //
-// ------------------------------------------------------------------ //
-
-class PlayedBoardsNotifier extends AsyncNotifier<Map<String, Set<String>>> {
-  static String _key(String diff) => 'played_${diff.toLowerCase()}';
-
-  @override
-  Future<Map<String, Set<String>>> build() async {
-    final prefs = await SharedPreferences.getInstance();
-    const diffs = ['easy', 'intermediate', 'hard', 'expert', 'evil', 'mythic'];
-    return {
-      for (final d in diffs)
-        d: (prefs.getStringList(_key(d)) ?? []).toSet(),
-    };
-  }
-
-  Future<void> mark(String difficulty, String boardId) async {
-    final diff = difficulty.toLowerCase();
-    final prefs = await SharedPreferences.getInstance();
-    final current = Map<String, Set<String>>.from(state.value ?? {});
-    final updated = Set<String>.from(current[diff] ?? {})..add(boardId);
-    current[diff] = updated;
-    await prefs.setStringList(_key(diff), updated.toList());
-    state = AsyncData(Map.from(current));
-    dev.log('[PlayedBoards] Marked $boardId as played for $diff (total: ${updated.length})');
-  }
-
-  Future<void> reset(String difficulty) async {
-    final diff = difficulty.toLowerCase();
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_key(diff));
-    final current = Map<String, Set<String>>.from(state.value ?? {});
-    current[diff] = {};
-    state = AsyncData(current);
-    dev.log('[PlayedBoards] Reset history for $diff');
-  }
-
-  Set<String> getPlayed(String difficulty) {
-    return state.value?[difficulty.toLowerCase()] ?? {};
-  }
-}
-
-final playedBoardsProvider =
-    AsyncNotifierProvider<PlayedBoardsNotifier, Map<String, Set<String>>>(
-  PlayedBoardsNotifier.new,
-);
-
-// ------------------------------------------------------------------ //
-// GameNotifier                                                        //
-// ------------------------------------------------------------------ //
+import '../../stats/data/stats_storage.dart';
 
 class GameNotifier extends Notifier<GameState> {
   Timer? _timer;
-  String? _lastBoardId;
 
   @override
   GameState build() {
     ref.onDispose(() => _timer?.cancel());
-    return GameState(
-      board: _emptyBoard(),
-      difficulty: 'easy',
-      isLoading: true,
-    );
+    return const GameState(isLoading: false);
   }
 
-  List<List<SudokuCell>> _emptyBoard() => List.generate(
-        9,
-        (r) => List.generate(
-          9,
-          (c) => SudokuCell(row: r, col: c, value: 0, solution: 0),
-        ),
-      );
-
-  // ---------------------------------------------------------------- //
-  // init — punto de entrada al cargar una nueva partida              //
-  // ---------------------------------------------------------------- //
+  // ── Init ─────────────────────────────────────────────────────────────────
 
   Future<void> init(String difficulty) async {
     final diff = difficulty.toLowerCase();
     _timer?.cancel();
 
-    state = state.copyWith(
-      isLoading: true,
-      isPaused: false,
-      status: GameStatus.playing,
-      elapsedSeconds: 0,
-      errors: 0,
-      undoStack: [],
-      pencilMode: false,
-    );
+    // Estado limpio de carga — sin rastro de sesión anterior
+    state = const GameState(isLoading: true);
 
-    await _loadNextBoard(diff);
+    try {
+      final boardData = await BoardRepository.loadRandomBoard(diff);
+
+      final session = GameSession.create(
+        boardId: boardData.id,
+        difficulty: diff,
+        puzzleFlat: boardData.puzzleFlat,
+        solutionFlat: boardData.solutionFlat,
+      );
+
+      state = GameState(session: session, isLoading: false);
+      _startTimer();
+    } catch (e) {
+      dev.log('[GameProvider] init error: $e');
+      state = const GameState(isLoading: false);
+    }
   }
 
-  Future<void> _loadNextBoard(String diff) async {
-    // Esperar a que playedBoardsProvider esté listo
-    final playedAsync = ref.read(playedBoardsProvider);
-    await playedAsync.when(
-      data: (_) async {},
-      loading: () async {
-        await Future.delayed(const Duration(milliseconds: 100));
-      },
-      error: (err, st) async {},
-    );
-
-    final played = ref.read(playedBoardsProvider.notifier).getPlayed(diff);
-
-    dev.log('[GameProvider] Loading $diff | played=${played.length} | last=$_lastBoardId');
-
-    final boardData = await BoardRepository.loadRandomBoard(
-      difficulty: diff,
-      playedIds: played,
-      lastBoardId: _lastBoardId,
-    );
-
-    dev.log('[GameProvider] BOARD ID: ${boardData.id} | DIFFICULTY: $diff | CELLS: ${boardData.puzzleFlat.length}');
-
-    final board = List.generate(9, (r) {
-      return List.generate(9, (c) {
-        final idx = r * 9 + c;
-        final val = boardData.puzzleFlat[idx];
-        final sol = boardData.solutionFlat[idx];
-        return SudokuCell(
-          row: r, col: c, value: val, solution: sol, isFixed: val != 0,
-        );
-      });
-    });
-
-    _lastBoardId = boardData.id;
-
-    state = GameState(
-      board: board,
-      boardId: boardData.id,
-      difficulty: diff,
-      isLoading: false,
-    );
-
-    _startTimer();
-  }
-
-  // ---------------------------------------------------------------- //
-  // Timer                                                             //
-  // ---------------------------------------------------------------- //
+  // ── Timer ────────────────────────────────────────────────────────────────
 
   void _startTimer() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (t) {
-      if (state.status == GameStatus.playing && !state.isPaused) {
-        state = state.copyWith(elapsedSeconds: state.elapsedSeconds + 1);
-      }
+      final s = state.session;
+      if (s == null || s.status != GameStatus.playing || s.paused) return;
+      state = state.copyWith(
+        session: s.copyWith(elapsed: s.elapsed + const Duration(seconds: 1)),
+      );
     });
   }
 
-  // ---------------------------------------------------------------- //
-  // Inputs                                                            //
-  // ---------------------------------------------------------------- //
+  // ── User inputs ──────────────────────────────────────────────────────────
 
   void selectCell(int row, int col) {
-    if (state.status != GameStatus.playing || state.isPaused) return;
+    if (!_canInput) return;
     if (state.selectedRow == row && state.selectedCol == col) {
       state = state.clearSelection();
     } else {
@@ -173,129 +66,194 @@ class GameNotifier extends Notifier<GameState> {
   }
 
   void inputNumber(int number) {
-    if (state.status != GameStatus.playing || state.isPaused) return;
-    if (state.selectedRow == null || state.selectedCol == null) return;
+    if (!_canInput) return;
+    final r = state.selectedRow;
+    final c = state.selectedCol;
+    if (r == null || c == null) return;
 
-    final r = state.selectedRow!;
-    final c = state.selectedCol!;
-    final cell = state.board[r][c];
-    if (cell.isFixed) return;
+    final session = state.session!;
+    final idx = r * 9 + c;
+    if (session.fixedCells.contains(idx)) return;
 
     if (state.pencilMode) {
-      final newNotes = Set<int>.from(cell.notes);
-      if (newNotes.contains(number)) {
-        newNotes.remove(number);
-      } else {
-        newNotes.add(number);
-      }
-      final move = Move(
-        row: r, col: c,
-        oldValue: cell.value, newValue: cell.value,
-        oldNotes: cell.notes, newNotes: newNotes,
-        timestamp: DateTime.now(),
-      );
-      _updateCellAndPushMove(cell.copyWith(notes: newNotes), move);
+      _handlePencil(session, idx, r, c, number);
     } else {
-      final newValue = cell.value == number ? 0 : number;
-      final move = Move(
-        row: r, col: c,
-        oldValue: cell.value, newValue: newValue,
-        oldNotes: cell.notes, newNotes: {},
-        timestamp: DateTime.now(),
-      );
-      _updateCellAndPushMove(cell.copyWith(value: newValue, notes: {}), move);
-
-      if (newValue != 0 && newValue != cell.solution) {
-        final newErrors = state.errors + 1;
-        if (newErrors >= 3) {
-          state = state.copyWith(errors: newErrors, status: GameStatus.lost);
-          _onBoardConsumed(); // marcar y preparar siguiente
-        } else {
-          state = state.copyWith(errors: newErrors);
-        }
-      } else {
-        _checkWinCondition();
-      }
+      _handleNumber(session, idx, r, c, number);
     }
   }
 
-  void undo() {
-    if (state.status != GameStatus.playing || state.isPaused) return;
-    if (state.undoStack.isEmpty) return;
+  void _handlePencil(GameSession session, int idx, int r, int c, int number) {
+    final newNotes = Map<int, Set<int>>.from(session.notes);
+    final cellNotes = Set<int>.from(newNotes[idx] ?? {});
+    if (cellNotes.contains(number)) {
+      cellNotes.remove(number);
+    } else {
+      cellNotes.add(number);
+    }
+    newNotes[idx] = cellNotes;
 
-    final newStack = List<Move>.from(state.undoStack);
-    final lastMove = newStack.removeLast();
-    final cell = state.board[lastMove.row][lastMove.col];
-    final restored = cell.copyWith(value: lastMove.oldValue, notes: lastMove.oldNotes);
-
-    final newBoard = state.board.map((row) => List<SudokuCell>.from(row)).toList();
-    newBoard[restored.row][restored.col] = restored;
+    final oldNotes = Set<int>.from(session.notes[idx] ?? {});
+    final move = Move(
+      row: r, col: c,
+      oldValue: session.currentBoard[idx], newValue: session.currentBoard[idx],
+      oldNotes: oldNotes, newNotes: Set<int>.from(cellNotes),
+      timestamp: DateTime.now(),
+    );
 
     state = state.copyWith(
-      board: newBoard,
+      session: session.copyWith(notes: newNotes),
+      undoStack: [...state.undoStack, move],
+    );
+  }
+
+  void _handleNumber(GameSession session, int idx, int r, int c, int number) {
+    final oldValue = session.currentBoard[idx];
+    final newValue = oldValue == number ? 0 : number;
+
+    final newBoard = List<int>.from(session.currentBoard);
+    newBoard[idx] = newValue;
+
+    final newNotes = Map<int, Set<int>>.from(session.notes);
+    newNotes.remove(idx); // limpiar notas al escribir número
+
+    final move = Move(
+      row: r, col: c,
+      oldValue: oldValue, newValue: newValue,
+      oldNotes: Set<int>.from(session.notes[idx] ?? {}),
+      newNotes: {},
+      timestamp: DateTime.now(),
+    );
+
+    var updatedSession = session.copyWith(currentBoard: newBoard, notes: newNotes);
+
+    if (newValue != 0 && newValue != session.solution[idx]) {
+      final newMistakes = updatedSession.mistakes + 1;
+      if (newMistakes >= 3) {
+        updatedSession = updatedSession.copyWith(
+          mistakes: newMistakes,
+          status: GameStatus.lost,
+        );
+        state = state.copyWith(
+          session: updatedSession,
+          undoStack: [...state.undoStack, move],
+        );
+        _onLost();
+        return;
+      }
+      updatedSession = updatedSession.copyWith(mistakes: newMistakes);
+    }
+
+    state = state.copyWith(
+      session: updatedSession,
+      undoStack: [...state.undoStack, move],
+    );
+
+    if (newValue != 0) _checkWin();
+  }
+
+  void undo() {
+    if (!_canInput || state.undoStack.isEmpty) return;
+    final newStack = List<Move>.from(state.undoStack);
+    final last = newStack.removeLast();
+
+    final session = state.session!;
+    final idx = last.row * 9 + last.col;
+    final newBoard = List<int>.from(session.currentBoard);
+    newBoard[idx] = last.oldValue;
+
+    final newNotes = Map<int, Set<int>>.from(session.notes);
+    if (last.oldNotes.isEmpty) {
+      newNotes.remove(idx);
+    } else {
+      newNotes[idx] = Set<int>.from(last.oldNotes);
+    }
+
+    state = state.copyWith(
+      session: session.copyWith(currentBoard: newBoard, notes: newNotes),
       undoStack: newStack,
-      selectedRow: lastMove.row,
-      selectedCol: lastMove.col,
+      selectedRow: last.row,
+      selectedCol: last.col,
+    );
+  }
+
+  void erase() {
+    if (!_canInput) return;
+    final r = state.selectedRow;
+    final c = state.selectedCol;
+    if (r == null || c == null) return;
+
+    final session = state.session!;
+    final idx = r * 9 + c;
+    if (session.fixedCells.contains(idx)) return;
+    if (session.currentBoard[idx] == 0 && (session.notes[idx]?.isEmpty ?? true)) return;
+
+    final move = Move(
+      row: r, col: c,
+      oldValue: session.currentBoard[idx], newValue: 0,
+      oldNotes: Set<int>.from(session.notes[idx] ?? {}), newNotes: {},
+      timestamp: DateTime.now(),
+    );
+
+    final newBoard = List<int>.from(session.currentBoard);
+    newBoard[idx] = 0;
+    final newNotes = Map<int, Set<int>>.from(session.notes);
+    newNotes.remove(idx);
+
+    state = state.copyWith(
+      session: session.copyWith(currentBoard: newBoard, notes: newNotes),
+      undoStack: [...state.undoStack, move],
     );
   }
 
   void togglePencil() {
-    if (state.status != GameStatus.playing || state.isPaused) return;
+    if (!_canInput) return;
     state = state.copyWith(pencilMode: !state.pencilMode);
   }
 
   void togglePause() {
-    if (state.status != GameStatus.playing) return;
-    state = state.copyWith(isPaused: !state.isPaused);
-  }
-
-  void erase() {
-    if (state.status != GameStatus.playing || state.isPaused) return;
-    if (state.selectedRow == null || state.selectedCol == null) return;
-    final r = state.selectedRow!;
-    final c = state.selectedCol!;
-    final cell = state.board[r][c];
-    if (cell.isFixed || (cell.value == 0 && cell.notes.isEmpty)) return;
-
-    final move = Move(
-      row: r, col: c,
-      oldValue: cell.value, newValue: 0,
-      oldNotes: cell.notes, newNotes: {},
-      timestamp: DateTime.now(),
+    final session = state.session;
+    if (session == null || session.status != GameStatus.playing) return;
+    state = state.copyWith(
+      session: session.copyWith(paused: !session.paused),
     );
-    _updateCellAndPushMove(cell.copyWith(value: 0, notes: {}), move);
   }
 
-  // ---------------------------------------------------------------- //
-  // Condición de victoria y consumo de tablero                       //
-  // ---------------------------------------------------------------- //
+  // ── Win / Loss ───────────────────────────────────────────────────────────
 
-  void _checkWinCondition() {
-    final complete = state.board.every(
-      (row) => row.every((c) => c.value != 0 && c.value == c.solution),
+  void _checkWin() {
+    final session = state.session;
+    if (session == null) return;
+    final complete = session.currentBoard
+        .asMap()
+        .entries
+        .every((e) => e.value != 0 && e.value == session.solution[e.key]);
+    if (!complete) return;
+
+    _timer?.cancel();
+    state = state.copyWith(
+      session: session.copyWith(status: GameStatus.won),
     );
-    if (complete) {
-      state = state.copyWith(status: GameStatus.won);
-      _onBoardConsumed();
-    }
+    _onWon(session.difficulty, session.elapsed.inSeconds, session.boardId);
   }
 
-  /// Marca el tablero actual como jugado y NO carga el siguiente aquí:
-  /// el próximo init() ya se encargará de excluirlo.
-  void _onBoardConsumed() {
-    final diff = state.difficulty.toLowerCase();
-    final boardId = state.boardId;
-    if (boardId.isNotEmpty) {
-      ref.read(playedBoardsProvider.notifier).mark(diff, boardId);
-      dev.log('[GameProvider] Board consumed: $boardId ($diff)');
-    }
+  void _onWon(String diff, int elapsed, String boardId) {
+    StatsStorage.recordWin(diff, elapsed);
+    StatsStorage.markBoardPlayed(diff, boardId);
   }
 
-  void _updateCellAndPushMove(SudokuCell newCell, Move move) {
-    final newBoard = state.board.map((row) => List<SudokuCell>.from(row)).toList();
-    newBoard[newCell.row][newCell.col] = newCell;
-    final newStack = List<Move>.from(state.undoStack)..add(move);
-    state = state.copyWith(board: newBoard, undoStack: newStack);
+  void _onLost() {
+    _timer?.cancel();
+    final session = state.session;
+    if (session == null) return;
+    StatsStorage.recordLoss(session.difficulty);
+    StatsStorage.markBoardPlayed(session.difficulty, session.boardId);
+  }
+
+  // ── Helpers ──────────────────────────────────────────────────────────────
+
+  bool get _canInput {
+    final s = state.session;
+    return s != null && s.status == GameStatus.playing && !s.paused;
   }
 }
 

@@ -28,10 +28,10 @@ class MenuScreen extends StatelessWidget {
             ).animate().fade(delay: 200.ms).slideY(begin: 0.5),
             const SizedBox(height: 64),
             _MenuButton('JUGAR', () => context.push('/difficulty')),
-            _MenuButton('ESTADISTICAS', () {}),
+            _MenuButton('ESTADÍSTICAS', () => context.push('/stats')),
             _MenuButton('EVENTOS', () {}),
             _MenuButton('PERSONALIZAR', () {}),
-            _MenuButton('CONFIGURACION', () {}),
+            _MenuButton('CONFIGURACIÓN', () => context.push('/settings')),
           ].animate(interval: 100.ms).fade(duration: 300.ms).slideY(begin: 0.2),
         ),
       ),
@@ -42,7 +42,6 @@ class MenuScreen extends StatelessWidget {
 class _MenuButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
-
   const _MenuButton(this.text, this.onPressed);
 
   @override
