@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../application/game_provider.dart';
+import '../../domain/game_state.dart';
 
 class ActionsWidget extends ConsumerWidget {
   const ActionsWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pencilMode = ref.watch(gameProvider.select((state) => state.pencilMode));
-    final canUndo = ref.watch(gameProvider.select((state) => state.undoStack.isNotEmpty));
+    final pencilMode = ref.watch(
+      gameProvider.select((state) => state.pencilMode),
+    );
+    final canUndo = ref.watch(
+      gameProvider.select((state) => state.undoStack.isNotEmpty),
+    );
+    final remainingHints = ref.watch(
+      gameProvider.select((state) => state.remainingHints),
+    );
+    final showHints = remainingHints != 0;
+    final hintLabel = remainingHints < 0
+        ? 'PISTA ILIM'
+        : 'PISTA $remainingHints';
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -30,6 +42,19 @@ class ActionsWidget extends ConsumerWidget {
           isActive: pencilMode,
           onTap: () => ref.read(gameProvider.notifier).togglePencil(),
         ),
+        if (showHints)
+          _ActionButton(
+            icon: Icons.lightbulb_outline,
+            label: hintLabel,
+            onTap: () {
+              final result = ref.read(gameProvider.notifier).useHint();
+              if (result == HintResult.noSelection) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Selecciona una casilla')),
+                );
+              }
+            },
+          ),
         _ActionButton(
           icon: Icons.pause,
           label: 'PAUSA',
@@ -57,9 +82,11 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = isDisabled 
-        ? Colors.white24 
-        : isActive ? Theme.of(context).primaryColor : Colors.white70;
+    final color = isDisabled
+        ? Colors.white24
+        : isActive
+        ? Theme.of(context).primaryColor
+        : Colors.white70;
 
     return InkWell(
       onTap: onTap,

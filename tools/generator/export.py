@@ -1,26 +1,41 @@
+from __future__ import annotations
+
+import hashlib
 import json
 import os
+from typing import Set
 
-def export_board(board_id, difficulty, puzzle_grid, solution_grid, techniques=None, steps=0):
-    if techniques is None: techniques = []
-    puzzle_str = "".join(str(val) for row in puzzle_grid for val in row)
-    solution_str = "".join(str(val) for row in solution_grid for val in row)
-    
+SEEN_HASHES: Set[str] = set()
+
+
+def board_to_string(board):
+    return "".join(str(value) for row in board for value in row)
+
+
+def puzzle_hash(puzzle_grid):
+    return hashlib.sha256(board_to_string(puzzle_grid).encode("utf-8")).hexdigest()
+
+
+def export_board(board_id, difficulty, puzzle_grid, solution_grid, techniques=None, steps=None, base_dir=None):
+    checksum = puzzle_hash(puzzle_grid)
+    if checksum in SEEN_HASHES:
+        raise ValueError(f"duplicate puzzle rejected: {board_id}")
+    SEEN_HASHES.add(checksum)
+
     data = {
         "id": board_id,
         "difficulty": difficulty,
-        "techniques": techniques,
-        "steps": steps,
-        "puzzle": puzzle_str,
-        "solution": solution_str
+        "puzzle": board_to_string(puzzle_grid),
+        "solution": board_to_string(solution_grid),
+        "techniques": list(techniques or []),
+        "steps": steps or [],
+        "checksum": checksum,
     }
-    
-    base_dir = os.path.join("..", "..", "flutter_app", "assets", "boards")
-    os.makedirs(base_dir, exist_ok=True)
-    
-    diff_dir = os.path.join(base_dir, difficulty)
+
+    root = base_dir or os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "flutter_app", "assets", "boards"))
+    diff_dir = os.path.join(root, difficulty)
     os.makedirs(diff_dir, exist_ok=True)
-    
-    file_path = os.path.join(diff_dir, f"{board_id}.json")
-    with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
+    with open(os.path.join(diff_dir, f"{board_id}.json"), "w", encoding="utf-8") as handle:
+        json.dump(data, handle, indent=2)
+        handle.write("\n")
+    return data

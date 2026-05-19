@@ -1,11 +1,565 @@
 {
   "id": "evil_0006",
   "difficulty": "evil",
+  "puzzle": "600090400050700002008000030380040900001009720070501006000064100000100008000902060",
+  "solution": "627395481453718692198426537386247915541689723279531846732864159964153278815972364",
   "techniques": [
-    "xywing",
-    "forcing_chains"
+    "hidden_single",
+    "naked_pair",
+    "hidden_pair",
+    "naked_single",
+    "pointing_pair",
+    "xywing"
   ],
-  "steps": 67,
-  "puzzle": "074310500531469207908527043017280905026035801896176432782691354149753628653842710",
-  "solution": "274318596531469287968527143317284965425936871896175432782691354149753628653842719"
+  "steps": [
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          7,
+          2
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "technique": "naked_pair",
+      "affected_cells": [
+        [
+          2,
+          5
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    {
+      "technique": "naked_pair",
+      "affected_cells": [
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_pair",
+      "affected_cells": [
+        [
+          6,
+          6
+        ],
+        [
+          7,
+          6
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          6,
+          3
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          6,
+          4
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          8,
+          8
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          0,
+          6
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          7,
+          7
+        ]
+      ]
+    },
+    {
+      "technique": "naked_pair",
+      "affected_cells": [
+        [
+          3,
+          5
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          3,
+          5
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          5,
+          1
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          6,
+          6
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          7,
+          6
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          8,
+          1
+        ]
+      ]
+    },
+    {
+      "technique": "hidden_single",
+      "affected_cells": [
+        [
+          4,
+          0
+        ]
+      ]
+    },
+    {
+      "technique": "naked_pair",
+      "affected_cells": [
+        [
+          6,
+          1
+        ]
+      ]
+    },
+    {
+      "technique": "naked_pair",
+      "affected_cells": [
+        [
+          5,
+          4
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          5,
+          4
+        ]
+      ]
+    },
+    {
+      "technique": "pointing_pair",
+      "affected_cells": [
+        [
+          6,
+          5
+        ]
+      ]
+    },
+    {
+      "technique": "xywing",
+      "affected_cells": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          0,
+          8
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          2,
+          8
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          2,
+          5
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          4,
+          6
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          4,
+          3
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          4,
+          7
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          3,
+          7
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          3,
+          0
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          5,
+          2
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          5,
+          3
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          6,
+          1
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          6,
+          2
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          6,
+          5
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          7,
+          0
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          7,
+          3
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          1,
+          5
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          7,
+          4
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          7,
+          5
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          8,
+          0
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          8,
+          3
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          8,
+          4
+        ]
+      ]
+    },
+    {
+      "technique": "naked_single",
+      "affected_cells": [
+        [
+          8,
+          5
+        ]
+      ]
+    }
+  ],
+  "checksum": "bb57d81b80d43eb947d602f3518ec3da9a59f7e7b5858cc25ce7144f1821289c"
 }

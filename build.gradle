@@ -1,8 +1,0 @@
-plugins {
-    id 'com.android.application' version "$androidPluginVersion" apply false
-}
-
-allprojects {
-    group = 'com.sudoku'
-    version = '0.1.0'
-}

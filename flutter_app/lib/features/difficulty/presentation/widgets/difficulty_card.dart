@@ -5,11 +5,7 @@ class DifficultyCard extends StatefulWidget {
   final DifficultyModel model;
   final VoidCallback onTap;
 
-  const DifficultyCard({
-    super.key,
-    required this.model,
-    required this.onTap,
-  });
+  const DifficultyCard({super.key, required this.model, required this.onTap});
 
   @override
   State<DifficultyCard> createState() => _DifficultyCardState();
@@ -49,18 +45,18 @@ class _DifficultyCardState extends State<DifficultyCard> {
                 Text(
                   isHidden ? '?????' : widget.model.name,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: _getColorForDifficulty(widget.model.id, context),
-                        letterSpacing: 2,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    color: _getColorForDifficulty(widget.model.id, context),
+                    letterSpacing: 2,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   isHidden ? '?????' : widget.model.description,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white70,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                 ),
               ],
             ),
@@ -128,18 +124,18 @@ class _DifficultyCardState extends State<DifficultyCard> {
   }
 
   IconData _getIconForDifficulty(String id) {
-    switch (id) {
-      case 'EASY':
+    switch (id.toLowerCase()) {
+      case 'easy':
         return Icons.sentiment_satisfied;
-      case 'INTERMEDIATE':
+      case 'intermediate':
         return Icons.psychology;
-      case 'HARD':
+      case 'hard':
         return Icons.local_fire_department;
-      case 'EXPERT':
+      case 'expert':
         return Icons.diamond;
-      case 'EVIL':
+      case 'evil':
         return Icons.warning;
-      case 'MYTHIC':
+      case 'mythic':
         return Icons.star;
       default:
         return Icons.extension;
@@ -147,7 +143,9 @@ class _DifficultyCardState extends State<DifficultyCard> {
   }
 
   Color _getColorForDifficulty(String id, BuildContext context) {
-    if (id == 'MYTHIC') return Theme.of(context).colorScheme.secondary;
+    if (id.toLowerCase() == 'mythic') {
+      return Theme.of(context).colorScheme.secondary;
+    }
     return Theme.of(context).primaryColor;
   }
 }

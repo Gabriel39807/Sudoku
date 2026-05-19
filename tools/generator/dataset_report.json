@@ -1,0 +1,54 @@
+{
+  "valid": true,
+  "counts": {
+    "easy": 100,
+    "evil": 100,
+    "expert": 100,
+    "hard": 100,
+    "intermediate": 100,
+    "mythic": 100
+  },
+  "duplicates": {},
+  "duplicate_count": 0,
+  "errors": [],
+  "examples": {
+    "easy": [
+      "naked_single",
+      "hidden_single"
+    ],
+    "evil": [
+      "hidden_single",
+      "naked_pair",
+      "hidden_pair",
+      "naked_single",
+      "pointing_pair",
+      "xywing"
+    ],
+    "expert": [
+      "naked_single",
+      "hidden_single",
+      "pointing_pair",
+      "swordfish"
+    ],
+    "hard": [
+      "hidden_single",
+      "naked_single",
+      "pointing_pair"
+    ],
+    "intermediate": [
+      "hidden_single",
+      "naked_pair",
+      "naked_single"
+    ],
+    "mythic": [
+      "hidden_single",
+      "swordfish",
+      "naked_pair",
+      "forcing_chain",
+      "naked_single",
+      "hidden_pair",
+      "pointing_pair",
+      "xwing"
+    ]
+  }
+}

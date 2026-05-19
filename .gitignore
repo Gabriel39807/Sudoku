@@ -1,28 +1,29 @@
-# Gradle build files and cache
-.gradle/
+# Legacy archive
+legacy_archive/
+
+# Build artifacts
 build/
 */build/
-core/build/
-desktop/build/
-android/build/
-.gradle-work/
 
-# IDE files (IntelliJ, VS Code, Eclipse)
+# IDE files
 .idea/
 *.iml
-*.ipr
-*.iws
 .vscode/
-.settings/
-.project
-.classpath
-.metadata/
-bin/
-out/
 
-# Local configurations and SDK paths
-local.properties
+# Flutter
+flutter_app/.dart_tool/
+flutter_app/build/
+flutter_app/.packages
+flutter_app/.flutter-plugins
+flutter_app/.flutter-plugins-dependencies
 
-# Operating System files
+# Python
+__pycache__/
+*.pyc
+
+# OS
 Thumbs.db
 .DS_Store
+
+# Local configs
+local.properties

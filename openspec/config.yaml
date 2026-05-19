@@ -1,0 +1,9 @@
+store: hybrid
+mode: interactive
+stack:
+  - python
+  - flutter
+testing:
+  flutter_test: present
+  python_unittest: absent
+strict_tdd: false

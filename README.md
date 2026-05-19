@@ -1,14 +1,35 @@
-# Sudoku Classic RPG
+# Sudoku
 
-MVP Android con Java 17 + LibGDX. Implementa Sudoku clásico con dominio separado para tablero, generación, solver, persistencia, estadísticas, desbloqueos y UI.
+App de Sudoku con Flutter + sistema de generación basado en técnicas humanas.
 
-No ejecuté build porque el proyecto ordena explícitamente **“Never build after changes”**.
+## Estructura
 
-## Assets
+```
+flutter_app/    → App Flutter (UI, gameplay, estadísticas)
+tools/          → Pipeline Python (generador, solver, auditor)
+```
 
-- Iconos oficiales: `assets/textures/difficulty/`
-- Referencia visual: `assets/reference/difficulty_all.png`
+## Pipeline de generación
 
-## Expansión futura
+```bash
+cd tools/generator
+python create_mock_boards.py     # Genera 20 boards por dificultad
+python check_duplicates.py       # Verifica que no haya puzzles duplicados
+```
 
-La lógica clásica de Sudoku queda aislada para que campaña, economía, eventos, skins y tienda entren después por servicios nuevos, sin contaminar el dominio.
+Los tableros se exportan a `flutter_app/assets/boards/{difficulty}/`.
+
+## Clasificación por técnicas
+
+| Dificultad | Técnicas requeridas |
+|---|---|
+| Easy | Naked/Hidden Singles |
+| Intermediate | Naked/Hidden Pairs, Triples |
+| Hard | Pointing Pairs, Box-Line Reduction |
+| Expert | X-Wing, Swordfish |
+| Evil | XY-Wing, Forcing Chains |
+| Mythic | Forcing Chains, Nishio |
+
+## Legacy
+
+El frontend original (LibGDX/Java) fue archivado en `legacy_archive/`. Flutter es ahora la UI definitiva.

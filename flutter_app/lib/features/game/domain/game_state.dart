@@ -4,6 +4,8 @@ export 'game_session.dart' show GameSession;
 
 enum GameStatus { playing, won, lost }
 
+enum HintResult { applied, noSelection, ignored }
+
 class SudokuCell {
   final int row;
   final int col;
@@ -25,13 +27,13 @@ class SudokuCell {
   bool get isEmpty => value == 0;
 
   SudokuCell copyWith({int? value, Set<int>? notes}) => SudokuCell(
-        row: row,
-        col: col,
-        value: value ?? this.value,
-        solution: solution,
-        isFixed: isFixed,
-        notes: notes ?? this.notes,
-      );
+    row: row,
+    col: col,
+    value: value ?? this.value,
+    solution: solution,
+    isFixed: isFixed,
+    notes: notes ?? this.notes,
+  );
 }
 
 class Move {
@@ -65,6 +67,9 @@ class GameState {
   final bool pencilMode;
   final List<Move> undoStack;
   final bool isLoading;
+  final int remainingHints;
+  final int usedHints;
+  final int? lockedNumber;
 
   // Computed from session
   List<List<SudokuCell>> get board {
@@ -87,12 +92,12 @@ class GameState {
     });
   }
 
-  String get boardId     => session?.boardId ?? '';
-  String get difficulty  => session?.difficulty ?? 'easy';
-  int    get errors      => session?.mistakes ?? 0;
-  int    get elapsedSeconds => session?.elapsed.inSeconds ?? 0;
-  bool   get isPaused    => session?.paused ?? false;
-  GameStatus get status  => session?.status ?? GameStatus.playing;
+  String get boardId => session?.boardId ?? '';
+  String get difficulty => session?.difficulty ?? 'easy';
+  int get errors => session?.mistakes ?? 0;
+  int get elapsedSeconds => session?.elapsed.inSeconds ?? 0;
+  bool get isPaused => session?.paused ?? false;
+  GameStatus get status => session?.status ?? GameStatus.playing;
 
   const GameState({
     this.session,
@@ -101,9 +106,13 @@ class GameState {
     this.pencilMode = false,
     this.undoStack = const [],
     this.isLoading = false,
+    this.remainingHints = 3,
+    this.usedHints = 0,
+    this.lockedNumber,
   });
 
-  factory GameState.loading(String difficulty) => const GameState(isLoading: true);
+  factory GameState.loading(String difficulty) =>
+      const GameState(isLoading: true);
 
   GameState copyWith({
     GameSession? session,
@@ -114,6 +123,10 @@ class GameState {
     bool? pencilMode,
     List<Move>? undoStack,
     bool? isLoading,
+    int? remainingHints,
+    int? usedHints,
+    int? lockedNumber,
+    bool clearLockedNumber = false,
   }) {
     return GameState(
       session: clearSession ? null : (session ?? this.session),
@@ -122,6 +135,11 @@ class GameState {
       pencilMode: pencilMode ?? this.pencilMode,
       undoStack: undoStack ?? this.undoStack,
       isLoading: isLoading ?? this.isLoading,
+      remainingHints: remainingHints ?? this.remainingHints,
+      usedHints: usedHints ?? this.usedHints,
+      lockedNumber: clearLockedNumber
+          ? null
+          : (lockedNumber ?? this.lockedNumber),
     );
   }
 
@@ -130,10 +148,10 @@ class GameState {
       copyWith(selectedRow: row, selectedCol: col);
 
   static List<List<SudokuCell>> _emptyBoard() => List.generate(
-        9,
-        (r) => List.generate(
-          9,
-          (c) => SudokuCell(row: r, col: c, value: 0, solution: 0),
-        ),
-      );
+    9,
+    (r) => List.generate(
+      9,
+      (c) => SudokuCell(row: r, col: c, value: 0, solution: 0),
+    ),
+  );
 }
