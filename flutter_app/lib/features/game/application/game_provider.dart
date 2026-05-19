@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer' as dev;
 import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/game_state.dart';
@@ -46,26 +47,30 @@ class GameNotifier extends Notifier<GameState> {
     
     final randomPath = unplayed[Random().nextInt(unplayed.length)];
     final boardData = await BoardRepository.loadBoard(randomPath);
-    
-    final puzzleStr = boardData['puzzle'] as String;
-    final solutionStr = boardData['solution'] as String;
+
+    // BoardRepository ya normalizó el puzzle a List<int>[81]
+    final puzzleFlat = boardData['puzzleFlat'] as List<int>;
+    final solutionFlat = boardData['solutionFlat'] as List<int>;
     final boardId = boardData['id'] as String;
-    
+    final diffKey = difficulty.toLowerCase(); // ← siempre lowercase
+
+    dev.log('[GameProvider] BOARD ID: $boardId | DIFFICULTY: $diffKey | CELLS: ${puzzleFlat.length}');
+
     List<List<SudokuCell>> board = List.generate(9, (r) {
       return List.generate(9, (c) {
         final idx = r * 9 + c;
-        final val = int.parse(puzzleStr[idx]);
-        final sol = int.parse(solutionStr[idx]);
+        final val = puzzleFlat[idx];
+        final sol = solutionFlat[idx];
         return SudokuCell(
           row: r, col: c, value: val, solution: sol, isFixed: val != 0,
         );
       });
     });
-    
+
     state = GameState(
       board: board,
       boardId: boardId,
-      difficulty: difficulty.toUpperCase(),
+      difficulty: diffKey,
       isLoading: false,
     );
     
