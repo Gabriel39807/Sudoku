@@ -20,11 +20,18 @@ class GameNotifier extends Notifier<GameState> {
     final diff = difficulty.toLowerCase();
     _timer?.cancel();
 
-    // Estado limpio de carga — sin rastro de sesión anterior
+    // Estado SIEMPRE limpio — sin rastro de sesión anterior, sin restore
     state = const GameState(isLoading: true);
+
+    dev.log('══════════════════════════════════');
+    dev.log('[GameProvider] init() DIFF=$diff');
 
     try {
       final boardData = await BoardRepository.loadRandomBoard(diff);
+
+      dev.log('[GameProvider] BOARD_ID=${boardData.id}');
+      dev.log('[GameProvider] PUZZLE[0..19]=${boardData.puzzleFlat.take(20).toList()}');
+      dev.log('[GameProvider] SOLUTION[0..19]=${boardData.solutionFlat.take(20).toList()}');
 
       final session = GameSession.create(
         boardId: boardData.id,
@@ -33,10 +40,15 @@ class GameNotifier extends Notifier<GameState> {
         solutionFlat: boardData.solutionFlat,
       );
 
+      dev.log('[GameProvider] SESSION currentBoard[0..19]=${session.currentBoard.take(20).toList()}');
+      dev.log('[GameProvider] fixedCells count=${session.fixedCells.length}');
+      dev.log('[GameProvider] mistakes=${session.mistakes}  status=${session.status}');
+      dev.log('══════════════════════════════════');
+
       state = GameState(session: session, isLoading: false);
       _startTimer();
-    } catch (e) {
-      dev.log('[GameProvider] init error: $e');
+    } catch (e, st) {
+      dev.log('[GameProvider] init ERROR: $e\n$st');
       state = const GameState(isLoading: false);
     }
   }

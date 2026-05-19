@@ -38,6 +38,12 @@ class StatsStorage {
     dev.log('[StatsStorage] All played boards reset');
   }
 
+  static Future<void> resetPlayedBoardsFor(String difficulty) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_playedKey(difficulty));
+    dev.log('[StatsStorage] Played boards reset for $difficulty');
+  }
+
   // ── Game stats ───────────────────────────────────────────────────────────
 
   static Future<GameStats> loadStats() async {
