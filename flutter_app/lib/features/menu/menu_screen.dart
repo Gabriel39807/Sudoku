@@ -31,7 +31,7 @@ class MenuScreen extends StatelessWidget {
             _MenuButton('PERFIL', () => context.push('/profile')),
             _MenuButton('ESTADÍSTICAS', () => context.push('/stats')),
             _MenuButton('EVENTOS', () {}),
-            _MenuButton('PERSONALIZAR', () {}),
+            _MenuButton('PERSONALIZAR', () => context.push('/customization')),
             _MenuButton('CONFIGURACIÓN', () => context.push('/settings')),
           ].animate(interval: 100.ms).fade(duration: 300.ms).slideY(begin: 0.2),
         ),

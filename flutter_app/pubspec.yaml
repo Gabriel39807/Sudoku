@@ -28,3 +28,10 @@ flutter:
     - assets/boards/expert/
     - assets/boards/evil/
     - assets/boards/mythic/
+    - assets/cosmetics/backgrounds/
+    - assets/cosmetics/backgrounds/default/
+    - assets/cosmetics/frames/
+    - assets/cosmetics/frames/default/
+    - assets/cosmetics/frames/gold/
+    - assets/cosmetics/frames/crystal/
+    - assets/cosmetics/frames/shadow/

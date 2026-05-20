@@ -4,6 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../domain/game_state.dart';
 import '../../application/game_provider.dart';
+import '../../../cosmetics/application/cosmetics_provider.dart';
+import '../../../cosmetics/domain/frame_skin.dart';
+
+const _frameThickness = 40.0;
 
 class SudokuBoardWidget extends ConsumerStatefulWidget {
   const SudokuBoardWidget({super.key});
@@ -67,21 +71,64 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(gameProvider);
+    final cosmetics = ref.watch(cosmeticsProvider);
 
     return AspectRatio(
       aspectRatio: 1.0,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardTheme.color,
-          border: Border.all(color: const Color(0xFF2B2B2B), width: 4),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.3),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                cosmetics.selectedTheme.backgroundPath,
+                fit: BoxFit.cover,
+              ),
             ),
-          ],
-        ),
+          ),
+          _buildFrame(cosmetics.selectedFrame),
+          Padding(
+            padding: const EdgeInsets.all(_frameThickness),
+            child: _buildGrid(state),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFrame(FrameSkin frame) {
+    return Stack(
+      children: [
+        Positioned(top: 0, left: 0, child: Image.asset(frame.corners.tl, width: _frameThickness, height: _frameThickness)),
+        Positioned(top: 0, right: 0, child: Image.asset(frame.corners.tr, width: _frameThickness, height: _frameThickness)),
+        Positioned(bottom: 0, left: 0, child: Image.asset(frame.corners.bl, width: _frameThickness, height: _frameThickness)),
+        Positioned(bottom: 0, right: 0, child: Image.asset(frame.corners.br, width: _frameThickness, height: _frameThickness)),
+        Positioned(top: 0, left: _frameThickness, right: _frameThickness, child: Image.asset(frame.edges.top, height: _frameThickness, fit: BoxFit.fill)),
+        Positioned(bottom: 0, left: _frameThickness, right: _frameThickness, child: Image.asset(frame.edges.bottom, height: _frameThickness, fit: BoxFit.fill)),
+        Positioned(left: 0, top: _frameThickness, bottom: _frameThickness, child: Image.asset(frame.edges.left, width: _frameThickness, fit: BoxFit.fill)),
+        Positioned(right: 0, top: _frameThickness, bottom: _frameThickness, child: Image.asset(frame.edges.right, width: _frameThickness, fit: BoxFit.fill)),
+        Positioned(top: 0, left: 0, right: 0, child: Center(child: Image.asset(frame.decorations.topCenter, width: _frameThickness, height: _frameThickness))),
+        Positioned(bottom: 0, left: 0, right: 0, child: Center(child: Image.asset(frame.decorations.bottomCenter, width: _frameThickness, height: _frameThickness))),
+        Positioned(left: 0, top: 0, bottom: 0, child: Center(child: Image.asset(frame.decorations.leftCenter, width: _frameThickness, height: _frameThickness))),
+        Positioned(right: 0, top: 0, bottom: 0, child: Center(child: Image.asset(frame.decorations.rightCenter, width: _frameThickness, height: _frameThickness))),
+      ],
+    );
+  }
+
+  Widget _buildGrid(GameState state) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color(0xFF2B2B2B), width: 4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.3),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(4),
         child: Column(
           children: List.generate(9, (r) {
             return Expanded(

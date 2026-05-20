@@ -7,6 +7,7 @@ import '../../features/game/presentation/defeat_screen.dart';
 import '../../features/stats/presentation/stats_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
+import '../../features/cosmetics/presentation/customization_screen.dart';
 
 final goRouter = GoRouter(
   initialLocation: '/',
@@ -54,6 +55,10 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/profile',
       builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+      path: '/customization',
+      builder: (context, state) => const CustomizationScreen(),
     ),
   ],
 );
