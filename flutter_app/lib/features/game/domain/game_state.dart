@@ -1,4 +1,6 @@
 import 'game_session.dart';
+import 'note_helpers.dart';
+import 'session_stats.dart';
 
 export 'game_session.dart' show GameSession;
 
@@ -13,6 +15,7 @@ class SudokuCell {
   final int solution;
   final bool isFixed;
   final Set<int> notes;
+  final bool noteConflict;
 
   const SudokuCell({
     required this.row,
@@ -21,19 +24,22 @@ class SudokuCell {
     required this.solution,
     this.isFixed = false,
     this.notes = const {},
+    this.noteConflict = false,
   });
 
   bool get isError => value != 0 && value != solution;
   bool get isEmpty => value == 0;
 
-  SudokuCell copyWith({int? value, Set<int>? notes}) => SudokuCell(
-    row: row,
-    col: col,
-    value: value ?? this.value,
-    solution: solution,
-    isFixed: isFixed,
-    notes: notes ?? this.notes,
-  );
+  SudokuCell copyWith({int? value, Set<int>? notes, bool? noteConflict}) =>
+      SudokuCell(
+        row: row,
+        col: col,
+        value: value ?? this.value,
+        solution: solution,
+        isFixed: isFixed,
+        notes: notes ?? this.notes,
+        noteConflict: noteConflict ?? this.noteConflict,
+      );
 }
 
 class Move {
@@ -56,14 +62,13 @@ class Move {
   });
 }
 
-/// Estado UI completo. Wrappea un GameSession inmutable + UI-only fields.
 class GameState {
   final GameSession? session;
 
-  // UI-only
   final int? selectedRow;
   final int? selectedCol;
   final bool pencilMode;
+  final bool advancedNotesEnabled;
   final List<Move> undoStack;
   final bool isLoading;
   final int remainingHints;
@@ -71,26 +76,44 @@ class GameState {
   final int? lockedNumber;
   final bool completedWithAutocomplete;
 
-  // Tracking de dígitos completados (1-9 -> count correct placements)
   final Map<int, int> completedDigits;
 
-  // Sets de filas/columnas/bloques completados para animaciones
   final Set<int> completedRows;
   final Set<int> completedCols;
   final Set<int> completedBlocks;
 
-  // Identificador de evento de animación (cambia al completar fila/col/bloque)
   final int animationEventId;
 
-  // Computed from session
+  // Phase 3: Combo / performance
+  final int correctStreak;
+  final int maxCombo;
+  final int pauseCount;
+
+  // Accuracy tracking
+  final int totalMoves;
+  final int correctMoves;
+
+  // Phase 5: Analytics
+  final Map<int, int> cellTimeMs;
+  final int noteUsageCount;
+  final int autoCompleteUsed;
+  final Map<int, Set<int>>? manualNotes;
+
   List<List<SudokuCell>> get board {
     if (session == null) return _emptyBoard();
+    final conflicts = advancedNotesEnabled
+        ? NoteHelpers.findConflicts(session!.notes, session!.currentBoard)
+        : <int, Set<int>>{};
     return List.generate(9, (r) {
       return List.generate(9, (c) {
         final idx = r * 9 + c;
         final val = session!.currentBoard[idx];
         final sol = session!.solution[idx];
         final notes = session!.notes[idx] ?? const {};
+        final cellConflicts = conflicts[idx];
+        final hasConflict = advancedNotesEnabled &&
+            cellConflicts != null &&
+            cellConflicts.intersection(notes).isNotEmpty;
         return SudokuCell(
           row: r,
           col: c,
@@ -98,10 +121,13 @@ class GameState {
           solution: sol,
           isFixed: session!.fixedCells.contains(idx),
           notes: notes,
+          noteConflict: hasConflict,
         );
       });
     });
   }
+
+  bool get errorsVisible => true; // controlled by assist mode
 
   String get boardId => session?.boardId ?? '';
   String get difficulty => session?.difficulty ?? 'easy';
@@ -110,11 +136,25 @@ class GameState {
   bool get isPaused => session?.paused ?? false;
   GameStatus get status => session?.status ?? GameStatus.playing;
 
+  SessionStats get sessionStats => SessionStats(
+    elapsedSeconds: elapsedSeconds,
+    errors: errors,
+    remainingCells: session == null ? 81 : session!.currentBoard.where((v) => v == 0).length,
+    completionPercent: session == null ? 0.0 : (81 - session!.currentBoard.where((v) => v == 0).length) / 81.0 * 100.0,
+    remainingHints: remainingHints,
+    currentStreak: correctStreak,
+    currentCombo: maxCombo,
+    accuracy: totalMoves == 0 ? 1.0 : correctMoves / totalMoves,
+    totalMoves: totalMoves,
+    correctMoves: correctMoves,
+  );
+
   const GameState({
     this.session,
     this.selectedRow,
     this.selectedCol,
     this.pencilMode = false,
+    this.advancedNotesEnabled = false,
     this.undoStack = const [],
     this.isLoading = false,
     this.remainingHints = 3,
@@ -126,6 +166,15 @@ class GameState {
     this.completedCols = const {},
     this.completedBlocks = const {},
     this.animationEventId = 0,
+    this.correctStreak = 0,
+    this.maxCombo = 0,
+    this.pauseCount = 0,
+    this.totalMoves = 0,
+    this.correctMoves = 0,
+    this.cellTimeMs = const {},
+    this.noteUsageCount = 0,
+    this.autoCompleteUsed = 0,
+    this.manualNotes,
   });
 
   factory GameState.loading(String difficulty) =>
@@ -138,6 +187,7 @@ class GameState {
     int? selectedCol,
     bool clearSelection = false,
     bool? pencilMode,
+    bool? advancedNotesEnabled,
     List<Move>? undoStack,
     bool? isLoading,
     int? remainingHints,
@@ -150,12 +200,22 @@ class GameState {
     Set<int>? completedCols,
     Set<int>? completedBlocks,
     int? animationEventId,
+    int? correctStreak,
+    int? maxCombo,
+    int? pauseCount,
+    int? totalMoves,
+    int? correctMoves,
+    Map<int, int>? cellTimeMs,
+    int? noteUsageCount,
+    int? autoCompleteUsed,
+    Map<int, Set<int>>? manualNotes,
   }) {
     return GameState(
       session: clearSession ? null : (session ?? this.session),
       selectedRow: clearSelection ? null : (selectedRow ?? this.selectedRow),
       selectedCol: clearSelection ? null : (selectedCol ?? this.selectedCol),
       pencilMode: pencilMode ?? this.pencilMode,
+      advancedNotesEnabled: advancedNotesEnabled ?? this.advancedNotesEnabled,
       undoStack: undoStack ?? this.undoStack,
       isLoading: isLoading ?? this.isLoading,
       remainingHints: remainingHints ?? this.remainingHints,
@@ -170,6 +230,15 @@ class GameState {
       completedCols: completedCols ?? this.completedCols,
       completedBlocks: completedBlocks ?? this.completedBlocks,
       animationEventId: animationEventId ?? this.animationEventId,
+      correctStreak: correctStreak ?? this.correctStreak,
+      maxCombo: maxCombo ?? this.maxCombo,
+      pauseCount: pauseCount ?? this.pauseCount,
+      totalMoves: totalMoves ?? this.totalMoves,
+      correctMoves: correctMoves ?? this.correctMoves,
+      cellTimeMs: cellTimeMs ?? this.cellTimeMs,
+      noteUsageCount: noteUsageCount ?? this.noteUsageCount,
+      autoCompleteUsed: autoCompleteUsed ?? this.autoCompleteUsed,
+      manualNotes: manualNotes ?? this.manualNotes,
     );
   }
 

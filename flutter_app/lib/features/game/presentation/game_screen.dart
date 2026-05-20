@@ -1,13 +1,16 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../hint/hint_service.dart';
 import '../../onboarding/difficulty_intro_service.dart';
 import '../../settings/application/settings_provider.dart';
+import '../../settings/domain/settings_model.dart';
 import '../../stats/data/stats_service.dart';
 import '../application/game_provider.dart';
 import '../domain/game_state.dart';
+import '../domain/session_stats.dart';
+import '../data/game_autosave.dart';
 import 'widgets/sudoku_board.dart';
 import 'widgets/keypad_widget.dart';
 import 'widgets/actions_widget.dart';
@@ -22,21 +25,86 @@ class GameScreen extends ConsumerStatefulWidget {
 
 class _GameScreenState extends ConsumerState<GameScreen> {
   OverlayEntry? _digitFeedback;
+  OverlayEntry? _comboFeedback;
+  StreamSubscription<int>? _comboSub;
+  StreamSubscription<bool>? _gameOverSub;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await ref.read(gameProvider.notifier).init(widget.difficulty);
+      await _initGame();
       if (!mounted) return;
       await _showDifficultyIntroIfNeeded();
       _listenToDigitCompleted();
+      _listenToCombo();
+      _listenToGameOver();
     });
+  }
+
+  Future<void> _initGame() async {
+    final diff = widget.difficulty;
+    final saved = await GameAutosave.restoreForDifficulty(diff);
+
+    if (saved != null && mounted) {
+      final shouldContinue = await showDialog<bool>(
+        context: context,
+        barrierDismissible: false,
+        builder: (ctx) => AlertDialog(
+          backgroundColor: Theme.of(context).cardTheme.color,
+          title: const Text('Partida encontrada'),
+          content: Text('Tienes una partida sin terminar en ${diff.toUpperCase()}.\n¿Quieres continuar?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Nueva partida', style: TextStyle(color: Colors.white54)),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Continuar'),
+            ),
+          ],
+        ),
+      );
+
+      if (shouldContinue == true && mounted) {
+        await ref.read(gameProvider.notifier).restoreGame(saved);
+        return;
+      }
+    }
+
+    if (mounted) {
+      await ref.read(gameProvider.notifier).init(diff);
+    }
   }
 
   void _listenToDigitCompleted() {
     final notifier = ref.read(gameProvider.notifier);
     notifier.digitCompleted.listen(_showDigitFeedback);
+  }
+
+  void _listenToCombo() {
+    _comboSub?.cancel();
+    _comboSub = ref.read(gameProvider.notifier).comboEvent.listen((streak) {
+      if (streak > 1) {
+        _showComboFeedback(streak);
+      } else {
+        _comboFeedback?.remove();
+        _comboFeedback = null;
+      }
+    });
+  }
+
+  void _listenToGameOver() {
+    _gameOverSub?.cancel();
+    _gameOverSub = ref.read(gameProvider.notifier).gameOverEvent.listen((won) {
+      if (!mounted) return;
+      if (won) {
+        context.pushReplacement('/victory', extra: widget.difficulty);
+      } else {
+        context.pushReplacement('/defeat', extra: widget.difficulty);
+      }
+    });
   }
 
   void _showDigitFeedback(int digit) {
@@ -46,8 +114,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     _digitFeedback = OverlayEntry(
       builder: (context) => Positioned(
         top: MediaQuery.of(context).padding.top + 100,
-        left: 0,
-        right: 0,
+        left: 0, right: 0,
         child: Material(
           color: Colors.transparent,
           child: Center(
@@ -56,17 +123,11 @@ class _GameScreenState extends ConsumerState<GameScreen> {
               decoration: BoxDecoration(
                 color: Colors.greenAccent.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(99),
-                border: Border.all(
-                  color: Colors.greenAccent.withValues(alpha: 0.4),
-                ),
+                border: Border.all(color: Colors.greenAccent.withValues(alpha: 0.4)),
               ),
               child: Text(
                 'Digit $digit completed',
-                style: const TextStyle(
-                  color: Colors.greenAccent,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+                style: const TextStyle(color: Colors.greenAccent, fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
           ),
@@ -80,41 +141,71 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     });
   }
 
+  void _showComboFeedback(int streak) {
+    if (!mounted) return;
+    _comboFeedback?.remove();
+    final overlay = Overlay.of(context);
+    _comboFeedback = OverlayEntry(
+      builder: (context) => Positioned(
+        top: MediaQuery.of(context).padding.top + 150,
+        left: 0, right: 0,
+        child: Material(
+          color: Colors.transparent,
+          child: Center(
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0, end: 1),
+              duration: const Duration(milliseconds: 400),
+              builder: (context, value, child) => Opacity(
+                opacity: value,
+                child: Transform.scale(scale: 1 + (1 - value) * 0.2, child: child),
+              ),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.orangeAccent.withValues(alpha: 0.2), Colors.deepOrangeAccent.withValues(alpha: 0.15)],
+                  ),
+                  borderRadius: BorderRadius.circular(99),
+                  border: Border.all(color: Colors.orangeAccent.withValues(alpha: 0.5)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.whatshot, color: Colors.orangeAccent, size: 18),
+                    const SizedBox(width: 8),
+                    Text('Combo x$streak', style: const TextStyle(color: Colors.orangeAccent, fontWeight: FontWeight.bold, fontSize: 16)),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    overlay.insert(_comboFeedback!);
+    Future.delayed(const Duration(seconds: 2), () {
+      _comboFeedback?.remove();
+      _comboFeedback = null;
+    });
+  }
+
   Future<void> _showDifficultyIntroIfNeeded() async {
+    final gs = ref.read(gameProvider);
+    if (gs.session != null && gs.session!.status != GameStatus.playing) return;
     final difficulty = widget.difficulty.toLowerCase();
     final shouldShow = await DifficultyIntroService.shouldShow(difficulty);
     if (!shouldShow || !mounted) return;
-
     await DifficultyIntroService.markSeen(difficulty);
     await StatsService.onFirstDifficultyOpen(difficulty);
-
-    final maxHints = HintService.maxHintsFor(difficulty);
-    final hintText = maxHints < 0 ? 'Ilimitadas' : '$maxHints';
-    final techniques = DifficultyIntroService.techniquesFor(difficulty);
-
     if (!mounted) return;
     await showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).cardTheme.color,
         title: Text('Dificultad ${difficulty.toUpperCase()}'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Max hints: $hintText'),
-            const Text('Errores permitidos: 3'),
-            const SizedBox(height: 12),
-            const Text('Técnicas requeridas:'),
-            const SizedBox(height: 6),
-            for (final technique in techniques) Text('- $technique'),
-          ],
-        ),
+        content: const Text('Max hints ilimitadas\nErrores permitidos: 3'),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Entendido'),
-          ),
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Entendido')),
         ],
       ),
     );
@@ -123,6 +214,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   @override
   void dispose() {
     _digitFeedback?.remove();
+    _comboFeedback?.remove();
+    _comboSub?.cancel();
+    _gameOverSub?.cancel();
     super.dispose();
   }
 
@@ -130,258 +224,66 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(gameProvider);
     final settings = ref.watch(settingsProvider);
+    final isExtreme = settings.assistMode == AssistMode.extreme;
+    final isExpert = settings.assistMode == AssistMode.expert;
 
-    ref.listen<GameState>(gameProvider, (previous, next) {
-      if (previous?.status != GameStatus.won && next.status == GameStatus.won) {
-        _showVictoryDialog();
-      } else if (previous?.status != GameStatus.lost &&
-          next.status == GameStatus.lost) {
-        _showDefeatDialog();
-      }
-    });
-
-    final remainingCells = _countEmpty(state);
+    final remainingCells = state.sessionStats.remainingCells;
+    final showAutoComplete = settings.showAutoComplete &&
+        !isExpert && !isExtreme &&
+        remainingCells > 0 && remainingCells <= 8;
 
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 700),
-            child: state.isLoading
+            child: state.isLoading || state.session == null
                 ? const Center(child: CircularProgressIndicator())
                 : Stack(
                     children: [
                       Column(
                         children: [
-                          // HEADER
-                          SizedBox(
-                            height: 90,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        'DIFICULTAD',
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: Colors.white54,
-                                        ),
-                                      ),
-                                      Text(
-                                        state.difficulty,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.timer_outlined,
-                                        size: 16,
-                                        color: Colors.white54,
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        _formatTime(state.elapsedSeconds),
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          const Text(
-                                            'ERRORES',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white54,
-                                            ),
-                                          ),
-                                          Text(
-                                            '${state.errors} / 3',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                              color: state.errors > 0
-                                                  ? Colors.redAccent
-                                                  : Colors.white,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 16),
-                                      IconButton(
-                                        icon:
-                                            const Icon(Icons.exit_to_app),
-                                        onPressed: () =>
-                                            _showExitDialog(context),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-
-                          // BOARD
+                          _Header(state: state, settings: settings, onExit: () => _showExitDialog(context)),
+                          const SizedBox(height: 4),
+                          _SessionStatsBar(stats: state.sessionStats, mode: settings.assistMode),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0,
-                              ),
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Center(
                                 child: const SudokuBoardWidget()
                                     .animate()
                                     .fade(duration: 400.ms)
-                                    .scale(
-                                        begin: const Offset(0.95, 0.95)),
+                                    .scale(begin: const Offset(0.95, 0.95)),
                               ),
                             ),
                           ),
-
-                          // ACTIONS ROW
                           const Padding(
                             padding: EdgeInsets.symmetric(vertical: 8.0),
                             child: ActionsWidget(),
                           ),
-
-                          // AUTO COMPLETE (if conditions met)
-                          if (settings.showAutoComplete &&
-                              remainingCells > 0 &&
-                              remainingCells <= 8)
+                          if (showAutoComplete)
                             Padding(
-                              padding: const EdgeInsets.only(
-                                bottom: 8.0,
-                                left: 16,
-                                right: 16,
-                              ),
+                              padding: const EdgeInsets.only(bottom: 8.0, left: 16, right: 16),
                               child: SizedBox(
                                 width: 200,
                                 child: OutlinedButton.icon(
-                                  icon: const Icon(Icons.auto_fix_high,
-                                      size: 16),
-                                  label: const Text(
-                                    'AUTO COMPLETE',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  icon: const Icon(Icons.auto_fix_high, size: 16),
+                                  label: const Text('AUTO COMPLETE', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
                                   style: OutlinedButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10),
-                                    side: BorderSide(
-                                      color: Theme.of(context)
-                                          .primaryColor
-                                          .withValues(alpha: 0.5),
-                                    ),
+                                    padding: const EdgeInsets.symmetric(vertical: 10),
+                                    side: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.5)),
                                   ),
-                                  onPressed: () => ref
-                                      .read(gameProvider.notifier)
-                                      .autoComplete(),
+                                  onPressed: () => ref.read(gameProvider.notifier).autoComplete(),
                                 ),
                               ),
                             ),
-
-                          // KEYPAD
                           const Padding(
-                            padding: EdgeInsets.only(
-                              bottom: 24.0,
-                              left: 16.0,
-                              right: 16.0,
-                            ),
+                            padding: EdgeInsets.only(bottom: 24.0, left: 16.0, right: 16.0),
                             child: KeypadWidget(),
                           ),
                         ],
                       ),
-
-                      if (state.isPaused)
-                        Positioned.fill(
-                          child: Container(
-                            color: Colors.black.withValues(alpha: 0.8),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'PAUSED',
-                                  style: TextStyle(
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 4,
-                                  ),
-                                ).animate().fade().scale(),
-                                const SizedBox(height: 40),
-                                ElevatedButton.icon(
-                                  onPressed: () => ref
-                                      .read(gameProvider.notifier)
-                                      .togglePause(),
-                                  icon: const Icon(Icons.play_arrow),
-                                  label: const Text('Resume'),
-                                  style: ElevatedButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 32,
-                                      vertical: 16,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                OutlinedButton.icon(
-                                  onPressed: () {
-                                    ref
-                                        .read(gameProvider.notifier)
-                                        .init(widget.difficulty);
-                                  },
-                                  icon: const Icon(Icons.refresh),
-                                  label: const Text('Restart'),
-                                  style: OutlinedButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 32,
-                                      vertical: 16,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    ref
-                                        .read(gameProvider.notifier)
-                                        .abandonGame();
-                                    context.pop();
-                                  },
-                                  icon: const Icon(
-                                    Icons.exit_to_app,
-                                    color: Colors.redAccent,
-                                  ),
-                                  label: const Text(
-                                    'Exit',
-                                    style:
-                                        TextStyle(color: Colors.redAccent),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      if (state.isPaused) _PauseOverlay(difficulty: widget.difficulty),
                     ],
                   ),
           ),
@@ -390,148 +292,167 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     );
   }
 
-  int _countEmpty(GameState state) {
-    if (state.session == null) return 81;
-    return state.session!.currentBoard
-        .where((v) => v == 0)
-        .length;
-  }
-
-  String _formatTime(int seconds) {
-    final h = seconds ~/ 3600;
-    final m = (seconds % 3600) ~/ 60;
-    final s = seconds % 60;
-
-    if (h > 0) {
-      return '${h.toString().padLeft(2, '0')}:${m.toString().padLeft(2, '0')}:${s.toString().padLeft(2, '0')}';
-    }
-    return '${m.toString().padLeft(2, '0')}:${s.toString().padLeft(2, '0')}';
-  }
-
   Future<void> _showExitDialog(BuildContext context) async {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).cardTheme.color,
         title: const Text('Leave game?'),
-        content: const Text(
-          'Are you sure you want to exit? Your progress will be saved.',
-        ),
+        content: const Text('Are you sure you want to exit? Your progress will be saved.'),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text(
-              'Cancel',
-              style: TextStyle(color: Colors.white54),
-            ),
-          ),
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel', style: TextStyle(color: Colors.white54))),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
               ref.read(gameProvider.notifier).abandonGame();
               context.pop();
             },
-            child: const Text(
-              'Exit',
-              style: TextStyle(color: Colors.redAccent),
-            ),
+            child: const Text('Exit', style: TextStyle(color: Colors.redAccent)),
           ),
         ],
       ),
     );
   }
+}
 
-  Future<void> _showVictoryDialog() async {
-    final state = ref.read(gameProvider);
-    return showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).cardTheme.color,
-        title: Text(
-          state.completedWithAutocomplete ? 'COMPLETED' : 'VICTORY',
-          style: TextStyle(
-            color: state.completedWithAutocomplete
-                ? Colors.lightBlueAccent
-                : Colors.greenAccent,
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          ),
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+// ── Header ──────────────────────────────────────────────────────────────────
+
+class _Header extends ConsumerWidget {
+  final GameState state;
+  final dynamic settings;
+  final VoidCallback onExit;
+
+  const _Header({required this.state, required this.settings, required this.onExit});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SizedBox(
+      height: 64,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Difficulty: ${state.difficulty}'),
-            Text('Time: ${_formatTime(state.elapsedSeconds)}'),
-            Text('Errors: ${state.errors} / 3'),
-            if (state.completedWithAutocomplete)
-              const Text('Completed with auto complete'),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(state.difficulty, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                const Icon(Icons.timer_outlined, size: 14, color: Colors.white54),
+                const SizedBox(width: 4),
+                Text(_fmtTime(state.elapsedSeconds), style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16)),
+                const SizedBox(width: 16),
+                IconButton(
+                  icon: const Icon(Icons.exit_to_app, size: 20),
+                  onPressed: onExit,
+                  visualDensity: VisualDensity.compact,
+                ),
+              ],
+            ),
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              context.pop();
-            },
-            child: const Text('Exit', style: TextStyle(color: Colors.white54)),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              ref.read(gameProvider.notifier).init(widget.difficulty);
-            },
-            child: Text(
-              'Continue',
-              style: TextStyle(
-                color: state.completedWithAutocomplete
-                    ? Colors.lightBlueAccent
-                    : Colors.greenAccent,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
 
-  Future<void> _showDefeatDialog() async {
-    return showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).cardTheme.color,
-        title: const Text(
-          'DEFEAT',
-          style: TextStyle(
-            color: Colors.redAccent,
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          ),
-        ),
-        content: const Text(
-            'You have reached the maximum number of errors.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              context.pop();
-            },
-            child: const Text('Exit',
-                style: TextStyle(color: Colors.white54)),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              ref.read(gameProvider.notifier).init(widget.difficulty);
-            },
-            child: const Text(
-              'Retry',
-              style: TextStyle(color: Colors.redAccent),
+  String _fmtTime(int seconds) {
+    final h = seconds ~/ 3600;
+    final m = (seconds % 3600) ~/ 60;
+    final s = seconds % 60;
+    if (h > 0) return '${h.toString().padLeft(2, '0')}:${m.toString().padLeft(2, '0')}:${s.toString().padLeft(2, '0')}';
+    return '${m.toString().padLeft(2, '0')}:${s.toString().padLeft(2, '0')}';
+  }
+}
+
+// ── Session Stats Bar ──────────────────────────────────────────────────────
+
+class _SessionStatsBar extends StatelessWidget {
+  final SessionStats stats;
+  final AssistMode mode;
+
+  const _SessionStatsBar({required this.stats, required this.mode});
+
+  @override
+  Widget build(BuildContext context) {
+    final maxErrors = switch (mode) { AssistMode.classic => 999, AssistMode.extreme => 1, _ => 3 };
+    final accuracyStr = '${(stats.accuracy * 100).toStringAsFixed(0)}%';
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _pill('⏱ ${stats.elapsedSeconds}s'),
+          _pill('✕ ${stats.errors}/$maxErrors'),
+          _pill('◻ ${stats.remainingCells}'),
+          if (stats.currentCombo > 1) _pill('🔥 x${stats.currentCombo}', color: Colors.orangeAccent),
+          _pill('🎯 $accuracyStr'),
+        ].map((w) => w.animate().fade(duration: 300.ms)).toList(),
+      ),
+    );
+  }
+
+  Widget _pill(String text, {Color? color}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: (color ?? Colors.white).withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(99),
+      ),
+      child: Text(text, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600, color: color ?? Colors.white70)),
+    );
+  }
+}
+
+// ── Pause Overlay ──────────────────────────────────────────────────────────
+
+class _PauseOverlay extends ConsumerWidget {
+  final String difficulty;
+  const _PauseOverlay({required this.difficulty});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Positioned.fill(
+      child: Container(
+        color: Colors.black.withValues(alpha: 0.8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('PAUSED', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, letterSpacing: 4))
+                .animate().fade().scale(),
+            const SizedBox(height: 40),
+            ElevatedButton.icon(
+              onPressed: () => ref.read(gameProvider.notifier).togglePause(),
+              icon: const Icon(Icons.play_arrow),
+              label: const Text('Resume'),
+              style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
             ),
-          ),
-        ],
+            const SizedBox(height: 16),
+            OutlinedButton.icon(
+              onPressed: () => ref.read(gameProvider.notifier).init(difficulty),
+              icon: const Icon(Icons.refresh),
+              label: const Text('Restart'),
+              style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
+            ),
+            const SizedBox(height: 16),
+            TextButton.icon(
+              onPressed: () {
+                ref.read(gameProvider.notifier).abandonGame();
+                context.pop();
+              },
+              icon: const Icon(Icons.exit_to_app, color: Colors.redAccent),
+              label: const Text('Exit', style: TextStyle(color: Colors.redAccent)),
+            ),
+          ],
+        ),
       ),
     );
   }

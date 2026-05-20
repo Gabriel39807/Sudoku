@@ -9,6 +9,8 @@ class DifficultyStats {
   final int hintsUsed;
   final int completedWithAutocomplete;
   final int completedWithHints;
+  final int maxCombo;
+  final int totalNoteUsage;
 
   const DifficultyStats({
     this.gamesStarted = 0,
@@ -21,6 +23,8 @@ class DifficultyStats {
     this.hintsUsed = 0,
     this.completedWithAutocomplete = 0,
     this.completedWithHints = 0,
+    this.maxCombo = 0,
+    this.totalNoteUsage = 0,
   });
 
   int get averageTime => victories == 0 ? 0 : totalWinTime ~/ victories;

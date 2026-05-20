@@ -28,6 +28,7 @@ class MenuScreen extends StatelessWidget {
             ).animate().fade(delay: 200.ms).slideY(begin: 0.5),
             const SizedBox(height: 64),
             _MenuButton('JUGAR', () => context.push('/difficulty')),
+            _MenuButton('PERFIL', () => context.push('/profile')),
             _MenuButton('ESTADÍSTICAS', () => context.push('/stats')),
             _MenuButton('EVENTOS', () {}),
             _MenuButton('PERSONALIZAR', () {}),

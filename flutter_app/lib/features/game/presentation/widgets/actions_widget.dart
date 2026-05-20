@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../application/game_provider.dart';
 import '../../domain/game_state.dart';
+import '../../../settings/application/settings_provider.dart';
+import '../../../settings/domain/settings_model.dart';
 
 class ActionsWidget extends ConsumerWidget {
   const ActionsWidget({super.key});
@@ -11,13 +13,21 @@ class ActionsWidget extends ConsumerWidget {
     final pencilMode = ref.watch(
       gameProvider.select((state) => state.pencilMode),
     );
+    final advancedNotes = ref.watch(
+      gameProvider.select((state) => state.advancedNotesEnabled),
+    );
     final canUndo = ref.watch(
       gameProvider.select((state) => state.undoStack.isNotEmpty),
     );
     final remainingHints = ref.watch(
       gameProvider.select((state) => state.remainingHints),
     );
-    final showHints = remainingHints != 0;
+    final assistMode = ref.watch(
+      settingsProvider.select((s) => s.assistMode),
+    );
+    final isExtreme = assistMode == AssistMode.extreme;
+    final isExpert = assistMode == AssistMode.expert;
+    final showHints = remainingHints != 0 && !isExpert && !isExtreme;
     final hintLabel = remainingHints < 0
         ? 'PISTA ILIM'
         : 'PISTA $remainingHints';
@@ -42,6 +52,12 @@ class ActionsWidget extends ConsumerWidget {
           isActive: pencilMode,
           onTap: () => ref.read(gameProvider.notifier).togglePencil(),
         ),
+        _ActionButton(
+          icon: Icons.auto_awesome,
+          label: 'ADV',
+          isActive: advancedNotes,
+          onTap: () => ref.read(gameProvider.notifier).toggleAdvancedNotes(),
+        ),
         if (showHints)
           _ActionButton(
             icon: Icons.lightbulb_outline,
@@ -55,11 +71,12 @@ class ActionsWidget extends ConsumerWidget {
               }
             },
           ),
-        _ActionButton(
-          icon: Icons.pause,
-          label: 'PAUSA',
-          onTap: () => ref.read(gameProvider.notifier).togglePause(),
-        ),
+        if (!isExtreme)
+          _ActionButton(
+            icon: Icons.pause,
+            label: 'PAUSA',
+            onTap: () => ref.read(gameProvider.notifier).togglePause(),
+          ),
       ],
     );
   }

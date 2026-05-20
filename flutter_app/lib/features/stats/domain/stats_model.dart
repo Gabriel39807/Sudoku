@@ -12,8 +12,9 @@ class GameStats {
   final int victoriesWithHints;
   final int completedWithAutocomplete;
   final int completedWithHints;
+  final int maxCombo;
+  final int totalNoteUsage;
 
-  // Best times in seconds; 0 = never completed
   final int bestEasy;
   final int bestIntermediate;
   final int bestHard;
@@ -41,6 +42,8 @@ class GameStats {
     this.victoriesWithHints = 0,
     this.completedWithAutocomplete = 0,
     this.completedWithHints = 0,
+    this.maxCombo = 0,
+    this.totalNoteUsage = 0,
     this.bestEasy = 0,
     this.bestIntermediate = 0,
     this.bestHard = 0,
@@ -58,20 +61,13 @@ class GameStats {
 
   int bestTimeFor(String difficulty) {
     switch (difficulty.toLowerCase()) {
-      case 'easy':
-        return bestEasy;
-      case 'intermediate':
-        return bestIntermediate;
-      case 'hard':
-        return bestHard;
-      case 'expert':
-        return bestExpert;
-      case 'evil':
-        return bestEvil;
-      case 'mythic':
-        return bestMythic;
-      default:
-        return 0;
+      case 'easy': return bestEasy;
+      case 'intermediate': return bestIntermediate;
+      case 'hard': return bestHard;
+      case 'expert': return bestExpert;
+      case 'evil': return bestEvil;
+      case 'mythic': return bestMythic;
+      default: return 0;
     }
   }
 
@@ -79,8 +75,7 @@ class GameStats {
 
   double completionRateFor(String difficulty, int totalBoards) {
     if (totalBoards <= 0) return 0;
-    return (playedBoardsByDifficulty[difficulty.toLowerCase()] ?? 0) /
-        totalBoards;
+    return (playedBoardsByDifficulty[difficulty.toLowerCase()] ?? 0) / totalBoards;
   }
 
   GameStats copyWith({
@@ -94,6 +89,8 @@ class GameStats {
     int? victoriesWithHints,
     int? completedWithAutocomplete,
     int? completedWithHints,
+    int? maxCombo,
+    int? totalNoteUsage,
     int? bestEasy,
     int? bestIntermediate,
     int? bestHard,
@@ -117,9 +114,10 @@ class GameStats {
       hintsUsed: hintsUsed ?? this.hintsUsed,
       perfectVictories: perfectVictories ?? this.perfectVictories,
       victoriesWithHints: victoriesWithHints ?? this.victoriesWithHints,
-      completedWithAutocomplete:
-          completedWithAutocomplete ?? this.completedWithAutocomplete,
+      completedWithAutocomplete: completedWithAutocomplete ?? this.completedWithAutocomplete,
       completedWithHints: completedWithHints ?? this.completedWithHints,
+      maxCombo: maxCombo ?? this.maxCombo,
+      totalNoteUsage: totalNoteUsage ?? this.totalNoteUsage,
       bestEasy: bestEasy ?? this.bestEasy,
       bestIntermediate: bestIntermediate ?? this.bestIntermediate,
       bestHard: bestHard ?? this.bestHard,
@@ -129,10 +127,8 @@ class GameStats {
       winStreak: winStreak ?? this.winStreak,
       bestWinStreak: bestWinStreak ?? this.bestWinStreak,
       winsByDifficulty: winsByDifficulty ?? Map.from(this.winsByDifficulty),
-      lossesByDifficulty:
-          lossesByDifficulty ?? Map.from(this.lossesByDifficulty),
-      playedBoardsByDifficulty:
-          playedBoardsByDifficulty ?? Map.from(this.playedBoardsByDifficulty),
+      lossesByDifficulty: lossesByDifficulty ?? Map.from(this.lossesByDifficulty),
+      playedBoardsByDifficulty: playedBoardsByDifficulty ?? Map.from(this.playedBoardsByDifficulty),
       difficultyStats: difficultyStats ?? Map.from(this.difficultyStats),
       unlockProgress: unlockProgress ?? Map.from(this.unlockProgress),
     );

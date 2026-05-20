@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../settings/application/settings_provider.dart';
+import '../../settings/domain/settings_model.dart';
 import '../../stats/data/stats_storage.dart';
 import '../../stats/application/stats_provider.dart';
 
@@ -21,6 +22,20 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
+          // ── ASSIST MODE ──────────────────────────────────────────
+          const Text(
+            'MODO DE ASISTENCIA',
+            style: TextStyle(fontSize: 12, letterSpacing: 2, color: Colors.white54),
+          ),
+          const SizedBox(height: 12),
+          _AssistModeSelector(
+            value: settings.assistMode,
+            onChanged: (m) => ref.read(settingsProvider.notifier).setAssistMode(m),
+          ),
+          const SizedBox(height: 8),
+          _assistModeDescription(settings.assistMode),
+          const SizedBox(height: 24),
+
           // ── GAMEPLAY ─────────────────────────────────────────────
           const Text(
             'GAMEPLAY',
@@ -70,6 +85,15 @@ class SettingsScreen extends ConsumerWidget {
             subtitle: 'Botón para completar automáticamente las celdas restantes',
             value: settings.showAutoComplete,
             onChanged: (v) => ref.read(settingsProvider.notifier).setShowAutoComplete(v),
+          ),
+          const Divider(color: Colors.white12),
+          _SettingsSwitch(
+            icon: Icons.auto_awesome,
+            iconColor: Colors.cyanAccent,
+            title: 'Auto candidatos',
+            subtitle: 'Mostrar notas candidatas automáticamente',
+            value: settings.autoCandidates,
+            onChanged: (v) => ref.read(settingsProvider.notifier).setAutoCandidates(v),
           ),
 
           const SizedBox(height: 32),
@@ -125,6 +149,19 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
+  Widget _assistModeDescription(AssistMode mode) {
+    final text = switch (mode) {
+      AssistMode.classic => 'Errores ilimitados, sin corrección instantánea. La experiencia Sudoku tradicional.',
+      AssistMode.casual => 'Errores visibles al instante, pistas y autocompletar activos, vibración por defecto.',
+      AssistMode.expert => 'Sin pistas, sin autocompletar, sin vibración. Sin resaltado de errores. Solo vos y el tablero.',
+      AssistMode.extreme => '1 vida, cronómetro forzado, sin pausa, sin pistas, sin autocompletar. Modo hardcore.',
+    };
+    return Padding(
+      padding: const EdgeInsets.only(left: 8),
+      child: Text(text, style: const TextStyle(fontSize: 12, color: Colors.white54, fontStyle: FontStyle.italic)),
+    );
+  }
+
   Future<void> _confirmAction(
     BuildContext context, {
     required String title,
@@ -151,6 +188,35 @@ class SettingsScreen extends ConsumerWidget {
     if (confirm == true) await onConfirm();
   }
 }
+
+// ── Assist Mode Selector ─────────────────────────────────────────────────────
+
+class _AssistModeSelector extends StatelessWidget {
+  final AssistMode value;
+  final ValueChanged<AssistMode> onChanged;
+
+  const _AssistModeSelector({required this.value, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return SegmentedButton<AssistMode>(
+      segments: const [
+        ButtonSegment(value: AssistMode.classic, label: Text('Clásico', style: TextStyle(fontSize: 10))),
+        ButtonSegment(value: AssistMode.casual, label: Text('Casual', style: TextStyle(fontSize: 10))),
+        ButtonSegment(value: AssistMode.expert, label: Text('Experto', style: TextStyle(fontSize: 10))),
+        ButtonSegment(value: AssistMode.extreme, label: Text('Extremo', style: TextStyle(fontSize: 10))),
+      ],
+      selected: {value},
+      onSelectionChanged: (s) => onChanged(s.first),
+      style: ButtonStyle(
+        visualDensity: VisualDensity.compact,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+    );
+  }
+}
+
+// ── Shared widgets ───────────────────────────────────────────────────────────
 
 class _SettingsTile extends StatelessWidget {
   final IconData icon;

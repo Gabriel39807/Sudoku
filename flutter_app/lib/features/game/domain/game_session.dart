@@ -32,6 +32,35 @@ class GameSession {
     required this.status,
   });
 
+  /// Restore from autosave data.
+  factory GameSession.restore({
+    required String boardId,
+    required String difficulty,
+    required List<int> initialBoard,
+    required List<int> currentBoard,
+    required List<int> solution,
+    required Set<int> fixedCells,
+    required Map<int, Set<int>> notes,
+    required int mistakes,
+    required Duration elapsed,
+    required bool paused,
+    required GameStatus status,
+  }) {
+    return GameSession._(
+      boardId: boardId,
+      difficulty: difficulty,
+      initialBoard: List<int>.from(initialBoard),
+      currentBoard: List<int>.from(currentBoard),
+      solution: List<int>.from(solution),
+      fixedCells: Set<int>.from(fixedCells),
+      notes: _deepCopyNotes(notes),
+      mistakes: mistakes,
+      elapsed: elapsed,
+      paused: paused,
+      status: status,
+    );
+  }
+
   /// Siempre crea listas frescas — sin referencias compartidas.
   factory GameSession.create({
     required String boardId,

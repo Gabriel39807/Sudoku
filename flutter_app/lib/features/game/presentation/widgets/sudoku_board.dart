@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../../domain/game_state.dart';
 import '../../application/game_provider.dart';
 
@@ -215,6 +216,7 @@ class _CellWidget extends ConsumerWidget {
     }
 
     if (cell.notes.isNotEmpty) {
+      final selectedNumber = gameState.lockedNumber;
       return GridView.count(
         crossAxisCount: 3,
         padding: const EdgeInsets.all(2),
@@ -222,10 +224,28 @@ class _CellWidget extends ConsumerWidget {
         children: List.generate(9, (i) {
           final n = i + 1;
           if (cell.notes.contains(n)) {
+            final isConflict = cell.noteConflict;
+            final isHighlighted = selectedNumber == n;
             return Center(
               child: Text(
                 n.toString(),
-                style: const TextStyle(fontSize: 8, color: Colors.white54),
+                style: TextStyle(
+                  fontSize: isHighlighted ? 9 : 8,
+                  color: isHighlighted
+                      ? const Color(0xFFBCA6FF)
+                      : isConflict
+                          ? Colors.redAccent
+                          : Colors.white70,
+                  fontWeight:
+                      isHighlighted || isConflict ? FontWeight.bold : FontWeight.normal,
+                ),
+              ).animate(
+                target: isHighlighted ? 1 : 0,
+              ).scaleXY(
+                begin: 1.0,
+                end: 1.1,
+                duration: 150.ms,
+                curve: Curves.easeOut,
               ),
             );
           }

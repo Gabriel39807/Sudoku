@@ -23,6 +23,8 @@ class StatsService {
     required int mistakes,
     required int hintsUsed,
     int completedWithAutocomplete = 0,
+    int maxCombo = 0,
+    int totalNoteUsage = 0,
   }) async {
     await StatsStorage.recordWin(
       difficulty,
@@ -30,6 +32,8 @@ class StatsService {
       mistakes: mistakes,
       hintsUsed: hintsUsed,
       completedWithAutocomplete: completedWithAutocomplete,
+      maxCombo: maxCombo,
+      totalNoteUsage: totalNoteUsage,
     );
     await onUnlockProgress();
   }

@@ -3,26 +3,40 @@ import 'dart:developer' as dev;
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/game_state.dart';
+import '../domain/note_helpers.dart';
 import '../data/board_repository.dart';
+import '../data/game_autosave.dart';
 import '../../hint/hint_service.dart';
+import '../../settings/domain/settings_model.dart';
 import '../../settings/application/settings_provider.dart';
 import '../../stats/application/stats_provider.dart';
 import '../../stats/data/stats_service.dart';
 import '../../stats/data/stats_storage.dart';
+import '../../progression/application/progression_provider.dart';
+import '../../progression/domain/xp_calculator.dart';
+import '../../progression/domain/achievement.dart';
+import '../../progression/data/progression_storage.dart';
 
 class GameNotifier extends Notifier<GameState> {
   Timer? _timer;
 
-  // Streams para eventos de animación
   final _rowCompleted = StreamController<int>.broadcast();
   final _colCompleted = StreamController<int>.broadcast();
   final _blockCompleted = StreamController<int>.broadcast();
   final _digitCompleted = StreamController<int>.broadcast();
+  final _comboEvent = StreamController<int>.broadcast();
+  final _levelUpEvent = StreamController<int>.broadcast();
+  final _achievementEvent = StreamController<String>.broadcast();
+  final _gameOverEvent = StreamController<bool>.broadcast(); // true=win, false=loss
 
   Stream<int> get rowCompleted => _rowCompleted.stream;
   Stream<int> get colCompleted => _colCompleted.stream;
   Stream<int> get blockCompleted => _blockCompleted.stream;
   Stream<int> get digitCompleted => _digitCompleted.stream;
+  Stream<int> get comboEvent => _comboEvent.stream;
+  Stream<int> get levelUpEvent => _levelUpEvent.stream;
+  Stream<String> get achievementEvent => _achievementEvent.stream;
+  Stream<bool> get gameOverEvent => _gameOverEvent.stream;
 
   @override
   GameState build() {
@@ -32,16 +46,40 @@ class GameNotifier extends Notifier<GameState> {
       _colCompleted.close();
       _blockCompleted.close();
       _digitCompleted.close();
+      _comboEvent.close();
+      _levelUpEvent.close();
+      _achievementEvent.close();
+      _gameOverEvent.close();
     });
     return const GameState(isLoading: false);
   }
+
+  // ── Assist mode helpers ──────────────────────────────────────────────────
+
+  bool get _isClassic => _mode == AssistMode.classic;
+  bool get _isExpert => _mode == AssistMode.expert;
+  bool get _isExtreme => _mode == AssistMode.extreme;
+
+  AssistMode get _mode => ref.read(settingsProvider).assistMode;
+
+  int get _maxMistakes {
+    if (_isExtreme) return 1;
+    if (_isClassic) return 999;
+    return 3;
+  }
+
+  bool get _canUseHints {
+    if (_isExpert || _isExtreme) return false;
+    return true;
+  }
+
+  bool get _canPause => !_isExtreme;
 
   // ── Init ─────────────────────────────────────────────────────────────────
 
   Future<void> init(String difficulty) async {
     final diff = difficulty.toLowerCase();
     _timer?.cancel();
-
     state = const GameState(isLoading: true);
 
     try {
@@ -53,16 +91,19 @@ class GameNotifier extends Notifier<GameState> {
         solutionFlat: boardData.solutionFlat,
       );
 
-      final maxHints = HintService.maxHintsFor(diff);
+      final maxHints = _canUseHints ? HintService.maxHintsFor(diff) : 0;
+
       state = GameState(
         session: session,
         isLoading: false,
         remainingHints: maxHints,
+        advancedNotesEnabled: false,
         completedDigits: _computeCompletedDigits(session),
       );
       await HintService.resetCurrentGame();
       await StatsService.onGameStart(diff);
       await _reloadStats();
+      await GameAutosave.clear();
       _startTimer();
     } catch (e, st) {
       dev.log('[GameProvider] init ERROR: $e\n$st');
@@ -70,15 +111,37 @@ class GameNotifier extends Notifier<GameState> {
     }
   }
 
+  Future<void> restoreGame(GameState savedState) async {
+    _timer?.cancel();
+    state = savedState.copyWith(isLoading: false);
+
+    final maxHints = _canUseHints
+        ? HintService.maxHintsFor(savedState.difficulty)
+        : 0;
+
+    state = state.copyWith(remainingHints: maxHints);
+
+    await _reloadStats();
+    _startTimer();
+  }
+
   // ── Timer ────────────────────────────────────────────────────────────────
 
   void _startTimer() {
     _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 1), (t) {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (t) {
       final s = state.session;
       if (s == null || s.status != GameStatus.playing || s.paused) return;
+      final cellMs = Map<int, int>.from(state.cellTimeMs);
+      final r = state.selectedRow;
+      final c = state.selectedCol;
+      if (r != null && c != null && s.currentBoard[r * 9 + c] == 0) {
+        final idx = r * 9 + c;
+        cellMs[idx] = (cellMs[idx] ?? 0) + 100;
+      }
       state = state.copyWith(
-        session: s.copyWith(elapsed: s.elapsed + const Duration(seconds: 1)),
+        session: s.copyWith(elapsed: s.elapsed + const Duration(milliseconds: 100)),
+        cellTimeMs: cellMs,
       );
     });
   }
@@ -102,8 +165,7 @@ class GameNotifier extends Notifier<GameState> {
     for (var r = 0; r < 9; r++) {
       var complete = true;
       for (var c = 0; c < 9; c++) {
-        final idx = r * 9 + c;
-        if (session.currentBoard[idx] != session.solution[idx]) {
+        if (session.currentBoard[r * 9 + c] != session.solution[r * 9 + c]) {
           complete = false;
           break;
         }
@@ -118,8 +180,7 @@ class GameNotifier extends Notifier<GameState> {
     for (var c = 0; c < 9; c++) {
       var complete = true;
       for (var r = 0; r < 9; r++) {
-        final idx = r * 9 + c;
-        if (session.currentBoard[idx] != session.solution[idx]) {
+        if (session.currentBoard[r * 9 + c] != session.solution[r * 9 + c]) {
           complete = false;
           break;
         }
@@ -139,8 +200,7 @@ class GameNotifier extends Notifier<GameState> {
           for (var dc = 0; dc < 3; dc++) {
             final r = br * 3 + dr;
             final c = bc * 3 + dc;
-            final idx = r * 9 + c;
-            if (session.currentBoard[idx] != session.solution[idx]) {
+            if (session.currentBoard[r * 9 + c] != session.solution[r * 9 + c]) {
               complete = false;
               break;
             }
@@ -180,24 +240,13 @@ class GameNotifier extends Notifier<GameState> {
     }
 
     for (final r in newRows) {
-      if (!oldRows.contains(r)) {
-        eventId++;
-        _rowCompleted.add(r);
-      }
+      if (!oldRows.contains(r)) { eventId++; _rowCompleted.add(r); }
     }
-
     for (final c in newCols) {
-      if (!oldCols.contains(c)) {
-        eventId++;
-        _colCompleted.add(c);
-      }
+      if (!oldCols.contains(c)) { eventId++; _colCompleted.add(c); }
     }
-
     for (final b in newBlocks) {
-      if (!oldBlocks.contains(b)) {
-        eventId++;
-        _blockCompleted.add(b);
-      }
+      if (!oldBlocks.contains(b)) { eventId++; _blockCompleted.add(b); }
     }
 
     state = oldState.copyWith(
@@ -228,14 +277,13 @@ class GameNotifier extends Notifier<GameState> {
     if (locked == null || session == null) return;
 
     final idx = row * 9 + col;
-    if (session.fixedCells.contains(idx) || session.currentBoard[idx] != 0) {
-      return;
-    }
+    if (session.fixedCells.contains(idx) || session.currentBoard[idx] != 0) return;
     inputNumber(locked);
   }
 
   void inputNumber(int number) {
     if (!_canInput) return;
+
     final r = state.selectedRow;
     final c = state.selectedCol;
     if (r == null || c == null) return;
@@ -252,19 +300,22 @@ class GameNotifier extends Notifier<GameState> {
   }
 
   void _handlePencil(GameSession session, int idx, int r, int c, int number) {
+    final oldState = state;
     final newNotes = Map<int, Set<int>>.from(session.notes);
     final cellNotes = Set<int>.from(newNotes[idx] ?? {});
+
     if (cellNotes.contains(number)) {
       cellNotes.remove(number);
-    } else {
+    } else if (_isNoteAllowed(session.currentBoard, idx, number)) {
       cellNotes.add(number);
+    } else {
+      return; // silently block invalid note
     }
     newNotes[idx] = cellNotes;
 
     final oldNotes = Set<int>.from(session.notes[idx] ?? {});
     final move = Move(
-      row: r,
-      col: c,
+      row: r, col: c,
       oldValue: session.currentBoard[idx],
       newValue: session.currentBoard[idx],
       oldNotes: oldNotes,
@@ -272,10 +323,32 @@ class GameNotifier extends Notifier<GameState> {
       timestamp: DateTime.now(),
     );
 
-    state = state.copyWith(
+    state = oldState.copyWith(
       session: session.copyWith(notes: newNotes),
-      undoStack: [...state.undoStack, move],
+      undoStack: [...oldState.undoStack, move],
+      noteUsageCount: oldState.noteUsageCount + 1,
     );
+    _autosave();
+  }
+
+  bool _isNoteAllowed(List<int> board, int idx, int number) {
+    final row = idx ~/ 9;
+    final col = idx % 9;
+    final br = row ~/ 3;
+    final bc = col ~/ 3;
+
+    for (var c = 0; c < 9; c++) {
+      if (board[row * 9 + c] == number) return false;
+    }
+    for (var r = 0; r < 9; r++) {
+      if (board[r * 9 + col] == number) return false;
+    }
+    for (var dr = 0; dr < 3; dr++) {
+      for (var dc = 0; dc < 3; dc++) {
+        if (board[(br * 3 + dr) * 9 + (bc * 3 + dc)] == number) return false;
+      }
+    }
+    return true;
   }
 
   void _handleNumber(GameSession session, int idx, int r, int c, int number) {
@@ -286,50 +359,103 @@ class GameNotifier extends Notifier<GameState> {
     final newBoard = List<int>.from(session.currentBoard);
     newBoard[idx] = newValue;
 
-    final newNotes = Map<int, Set<int>>.from(session.notes);
-    newNotes.remove(idx);
+    final settings = ref.read(settingsProvider);
+    var updatedNotes = Map<int, Set<int>>.from(session.notes);
+    updatedNotes.remove(idx);
 
-    final move = Move(
-      row: r,
-      col: c,
-      oldValue: oldValue,
-      newValue: newValue,
-      oldNotes: Set<int>.from(session.notes[idx] ?? {}),
+    var newStreak = oldState.correctStreak;
+    var newMaxCombo = oldState.maxCombo;
+    var newCorrect = oldState.correctMoves;
+    var newTotal = oldState.totalMoves + 1;
+
+    if (newValue != 0) {
+      if (newValue == session.solution[idx]) {
+        newStreak++;
+        newCorrect++;
+        if (newStreak > newMaxCombo) newMaxCombo = newStreak;
+        _comboEvent.add(newStreak);
+
+        // ALWAYS clean notes same house; recompute auto-candidates only if ADV enabled
+        updatedNotes = NoteHelpers.afterNumberPlacement(
+          updatedNotes, idx, newValue,
+          oldState.advancedNotesEnabled, newBoard, session.solution,
+        );
+      } else {
+        newStreak = 0;
+        _comboEvent.add(0);
+        _vibrateOnError(settings);
+
+        final newMistakes = session.mistakes + 1;
+        if (newMistakes >= _maxMistakes) {
+          _endGame(false, session.copyWith(
+            mistakes: newMistakes,
+            status: GameStatus.lost,
+            currentBoard: newBoard,
+          ), oldState, idx, r, c, oldValue, newValue);
+          return;
+        }
+        state = oldState.copyWith(
+          session: session.copyWith(
+            mistakes: newMistakes,
+            currentBoard: newBoard,
+            notes: updatedNotes,
+          ),
+          undoStack: [...oldState.undoStack, _makeMove(r, c, oldValue, newValue, session, {})],
+          correctStreak: newStreak,
+          maxCombo: newMaxCombo,
+          totalMoves: newTotal,
+          correctMoves: newCorrect,
+        );
+        _autosave();
+        return;
+      }
+    }
+
+    final updatedSession = session.copyWith(
+      currentBoard: newBoard,
+      notes: updatedNotes,
+    );
+
+    _applyBoardChange(updatedSession, oldState.copyWith(
+      correctStreak: newStreak,
+      maxCombo: newMaxCombo,
+      totalMoves: newTotal,
+      correctMoves: newCorrect,
+    ), undoStack: [...oldState.undoStack, _makeMove(r, c, oldValue, newValue, session, {})]);
+
+    _autosave();
+    if (newValue != 0) unawaited(_checkWin());
+  }
+
+  void _endGame(bool won, GameSession session, GameState oldState, int idx, int r, int c, int oldValue, int newValue) {
+    _timer?.cancel();
+    state = oldState.copyWith(
+      session: session,
+      clearLockedNumber: true,
+      undoStack: [...oldState.undoStack, _makeMove(r, c, oldValue, newValue, oldState.session!, {})],
+    );
+
+    if (won) {
+      _onWon(session.difficulty, session.elapsed.inSeconds, session.boardId);
+    } else {
+      _onLost(session.difficulty, session.boardId);
+    }
+
+    _gameOverEvent.add(won);
+  }
+
+  Move _makeMove(int r, int c, int oldV, int newV, GameSession s, Set<int> oldN) {
+    return Move(
+      row: r, col: c,
+      oldValue: oldV, newValue: newV,
+      oldNotes: Set<int>.from(s.notes[r * 9 + c] ?? oldN),
       newNotes: {},
       timestamp: DateTime.now(),
     );
-
-    var updatedSession = session.copyWith(
-      currentBoard: newBoard,
-      notes: newNotes,
-    );
-
-    if (newValue != 0 && newValue != session.solution[idx]) {
-      _vibrateOnError();
-      final newMistakes = updatedSession.mistakes + 1;
-      if (newMistakes >= 3) {
-        updatedSession = updatedSession.copyWith(
-          mistakes: newMistakes,
-          status: GameStatus.lost,
-        );
-        state = oldState.copyWith(
-          session: updatedSession,
-          undoStack: [...oldState.undoStack, move],
-        );
-        _onLost();
-        return;
-      }
-      updatedSession = updatedSession.copyWith(mistakes: newMistakes);
-    }
-
-    _applyBoardChange(updatedSession, oldState, undoStack: [...oldState.undoStack, move]);
-
-    if (newValue != 0) _checkWin();
   }
 
-  void _vibrateOnError() {
-    final settings = ref.read(settingsProvider);
-    if (settings.vibrateOnError) {
+  void _vibrateOnError(SettingsModel settings) {
+    if (settings.vibrateOnError && !_isExpert) {
       HapticFeedback.mediumImpact();
     }
   }
@@ -357,6 +483,7 @@ class GameNotifier extends Notifier<GameState> {
       oldState,
       undoStack: newStack,
     );
+    _autosave();
   }
 
   void erase() {
@@ -369,20 +496,9 @@ class GameNotifier extends Notifier<GameState> {
     final session = oldState.session!;
     final idx = r * 9 + c;
     if (session.fixedCells.contains(idx)) return;
-    if (session.currentBoard[idx] == 0 &&
-        (session.notes[idx]?.isEmpty ?? true)) {
-      return;
-    }
+    if (session.currentBoard[idx] == 0 && (session.notes[idx]?.isEmpty ?? true)) return;
 
-    final move = Move(
-      row: r,
-      col: c,
-      oldValue: session.currentBoard[idx],
-      newValue: 0,
-      oldNotes: Set<int>.from(session.notes[idx] ?? {}),
-      newNotes: {},
-      timestamp: DateTime.now(),
-    );
+    final move = _makeMove(r, c, session.currentBoard[idx], 0, session, session.notes[idx] ?? {});
 
     final newBoard = List<int>.from(session.currentBoard);
     newBoard[idx] = 0;
@@ -394,6 +510,7 @@ class GameNotifier extends Notifier<GameState> {
       oldState,
       undoStack: [...oldState.undoStack, move],
     );
+    _autosave();
   }
 
   void togglePencil() {
@@ -401,8 +518,44 @@ class GameNotifier extends Notifier<GameState> {
     state = state.copyWith(pencilMode: !state.pencilMode);
   }
 
+  void toggleAdvancedNotes() {
+    if (state.session == null || state.status != GameStatus.playing) return;
+    final enabling = !state.advancedNotesEnabled;
+
+    if (enabling) {
+      final session = state.session!;
+      final candidates = NoteHelpers.computeAllCandidates(
+        session.currentBoard,
+        session.solution,
+      );
+      // Merge: keep existing manual notes, add auto candidates for empty cells
+      final merged = Map<int, Set<int>>.from(candidates);
+      for (final e in session.notes.entries) {
+        if (e.value.isNotEmpty) {
+          final existing = merged[e.key] ?? <int>{};
+          merged[e.key] = {...existing, ...e.value};
+        }
+      }
+      state = state.copyWith(
+        advancedNotesEnabled: true,
+        manualNotes: Map<int, Set<int>>.from(session.notes),
+        session: session.copyWith(notes: merged),
+      );
+    } else {
+      final session = state.session!;
+      final saved = state.manualNotes;
+      state = state.copyWith(
+        advancedNotesEnabled: false,
+        manualNotes: null,
+        session: saved != null
+            ? session.copyWith(notes: saved)
+            : session,
+      );
+    }
+  }
+
   HintResult useHint() {
-    if (!_canInput) return HintResult.ignored;
+    if (!_canInput || !_canUseHints) return HintResult.ignored;
     if (state.remainingHints == 0) return HintResult.ignored;
     final r = state.selectedRow;
     final c = state.selectedCol;
@@ -418,10 +571,6 @@ class GameNotifier extends Notifier<GameState> {
     unawaited(_recordHintUsed(session.difficulty));
     return HintResult.applied;
   }
-
-  void unlockHints() {}
-
-  void buyHints() {}
 
   void toggleLockedNumber(int number) {
     if (!_canInput) return;
@@ -439,43 +588,47 @@ class GameNotifier extends Notifier<GameState> {
     final session = state.session;
     state = state.copyWith(clearLockedNumber: true);
     if (session != null && session.status == GameStatus.playing) {
-      unawaited(
-        StatsService.onGameExit(session.difficulty, session.elapsed.inSeconds),
-      );
+      unawaited(StatsService.onGameExit(session.difficulty, session.elapsed.inSeconds));
     }
+    GameAutosave.clear();
   }
 
   void _revealCell(GameSession session, int idx, int r, int c) {
     final oldState = state;
     final newBoard = List<int>.from(session.currentBoard);
-    final newNotes = Map<int, Set<int>>.from(session.notes);
+    var newNotes = NoteHelpers.eliminateNumber(
+      session.notes,
+      idx,
+      session.solution[idx],
+    );
     final oldNotes = Set<int>.from(session.notes[idx] ?? {});
     newBoard[idx] = session.solution[idx];
     newNotes.remove(idx);
 
-    final move = Move(
-      row: r,
-      col: c,
-      oldValue: session.currentBoard[idx],
-      newValue: session.solution[idx],
-      oldNotes: oldNotes,
-      newNotes: {},
-      timestamp: DateTime.now(),
-    );
+    final move = _makeMove(r, c, session.currentBoard[idx], session.solution[idx], session, oldNotes);
+
+    final used = oldState.usedHints + 1;
+    state = oldState.copyWith(usedHints: used, remainingHints: oldState.remainingHints - 1);
 
     _applyBoardChange(
       session.copyWith(currentBoard: newBoard, notes: newNotes),
-      oldState,
+      state,
       undoStack: [...oldState.undoStack, move],
     );
-
-    _checkWin();
+    _autosave();
+    unawaited(_checkWin());
   }
 
   void togglePause() {
+    if (!_canPause) return;
     final session = state.session;
     if (session == null || session.status != GameStatus.playing) return;
-    state = state.copyWith(session: session.copyWith(paused: !session.paused));
+    final wasPaused = session.paused;
+    state = state.copyWith(
+      session: session.copyWith(paused: !wasPaused),
+      pauseCount: wasPaused ? state.pauseCount : state.pauseCount + 1,
+    );
+    _autosave();
   }
 
   // ── Auto Complete ────────────────────────────────────────────────────────
@@ -496,23 +649,20 @@ class GameNotifier extends Notifier<GameState> {
       }
     }
 
-    final updatedSession = session.copyWith(
-      currentBoard: newBoard,
-      notes: newNotes,
-    );
-
+    final updatedSession = session.copyWith(currentBoard: newBoard, notes: newNotes);
     _applyBoardChange(updatedSession, oldState, undoStack: oldState.undoStack);
 
     state = state.copyWith(
       completedWithAutocomplete: true,
+      autoCompleteUsed: oldState.autoCompleteUsed + 1,
     );
-
-    _checkWin();
+    _autosave();
+    unawaited(_checkWin());
   }
 
   // ── Win / Loss ───────────────────────────────────────────────────────────
 
-  void _checkWin() {
+  Future<void> _checkWin() async {
     final session = state.session;
     if (session == null) return;
     final complete = session.currentBoard.asMap().entries.every(
@@ -521,47 +671,188 @@ class GameNotifier extends Notifier<GameState> {
     if (!complete) return;
 
     _timer?.cancel();
+    await GameAutosave.clear();
+
     state = state.copyWith(
       session: session.copyWith(status: GameStatus.won),
       clearLockedNumber: true,
     );
-    _onWon(
-      session.difficulty,
-      session.elapsed.inSeconds,
-      session.boardId,
-    );
+
+    // Award XP
+    final xpResult = XpCalculator.compute(state);
+    final levelUps = await ref.read(playerLevelProvider.notifier).addXp(xpResult.total);
+    for (var i = 0; i < levelUps; i++) {
+      _levelUpEvent.add(state.session!.solution[0]);
+    }
+
+    // Check achievements
+    final achievementsToCheck = await _computeAchievements(state);
+    final newlyUnlocked = await ref.read(achievementsProvider.notifier).checkBatch(achievementsToCheck);
+    for (final id in newlyUnlocked) {
+      _achievementEvent.add(id);
+    }
+
+    // Update missions
+    await _updateMissions(state);
+
+    // Record stats
+    _onWon(session.difficulty, session.elapsed.inSeconds, session.boardId);
+    _gameOverEvent.add(true);
   }
 
-  void _onWon(
-    String diff,
-    int elapsed,
-    String boardId,
-  ) {
+  Future<Map<String, int>> _computeAchievements(GameState state) async {
+    final stats = ref.read(statsProvider).asData?.value;
+    final wins = stats?.gamesWon ?? 0;
+    final diffWins = Map<String, int>.from(stats?.winsByDifficulty ?? {});
+    final easyWins = diffWins['easy'] ?? 0;
+    final interWins = diffWins['intermediate'] ?? 0;
+    final hardWins = diffWins['hard'] ?? 0;
+    final expertWins = diffWins['expert'] ?? 0;
+    final evilWins = diffWins['evil'] ?? 0;
+    final mythicWins = diffWins['mythic'] ?? 0;
+    final perfects = stats?.perfectVictories ?? 0;
+    final combos = state.maxCombo;
+    final hintsTotal = stats?.hintsUsed ?? 0;
+    final winsNoHints = wins - (stats?.victoriesWithHints ?? 0);
+    final bestStreak = stats?.bestWinStreak ?? 0;
+    final errorsState = state.errors;
+    final diff = state.difficulty;
+    final elapsed = state.elapsedSeconds;
+    final lost = stats?.gamesLost ?? 0;
+    final totalMissions = await ProgressionStorage.loadTotalMissionsCompleted();
+    final modesPlayed = [easyWins, interWins, hardWins, expertWins, evilWins, mythicWins]
+        .where((c) => c > 0).length;
+    final achievementsMap = ref.read(achievementsProvider);
+    final unlockedCount = achievementsMap.values.where((a) => a.unlocked).length;
+    final totalAchievements = AchievementRegistry.all().length;
+
+    return {
+      // General
+      'wins_1': wins,
+      'wins_10': wins,
+      'wins_50': wins,
+      'wins_100': wins,
+      'wins_250': wins,
+      'wins_500': wins,
+      'wins_1000': wins,
+      // Perfect
+      'perfect_1': perfects,
+      'perfect_10': perfects,
+      'perfect_25': perfects,
+      'perfect_50': perfects,
+      'perfect_100': perfects,
+      // Difficulty
+      'easy_10': easyWins,
+      'easy_50': easyWins,
+      'easy_100': easyWins,
+      'intermediate_10': interWins,
+      'intermediate_50': interWins,
+      'hard_5': hardWins,
+      'hard_25': hardWins,
+      'hard_75': hardWins,
+      'expert_1': expertWins,
+      'expert_10': expertWins,
+      'expert_50': expertWins,
+      'evil_1': evilWins,
+      'evil_10': evilWins,
+      'evil_25': evilWins,
+      'mythic_1': mythicWins,
+      'mythic_10': mythicWins,
+      'mythic_25': mythicWins,
+      // Time (event-based: only progress if this game qualifies)
+      'time_easy_5m': (diff == 'easy' && elapsed < 300) ? 1 : 0,
+      'time_intermediate_8m': (diff == 'intermediate' && elapsed < 480) ? 1 : 0,
+      'time_hard_10m': (diff == 'hard' && elapsed < 600) ? 1 : 0,
+      'time_expert_12m': (diff == 'expert' && elapsed < 720) ? 1 : 0,
+      // Combos
+      'combo_5': combos,
+      'combo_10': combos,
+      'combo_20': combos,
+      'combo_50': combos,
+      // Winstreaks
+      'perfect_streak_5': state.errors == 0 && state.usedHints == 0 && !state.completedWithAutocomplete ? 1 : 0,
+      'win_streak_10': bestStreak,
+      // Hints
+      'hints_10': hintsTotal,
+      'hints_50': hintsTotal,
+      'hints_100': hintsTotal,
+      'no_hints_10': winsNoHints,
+      'no_hints_50': winsNoHints,
+      // Errors
+      'lost_10': lost,
+      'expert_no_errors': (diff == 'expert' && errorsState == 0) ? 1 : 0,
+      'mythic_no_errors': (diff == 'mythic' && errorsState == 0) ? 1 : 0,
+      // Missions
+      'missions_1': totalMissions,
+      'missions_25': totalMissions,
+      'missions_100': totalMissions,
+      // Completion
+      'all_modes': modesPlayed,
+      'all_achievements': unlockedCount >= totalAchievements ? 1 : 0,
+    };
+  }
+
+  Future<void> _updateMissions(GameState state) async {
+    final empty = state.session?.currentBoard.where((v) => v == 0).length ?? 0;
+    final solved = 81 - empty;
+
+    // Snapshot before updates
+    final before = Map.fromEntries(
+      ref.read(missionsProvider).map((m) => MapEntry(m.id, m.completed)),
+    );
+
+    await ref.read(missionsProvider.notifier).updateProgress('play_three', 1);
+    await ref.read(missionsProvider.notifier).updateProgress('solve_50', solved);
+    if (state.difficulty == 'easy') {
+      await ref.read(missionsProvider.notifier).updateProgress('complete_easy', 1);
+    }
+    if (state.difficulty == 'expert') {
+      await ref.read(missionsProvider.notifier).updateProgress('complete_expert', 1);
+    }
+    if (state.errors == 0 && state.usedHints == 0 && !state.completedWithAutocomplete) {
+      await ref.read(missionsProvider.notifier).updateProgress('perfect_win', 1);
+    }
+    if (state.usedHints == 0) {
+      await ref.read(missionsProvider.notifier).updateProgress('no_hints', 1);
+    }
+    if (state.errors == 0) {
+      await ref.read(missionsProvider.notifier).updateProgress('zero_errors', 1);
+    }
+    if (state.maxCombo >= 3) {
+      await ref.read(missionsProvider.notifier).updateProgress('three_combos', 1);
+    }
+
+    // Track total missions completed
+    final after = ref.read(missionsProvider);
+    final newlyCompleted = after.where((m) => m.completed && !(before[m.id] ?? false)).length;
+    if (newlyCompleted > 0) {
+      final current = await ProgressionStorage.loadTotalMissionsCompleted();
+      await ProgressionStorage.saveTotalMissionsCompleted(current + newlyCompleted);
+    }
+  }
+
+  void _onLost(String diff, String boardId) {
+    _timer?.cancel();
+    GameAutosave.clear();
+    unawaited(_recordLost(diff, boardId));
+    unawaited(ref.read(missionsProvider.notifier).updateProgress('play_three', 1));
+    _gameOverEvent.add(false);
+  }
+
+  void _onWon(String diff, int elapsed, String boardId) {
     unawaited(_recordWon(diff, elapsed, boardId));
   }
 
-  void _onLost() {
-    _timer?.cancel();
-    final session = state.session;
-    if (session == null) return;
-    state = state.copyWith(clearLockedNumber: true);
-    unawaited(_recordLost(session.difficulty, session.boardId));
-  }
-
-  Future<void> _recordWon(
-    String diff,
-    int elapsed,
-    String boardId,
-  ) async {
+  Future<void> _recordWon(String diff, int elapsed, String boardId) async {
     await StatsStorage.markBoardPlayed(diff, boardId);
     final session = state.session;
     await StatsService.onVictory(
-      diff,
-      elapsed,
+      diff, elapsed,
       mistakes: session?.mistakes ?? 0,
       hintsUsed: state.usedHints,
-      completedWithAutocomplete:
-          state.completedWithAutocomplete ? 1 : 0,
+      completedWithAutocomplete: state.completedWithAutocomplete ? 1 : 0,
+      maxCombo: state.maxCombo,
+      totalNoteUsage: state.noteUsageCount,
     );
   }
 
@@ -580,12 +871,23 @@ class GameNotifier extends Notifier<GameState> {
     await ref.read(statsProvider.notifier).reload();
   }
 
+  // ── Autosave ─────────────────────────────────────────────────────────────
+
+  void _autosave() {
+    if (state.status != GameStatus.playing) return;
+    unawaited(GameAutosave.save(state));
+  }
+
   // ── Helpers ──────────────────────────────────────────────────────────────
 
   bool get _canInput {
+    if (_isExtreme && state.isPaused) return false;
     final s = state.session;
     return s != null && s.status == GameStatus.playing && !s.paused;
   }
+
+  bool get hintsEnabled => _canUseHints;
+  bool get pauseEnabled => _canPause;
 }
 
 final gameProvider = NotifierProvider<GameNotifier, GameState>(

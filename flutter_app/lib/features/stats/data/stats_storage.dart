@@ -78,6 +78,8 @@ class StatsStorage {
             prefs.getInt('auto_complete_$d') ?? 0,
         completedWithHints:
             prefs.getInt('completed_with_hints_$d') ?? 0,
+        maxCombo: prefs.getInt('max_combo_$d') ?? 0,
+        totalNoteUsage: prefs.getInt('note_usage_$d') ?? 0,
       );
     }
 
@@ -94,6 +96,8 @@ class StatsStorage {
           prefs.getInt('completed_with_autocomplete') ?? 0,
       completedWithHints:
           prefs.getInt('completed_with_hints') ?? 0,
+      maxCombo: prefs.getInt('max_combo') ?? 0,
+      totalNoteUsage: prefs.getInt('total_note_usage') ?? 0,
       bestEasy: prefs.getInt('best_easy') ?? 0,
       bestIntermediate: prefs.getInt('best_intermediate') ?? 0,
       bestHard: prefs.getInt('best_hard') ?? 0,
@@ -119,6 +123,8 @@ class StatsStorage {
     required int mistakes,
     required int hintsUsed,
     required int completedWithAutocomplete,
+    int maxCombo = 0,
+    int totalNoteUsage = 0,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final diff = difficulty.toLowerCase();
@@ -185,6 +191,20 @@ class StatsStorage {
     if (currentBest == 0 || elapsedSeconds < currentBest) {
       await prefs.setInt(bestKey, elapsedSeconds);
     }
+
+    // Combo & note usage
+    final globalCombo = prefs.getInt('max_combo') ?? 0;
+    if (maxCombo > globalCombo) {
+      await prefs.setInt('max_combo', maxCombo);
+    }
+    final diffCombo = prefs.getInt('max_combo_$diff') ?? 0;
+    if (maxCombo > diffCombo) {
+      await prefs.setInt('max_combo_$diff', maxCombo);
+    }
+    final globalNotes = prefs.getInt('total_note_usage') ?? 0;
+    await prefs.setInt('total_note_usage', globalNotes + totalNoteUsage);
+    final diffNotes = prefs.getInt('note_usage_$diff') ?? 0;
+    await prefs.setInt('note_usage_$diff', diffNotes + totalNoteUsage);
 
     dev.log(
       '[StatsStorage] Win recorded: $diff | elapsed=$elapsedSeconds | streak=$streak',
@@ -267,6 +287,8 @@ class StatsStorage {
       'victories_with_hints',
       'completed_with_autocomplete',
       'completed_with_hints',
+      'max_combo',
+      'total_note_usage',
       for (final d in _difficulties) ...['best_$d', 'wins_$d', 'losses_$d'],
       for (final d in _difficulties) ...[
         'started_$d',
@@ -276,6 +298,8 @@ class StatsStorage {
         'hints_used_$d',
         'auto_complete_$d',
         'completed_with_hints_$d',
+        'max_combo_$d',
+        'note_usage_$d',
       ],
     ];
     for (final k in keys) {
