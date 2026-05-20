@@ -1,0 +1,8078 @@
+{
+  "generated_at": "2026-05-20T10:26:34",
+  "scope": "flutter_app/assets/boards/evil",
+  "seed_id": "generated_seed_attempt_14",
+  "legacy_invalid_ids": [
+    "evil_0001",
+    "evil_0002",
+    "evil_0003",
+    "evil_0004",
+    "evil_0005",
+    "evil_0006",
+    "evil_0007",
+    "evil_0008",
+    "evil_0009",
+    "evil_0010",
+    "evil_0011",
+    "evil_0012",
+    "evil_0013",
+    "evil_0014",
+    "evil_0015",
+    "evil_0016",
+    "evil_0017",
+    "evil_0018",
+    "evil_0019",
+    "evil_0020",
+    "evil_0021",
+    "evil_0022",
+    "evil_0023",
+    "evil_0024",
+    "evil_0025",
+    "evil_0026",
+    "evil_0027",
+    "evil_0028",
+    "evil_0029",
+    "evil_0030",
+    "evil_0031",
+    "evil_0032",
+    "evil_0033",
+    "evil_0034",
+    "evil_0035",
+    "evil_0036",
+    "evil_0037",
+    "evil_0038",
+    "evil_0039",
+    "evil_0040",
+    "evil_0041",
+    "evil_0042",
+    "evil_0043",
+    "evil_0044",
+    "evil_0045",
+    "evil_0046",
+    "evil_0047",
+    "evil_0048",
+    "evil_0049",
+    "evil_0050",
+    "evil_0051",
+    "evil_0052",
+    "evil_0053",
+    "evil_0054",
+    "evil_0055",
+    "evil_0056",
+    "evil_0057",
+    "evil_0058",
+    "evil_0059",
+    "evil_0060",
+    "evil_0061",
+    "evil_0062",
+    "evil_0063",
+    "evil_0064",
+    "evil_0065",
+    "evil_0066",
+    "evil_0067",
+    "evil_0068",
+    "evil_0069",
+    "evil_0070",
+    "evil_0071",
+    "evil_0072",
+    "evil_0073",
+    "evil_0074",
+    "evil_0075",
+    "evil_0076",
+    "evil_0077",
+    "evil_0078",
+    "evil_0079",
+    "evil_0080",
+    "evil_0081",
+    "evil_0082",
+    "evil_0083",
+    "evil_0084",
+    "evil_0085",
+    "evil_0086",
+    "evil_0087",
+    "evil_0088",
+    "evil_0089",
+    "evil_0090",
+    "evil_0091",
+    "evil_0092",
+    "evil_0093",
+    "evil_0094",
+    "evil_0095",
+    "evil_0096",
+    "evil_0097",
+    "evil_0098",
+    "evil_0099",
+    "evil_0100"
+  ],
+  "legacy_intact_ids": [],
+  "legacy_fixed": [
+    {
+      "id": "evil_0001",
+      "attempts": 1,
+      "hash": "4c052627e1f448801ae643a1bf247a726c537e8ed7e06f99a3a2d93e146af821",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0002",
+      "attempts": 1,
+      "hash": "0a5e752a95fdc97b861580fc7841aaadbef92f592dd6a6620791d1f78260685b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0003",
+      "attempts": 1,
+      "hash": "cf25f498458b5576402303a767178ec0697fc52aafd4fc4d75640c7e12eedeea",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0004",
+      "attempts": 1,
+      "hash": "e9b28f3cb4efe0bd1a59d707817a587797303188ee52752d1002fdfbf674c4b8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0005",
+      "attempts": 1,
+      "hash": "845ff58dc3e04a8ed142f1f9929e8bfa252209084ef85f0eada9f65dad12d9b4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0006",
+      "attempts": 1,
+      "hash": "326d5009a7e4ba767aa9bbd2f8e28c9c99514b35ee237a72715f0dc13e86e1ba",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0007",
+      "attempts": 1,
+      "hash": "4f93273f853006f2dfe03a41ff2957ef9fc07f327168b99e622512d7f13ed5e8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0008",
+      "attempts": 1,
+      "hash": "b245c6d5cf406f09634c6458d62ca735ffbf392819653670065633c1d88a932a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0009",
+      "attempts": 1,
+      "hash": "301409fa4134667d6a313e246968558d62a1b6e2c378ce1e3d974eb0cddfac8d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0010",
+      "attempts": 1,
+      "hash": "ae324283ad390188412a9ddfc934fe45ae799391caa51d8ea51368a55e2eb5be",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0011",
+      "attempts": 1,
+      "hash": "81bb54a176711eeae562a86ae32690ce083ec859452bf00d1dcbfbaf021bd9e8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0012",
+      "attempts": 1,
+      "hash": "67fa7a296c312de5cb2ee991fc91e05e70f335bcb3d2f6035a832d21f1956f3c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0013",
+      "attempts": 1,
+      "hash": "0835aacc49fd88606d3c2aa1c8f9d8e54ce9a914d51e4f3d079d44abd7ec1620",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0014",
+      "attempts": 1,
+      "hash": "6319e98a1a549cb6e398b630f8230671e8928c1c59dc08506621e1f6364094d2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0015",
+      "attempts": 1,
+      "hash": "22db9ad0b336daefc07d990b4bb16b68f0efe6c4226b50018c0208c7f8cfeab7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0016",
+      "attempts": 1,
+      "hash": "c0fc1c84848f38488ac9415124ab13a57fbd649cdcfacc0a562229320732e560",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0017",
+      "attempts": 1,
+      "hash": "afa744fec43ff14c803e7a8de3bfa8e4c2407f71dc367c1b8fe44dad12b1638f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0018",
+      "attempts": 1,
+      "hash": "72e9726a8b3e016d7d6ddf3311f66c12a02db0c59f71c014e2826eedc2a13603",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0019",
+      "attempts": 1,
+      "hash": "973a93372052eb75d639cdccd526c8ef06fe5e5fac92f6cf206c90429d9d2396",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0020",
+      "attempts": 1,
+      "hash": "44117f0e2d01cf0f4ce839c363336fa6b3ed01a946e4873b1566b9276ce5bb0c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0021",
+      "attempts": 1,
+      "hash": "b902f1376ff929accd62b4e9194d5c2cbb220035f95723cc14e8ef2579205de3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0022",
+      "attempts": 1,
+      "hash": "370b2120e28c5468591efd0a5d4b5ebdcc60f81fd7f8d150b490b886f1a4e534",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0023",
+      "attempts": 1,
+      "hash": "774611ba4f622718281635bf87e8e3fced5f4465fafc9f4821b5e156cd5c1927",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0024",
+      "attempts": 1,
+      "hash": "1e12c1d8d3c4b468f72b446bd4213990b0482e5770153f4512d6e5161332a79f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0025",
+      "attempts": 1,
+      "hash": "4e5cafe300f34b701b89148fac80b5e9e2b6fd4071bf6634ceee672da1a63c34",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0026",
+      "attempts": 1,
+      "hash": "6d3572017f9f83b5fb2b681d5b747242635b07948130cc3d228502ad3b370629",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0027",
+      "attempts": 1,
+      "hash": "ab477c4700be0a6b224facb22f329579c1db53d83f34cccaaaab0f068384cfed",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0028",
+      "attempts": 1,
+      "hash": "6d932a8c0649bcc7638b30b50f9b89ba03c8faa558a01f4d76874b64a476ce9e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0029",
+      "attempts": 1,
+      "hash": "c26c910007ceedb2ae0d819263ca131306b9ae4bb34b1ad2cf071e274fd5ab51",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0030",
+      "attempts": 1,
+      "hash": "e842bb24cc697b871d350f37c4c88c598dc64786f2338562b97995b31a5853e1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0031",
+      "attempts": 1,
+      "hash": "285890805af16adbc3c7e6138f3efaa43aabb4e5a247d098849ba9d2acf1fff1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0032",
+      "attempts": 1,
+      "hash": "055488db83315c7e1697691a81645d8380b1efc98b93df22f180f5af89c29b90",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0033",
+      "attempts": 1,
+      "hash": "6e3bcd2abd9d414aaff671d87fc46f4326d0c2964e4f712516dba74121a95373",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0034",
+      "attempts": 1,
+      "hash": "48be80d788b81b6ee602f5f9294320680455985f26a1a82c947071655f252207",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0035",
+      "attempts": 1,
+      "hash": "2d9d712fac5c5fb1cd71ffe8f7f78f2f2f1f379308c4064d14bf84139cd56f3b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0036",
+      "attempts": 1,
+      "hash": "1c4e2a5721e947b478c7867e8850a3dbd9de32f260d4b9952b6902931fee5df0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0037",
+      "attempts": 1,
+      "hash": "f30f0145157f70e65010408691c3f67e4f2ecb71d217dc4be3193d38f4741c7a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0038",
+      "attempts": 1,
+      "hash": "2a9b875acc26ebb9dd7cd26cd21315390dae7472ce163bcd0d0a06730b54ec83",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0039",
+      "attempts": 1,
+      "hash": "913050b696568b57e02a7dc346163f65ee34183e60a02fada663be629418a08d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0040",
+      "attempts": 1,
+      "hash": "aacf06ad7dcf36e92efd97bbff974f3d7dc999c5b3a717bf77e44bb28cbe28ad",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0041",
+      "attempts": 1,
+      "hash": "0b1aff81217718f3b21be0772a929c94abbb32379e7c26ba641e85aebe7daf94",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0042",
+      "attempts": 1,
+      "hash": "e3072ca85a4e61e6e0af2ef3050caee7835d1e796419c4dc04b5d0213970f405",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0043",
+      "attempts": 1,
+      "hash": "07b623c8f56d00eb14e9c4ea143057824349cd10e79c7a295809d71e678d6eaa",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0044",
+      "attempts": 1,
+      "hash": "2fea547eb59d8d2e944c503276328c6164cb38bc45979df2146fcffcc03d537b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0045",
+      "attempts": 1,
+      "hash": "b8c0ad07eb98e7d30c512ecff99541828b602a7d11771e0a79f8880fc8997001",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0046",
+      "attempts": 1,
+      "hash": "f73f446284e41143ad1c81d06dba4d32ae4765de623439dc66afc16028f90656",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0047",
+      "attempts": 1,
+      "hash": "8d78f0b2b5d565a03b8108ce90385b28aa3f004257f924a45d0e58c49146c4a8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0048",
+      "attempts": 1,
+      "hash": "e0361b5adc5a535914c0db0550a2fc5b23e6891dbba63cf57f6aa86061b9eac2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0049",
+      "attempts": 1,
+      "hash": "b8d706a7cbec1b888fd2b2d4f9fe0df3dc56f75aeaaf4f0401301d74469f845d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0050",
+      "attempts": 1,
+      "hash": "2824c41d0d913aa516bc87b86ed7b8d142662ed56fe54aea9b0c04c52b224bd8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0051",
+      "attempts": 1,
+      "hash": "249c82fc6032abbfeba036eca898cff1a551a10b18e6dd71bd286a7174aec3ea",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0052",
+      "attempts": 1,
+      "hash": "e28a6bc67f934b48c56a962d651ba75881823e7536f5ebff9a84778a292db65a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0053",
+      "attempts": 1,
+      "hash": "0d363b868cfec1ca1e7d7d455d80fc4d315bf58ce763812d20b732822eb9879b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0054",
+      "attempts": 1,
+      "hash": "78177de852737fabf97f9c4492cc9d1270a20f59c3ebcfd7959cdef856e508f5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0055",
+      "attempts": 1,
+      "hash": "277ac2c36f1bc58b1fefbea9e26a1f1c85c0def126442dab0b9f32743d662e8c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0056",
+      "attempts": 1,
+      "hash": "e6740e64e1733d1e7b2776f82de69f38647890ba61ecbf4d936e7773abcdde31",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0057",
+      "attempts": 1,
+      "hash": "3a6702a04012c105f98ea3f8c1635f92e05c04213421026a75475e3a531f9bd4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0058",
+      "attempts": 1,
+      "hash": "fac8d906b673a16d75830d5c4590b21c95020844ebf89f7028f3d97a4f294369",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0059",
+      "attempts": 1,
+      "hash": "fbdf51edb96e0317dab0bf6b8a3511d0b63cdf69fce478d6d7e2e712c470e317",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0060",
+      "attempts": 1,
+      "hash": "726bfaaec6a42135c227d43b2465df856d76d9be9b5390be5a503e8e352e4d21",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0061",
+      "attempts": 1,
+      "hash": "e8e8c191b4e1512a9696bd1ed4efe8fafb041b429aa004546c32bf811228c0a7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0062",
+      "attempts": 1,
+      "hash": "659964414f885322d1f22fbb2817c6c5887cac04597a094f3e105577cfe16283",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0063",
+      "attempts": 1,
+      "hash": "c657a4586d7ed52cef7c25094669b163874d270a6e6115922d7e70cee3a25107",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0064",
+      "attempts": 1,
+      "hash": "b99b2f190384719a93dc14fd6b1c39cfa68ca55b4827fa4deba2c98613a143e2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0065",
+      "attempts": 1,
+      "hash": "2aaa6ed9efb7b6b9f7d9e17eb909b3b03498a72686c625f830182c8760c6ff4f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0066",
+      "attempts": 1,
+      "hash": "8b1c0d7eb2ebfe65425339bc9288066da1bd5c440d074a02a48907c94742e8eb",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0067",
+      "attempts": 1,
+      "hash": "bb6aa2165cea05ff7b496e06b6f62113f72a009cbb2cc825ba97b8d2fdc14539",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0068",
+      "attempts": 1,
+      "hash": "1abd6d4122ed52c382842372669346b867177643d3886fe15ef25bb3a05fca22",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0069",
+      "attempts": 1,
+      "hash": "60b27d5b1184b34551d869335ab902878b9a82ebf923849f12792d41a5ee8378",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0070",
+      "attempts": 1,
+      "hash": "859bbc698feaea1eb4b6fadfe50138029a05e7070e621987c96d2cb9f34848a2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0071",
+      "attempts": 1,
+      "hash": "49daf8a3ad98536ed73061ad562a484f5fcfccfcd79fdceeba6a14478cff73ad",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0072",
+      "attempts": 1,
+      "hash": "72b358945498285253e17f975c4e395df8ebc3017a1a05b0182347ca759e3916",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0073",
+      "attempts": 1,
+      "hash": "536ad0cb2046ced1e1c9ed8a741194134eadeb9acc405be20929827c0ea12aa7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0074",
+      "attempts": 1,
+      "hash": "1256f1298af894118ef30beb801792a1110504aae4a1b14c0b758924118854ed",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0075",
+      "attempts": 1,
+      "hash": "c403cccc5666f45807fa9c3d84dfcd23cb960d15d155275fe423306e37bf6198",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0076",
+      "attempts": 1,
+      "hash": "42578373cac976793a6cee17e625217b8a7e641130c18e4a7fa70a14532f62bb",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0077",
+      "attempts": 1,
+      "hash": "35031aa13861d5794e3fe4e3b32eba21db77caa9c8c2f2b599f4c3d29c5a9abd",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0078",
+      "attempts": 1,
+      "hash": "c166af6f0405e9530a2b7fcb5889fe02b307bb9bfbbc3e91de45e8d8945e6036",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0079",
+      "attempts": 1,
+      "hash": "6baa5f74a3ffb37dcafe4d5090df35cc68a6c35b6403002895920c0199a80853",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0080",
+      "attempts": 1,
+      "hash": "753137027c4d63e85d2136ba6066c911dbf9eca533716f735f132141b5d87219",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0081",
+      "attempts": 1,
+      "hash": "a503eb1a13450036cb439e52f4c854f158553643d72b36d20c19d45ec6ce66e0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0082",
+      "attempts": 1,
+      "hash": "3c02d243e690dd950424afee430b35c1c2421281eb0fcf5ece17025b681d5967",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0083",
+      "attempts": 1,
+      "hash": "474c52c9d6ba1ab39a4490ca2d51cd7cb957db54544649e950be8d7f02bf142a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0084",
+      "attempts": 1,
+      "hash": "607a48528566f0ef3d2a724b855188da91ce718e5f3d7d32ede82ccc82fc4bcf",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0085",
+      "attempts": 1,
+      "hash": "8f2898bb82d8b0324142dcb5091dd5509e82e0f7ae1dd2e58052a72315bd8e29",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0086",
+      "attempts": 1,
+      "hash": "07f0ebe25ff8407d0cea8f1ab6a7f4e615ff6de973985f9bd61d0bf8a8565a7c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0087",
+      "attempts": 1,
+      "hash": "459dac9af1bcde21426e4e2a65a4da6d0fb41b23f7bd25627fa1cea7d7a270ba",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0088",
+      "attempts": 1,
+      "hash": "120b72be12de9945d900664b203330a268baf6f4d97e503ccb4ef51fc54799c7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0089",
+      "attempts": 1,
+      "hash": "9334a4585e88c879551c5ed7fadb70e0000852f7949b87b785bc501a13988f5c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0090",
+      "attempts": 1,
+      "hash": "c6d83d58c49c90f0bf6dcb2a5e34a19e66f25258a95371c16700fd0c8f601abc",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0091",
+      "attempts": 1,
+      "hash": "e2ceeb87c088f59fbe3b904cbe57672c64485dd540a88199e6c16171caedff70",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0092",
+      "attempts": 1,
+      "hash": "ab610135323eb91c7555eaf8a0ee598b096ac0996e88864d4c91ec5e78f56cc3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0093",
+      "attempts": 1,
+      "hash": "b7384a62a10f2762a77fecfd79d2473e5e36ef515cd6d354f1a9052586a20f50",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0094",
+      "attempts": 1,
+      "hash": "6503fbbe077bac0945f680a7e74b12c69ccc9bcba870d6598440517adf051af8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0095",
+      "attempts": 1,
+      "hash": "c1c0f91b4df83ebce4b762120e44347c720781f97879bb127f2112be18e9b91f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0096",
+      "attempts": 1,
+      "hash": "880fa8c92ca25ce6dde0835869e26219ea2189496c63d7997cd254dd382b6d79",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0097",
+      "attempts": 1,
+      "hash": "0d70b30b530dd06a5426d6cbf42a09d9985d2c3951bfb69d2450c2be58f84426",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0098",
+      "attempts": 1,
+      "hash": "a3170a26c28aee676f21338fc9852a3c49c43276f5cb7aad5699c73a07383b0a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0099",
+      "attempts": 1,
+      "hash": "3c8ea7d1d3fa4c3e3d7c93eea83c2579b23f5ad93c697b48fd284a73c0aced30",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0100",
+      "attempts": 1,
+      "hash": "a4cc9d585cdbec7e1988e4608371e92c982d6281f5d99ebc6110321d127ceafb",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    }
+  ],
+  "new_generated": [
+    {
+      "id": "evil_0101",
+      "attempts": 1,
+      "hash": "7000c2286b4bc0260246ffedf10035b75b027ca084bc59e611a82a9786a09119",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0102",
+      "attempts": 1,
+      "hash": "a3e2a1ffce7dc3d8eb0eb2685b3280187f7a471d38c122f0b031ffb0efc1a4d9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0103",
+      "attempts": 1,
+      "hash": "2ca2bae3878d07294e4bf537728383de2ffbf724e78a73e4ea07aa3537080d9e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0104",
+      "attempts": 1,
+      "hash": "3ddd0d0b7f9db0939c7092066836658be7afb4bb0eda0a47f9fdb7342f82d8a3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0105",
+      "attempts": 1,
+      "hash": "40605dd0f290f945396491c35279916d2925d40dda58d59dda4c6788c1072355",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0106",
+      "attempts": 1,
+      "hash": "854c6cd2dac298b621f1ab5ae9a4cb1975c57efa6b37c635facd637913da6812",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0107",
+      "attempts": 1,
+      "hash": "f3e4e48dcfdc20f935f617f762b48c5d9e0325145bd4330247da390868dc93a1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0108",
+      "attempts": 1,
+      "hash": "c24fccd888b753a7de41df3618346dfd02afd7b1825c9ab2b3aaa874f7ce591c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0109",
+      "attempts": 1,
+      "hash": "5d28aa693ad41fe40d59326f424fcb26700dc7f669ed2649c98322aa270516ae",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0110",
+      "attempts": 1,
+      "hash": "b8fb395e7949452ef213dfdb27be8a7707f9c0296d21961db01d5355288f21df",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0111",
+      "attempts": 1,
+      "hash": "eb6af9dbe43194891f7ff9ae6331585ff334b23cd75dc2de27fe0f1c39fe3cec",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0112",
+      "attempts": 1,
+      "hash": "38a48a7dd71778516a1fa4dfdb033c772238e0f3dd6dbc609f520b31111a6565",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0113",
+      "attempts": 1,
+      "hash": "38944f02ebc00a534f37f9a785639e00a349cc372ebad66420162185b326e44b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0114",
+      "attempts": 1,
+      "hash": "88289c86af84c4d328abe644a175146da1838f05b9e4f98dd6acd660f6fa6d81",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0115",
+      "attempts": 1,
+      "hash": "8225e7d6372294926f19472eaa712eb4d704c26caef8695113a4cd0cb1a99354",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0116",
+      "attempts": 1,
+      "hash": "65e445b04f7339a524dd366b208bbae51000f17389d22c54e1fb4cbbd747baf8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0117",
+      "attempts": 1,
+      "hash": "df67af0842d19f17440ce13a65da8dc63c9437dac14491d47b30d5804bdda442",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0118",
+      "attempts": 1,
+      "hash": "610aa4c3e9f3a076102383aae2b80b425a14147f659a0c0911133cf809f1a04e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0119",
+      "attempts": 1,
+      "hash": "ceb0d39336406bcebbb877aa7a923960a78b73d6ab84cfa8ebfdf7e0a465376e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0120",
+      "attempts": 1,
+      "hash": "8123b3196375d9cd7860b6518e5416188c1c2afd7f9376d9084863f5d3cc3c9b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0121",
+      "attempts": 1,
+      "hash": "053590877d53cdb99ccaa5931cff4dfafc85147a8c5854cc49ac58ae74343335",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0122",
+      "attempts": 1,
+      "hash": "98c4dfe4432e8be7c08135d96869ae95772811be7d47522a92947453666bcef5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0123",
+      "attempts": 1,
+      "hash": "0b6a545be8fa35617d480d825af10fbb1e8650daacc9826f3c0f4af8197dbaf1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0124",
+      "attempts": 1,
+      "hash": "145e6686e479c2785e04a9f1f3bf871e23792d6f19f43ab70b7a091f4d865b68",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0125",
+      "attempts": 1,
+      "hash": "bd471f9ab667e98b4e905c7d57b35425f1aaa9173a6105f3bf8a7c64f4418af9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0126",
+      "attempts": 1,
+      "hash": "8a78bb0ee3c80435adc1f2b0326c96a8c139068c5596cf882c0a3df339dc1caf",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0127",
+      "attempts": 1,
+      "hash": "aa0277d6a28a7451d32a7e9556884d224da793253cf96270a7edf689b15adafe",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0128",
+      "attempts": 1,
+      "hash": "7b9e136e339db0a5de0c248b64cd8216d54cbd3eff8e0ea9f6bbf22810f030be",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0129",
+      "attempts": 1,
+      "hash": "f471979ee1289af245e5ba46172e7afd5ec00c44c20964df754fffd3feb3d15b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0130",
+      "attempts": 1,
+      "hash": "4a6122d9f07696125f131f60ae83e1b147c8f2280e7e30e28d0004ce5d82d916",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0131",
+      "attempts": 1,
+      "hash": "d496a760d7946d2a05132691e9c6ac7b99739f9aa213e7fd75d1c072d88f1290",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0132",
+      "attempts": 1,
+      "hash": "98b1b9a948e909688fa2d3099fe56f09ae56589e5d5c7cadc7ea1c8c6a77062e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0133",
+      "attempts": 1,
+      "hash": "78fb0e9563fd7b0a8d0dde5f4833a027c14fa30bb164e77a8584b66b22febd3f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0134",
+      "attempts": 1,
+      "hash": "48cd2b0d7e3fcc1465cfb41084e9120e4faa5694bf3618550fd7e2969289bb1b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0135",
+      "attempts": 1,
+      "hash": "11a31d9051537682b390eb5a5fda2147cd34963d7261a94efb69a7cd3447a7db",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0136",
+      "attempts": 1,
+      "hash": "74de301f4fe2420aec7ca49807c65f9be7c79274047d395f6356c4b04774caf7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0137",
+      "attempts": 1,
+      "hash": "58f010e656667ac08ce4d8bd0e7e6f3b7cc7f4340381d756382706843d6297f4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0138",
+      "attempts": 1,
+      "hash": "0fb9d15009155042d1c4efe0a666886721456235c92b6a525dfb2978ac62d1a3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0139",
+      "attempts": 1,
+      "hash": "eee60f8c4d020204ad063e2596b677f6d868da4e9d7deac84cd3bf2652edf08d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0140",
+      "attempts": 1,
+      "hash": "e4ee2385cc9d552f24221bf57d5787fd1559f1bbdfecf421d9057c1e1853771e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0141",
+      "attempts": 1,
+      "hash": "c47ea9e5b8a82f425b88c026d4ab4f03a4e7c32b5296339c5ce454d748a3f33a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0142",
+      "attempts": 1,
+      "hash": "c20b0b4b1c494eebcd83067fe8c6161ffdeba83b5be1fd8a86e717bde23be9ad",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0143",
+      "attempts": 1,
+      "hash": "4817376045f07569b9e774f772da9d27535950a4c1bcd3efaf8a094c98711527",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0144",
+      "attempts": 1,
+      "hash": "48a83264ce82161382c7e2045349e7403920070851bc8541c9597b209dfe07ac",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0145",
+      "attempts": 1,
+      "hash": "fc289058b675b57164714a37016fd57b6805319d760591600d1e8ca9adea16a5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0146",
+      "attempts": 1,
+      "hash": "292680862698f5a6cf1961c393277dbc3a71134913207302f685096e85b3baa1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0147",
+      "attempts": 1,
+      "hash": "8a12e4ed85f2dd9d14bb6e1da4af4b7eb17144cc45e1c02cc0de17de87279711",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0148",
+      "attempts": 1,
+      "hash": "ffd60f3bf33aeac15ebf26615119ae5f6c60aa59e0bf258dfe317291a0c4a886",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0149",
+      "attempts": 1,
+      "hash": "3767166072fb4232b79a21762c3de5d27d1b6d542e3ffa15ac694652b0474902",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0150",
+      "attempts": 1,
+      "hash": "38d7c1026c34762dd50f7807bc129be224812496281c7ca7b94612134a7f6b82",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0151",
+      "attempts": 1,
+      "hash": "20849093e7d9eda63eaca515aa65d9e79e788bb7ecc46b5b23a25f2cf574ef1e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0152",
+      "attempts": 1,
+      "hash": "4297aa11cfae3a65cc3d08f1f1d67b7951a910b93920af44a945f4aef8844777",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0153",
+      "attempts": 1,
+      "hash": "7fb1614ec3a4bd4f34d7ec2bf1e2c2f35ef18df5e99a99d60651036a295a7778",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0154",
+      "attempts": 1,
+      "hash": "a77a9111706d2bb8208263678a7fd5d45f27ef924e38b26d356e1a23fe7d9972",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0155",
+      "attempts": 1,
+      "hash": "a8b748ac4616d8e161301cc8195242abddf56553c7910cda7472958ec2d2cdfe",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0156",
+      "attempts": 1,
+      "hash": "0a0fe993936fe0899dbe5ec5c97cc716b522dd4f6bfd753e9216cf744785a895",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0157",
+      "attempts": 1,
+      "hash": "aeda9413fec5943113ca9560a913d1865cd96ce0d31d7365e1925131790b958f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0158",
+      "attempts": 1,
+      "hash": "0e5b0de519ac934ea55e4c85d2f0db47ac27769ee331cedbe2950a80d53dd404",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0159",
+      "attempts": 1,
+      "hash": "e5d9c2e251bc6c6dd8277ef68078a6f7a8b59215a1d4790437a93e5dab8655ce",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0160",
+      "attempts": 1,
+      "hash": "5ac22909ec1eb54e7316bef60c2e51f75cce7027e1f5f213e73989c24415805f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0161",
+      "attempts": 1,
+      "hash": "dc8c62ad4ac6864005a8640decd7aadbf1f9b88fc58eaf0f5700ca3a832fb4ea",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0162",
+      "attempts": 1,
+      "hash": "4d7d9e99141eee8a2dc58607ee83d9269383bc700a4dcd9de568d294ece26448",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0163",
+      "attempts": 1,
+      "hash": "a712528f6ae78af2e0a4a3150411b6fd3726a3e4024087f14f5fdced0fc096e6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0164",
+      "attempts": 1,
+      "hash": "9ddf2685747c2a42c87de954eb44b3e6114db6a8309d4429729dff096c10882c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0165",
+      "attempts": 1,
+      "hash": "f56f28e6334866720349edff506a9377c62796afaa22f4f70219fd93123608a1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0166",
+      "attempts": 1,
+      "hash": "a1b7a7b4dda4659cf20ddd640de1e95de990efb7eb08e3e737836f17152a1092",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0167",
+      "attempts": 1,
+      "hash": "e3c105d1684d8ff137c8a6181261f89b365f82c9116ccd5fae05f9ae07329048",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0168",
+      "attempts": 1,
+      "hash": "2c04b1ae543acf4ea3d85620d9f693a602431111f6f550e436c6ef4b33ffae49",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0169",
+      "attempts": 1,
+      "hash": "db37059340a2f796dbd769025f718830909c1cd26bb2760bb8478b55e32398ab",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0170",
+      "attempts": 1,
+      "hash": "6869c339bd910f9baabd09d8073fa1efb03d1bdc8908dc148b0655fac5f2ee2f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0171",
+      "attempts": 1,
+      "hash": "a7330ff3cd35a22919973bc1efea9591dae38e102e5bbd48333dcc6bfd26ed29",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0172",
+      "attempts": 1,
+      "hash": "c90422e16c58e1f9db95069470497b4c5c0412267f3fa36cbc5ad65e95fb3bb5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0173",
+      "attempts": 1,
+      "hash": "5236bf99a166fe879be2dfe728d52be1b2c23f362c4024c86882db40a0baaf70",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0174",
+      "attempts": 1,
+      "hash": "61a9d871c9f9a853ff3d0caecef3c41bde96a1c93100a6b6dbfecd74276fbf9f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0175",
+      "attempts": 1,
+      "hash": "51dfae21804c64856d9144269504312735e774592ea9d0445b0433ba785ec308",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0176",
+      "attempts": 1,
+      "hash": "04d47caf6bff255d7ec1c464ab7ccc05d25de65ad51581bfbf3d2897bcf8c9c7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0177",
+      "attempts": 1,
+      "hash": "66a621e5e697719467da543b6e602cce13c66e9fbce8b3d21e76c5007f17c2b8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0178",
+      "attempts": 1,
+      "hash": "57b7206ad565422857d071461dc64690890b18bfbf8081082551e1124ccca744",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0179",
+      "attempts": 1,
+      "hash": "2034501733681cc9613a5db7a695a26003ca3006edad0e7445170973df631232",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0180",
+      "attempts": 1,
+      "hash": "795f9f75930a50bce49ece34be8f97716807155745a8327b0852c23c1e75f46b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0181",
+      "attempts": 1,
+      "hash": "d42dfefdcf7603cd6fb76e115015d5f5ec2b1998af070ddbc4e3e4602715aa2a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0182",
+      "attempts": 1,
+      "hash": "cc27febd42281bf40c18b216aa4e4cb6c68f12e1ca79f86e67229f31542a0f54",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0183",
+      "attempts": 1,
+      "hash": "a8af3dc442e1400013b8c05c7fdc346af8ff4235645b9c1e65e91876be9aa9e0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0184",
+      "attempts": 1,
+      "hash": "513adb07dd60db3969fb62c8806b7628aadfcbe07ec911cba88cfa0cff591047",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0185",
+      "attempts": 1,
+      "hash": "e875c1c64d2934ce2c35ef8af406c0624f9dd52b3c67d186e85f60d749ac2973",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0186",
+      "attempts": 1,
+      "hash": "f20ca0c1a5ef9d0caba97a1827853e592cd0f259363217a5be393982d79f1567",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0187",
+      "attempts": 1,
+      "hash": "02103df491168d9092d48cac8556b981c82196105d4d92eb29a72e9d332193be",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0188",
+      "attempts": 1,
+      "hash": "4c1a3bbe9ad3af2f487fc7e2a2fdaf5936c768ebf40768f2d024ab6cd4eec83f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0189",
+      "attempts": 1,
+      "hash": "c7e12b77bb892c421ca38f077f849170afd977ee4c8fd53a9e30b3e21f290fe2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0190",
+      "attempts": 1,
+      "hash": "72f98fed4ba96d7d8c28caa5c6aa4982073fa7d518a79b5a553b9927628c1a8b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0191",
+      "attempts": 1,
+      "hash": "93818a729d57e93eaf12376ce685efb9ad5a4f524b46c71e87605c55c6f0192a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0192",
+      "attempts": 1,
+      "hash": "c8a02f76083f51e5301f4e86d15716f533e1b69b3de9a4e760eeff9e50d50ed6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0193",
+      "attempts": 1,
+      "hash": "38609b4180a41e2334ed55a765e619b74acce196df6b8ad8ff32f219f5374639",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0194",
+      "attempts": 1,
+      "hash": "527dba86b11e5e17cae3720807dc6b97e2881ee5b58b5f080e2b32de91f9e1b2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0195",
+      "attempts": 1,
+      "hash": "f8f23bb9072a49fee8ca95801c7eb3b73b7d12ca1da6de6f32f7cb92b082d408",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0196",
+      "attempts": 1,
+      "hash": "a57161fdc4e8c09ff0f191a761976391b83785f3308be7a15893c1e1fb1939a5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0197",
+      "attempts": 1,
+      "hash": "52840a7f335cf69158a1160f492336d1f23724db36d261f45265622595865040",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0198",
+      "attempts": 1,
+      "hash": "9ac830085784d2aaf9f8210296ca6b87903f7ab493df30efb50758982f537ad8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0199",
+      "attempts": 1,
+      "hash": "e77aaef14550843a79ad8206624a40d694110d30ed5f8965673d8a7c2a09c357",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0200",
+      "attempts": 1,
+      "hash": "568be3281c901ffefd554e3d47e6fe35cf065ccfda4e314c6379ea31b0151273",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0201",
+      "attempts": 1,
+      "hash": "72f805aacbb88543ee5d0ac72148377df528b671ece4089edeb719ebfd650a1d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0202",
+      "attempts": 1,
+      "hash": "c8f7f9adb83f51785e181027293b8236b1a98b4661bb738b97de869c165c0f72",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0203",
+      "attempts": 1,
+      "hash": "7b74125ced1a0f5c72c5923cf295062faaf771c50a7ed52ecab476e9ca2d62ef",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0204",
+      "attempts": 1,
+      "hash": "c3d5bcdd27a45081345b27cb33701514fd5727d182c09c6b25cf15a959eadaa0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0205",
+      "attempts": 1,
+      "hash": "1d900ed1407ffc0c6c98f9268c8450d86c4f33a0f932b90c91454d7b1f4edb25",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0206",
+      "attempts": 1,
+      "hash": "c33c2de2374603c8e5a92a45d16121a528742b3e7335ff1f5fc1633e4ce5f95f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0207",
+      "attempts": 1,
+      "hash": "4fe125a0e3f6500c80628a497203d7824c93ba116f018a04715a0b2bb523591a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0208",
+      "attempts": 1,
+      "hash": "6fa7b0cf5038f39dbaa690875544a7a00100e7b17eceb80ea9e7787b9056980c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0209",
+      "attempts": 1,
+      "hash": "618fdad0367b6942faf91c78a7a81b7c14d2a5317978b0f6ab27a7626e347332",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0210",
+      "attempts": 1,
+      "hash": "4fa1eaf76898657384bcab54aab2a426b45201a2a5856c9bd656f5939aaf3392",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0211",
+      "attempts": 1,
+      "hash": "a22884dfc0507b6cc928fb1c56a0ce5f55ca38d68bccefec6acc53d5a6fe4d12",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0212",
+      "attempts": 1,
+      "hash": "c1ff6c577f5d71a79f2c7240510ce068ccc7fa4ea90173dee04d9bd0fe29a1dc",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0213",
+      "attempts": 1,
+      "hash": "96a6379d315bc0c7baa7ea7b7f80dcf2ae8917c3d68c7e9f886114633c237a63",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0214",
+      "attempts": 1,
+      "hash": "f957d3993454ddb68b46ab7debcf70ef236b4fd88f8edf5733f1659cb2beac83",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0215",
+      "attempts": 1,
+      "hash": "ee983e66647c67dfde645e104182295827b1b253a9c9c9284ca2106571f13770",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0216",
+      "attempts": 1,
+      "hash": "a0f29220c562c3a5a8a97011a001998bdd27d85549a9a2e537e906e41314a492",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0217",
+      "attempts": 1,
+      "hash": "c2b5ce07e013d7b6a5f29a8e0d9db0248407c260a67a35057923a9dc43f5c398",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0218",
+      "attempts": 1,
+      "hash": "0c3d8557e423a33271946473d1abc18e55b64ffde47603441efbf63811d38270",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0219",
+      "attempts": 1,
+      "hash": "a78cad00e75f8a4dfb12ca96474b290ee17a221570c425c32dc5214b906e0f28",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0220",
+      "attempts": 1,
+      "hash": "2b0db581d6301699f594e9a1e2cf0a62a285632d2280c1da8330b4e68b624bf1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0221",
+      "attempts": 1,
+      "hash": "683e51a1e7faca28c919a9827fe3b371116f659bd7c70f147b3ffc0fac7355db",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0222",
+      "attempts": 1,
+      "hash": "0ce73d7b2c01d959724e2252557c128a8a0b311a75a826904d44babcdbd5ed26",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0223",
+      "attempts": 1,
+      "hash": "d6577117fb319c0d17464b07f6ae5f110bea55074c91ad1acf435d0119bb59d8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0224",
+      "attempts": 1,
+      "hash": "101ac8149680a377bcc5a90e906ef2e56e0cfe7c4463a0963e70c1bf32b3df37",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0225",
+      "attempts": 1,
+      "hash": "b4ce2862bdf75aa7beb708fba4a8e3abbc7ea16a2eb532eb1f5d57f66f2dd08b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0226",
+      "attempts": 1,
+      "hash": "871521de5362209e7e80ed989b0d5da3581cbaf7b7a6ded44badb0cf7d4d241c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0227",
+      "attempts": 1,
+      "hash": "d9a2634ef44e4a0a3646e22d9f34397bd0cbbda47232726e939e8e84eb46fc85",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0228",
+      "attempts": 1,
+      "hash": "0c77b9704c3bd35f9f6f63e1317b98191cd888420f7d1e43de61c7754ffda86c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0229",
+      "attempts": 1,
+      "hash": "e4e31b6b6f90dcfb909cf1708f75febfdfc6be12d4d39a4aa0c677ec1cd727b3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0230",
+      "attempts": 1,
+      "hash": "c692a234bbef34653aedd695da9df4029e2cb18af67016bd6ca3a7f03208296f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0231",
+      "attempts": 1,
+      "hash": "c9cba76ddceb3360bdf2fd871919d707746839b3e7a77f2ae9284a9ec50bf151",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0232",
+      "attempts": 1,
+      "hash": "7ebbbf5855f95df092557d6741ab12389e44982289201635cb0a22b5d4a26b7c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0233",
+      "attempts": 1,
+      "hash": "7f9072ed51819a86517b3d119f0a942b7733787a314b7b7e7df4f46fa4364cd9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0234",
+      "attempts": 1,
+      "hash": "edec9fa38930a9e60ca4ea38267323b3f6e5c1a839c1de9f2156da7dae4766c6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0235",
+      "attempts": 1,
+      "hash": "924a8ccf3c52a6dcc559dfe981a6e8f3799bcc389457978e1c6ca8b87f112c0a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0236",
+      "attempts": 1,
+      "hash": "127f09b54941d4b5c3fa3f333036eb73a8f0ef410a02fe1c2efbb67561cc55d7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0237",
+      "attempts": 1,
+      "hash": "306ccbf131115274d517fbbf369b5ca6c57acfc333f9684237712c1a6e0eac0e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0238",
+      "attempts": 1,
+      "hash": "ffbba535e1d9e854e5e3e046aa8c4e46fd25c8f0253ef07e4a52b1b345af82c3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0239",
+      "attempts": 1,
+      "hash": "f32322a6c7386a108174fb6cd6792b9eb848de00e6345f9d55041fce57b4bd2f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0240",
+      "attempts": 1,
+      "hash": "f18fc6a8434f77a6376615d42ed3ad031466aab33c7016853605da9b12eb57db",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0241",
+      "attempts": 1,
+      "hash": "3c86a74d83cb671758a7ec2cbccaf60c2fafe74a4b541c049cda0cc445e793ae",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0242",
+      "attempts": 1,
+      "hash": "9e24bf367bfb31cfabb7b4a6c6d5c4dba8501fad8155178a465c3fedcd4e2f2b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0243",
+      "attempts": 1,
+      "hash": "50aedbdebbff27508bb5202c6d10566127f83c4017c88feab8d188f42e1e741a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0244",
+      "attempts": 1,
+      "hash": "f4bf791187d6256e42504f155ac2a9d211334da028ae84dfe3b4f3239b4507b4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0245",
+      "attempts": 1,
+      "hash": "0e815c6c49259880ce743adff456fabd20726978d3db1188830ebee9c4f98d76",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0246",
+      "attempts": 1,
+      "hash": "70cf670fb0275df522cbb8246165ed29c0adf262e980e3796a6e14f6874acdda",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0247",
+      "attempts": 1,
+      "hash": "a79dbe36f9d668ab69fbb6a74f17c598b3901fa3a6e673acdd86bd5016a9cd78",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0248",
+      "attempts": 1,
+      "hash": "8d28a1de4dcf732cbea907673e31674d243cf7aaf8c1900826c23b78e9f71ab4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0249",
+      "attempts": 1,
+      "hash": "b2c528566dc600f87391f2f38b16bab6a7be5623256669964fa97ed91a0e7bb4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0250",
+      "attempts": 1,
+      "hash": "e544bd392f575e7a672aeb4ca58f9d650b4fdeb72000ca36871974a73c2d7eda",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0251",
+      "attempts": 1,
+      "hash": "74d4f3bf6576f738e7f4b88bfa41ac0de75b732458fd8a18c8da814cafce80cb",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0252",
+      "attempts": 1,
+      "hash": "2d4a992f935ba4928d24a7720a05ee21b2c0b3482afcabd646db2863957157f0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0253",
+      "attempts": 1,
+      "hash": "54ab244221c1eb674c97c72f0e1b5be41bffcb882537db56d929bf1043b076f9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0254",
+      "attempts": 1,
+      "hash": "31bae52978f610465ff3e871eb9a6a9dcfc1f0aaaecaa2725cab850a940d3a67",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0255",
+      "attempts": 1,
+      "hash": "6542222133fe70918e3dfbb6690ec737f2f65a0e23907247dd1ecb8fb32a66c4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0256",
+      "attempts": 1,
+      "hash": "7b34297cd4da90a0e6aa9f110228bb409a9e0fd528adde3e65192af7cb8f7cb9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0257",
+      "attempts": 1,
+      "hash": "bf9b32ee393f3b0904fb3ddac16eeca801c20f53df5cf2504a1f24ebe93fc557",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0258",
+      "attempts": 1,
+      "hash": "b755eebc53d3af94f01e4dde06d90b22ecf958c7a058fc6d93f0c5572ed0d97c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0259",
+      "attempts": 1,
+      "hash": "f9dd51e244e662c08cc16313142f69338e0376f62033d22e859fef1ea185f029",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0260",
+      "attempts": 1,
+      "hash": "e45149487f6218e6d5149cb1828a32eb0720a3b4299afdad8663573d69e943a5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0261",
+      "attempts": 1,
+      "hash": "9f0fa9873dd7cbe2e9a4176f4bdc498998f044afd1805ddcefd00353ced65aab",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0262",
+      "attempts": 1,
+      "hash": "31bfdac703e4af4a1566e3476320f1e1cabc81787fe45a678d2055e611ef50e9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0263",
+      "attempts": 1,
+      "hash": "24e7687c463da7cdda3696be2f79dc45745815ae43a382b4f34e05415b441638",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0264",
+      "attempts": 1,
+      "hash": "ad08fd1d9f5a0a6295922e3055fbca4f9115958b85267955525567f4ca3a4409",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0265",
+      "attempts": 1,
+      "hash": "1e4d48f624827fc31f2d9ec1426458ca76474e8720e83b51f4a8e9340e17d048",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0266",
+      "attempts": 1,
+      "hash": "0bb559c56f0453ac698e459a0c35831bbd37515336968116c1864789bcdfa38d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0267",
+      "attempts": 1,
+      "hash": "c8af2e4a57c4d6f74127f769928b128306d93f29e3999d234f8e2dcd8ae50366",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0268",
+      "attempts": 1,
+      "hash": "e757adf68343fb09b2edfd15c7b10feda82ba65feeb5c34ddb4ba662851a7a1c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0269",
+      "attempts": 1,
+      "hash": "b141abfe68ce9c71905e6947df8e6fd596d1c4bd8fabcb701c69594b2b9ecf33",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0270",
+      "attempts": 1,
+      "hash": "e7d18b7c86cbf8a22c29a325d44cd9b037e7a7ca52745054db70a0a865362b51",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0271",
+      "attempts": 1,
+      "hash": "27e003e66445ec0b0265fe10e5096c6dea84fb68a55da27a0b4de52e80ed81e9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0272",
+      "attempts": 1,
+      "hash": "89f7064293e9d7ab432a276d2428d4b0dd0a26aa02373111df9e15de38c2f6bf",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0273",
+      "attempts": 1,
+      "hash": "afe1eca5e9c8e7406b214907bcc8fbed8a8c45607e7bb8a7c455d321ebe8e651",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0274",
+      "attempts": 1,
+      "hash": "eb6c76944219dcfc70f1da224e849a27c691552c6cca771465697dd04a1f768d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0275",
+      "attempts": 1,
+      "hash": "941cea8ac386d7682d4a6c34592acb2656969126b205d9963e427b748376506a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0276",
+      "attempts": 1,
+      "hash": "ef0fcef69163ed7041c8d237b8f893b2f12a82980601d89a4454bad822669604",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0277",
+      "attempts": 1,
+      "hash": "2b5b3b321912306d07679592daeca4c7a9798d4382aa3e47e677c471b21e3099",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0278",
+      "attempts": 1,
+      "hash": "59f8cdc286c1f169fbeea77db043f120943459460a699611c9ebf1815fb8b1a1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0279",
+      "attempts": 1,
+      "hash": "c7bad31d5c0faf2650e479c8784f55fd2db9179d5fdd7e524d4edfafb7a137f9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0280",
+      "attempts": 1,
+      "hash": "31acdbf047eaaa3f0c10c00a98f78f4eed65bdc618a0587854e409c310c91403",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0281",
+      "attempts": 1,
+      "hash": "db0dc3a260050bd436e2cd9fdde21bfce4134306523d7c05bbf6850a301098de",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0282",
+      "attempts": 1,
+      "hash": "c994beea4d85dde94aa36170202e03862aef2818b51fb6c6314a3b4e5ac6559e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0283",
+      "attempts": 1,
+      "hash": "7f4f0be253e7489b98c7d9b9070825ed82ea90d26163960bce28e1dc39ebed09",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0284",
+      "attempts": 1,
+      "hash": "08f6dda243422e3056154f2fa69e0b4d7ad78360396e244a4a3f422fd6894460",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0285",
+      "attempts": 1,
+      "hash": "4b7e1c0dd3ab7efba3bd6fd6e577240ca1e71ec2f163fa81905db358cb0bd0ae",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0286",
+      "attempts": 1,
+      "hash": "8e18a0161974f07af1046397c12244ea84da8a013f81bedae339c192d1ad1763",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0287",
+      "attempts": 1,
+      "hash": "e81287b66b02e2d1e56aa5e1257bf2af9f8215e067f729bc829ef07ff72514fa",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0288",
+      "attempts": 1,
+      "hash": "92c363491a5b546e5f55c026180ebf393dd9c77a8cf11a87742a964060c55681",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0289",
+      "attempts": 1,
+      "hash": "8a889f926bc2591523256f47520f976b2c8a39f00f9b011641168f3cf6879102",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0290",
+      "attempts": 1,
+      "hash": "6fe9047144f25e3d5e039518f2b535f6865b80dc274b04655cc3983e453aa67f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0291",
+      "attempts": 1,
+      "hash": "5167ba8eb627ac6476d2ab51fd9c88ace14b9a8942f3a2b2bfb728735d07da60",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0292",
+      "attempts": 1,
+      "hash": "e59479900bf97db13ad91cf79692d21ac5f771746f0d0321becac9e140022a4d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0293",
+      "attempts": 1,
+      "hash": "1f67b9ac848a0d15bf3fd65ed7818e4561c52a9e0c0daa1942b2972414ec2819",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0294",
+      "attempts": 1,
+      "hash": "082b6c398ca084d1cad59c996dd0b8fc638f96124de2761d1c98fe6e742a3f5e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0295",
+      "attempts": 1,
+      "hash": "997b4ce4ebd5a537451c2ab41f2e5bbc39a977ad96a3fd16cbd4b2b1c155e089",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0296",
+      "attempts": 1,
+      "hash": "5433c3834c49242cf908aeb8f639c24ae93960016a358aac6cf9da2f896cb962",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0297",
+      "attempts": 1,
+      "hash": "e9c96e2cdfd3e54ff416926e4560cee9df402742b50e2d6f5ec5b43716f5dd86",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0298",
+      "attempts": 1,
+      "hash": "663ca6fafa7844a1b459f91e1b3dbe6e5addb493f6fbcdeda13c73b98b9e2e8e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0299",
+      "attempts": 1,
+      "hash": "f50694ba59b7f70019d8a0d6ff82056a15bf3549be99e369d6d91a6cac35802e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0300",
+      "attempts": 1,
+      "hash": "94d51a7b42382db94bd04c3e8d3389dd46cacafee9da7ecbe265e26887234155",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0301",
+      "attempts": 1,
+      "hash": "3bea03e4bde16d3b80bfc423ed849d94b95be2b0e07ba5b4ddb8a2a6fe41f63e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0302",
+      "attempts": 1,
+      "hash": "32617b632f22a94d69c949e84138eba72597de3491c8138633e0a52e3aa17659",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0303",
+      "attempts": 1,
+      "hash": "5b86df93725350687930f005c0d1f01ecc9132d2fbc5a891e1566ae4c94f36d6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0304",
+      "attempts": 1,
+      "hash": "4c6e56f2204fdd0a0e9bf333f3726c6b0b98b78c33a7f95c952a1936376de1a4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0305",
+      "attempts": 1,
+      "hash": "772a48cc78dfbb29e7c5f908cbef46ec25864d3a728e570abc2e79ed8f8b24c0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0306",
+      "attempts": 1,
+      "hash": "b2ecac6c010879fc646ca94aedf3faafa455d91793c9d9a9ae492b1d73c084d8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0307",
+      "attempts": 1,
+      "hash": "ecb2cd2d598d8aa67a361ded10789d875fb019495897dcbe4020a502c46f0a06",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0308",
+      "attempts": 1,
+      "hash": "8166ca3aa84814c0a1344ca58e5adcf0fd53a159cdfe79577d5b61f3c3a62106",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0309",
+      "attempts": 1,
+      "hash": "de6ab6555ac41242f536992dc66a2689ae9f70a10978a99047abeb0a230072f2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0310",
+      "attempts": 1,
+      "hash": "2950f63c19e0d2faaacbd0c55f7442bdbf19bc2d5cb0746d60ccc84be048d1b6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0311",
+      "attempts": 1,
+      "hash": "0bf7588a36dd681f5e2db7622aa9250a8783c4aab3bca4df436a3f3129f1a1ca",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0312",
+      "attempts": 1,
+      "hash": "58b01e9576bda8a053ab3991728c6b954d27160d29e1c5ad72a7b52eafb24e66",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0313",
+      "attempts": 1,
+      "hash": "7176ff1c2cc7120b5a50a249766a77931336f3dc3f41a405c411048786098574",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0314",
+      "attempts": 1,
+      "hash": "b954719c1d953703f3508c7c3d155ae9689b23843c3b4c21318c54675bf5bb65",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0315",
+      "attempts": 1,
+      "hash": "52f65888fb35a53abeed0815a04eb2b2a41f01d249620547b0024cd0c86c55a5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0316",
+      "attempts": 1,
+      "hash": "deaf0ad63a12f13b5751a52e212dd46b98a56fa8d27e8195fd4df89ad536cd69",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0317",
+      "attempts": 1,
+      "hash": "a4cc1c01b61cb2871ca80a76bdc3f5395356e2f5a063ba89f5f3449a08f123c9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0318",
+      "attempts": 1,
+      "hash": "03b14cff0b27350293e0457dfcb514a60bd63f1299680f808fa0f6c1c6fc0cf9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0319",
+      "attempts": 1,
+      "hash": "4a47df0ad5e9fa88fda0ef2877a7c295737bb8d81c09cbcca5595eef1dd3d666",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0320",
+      "attempts": 1,
+      "hash": "8f22267ac57845423b0849bcfb47d113b7294163911bee9e2951f5d949d54f9c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0321",
+      "attempts": 1,
+      "hash": "42d66825ab15eb09dff870a046b04d75737c91e7bd4caa31c9757144ce1ad4a2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0322",
+      "attempts": 1,
+      "hash": "5938f2d6986f3220a8b9a3f9ee9b54cc7f574f5a4dbaaf899a788d29a070b774",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0323",
+      "attempts": 1,
+      "hash": "03988004862b59cfa4e01aa5984ce88bb6bfc20107dd8d2083227d27f9fca2a1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0324",
+      "attempts": 1,
+      "hash": "f15586647b0d494725f5317cab522c8741cab1aaae1423e4b920a6ed3728f805",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0325",
+      "attempts": 1,
+      "hash": "5c4fd1a52b3382282f0154ce38ab0eb7f67a12a0d06f58c26788d7bfb10b483c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0326",
+      "attempts": 1,
+      "hash": "b993a2fc9dbd0978c2a93a94484a20820f93232fa01c2c034b052a1347363e04",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0327",
+      "attempts": 1,
+      "hash": "67ab0335dc437559d898d44f1c93349e275f38dc2d80106212b60d10ff1d2554",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0328",
+      "attempts": 1,
+      "hash": "267be1ca14885c6022fbb3b13bdb1d45eed1b574b1a1f2c530d731cd4b2cbd27",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0329",
+      "attempts": 1,
+      "hash": "21d9009a76874fc63fc7dceb1c3f5d86a2338afdfedd6bda6b04f58f2ad2bbd4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0330",
+      "attempts": 1,
+      "hash": "69062ac3529ce861828e21fd2acdd329e45c997cef0be6995226e5af1fe7a33b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0331",
+      "attempts": 1,
+      "hash": "406c1d9d686c671a02abc91c41b775f36db74d4abb475f9f374be8f9f24323f6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0332",
+      "attempts": 1,
+      "hash": "5efef5c9ce40423c83f198a301bfc2c8ced3c09616dd0bf8813cf43416415094",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0333",
+      "attempts": 1,
+      "hash": "b847fb4731133790b53a57cfaf5a5e5af51f201e1caf0d4480b6a382acc09664",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0334",
+      "attempts": 1,
+      "hash": "f2b54574a2f46e656f462dbcff7d51e1c1b15e154117b0891b4afa8fe9d651ed",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0335",
+      "attempts": 1,
+      "hash": "311b7899a1e54701b181f83e92c107eabf0456f08b3dc8639c21a008c3e3c8d4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0336",
+      "attempts": 1,
+      "hash": "f8440323d73e48634845c98eac8ab29ec83797792bbede83c8d2bdc254c9c884",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0337",
+      "attempts": 1,
+      "hash": "ef0fc753f1c47554c3b7a87c1bf65da34d9da4c6d074411626595eadf5eeddbb",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0338",
+      "attempts": 1,
+      "hash": "d58e861a2cfc2f80c2eaea023a1f1d8f7f499329fb5ddbd57c770b36bfd618d2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0339",
+      "attempts": 1,
+      "hash": "bb7fb684e43823d603abbda7898c303096c97f164e2d6e38807e6a8a6db4b421",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0340",
+      "attempts": 1,
+      "hash": "2a0bfa2e4947e941182912e201d9ae55d6a63c2c3d8fd6cf2a2f384cf65f9897",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0341",
+      "attempts": 1,
+      "hash": "0e8892dab8d80a7a55544f333e10b5f2162a58b9413587f88eed5cab160fffde",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0342",
+      "attempts": 1,
+      "hash": "f043b1a423f7eed298c4719b94de20c652039c28cf52f1f4c25b8c509833b70c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0343",
+      "attempts": 1,
+      "hash": "cda54d243831b13146619ca6d4e6a31b3753dca0e09d6c4a75bc517e80848f63",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0344",
+      "attempts": 1,
+      "hash": "c1bda6565ca3fd005fd23640b0cb170f363891ea0c0a61f18f57d84d32bac310",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0345",
+      "attempts": 1,
+      "hash": "29f98efc32249d1ab79c9d8a94021e51e0a80071e5e54be0381ff24e88789cc8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0346",
+      "attempts": 1,
+      "hash": "99453be6e962036bb67c17598a79aba978a09040345143399f557d91dc4cccd9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0347",
+      "attempts": 1,
+      "hash": "b1835d6d428f29f9d705813819c34440741e1af1e35b10eff7e61e0928938de5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0348",
+      "attempts": 1,
+      "hash": "5e4bf926e466200bbf5f19a03a989d7c1894e4c646eda94b369a8acc39df759c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0349",
+      "attempts": 1,
+      "hash": "102148cd4abf456ee6cdf7a343c2c865fc114cae0b4060c06a169b2ba660fde0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0350",
+      "attempts": 1,
+      "hash": "a9172e080882ebf0ffeae64a2becf2b1082b376e7cec25614d5c11682339cc70",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0351",
+      "attempts": 1,
+      "hash": "b49ab900b2a13f2262e478a956e73eb37619176964f66d487ab77d0240af616d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0352",
+      "attempts": 1,
+      "hash": "7bdf5387401c8a02c5d1e4005b3a0219cd6ee597cdc9d3ee78526b427965cedc",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0353",
+      "attempts": 1,
+      "hash": "f329722d4806687a1347d01a5b974a00c503f5c8d461616026c4bbc49677c327",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0354",
+      "attempts": 1,
+      "hash": "bd1c1d0a5178deba5ce05f0adc7ff08b90f1025436e90da0eb7d554f7dd1c5c9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0355",
+      "attempts": 1,
+      "hash": "1367ec72536e3104a94a7162398c4dfb6e69c11e1099db093855f4270193d38d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0356",
+      "attempts": 1,
+      "hash": "a1afc4d1638ce904f741e8d1d412fd93d4df5e6dbd5a44c5e16bfa63f6b78acb",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0357",
+      "attempts": 1,
+      "hash": "cb334dc8ee940fdbc0a1acbc99671696192ef32d4f06fcd2cf416071473de5d3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0358",
+      "attempts": 1,
+      "hash": "5e65641983babd6e36da0a8f2533af6c57cdd99e7e6aadd5d5822cb03168564a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0359",
+      "attempts": 1,
+      "hash": "2dbd6271e8e37580a137bdf9c463b0eb5e474f4edc19b0f1f8e63ac276dd4a52",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0360",
+      "attempts": 1,
+      "hash": "2ab0f188a46591841db3ffca6a43122e646770fac831ac828b33d37ee3caecd8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0361",
+      "attempts": 1,
+      "hash": "e047a169d03055e02e4ee6872e8faa5cb36000be3ff76c5eb5921ea641be43a0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0362",
+      "attempts": 1,
+      "hash": "e288e310208f6d6cae18fd36b18dfc03a1e7e0cb4e58e8c1fec2022634e866a7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0363",
+      "attempts": 1,
+      "hash": "4285e9f61dcd1ebfb3409bc2d1565213464320a631fab713ca5af4d5db7ea72b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0364",
+      "attempts": 1,
+      "hash": "b8de20ddb52691cbb0fae86faf4bac987b1e347cab3e4a5692dd724cce637b5c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0365",
+      "attempts": 1,
+      "hash": "bbde3f1852acd519ad867197b0880b5b7d1737656cdcf5317b4d433f4161c29c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0366",
+      "attempts": 1,
+      "hash": "3bb78d9f48b32f743658d66b948484bf53ea3f717757f9675e75f468a201560d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0367",
+      "attempts": 1,
+      "hash": "761b6c2e653a77df361ad48bf8ad2d080d59a6312b93b1fe8272a21ab0400595",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0368",
+      "attempts": 1,
+      "hash": "16f51234304fca8dbb7c89661b2edb380a0557e0df79807ff142455d996928c4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0369",
+      "attempts": 1,
+      "hash": "4309aa2037be61bfb95a6f75d61448061225b8cafe3c5ad3eeb8362b8123fdfe",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0370",
+      "attempts": 1,
+      "hash": "ac2bc5b37c2ef3a8a31f705b8bc610d9bed5ced28021e83b3d5700f6e37a4195",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0371",
+      "attempts": 1,
+      "hash": "3d886f200fcde7ce5411113570c31f2e92cdefd4085a6de8c5ca7abe2333f813",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0372",
+      "attempts": 1,
+      "hash": "a26026add7f0e38284f953b8dfd55ab2eed847d383dd34471ab5a5892df12e50",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0373",
+      "attempts": 1,
+      "hash": "8f8c2523151fe1b668471f6d6cb75db4dac2e0c1876d857bb5d2d2148b89e144",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0374",
+      "attempts": 1,
+      "hash": "d9021897a1d1f8e38c235555683bc845568edce59020196602313aea49539866",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0375",
+      "attempts": 1,
+      "hash": "750be7553339c4913f6f17e02875579f1825f7a17bd2d8d913bca4cc407cf418",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0376",
+      "attempts": 1,
+      "hash": "598981a3e399bc6995e58cdc57c889fe454fc29450c15223027426d6412338d9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0377",
+      "attempts": 1,
+      "hash": "65490479b97cc43ed544cfb0b4df7068285d6fde92f0adaaff020c3de26b728d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0378",
+      "attempts": 1,
+      "hash": "ab962b4bc4f6f9c050be9f204744a6c8fd5383ad80d6a3b4565acdba0282924b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0379",
+      "attempts": 1,
+      "hash": "89f35562736eae441118b64528fa81e5283d5c35a251a1c1c4eeb29f279314c8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0380",
+      "attempts": 1,
+      "hash": "8356581c6cd65e7042d1b2e04a4c26f8e1b1db124117755d98d462e5563944b6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0381",
+      "attempts": 1,
+      "hash": "5d40977df2e963caf9f36c227753b31faf768d8a48f581d37f8d22b4d405508f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0382",
+      "attempts": 1,
+      "hash": "3e1882d9a4117924207f9241e846a5246db653c0a0509b33d94d1f1888990138",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0383",
+      "attempts": 1,
+      "hash": "f08f89b2d1ee7015f4bd82e7ab2675a49a5f86cba76d7ac9bb0b2c4cc54e3f2d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0384",
+      "attempts": 1,
+      "hash": "c495e8a7cc0532bc282c1304d715311ad9a06ab02ed07fe435d2c3cc87e981e9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0385",
+      "attempts": 1,
+      "hash": "835547f925216b7fffca1d77c877686be13ed5a5369f34b587fac314955145b3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0386",
+      "attempts": 1,
+      "hash": "3e8e5d95b4e7d5890a13a212a38355e4f674f18b37ab8fa8fd6bfd85abb27504",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0387",
+      "attempts": 1,
+      "hash": "148987a5d0777022ff70c4bd36f7c06337d48fe3c5fdfb4d177996d1308a2a38",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0388",
+      "attempts": 1,
+      "hash": "53e137a3cb2c62bdb360865e4f40c46bdb39f4ea9df87b0aa1a5a605baf8115d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0389",
+      "attempts": 1,
+      "hash": "1e9f500f32e7eaf9c1fb977104f7f129ccc05d387bf98a10bb077b4eb8fb1ce4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0390",
+      "attempts": 1,
+      "hash": "5a5ebf0d74e6160a1b828f628f108da1812d02c3928cff4964551a7c295aee50",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0391",
+      "attempts": 1,
+      "hash": "c514b4f64ca83f8ee4b74361f4b63819dbf8938de7b13a265f7bcc86436da189",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0392",
+      "attempts": 1,
+      "hash": "3fee203a2c18e88313b46beeb0ef809dd6e4f05cdc994a5ef4742f9cdcd12022",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0393",
+      "attempts": 1,
+      "hash": "35312f4c2bcbba25e7bf558cf24fc2d2d0bd0b97751e9cd80d1ae073bc116270",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0394",
+      "attempts": 1,
+      "hash": "7baad2b4929a6d98fccd9ea3625d3e7037b376f97c296622ab0ec1b092050ede",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0395",
+      "attempts": 1,
+      "hash": "3a352f0d80663b0c31641c89fe9e510163b7d75571402bb3c4a8f7ab36c1f40a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0396",
+      "attempts": 1,
+      "hash": "1d73140a24ffe3c6e801480ef41090b722875d3a7f5f046a44fc3fea6d975564",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0397",
+      "attempts": 1,
+      "hash": "4c3c9954f73d26bc5c9003451d95e67d373804f0539285d59b2faf3fa988b7c6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0398",
+      "attempts": 1,
+      "hash": "d69fcbaf0b6c08b8fa0c27c785e72ab5bc13f5c1e63e16859fc9a00ee1f00522",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0399",
+      "attempts": 1,
+      "hash": "6bf404730ed8fae99ce29d89d7a35c4d02f2842eb00a062693813dfed22fcf1a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0400",
+      "attempts": 1,
+      "hash": "d87d408993292a5c609bcd69d9837d9708582559ad2d04b192e7ec55d34e74da",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0401",
+      "attempts": 1,
+      "hash": "a567c0f94af36dc8a89ce30eb883dc443cf562b3195da0d651891c5cb9b385bb",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0402",
+      "attempts": 1,
+      "hash": "0ad16e31146423d88e585221ae15ed81aef673dda4d5216f3e2169d983d4be91",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0403",
+      "attempts": 1,
+      "hash": "07bc1463e5e84773db3b9755242761cf5558e0a384ff3e5eafdc04171e699bd1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0404",
+      "attempts": 1,
+      "hash": "cbf25954a7a6f09e8ecf50353ce645b850aa3eed99c4c983585457a8a4640746",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0405",
+      "attempts": 1,
+      "hash": "c39af0154f8143a29f409ed78048b5159479c4bf1698d718e8b93ff5400642d5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0406",
+      "attempts": 1,
+      "hash": "19ca8e08663d0bd41dbf3b04a6c6d936d5e975632880d507830e97685512862a",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0407",
+      "attempts": 1,
+      "hash": "5a8b230f3d2144582dc667fa501f8282c7b07bee3980366dc2be83f227d2c29e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0408",
+      "attempts": 1,
+      "hash": "1d8746f745c1214ea5913da6992f4a16a02bc5550415c960d27da9eacc37d171",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0409",
+      "attempts": 1,
+      "hash": "59679724d0ab0c572cc1f4100012b89bab3384f34b5a34353df04393c0018fc4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0410",
+      "attempts": 1,
+      "hash": "58159ed6d5d97ff877bd4dfdc8e32db592c5082db8cfabc722372eec80459656",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0411",
+      "attempts": 1,
+      "hash": "58be1647b0402d1be5eda5e089da32e8033e38a9fc8a9815649610e773e7c2fd",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0412",
+      "attempts": 1,
+      "hash": "038d476cce27985df733b522cc844d01347373f2e11b22419fb90567698700a2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0413",
+      "attempts": 1,
+      "hash": "c0e3219d09bfa3c1ae657bcaf3dd37ba798ba72bc32c82ed8d9c5dac60102975",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0414",
+      "attempts": 1,
+      "hash": "c5adb8abb482a878a659b3daaaaa33da0874fcea1f31989e137b24203876b816",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0415",
+      "attempts": 1,
+      "hash": "8e1b1f18e4167db8179b7988b35c41ccc9bdaa11f29d12b43c585b2ba3ec8bf3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0416",
+      "attempts": 1,
+      "hash": "127571cb1868c3bc4eeeb908e13a07c6eaa32b9055d3c2bdda518b0801363690",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0417",
+      "attempts": 1,
+      "hash": "e98977a0adcd0cdfacd759737965ce2838c946f72bbd819619c74870603e78be",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0418",
+      "attempts": 1,
+      "hash": "1839aeee80cca9a4609be88718d7e837935f6d3045434de5db85f05940096e47",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0419",
+      "attempts": 1,
+      "hash": "048fcc178f9b16fe4c6b6fd4eeaef0ed2fadc00e6e31c09561c4cfe3d3a9a715",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0420",
+      "attempts": 1,
+      "hash": "3b12f62ceb5c10f72745b54b590d0de9cd00a2490828b74c005b36893adcc4c1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0421",
+      "attempts": 1,
+      "hash": "d4b60410f112b735f0c7ec0ade79937d6a2244a2add023f9094cd844474995ea",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0422",
+      "attempts": 1,
+      "hash": "13df79bbee2bfae84dd9c24b0166974534e7e0176134f0cacbc4b679c31bf361",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0423",
+      "attempts": 1,
+      "hash": "e2e10cfa493cf7f73788deed6e7b2f0ab20ad06b17c4a81067ff33ae93fd9e24",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0424",
+      "attempts": 1,
+      "hash": "a81f2a58a0ca76afcbcd519922793322315ab6989ddb4232c2394453609ba5c0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0425",
+      "attempts": 1,
+      "hash": "2f49616cfce9b7ca6cef170aa48ab3aba0744d4cff9ff2376b8e5265a62d6509",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0426",
+      "attempts": 1,
+      "hash": "4aeaf658bd455cd7bb58cb5a4b57d050c4b4753f7ce1d62fd7d5e842c395fc84",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0427",
+      "attempts": 1,
+      "hash": "f2a6e2251dcd2203d7648b90da14e385a109bfcb8cb5762449239dd0d2aac7d5",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0428",
+      "attempts": 1,
+      "hash": "7de9b243221d995d9dd5375cbefefd7605841725d1978f42742f55d3a3961135",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0429",
+      "attempts": 1,
+      "hash": "5aab57882b18e4f0b69992f31dec7dad15df7e8c29c96e070ade97c66802af36",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0430",
+      "attempts": 1,
+      "hash": "5f836cb053861fc9415c39dff42c2ab01b4d66682dffdfc129f2d3655be8f3cd",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0431",
+      "attempts": 1,
+      "hash": "b36d5c1a800de21f0cf3b5d344bdbd84874f94abd4e0e64de9a59f12b4fbb4f2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0432",
+      "attempts": 1,
+      "hash": "2dfe9ed393d785b70310ee1b3674bd03e426b26760a7d659572eab7b5a120ce3",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0433",
+      "attempts": 1,
+      "hash": "a598a17c6d9c698e0d4d73ae2ba9ab27005c6c1964d677d1f6f1c2b2ce6a82b6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0434",
+      "attempts": 1,
+      "hash": "55dc84b2b13be11b32cf69888212381ac91eb30c2ccc04f33e5e6cba1e4d94b4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0435",
+      "attempts": 1,
+      "hash": "43c3c633cee66ace34a44e61fc4ffe82a76f5387400444a10df330cbfe4cc358",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0436",
+      "attempts": 1,
+      "hash": "40a5d6cfb8d4e41338fc3133f14f074e5ffb6da0bcf931ea19e3d81f43de3dfa",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0437",
+      "attempts": 1,
+      "hash": "5235ba7d0f2e4d8c8795b738a0ffa8e813e965191ab1dc231bb0e73dc3967d41",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0438",
+      "attempts": 1,
+      "hash": "806892f87bd7e643a010f600672bfc7055a2895cb42e06d4d68e72a4e282331f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0439",
+      "attempts": 1,
+      "hash": "c42548dfafdf1be09bc36c4c33a3c99513f090bef48cbce43853105892723d00",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0440",
+      "attempts": 1,
+      "hash": "98c3415b8b835749eef2483fd443ff3cc7bfc9a2a2df967d52814fd028c224a2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0441",
+      "attempts": 1,
+      "hash": "6466a0a17892bb2815629eb65cbea5fed303318ff4295642b55352b90a66088e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0442",
+      "attempts": 1,
+      "hash": "cab19a14ae760a1f59717e002070b9dc5be54814ab903cc7de52763191ff1070",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0443",
+      "attempts": 1,
+      "hash": "813e2b1dd331ee67a712ec239a5d287115a27deaaf3bca4df9ed00c2bd2db741",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0444",
+      "attempts": 1,
+      "hash": "af02995c887639dff31978268ff61816b938ddcc9f0ed846600db06c744758e8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0445",
+      "attempts": 1,
+      "hash": "bc5ced3d156a7211f37397f073a3418f9974c48b39e17eeef0ea39678e32c4a7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0446",
+      "attempts": 1,
+      "hash": "8c6585e8351a9a4a97fbb7a663815c8d68292a943b3e7fc98699f82bc3000e9b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0447",
+      "attempts": 1,
+      "hash": "e44cdb64f17cd9b85932dc7a1651478eb457571e0e151fe30f49f676aea68376",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0448",
+      "attempts": 1,
+      "hash": "fbca1ba8867cad3ea4a7fc26d8f8a981686649a2944e7f4ab9351f444fee17b4",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0449",
+      "attempts": 1,
+      "hash": "2550a10b5897fd15168fee74067388c4cc8b8fa049f271f421e500f1a8f546af",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0450",
+      "attempts": 1,
+      "hash": "9ccc1860fdbd024aaebec698364627d2951d877c3343d8ceddd603c9a8d4d9e6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0451",
+      "attempts": 1,
+      "hash": "612e390cd0ea4b5359cf487ebc27fe380daf69cee3e41dac84d37784d658a41e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0452",
+      "attempts": 1,
+      "hash": "ab33610a69f7957568dd3951ace4114900d0cf758ffe8775dd3d939144194c97",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0453",
+      "attempts": 1,
+      "hash": "d3f69f409b0830b27a35f2cda07acc4d05d8b59c7d3e8d11cb512ef057c8bff1",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0454",
+      "attempts": 1,
+      "hash": "10c2405e40a57f2546c48a318c6afabc2912b7c38cf6d9318eed1f3c543462a6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0455",
+      "attempts": 1,
+      "hash": "b26d7f2477da9dcf41980e59fca73282cddd313d3f0c1d54ce96d61fbf2cae2e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0456",
+      "attempts": 1,
+      "hash": "83cfd09712ae933e5946dadc51366e189c229c5641e3cb7c31210cab74be4b87",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0457",
+      "attempts": 1,
+      "hash": "229ded198e74fd0f1c491dfd577e0ef3b3ee7fa21a4f1f691261c08c3dc5213b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0458",
+      "attempts": 1,
+      "hash": "0eb3ce9619788f2c83e64143afc04bb86578beb53853be781d6f2342b3b1dfd6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0459",
+      "attempts": 1,
+      "hash": "cea79f8a515ed07443342044fa87f6ef1dcdb9f4e9cd94b4fe7d9dfd26f7f9d8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0460",
+      "attempts": 1,
+      "hash": "5fb4228f5696c393db6c73697809c8d9bdcffab05f1be94489e6d6f362bb0a01",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0461",
+      "attempts": 1,
+      "hash": "8f414ac8dc9fa2686018c8c7a7864a4e82e9ee6e0cfad7da1812eca659adee11",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0462",
+      "attempts": 1,
+      "hash": "0b6dfe0f1539d7442664a3926678bc56fbf1242fe113e9f95d436ed5632281ce",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0463",
+      "attempts": 1,
+      "hash": "6b76b459f97b2eba043f7d3502263dea895ab61a4e4c7e25b43b4f6236aa3293",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0464",
+      "attempts": 1,
+      "hash": "f57d71004f7bfc910410e71ca9015ed448f780f7363aaf3d3fc1e97027ed6879",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0465",
+      "attempts": 1,
+      "hash": "8bf31c00023b9d3930685a3202a35f549b5479026b99c1af8ccaa3cab94bcb4e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0466",
+      "attempts": 1,
+      "hash": "f320fa170b26914c3c333ee1012ad4bc87f7f9ef91895496c40787a300b122b6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0467",
+      "attempts": 1,
+      "hash": "08931aa557964c8b0285524a797b8b6034a55f0cab9d133d61ac8f49cd80e516",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0468",
+      "attempts": 1,
+      "hash": "7d82517673efbfa9f2aa1b77cb2c043ac6a3ceb3be363b957c39c5f0abe782c8",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0469",
+      "attempts": 1,
+      "hash": "945fc5d673b89271244c9228985cf4cb829f4ee09728508819618fe80fa40ab2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0470",
+      "attempts": 1,
+      "hash": "0ab8f94f53216c389766f7c85e8326f6805881eb2d564a2e02e13dba0190896f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0471",
+      "attempts": 1,
+      "hash": "9da5cc40dc470d5b3c811c0d5e14afd2213ddabb7788d175bb88bc2581c2cd96",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0472",
+      "attempts": 1,
+      "hash": "626d1f9dd7363669d6a3a9ed9ac307458cfb20f47497de9ec2e953c5dfabf112",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0473",
+      "attempts": 1,
+      "hash": "5fc3fa99d05dd76668f177f8f6d01199ef86130c9908efbbdb0f4a38b2d9a9cf",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0474",
+      "attempts": 1,
+      "hash": "3bf371671173404e0856a87f9d50580f23fc59c7f92952e154cee6eb5d64ce2e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0475",
+      "attempts": 1,
+      "hash": "82d23bafecf250c188ec692de5f8ff23bc6a5b3191748c25707d700caf8fcf56",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0476",
+      "attempts": 1,
+      "hash": "b388346093ad4c5fb59894456d4fa8e4eec83ff779552447c2246054f4399d5b",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0477",
+      "attempts": 1,
+      "hash": "2f299822ed03caca3a4ad00a81d0ac850934ac878eebf0edd7aea937b78b6cba",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0478",
+      "attempts": 1,
+      "hash": "affe4fb28e0608590d8057272e10ea4acc51653b7cf70f331b8e1a6d94862b36",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0479",
+      "attempts": 1,
+      "hash": "39c218d264c5c0bc25a7d3fc38b6b6e397a5ed8989766a0f2ab8c3d4b14cf54f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0480",
+      "attempts": 1,
+      "hash": "4994d5bca0a5bd2c02e6640d67539ea068b619855298aea36214df305c57c8ad",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0481",
+      "attempts": 1,
+      "hash": "77aa0467309ef97338969b2d9d408b08c7741eda0530dca2357f9f350f8a858d",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0482",
+      "attempts": 1,
+      "hash": "b643b169ebb01d44ac3a3105dcca1f4461e37ab920c1157679c2e228956c4ba2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0483",
+      "attempts": 1,
+      "hash": "941160645c3a0448e23ea3b13c26562482e0b54577e90ce25c495f5b7d358966",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0484",
+      "attempts": 1,
+      "hash": "e0841cb377e94e1b0203755c2a8a2d9228d0d1e91fa3f8898d376759a1daa80e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0485",
+      "attempts": 1,
+      "hash": "a8c4a1ced5b7590bc97400459827efe10ad9fc3894500c56b1af0b56139be7d6",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0486",
+      "attempts": 1,
+      "hash": "6421b049986b1c0ebcff7d8ba05e399dd1a7e6cec3971e607727e3237fd7a00e",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0487",
+      "attempts": 1,
+      "hash": "eba0a837d011ed2286c867cf33c8f9ddaf78d81111daf0f3faf93cc5fa4fb938",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0488",
+      "attempts": 1,
+      "hash": "2bf45e864f30f944ac9478545b2eee86795861f72f6d192070ec65d7de6480c7",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0489",
+      "attempts": 1,
+      "hash": "35ba1cb2f47149cc13a7503770c1d2f36b78d84d8e66a89bb21bb5eb7be1f952",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0490",
+      "attempts": 1,
+      "hash": "bb03f3f561e1012240976bb2b0e6ff8aaa1f75a00945bd071e778a4ca3251d6f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0491",
+      "attempts": 1,
+      "hash": "6bbc6b2fa90947b622883aa73ae3f3225d8c8a27fc1eb21d4e992b2a99842233",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0492",
+      "attempts": 1,
+      "hash": "df618530feecd3279002a3c81766e4b129e746efc01330b459d13a63af6987d2",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0493",
+      "attempts": 1,
+      "hash": "74f155648a8ffd054e265b45bdaa9905f06fa421468f7ea789e8df0fb7156aff",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0494",
+      "attempts": 1,
+      "hash": "db50e70f066e5a7591abf93b15cd4fdefe1829419da259139416c3cf15710e04",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0495",
+      "attempts": 1,
+      "hash": "a1dbdbd4d8761b45d6ea48237d6087d958a7cbb97812ae9306dd83c015fc954f",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0496",
+      "attempts": 1,
+      "hash": "452814b59019cdbce3522ffffce998cdde0d3f8cc9c38026d8d869ffd30fe5c9",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0497",
+      "attempts": 1,
+      "hash": "2daadfa7e70204d07199be5fdffc28b4d28c1e732a05f8e87dc6475348114c5c",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0498",
+      "attempts": 1,
+      "hash": "fa654a9ad47af82599554511740c36f9e2d4d7d31a61a3c494e1e27b5bd972d0",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0499",
+      "attempts": 1,
+      "hash": "04574154a41740913ba807f9ad16feb04432a188d6e5d73c57fc12cc3e914495",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    },
+    {
+      "id": "evil_0500",
+      "attempts": 1,
+      "hash": "d5507155ee007e9119e1c44ef4300de4f7b704311c54def987d0866ab3b60495",
+      "score": 40,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "clues": 26
+    }
+  ],
+  "batches": [
+    {
+      "range": "0101-0150",
+      "generated": [
+        "evil_0101",
+        "evil_0102",
+        "evil_0103",
+        "evil_0104",
+        "evil_0105",
+        "evil_0106",
+        "evil_0107",
+        "evil_0108",
+        "evil_0109",
+        "evil_0110",
+        "evil_0111",
+        "evil_0112",
+        "evil_0113",
+        "evil_0114",
+        "evil_0115",
+        "evil_0116",
+        "evil_0117",
+        "evil_0118",
+        "evil_0119",
+        "evil_0120",
+        "evil_0121",
+        "evil_0122",
+        "evil_0123",
+        "evil_0124",
+        "evil_0125",
+        "evil_0126",
+        "evil_0127",
+        "evil_0128",
+        "evil_0129",
+        "evil_0130",
+        "evil_0131",
+        "evil_0132",
+        "evil_0133",
+        "evil_0134",
+        "evil_0135",
+        "evil_0136",
+        "evil_0137",
+        "evil_0138",
+        "evil_0139",
+        "evil_0140",
+        "evil_0141",
+        "evil_0142",
+        "evil_0143",
+        "evil_0144",
+        "evil_0145",
+        "evil_0146",
+        "evil_0147",
+        "evil_0148",
+        "evil_0149",
+        "evil_0150"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0151-0200",
+      "generated": [
+        "evil_0151",
+        "evil_0152",
+        "evil_0153",
+        "evil_0154",
+        "evil_0155",
+        "evil_0156",
+        "evil_0157",
+        "evil_0158",
+        "evil_0159",
+        "evil_0160",
+        "evil_0161",
+        "evil_0162",
+        "evil_0163",
+        "evil_0164",
+        "evil_0165",
+        "evil_0166",
+        "evil_0167",
+        "evil_0168",
+        "evil_0169",
+        "evil_0170",
+        "evil_0171",
+        "evil_0172",
+        "evil_0173",
+        "evil_0174",
+        "evil_0175",
+        "evil_0176",
+        "evil_0177",
+        "evil_0178",
+        "evil_0179",
+        "evil_0180",
+        "evil_0181",
+        "evil_0182",
+        "evil_0183",
+        "evil_0184",
+        "evil_0185",
+        "evil_0186",
+        "evil_0187",
+        "evil_0188",
+        "evil_0189",
+        "evil_0190",
+        "evil_0191",
+        "evil_0192",
+        "evil_0193",
+        "evil_0194",
+        "evil_0195",
+        "evil_0196",
+        "evil_0197",
+        "evil_0198",
+        "evil_0199",
+        "evil_0200"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0201-0250",
+      "generated": [
+        "evil_0201",
+        "evil_0202",
+        "evil_0203",
+        "evil_0204",
+        "evil_0205",
+        "evil_0206",
+        "evil_0207",
+        "evil_0208",
+        "evil_0209",
+        "evil_0210",
+        "evil_0211",
+        "evil_0212",
+        "evil_0213",
+        "evil_0214",
+        "evil_0215",
+        "evil_0216",
+        "evil_0217",
+        "evil_0218",
+        "evil_0219",
+        "evil_0220",
+        "evil_0221",
+        "evil_0222",
+        "evil_0223",
+        "evil_0224",
+        "evil_0225",
+        "evil_0226",
+        "evil_0227",
+        "evil_0228",
+        "evil_0229",
+        "evil_0230",
+        "evil_0231",
+        "evil_0232",
+        "evil_0233",
+        "evil_0234",
+        "evil_0235",
+        "evil_0236",
+        "evil_0237",
+        "evil_0238",
+        "evil_0239",
+        "evil_0240",
+        "evil_0241",
+        "evil_0242",
+        "evil_0243",
+        "evil_0244",
+        "evil_0245",
+        "evil_0246",
+        "evil_0247",
+        "evil_0248",
+        "evil_0249",
+        "evil_0250"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0251-0300",
+      "generated": [
+        "evil_0251",
+        "evil_0252",
+        "evil_0253",
+        "evil_0254",
+        "evil_0255",
+        "evil_0256",
+        "evil_0257",
+        "evil_0258",
+        "evil_0259",
+        "evil_0260",
+        "evil_0261",
+        "evil_0262",
+        "evil_0263",
+        "evil_0264",
+        "evil_0265",
+        "evil_0266",
+        "evil_0267",
+        "evil_0268",
+        "evil_0269",
+        "evil_0270",
+        "evil_0271",
+        "evil_0272",
+        "evil_0273",
+        "evil_0274",
+        "evil_0275",
+        "evil_0276",
+        "evil_0277",
+        "evil_0278",
+        "evil_0279",
+        "evil_0280",
+        "evil_0281",
+        "evil_0282",
+        "evil_0283",
+        "evil_0284",
+        "evil_0285",
+        "evil_0286",
+        "evil_0287",
+        "evil_0288",
+        "evil_0289",
+        "evil_0290",
+        "evil_0291",
+        "evil_0292",
+        "evil_0293",
+        "evil_0294",
+        "evil_0295",
+        "evil_0296",
+        "evil_0297",
+        "evil_0298",
+        "evil_0299",
+        "evil_0300"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0301-0350",
+      "generated": [
+        "evil_0301",
+        "evil_0302",
+        "evil_0303",
+        "evil_0304",
+        "evil_0305",
+        "evil_0306",
+        "evil_0307",
+        "evil_0308",
+        "evil_0309",
+        "evil_0310",
+        "evil_0311",
+        "evil_0312",
+        "evil_0313",
+        "evil_0314",
+        "evil_0315",
+        "evil_0316",
+        "evil_0317",
+        "evil_0318",
+        "evil_0319",
+        "evil_0320",
+        "evil_0321",
+        "evil_0322",
+        "evil_0323",
+        "evil_0324",
+        "evil_0325",
+        "evil_0326",
+        "evil_0327",
+        "evil_0328",
+        "evil_0329",
+        "evil_0330",
+        "evil_0331",
+        "evil_0332",
+        "evil_0333",
+        "evil_0334",
+        "evil_0335",
+        "evil_0336",
+        "evil_0337",
+        "evil_0338",
+        "evil_0339",
+        "evil_0340",
+        "evil_0341",
+        "evil_0342",
+        "evil_0343",
+        "evil_0344",
+        "evil_0345",
+        "evil_0346",
+        "evil_0347",
+        "evil_0348",
+        "evil_0349",
+        "evil_0350"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0351-0400",
+      "generated": [
+        "evil_0351",
+        "evil_0352",
+        "evil_0353",
+        "evil_0354",
+        "evil_0355",
+        "evil_0356",
+        "evil_0357",
+        "evil_0358",
+        "evil_0359",
+        "evil_0360",
+        "evil_0361",
+        "evil_0362",
+        "evil_0363",
+        "evil_0364",
+        "evil_0365",
+        "evil_0366",
+        "evil_0367",
+        "evil_0368",
+        "evil_0369",
+        "evil_0370",
+        "evil_0371",
+        "evil_0372",
+        "evil_0373",
+        "evil_0374",
+        "evil_0375",
+        "evil_0376",
+        "evil_0377",
+        "evil_0378",
+        "evil_0379",
+        "evil_0380",
+        "evil_0381",
+        "evil_0382",
+        "evil_0383",
+        "evil_0384",
+        "evil_0385",
+        "evil_0386",
+        "evil_0387",
+        "evil_0388",
+        "evil_0389",
+        "evil_0390",
+        "evil_0391",
+        "evil_0392",
+        "evil_0393",
+        "evil_0394",
+        "evil_0395",
+        "evil_0396",
+        "evil_0397",
+        "evil_0398",
+        "evil_0399",
+        "evil_0400"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0401-0450",
+      "generated": [
+        "evil_0401",
+        "evil_0402",
+        "evil_0403",
+        "evil_0404",
+        "evil_0405",
+        "evil_0406",
+        "evil_0407",
+        "evil_0408",
+        "evil_0409",
+        "evil_0410",
+        "evil_0411",
+        "evil_0412",
+        "evil_0413",
+        "evil_0414",
+        "evil_0415",
+        "evil_0416",
+        "evil_0417",
+        "evil_0418",
+        "evil_0419",
+        "evil_0420",
+        "evil_0421",
+        "evil_0422",
+        "evil_0423",
+        "evil_0424",
+        "evil_0425",
+        "evil_0426",
+        "evil_0427",
+        "evil_0428",
+        "evil_0429",
+        "evil_0430",
+        "evil_0431",
+        "evil_0432",
+        "evil_0433",
+        "evil_0434",
+        "evil_0435",
+        "evil_0436",
+        "evil_0437",
+        "evil_0438",
+        "evil_0439",
+        "evil_0440",
+        "evil_0441",
+        "evil_0442",
+        "evil_0443",
+        "evil_0444",
+        "evil_0445",
+        "evil_0446",
+        "evil_0447",
+        "evil_0448",
+        "evil_0449",
+        "evil_0450"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0451-0500",
+      "generated": [
+        "evil_0451",
+        "evil_0452",
+        "evil_0453",
+        "evil_0454",
+        "evil_0455",
+        "evil_0456",
+        "evil_0457",
+        "evil_0458",
+        "evil_0459",
+        "evil_0460",
+        "evil_0461",
+        "evil_0462",
+        "evil_0463",
+        "evil_0464",
+        "evil_0465",
+        "evil_0466",
+        "evil_0467",
+        "evil_0468",
+        "evil_0469",
+        "evil_0470",
+        "evil_0471",
+        "evil_0472",
+        "evil_0473",
+        "evil_0474",
+        "evil_0475",
+        "evil_0476",
+        "evil_0477",
+        "evil_0478",
+        "evil_0479",
+        "evil_0480",
+        "evil_0481",
+        "evil_0482",
+        "evil_0483",
+        "evil_0484",
+        "evil_0485",
+        "evil_0486",
+        "evil_0487",
+        "evil_0488",
+        "evil_0489",
+        "evil_0490",
+        "evil_0491",
+        "evil_0492",
+        "evil_0493",
+        "evil_0494",
+        "evil_0495",
+        "evil_0496",
+        "evil_0497",
+        "evil_0498",
+        "evil_0499",
+        "evil_0500"
+      ],
+      "status": "completed"
+    }
+  ],
+  "rejected": {},
+  "duplicate_avoided": 0,
+  "symmetry_avoided": 0,
+  "status": "completed",
+  "last_completed_batch": "0451-0500",
+  "completed_at": "2026-05-20T10:38:04",
+  "summary": {
+    "evil_total": 500,
+    "evil_valid": 500,
+    "evil_invalid": 0,
+    "duplicate_hashes": 0,
+    "symmetry_duplicates": 0,
+    "legacy_fixed": 100,
+    "new_generated": 400,
+    "rejected": 0
+  }
+}

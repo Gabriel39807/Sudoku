@@ -1,0 +1,14 @@
+{
+  "id": "intermediate_0273",
+  "difficulty": "intermediate",
+  "puzzle": "800004035000000400005002901040009000030860009680000000000000000000040060000021570",
+  "solution": "872194635913586427465372981547239816231865749689417253126758394758943162394621578",
+  "techniques": [
+    "naked_single",
+    "hidden_single",
+    "naked_pair",
+    "hidden_pair"
+  ],
+  "steps": 4,
+  "hash": "d5896ec1455217de8fe75bb4e35e784ff29feaaa48cdd13f169f114f6ee34b70"
+}

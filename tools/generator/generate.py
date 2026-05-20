@@ -16,15 +16,6 @@ DIFFICULTIES = ["easy", "intermediate", "hard", "expert", "evil", "mythic"]
 TARGET = int(os.environ.get("SUDOKU_TARGET_PER_DIFFICULTY", "100"))
 BOARDS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "flutter_app", "assets", "boards"))
 
-SEED_PUZZLES = {
-    "easy": "390060008700010000000004200003000091410007020070000000005000000900045080068091070",
-    "intermediate": "003080090007003106000410008100005000900000230700200810080000900000000060000060007",
-    "hard": "008040900060003000490108000000201080001500000047300200000000104010000003600800000",
-    "expert": "102007090030020008709600500005310900010080002600004000300000210041000007007000300",
-    "evil": "102007090030020078009640500005300900010080002600004000300000019040000007007000350",
-    "mythic": "100007090030020008009600500005300900010080002600004000300000010040000007007000300",
-}
-
 
 def string_to_grid(value):
     return [[int(value[r * 9 + c]) for c in range(9)] for r in range(9)]
@@ -73,12 +64,6 @@ def candidate_from_solution(solution):
 
 
 def find_seed(difficulty, attempts=2500):
-    seed_value = SEED_PUZZLES.get(difficulty)
-    if seed_value:
-        puzzle = string_to_grid(seed_value)
-        validation = validate_board(puzzle, None, difficulty)
-        if validation["valid"]:
-            return puzzle, validation["solution"], {"techniques": validation["techniques"], "steps": validation["steps"], "solved": True}
     for _ in range(attempts):
         solution = generate_full_board()
         puzzle = candidate_from_solution(solution)
@@ -108,7 +93,7 @@ def generate_boards(target=TARGET):
         seed = find_seed(difficulty)
         if seed is None:
             raise RuntimeError(f"could not generate a valid {difficulty} seed")
-        seed_puzzle, seed_solution, _ = seed
+        seed_puzzle, seed_solution, human = seed
         local_hashes = set()
         tries = 0
         while counts[difficulty] < target and tries < target * 100:
@@ -119,9 +104,9 @@ def generate_boards(target=TARGET):
                 continue
             counts[difficulty] += 1
             board_id = f"{difficulty}_{counts[difficulty]:04d}"
-            export_board(board_id, difficulty, puzzle, solution, seed[2]["techniques"], seed[2]["steps"], BOARDS_DIR)
+            export_board(board_id, difficulty, puzzle, solution, human["techniques"], human["steps"], BOARDS_DIR)
             local_hashes.add(checksum)
-            examples.setdefault(difficulty, seed[2]["techniques"])
+            examples.setdefault(difficulty, human["techniques"])
         if counts[difficulty] < target:
             raise RuntimeError(f"only generated {counts[difficulty]} {difficulty} boards")
     return counts, examples

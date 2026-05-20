@@ -1,0 +1,4738 @@
+{
+  "generated_at": "2026-05-20T11:46:35",
+  "scope": "flutter_app/assets/boards/mythic",
+  "benchmark": {
+    "seed": 20260520,
+    "total_attempts": 300,
+    "generated_candidates": 300,
+    "valid_mythic_candidates": 103,
+    "forcing_chain_hits": 103,
+    "xywing_hits": 29,
+    "avg_steps": 6.02,
+    "avg_score": 49.27,
+    "elapsed_seconds": 601.95,
+    "top_profiles": [
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single"
+        ],
+        "count": 86
+      },
+      {
+        "techniques": [
+          "hidden_single",
+          "naked_single"
+        ],
+        "count": 42
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "naked_pair"
+        ],
+        "count": 17
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "naked_pair",
+          "pointing_pair",
+          "forcing_chain"
+        ],
+        "count": 5
+      },
+      {
+        "techniques": [
+          "hidden_single",
+          "naked_single",
+          "naked_pair"
+        ],
+        "count": 5
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "hidden_pair"
+        ],
+        "count": 5
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "naked_pair",
+          "box_line_reduction",
+          "forcing_chain"
+        ],
+        "count": 4
+      },
+      {
+        "techniques": [
+          "hidden_single",
+          "hidden_pair",
+          "naked_single"
+        ],
+        "count": 4
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "naked_pair",
+          "hidden_pair"
+        ],
+        "count": 3
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "naked_pair",
+          "hidden_pair",
+          "pointing_pair"
+        ],
+        "count": 3
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "naked_pair",
+          "xywing"
+        ],
+        "count": 3
+      },
+      {
+        "techniques": [
+          "hidden_single",
+          "naked_single",
+          "pointing_pair",
+          "forcing_chain"
+        ],
+        "count": 3
+      },
+      {
+        "techniques": [
+          "naked_single"
+        ],
+        "count": 3
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "naked_pair",
+          "pointing_pair",
+          "box_line_reduction",
+          "forcing_chain"
+        ],
+        "count": 3
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "pointing_pair",
+          "xywing",
+          "forcing_chain"
+        ],
+        "count": 2
+      },
+      {
+        "techniques": [
+          "hidden_single",
+          "naked_single",
+          "naked_pair",
+          "forcing_chain"
+        ],
+        "count": 2
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "hidden_pair",
+          "naked_pair",
+          "pointing_pair"
+        ],
+        "count": 2
+      },
+      {
+        "techniques": [
+          "naked_single",
+          "hidden_single",
+          "naked_pair",
+          "hidden_pair",
+          "pointing_pair",
+          "forcing_chain"
+        ],
+        "count": 2
+      },
+      {
+        "techniques": [
+          "hidden_single",
+          "naked_pair",
+          "pointing_pair",
+          "naked_single"
+        ],
+        "count": 2
+      },
+      {
+        "techniques": [
+          "hidden_single",
+          "naked_pair",
+          "hidden_pair",
+          "naked_single",
+          "pointing_pair",
+          "box_line_reduction",
+          "forcing_chain"
+        ],
+        "count": 2
+      }
+    ]
+  },
+  "seed_attempts": 1,
+  "seed_techniques": [
+    "naked_single",
+    "hidden_single",
+    "pointing_pair",
+    "xywing",
+    "forcing_chain"
+  ],
+  "seed_score": 57,
+  "seed_steps": 5,
+  "batches": [
+    {
+      "range": "0001-0025",
+      "generated": [
+        "mythic_0001",
+        "mythic_0002",
+        "mythic_0003",
+        "mythic_0004",
+        "mythic_0005",
+        "mythic_0006",
+        "mythic_0007",
+        "mythic_0008",
+        "mythic_0009",
+        "mythic_0010",
+        "mythic_0011",
+        "mythic_0012",
+        "mythic_0013",
+        "mythic_0014",
+        "mythic_0015",
+        "mythic_0016",
+        "mythic_0017",
+        "mythic_0018",
+        "mythic_0019",
+        "mythic_0020",
+        "mythic_0021",
+        "mythic_0022",
+        "mythic_0023",
+        "mythic_0024",
+        "mythic_0025"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0026-0050",
+      "generated": [
+        "mythic_0026",
+        "mythic_0027",
+        "mythic_0028",
+        "mythic_0029",
+        "mythic_0030",
+        "mythic_0031",
+        "mythic_0032",
+        "mythic_0033",
+        "mythic_0034",
+        "mythic_0035",
+        "mythic_0036",
+        "mythic_0037",
+        "mythic_0038",
+        "mythic_0039",
+        "mythic_0040",
+        "mythic_0041",
+        "mythic_0042",
+        "mythic_0043",
+        "mythic_0044",
+        "mythic_0045",
+        "mythic_0046",
+        "mythic_0047",
+        "mythic_0048",
+        "mythic_0049",
+        "mythic_0050"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0051-0075",
+      "generated": [
+        "mythic_0051",
+        "mythic_0052",
+        "mythic_0053",
+        "mythic_0054",
+        "mythic_0055",
+        "mythic_0056",
+        "mythic_0057",
+        "mythic_0058",
+        "mythic_0059",
+        "mythic_0060",
+        "mythic_0061",
+        "mythic_0062",
+        "mythic_0063",
+        "mythic_0064",
+        "mythic_0065",
+        "mythic_0066",
+        "mythic_0067",
+        "mythic_0068",
+        "mythic_0069",
+        "mythic_0070",
+        "mythic_0071",
+        "mythic_0072",
+        "mythic_0073",
+        "mythic_0074",
+        "mythic_0075"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0076-0100",
+      "generated": [
+        "mythic_0076",
+        "mythic_0077",
+        "mythic_0078",
+        "mythic_0079",
+        "mythic_0080",
+        "mythic_0081",
+        "mythic_0082",
+        "mythic_0083",
+        "mythic_0084",
+        "mythic_0085",
+        "mythic_0086",
+        "mythic_0087",
+        "mythic_0088",
+        "mythic_0089",
+        "mythic_0090",
+        "mythic_0091",
+        "mythic_0092",
+        "mythic_0093",
+        "mythic_0094",
+        "mythic_0095",
+        "mythic_0096",
+        "mythic_0097",
+        "mythic_0098",
+        "mythic_0099",
+        "mythic_0100"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0101-0125",
+      "generated": [
+        "mythic_0101",
+        "mythic_0102",
+        "mythic_0103",
+        "mythic_0104",
+        "mythic_0105",
+        "mythic_0106",
+        "mythic_0107",
+        "mythic_0108",
+        "mythic_0109",
+        "mythic_0110",
+        "mythic_0111",
+        "mythic_0112",
+        "mythic_0113",
+        "mythic_0114",
+        "mythic_0115",
+        "mythic_0116",
+        "mythic_0117",
+        "mythic_0118",
+        "mythic_0119",
+        "mythic_0120",
+        "mythic_0121",
+        "mythic_0122",
+        "mythic_0123",
+        "mythic_0124",
+        "mythic_0125"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0126-0150",
+      "generated": [
+        "mythic_0126",
+        "mythic_0127",
+        "mythic_0128",
+        "mythic_0129",
+        "mythic_0130",
+        "mythic_0131",
+        "mythic_0132",
+        "mythic_0133",
+        "mythic_0134",
+        "mythic_0135",
+        "mythic_0136",
+        "mythic_0137",
+        "mythic_0138",
+        "mythic_0139",
+        "mythic_0140",
+        "mythic_0141",
+        "mythic_0142",
+        "mythic_0143",
+        "mythic_0144",
+        "mythic_0145",
+        "mythic_0146",
+        "mythic_0147",
+        "mythic_0148",
+        "mythic_0149",
+        "mythic_0150"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0151-0175",
+      "generated": [
+        "mythic_0151",
+        "mythic_0152",
+        "mythic_0153",
+        "mythic_0154",
+        "mythic_0155",
+        "mythic_0156",
+        "mythic_0157",
+        "mythic_0158",
+        "mythic_0159",
+        "mythic_0160",
+        "mythic_0161",
+        "mythic_0162",
+        "mythic_0163",
+        "mythic_0164",
+        "mythic_0165",
+        "mythic_0166",
+        "mythic_0167",
+        "mythic_0168",
+        "mythic_0169",
+        "mythic_0170",
+        "mythic_0171",
+        "mythic_0172",
+        "mythic_0173",
+        "mythic_0174",
+        "mythic_0175"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0176-0200",
+      "generated": [
+        "mythic_0176",
+        "mythic_0177",
+        "mythic_0178",
+        "mythic_0179",
+        "mythic_0180",
+        "mythic_0181",
+        "mythic_0182",
+        "mythic_0183",
+        "mythic_0184",
+        "mythic_0185",
+        "mythic_0186",
+        "mythic_0187",
+        "mythic_0188",
+        "mythic_0189",
+        "mythic_0190",
+        "mythic_0191",
+        "mythic_0192",
+        "mythic_0193",
+        "mythic_0194",
+        "mythic_0195",
+        "mythic_0196",
+        "mythic_0197",
+        "mythic_0198",
+        "mythic_0199",
+        "mythic_0200"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0201-0225",
+      "generated": [
+        "mythic_0201",
+        "mythic_0202",
+        "mythic_0203",
+        "mythic_0204",
+        "mythic_0205",
+        "mythic_0206",
+        "mythic_0207",
+        "mythic_0208",
+        "mythic_0209",
+        "mythic_0210",
+        "mythic_0211",
+        "mythic_0212",
+        "mythic_0213",
+        "mythic_0214",
+        "mythic_0215",
+        "mythic_0216",
+        "mythic_0217",
+        "mythic_0218",
+        "mythic_0219",
+        "mythic_0220",
+        "mythic_0221",
+        "mythic_0222",
+        "mythic_0223",
+        "mythic_0224",
+        "mythic_0225"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0226-0250",
+      "generated": [
+        "mythic_0226",
+        "mythic_0227",
+        "mythic_0228",
+        "mythic_0229",
+        "mythic_0230",
+        "mythic_0231",
+        "mythic_0232",
+        "mythic_0233",
+        "mythic_0234",
+        "mythic_0235",
+        "mythic_0236",
+        "mythic_0237",
+        "mythic_0238",
+        "mythic_0239",
+        "mythic_0240",
+        "mythic_0241",
+        "mythic_0242",
+        "mythic_0243",
+        "mythic_0244",
+        "mythic_0245",
+        "mythic_0246",
+        "mythic_0247",
+        "mythic_0248",
+        "mythic_0249",
+        "mythic_0250"
+      ],
+      "status": "completed"
+    },
+    {
+      "range": "0251-0275",
+      "generated": [
+        "mythic_0251",
+        "mythic_0252",
+        "mythic_0253",
+        "mythic_0254",
+        "mythic_0255",
+        "mythic_0256",
+        "mythic_0257",
+        "mythic_0258",
+        "mythic_0259",
+        "mythic_0260",
+        "mythic_0261",
+        "mythic_0262",
+        "mythic_0263",
+        "mythic_0264",
+        "mythic_0265",
+        "mythic_0266",
+        "mythic_0267",
+        "mythic_0268",
+        "mythic_0269",
+        "mythic_0270",
+        "mythic_0271",
+        "mythic_0272",
+        "mythic_0273",
+        "mythic_0274",
+        "mythic_0275"
+      ],
+      "status": "completed"
+    }
+  ],
+  "generated": [
+    {
+      "id": "mythic_0001",
+      "attempts": 1,
+      "hash": "cbc71fe5f08c23c24826ccffbe450985c38c2efc51d742f80905e94c4a0b2150",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0002",
+      "attempts": 1,
+      "hash": "35925f12f8fd0991995cb4cddce60ae5ddfede568d9e38f09f7f8f95f00140d8",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0003",
+      "attempts": 1,
+      "hash": "3100345fcbb4f56445fef324e3c83e4a4206a81cc96af0a7f158434c3aad14c1",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0004",
+      "attempts": 1,
+      "hash": "af26f7447e32a353f7db86ea557f06001d2074cb9efa2da69d9d9f24c568bae9",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0005",
+      "attempts": 1,
+      "hash": "33051196743bcf65d8338314c7a338562eba95c3b18e9688a9357fffec8c086c",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0006",
+      "attempts": 1,
+      "hash": "c3fcd48cfedf437b99e7fcb51345357291da550f45d4f3c90699e85e4ba7f35d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0007",
+      "attempts": 1,
+      "hash": "5e95db22eecf297b61088db6f2fef9747fe544b692d588efe587d46b65cbbed3",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0008",
+      "attempts": 1,
+      "hash": "852c9b7bca07d0034fa6de3352a302b3f7cf0aa046d90991cea37d08e0221a05",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0009",
+      "attempts": 1,
+      "hash": "e6f902519b9e7f27794f6749d64bac9b040c3b146f3c06dc25ec9a91e5fc3fe8",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0010",
+      "attempts": 1,
+      "hash": "8b85221b061b63e2a0a52b64ac69c54cdc8fcf445089f23b0f5d6a99631cc56a",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0011",
+      "attempts": 1,
+      "hash": "b0cafca955ddb40787b0c8d887fb38e0e46dd9d3d193ae7a1e8e79532a46fa01",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0012",
+      "attempts": 1,
+      "hash": "b1a81b069cd3e4660633449df5d5080ebcdeee440c7d671910fa167498e3bbaa",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0013",
+      "attempts": 1,
+      "hash": "a12b149d6ac44d3b832a6e37aa6fe68b89cd542d50e83f2311c1d9af730e52ca",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0014",
+      "attempts": 1,
+      "hash": "61c7b6555c08c4bf7a4d409d4a608dc364023b46c23be3841973b73d8c06e821",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0015",
+      "attempts": 1,
+      "hash": "6cbe9fe4ad171ea31568db8250e785e9042307a3ca12ec9697338e06743be632",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0016",
+      "attempts": 1,
+      "hash": "76431d9ca44a70555e7e6083fcfce35cbdf0d5a1d1269f26e0546dfa8cf17a79",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0017",
+      "attempts": 1,
+      "hash": "ebd00ad12b998fb10614aabbcfedc8a76cc66fe0e0696fd3e1243e8108824a08",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0018",
+      "attempts": 1,
+      "hash": "50ecf09b13c1338e2f2e41b5ca8a3ad1a6fd4f679ad589f555abd063a4e370ce",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0019",
+      "attempts": 1,
+      "hash": "56d684e3d297712a6b07ff03e1f14f6088c26a46d079ee0243a8c1e3d34d0630",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0020",
+      "attempts": 1,
+      "hash": "e48ef15478b6c4c9e850340ebd8f58deb9de854fdd8e54721de78785c43edf88",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0021",
+      "attempts": 1,
+      "hash": "85f22ca881c036247a4140527ad7f7f40675a1d75ff09aeaa84eb7722b4bbcf9",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0022",
+      "attempts": 1,
+      "hash": "e23705ce8baca75603184863a3e2f34fedf4b629b1d5bb22b37481a52726c28a",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0023",
+      "attempts": 1,
+      "hash": "8f4c6752b5fb0692a892e47b7af923a2a02c0b1ec119e02ac209858d3665982d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0024",
+      "attempts": 1,
+      "hash": "a447ad8000dd2646011ae26d1cdbf3f46c86de763f8eabc55eb201a61fa4dd7b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0025",
+      "attempts": 1,
+      "hash": "77a3bbe47635fe54289b37b20e4b593aef28da9594b73630f66507314c0c2ab5",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0026",
+      "attempts": 1,
+      "hash": "53ad84e55ad2786d00e196d2a01cc815de9656753912c1bbcc44c1509d531688",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0027",
+      "attempts": 1,
+      "hash": "482ac009193d5a863625cbb8dbc1b3708d331c2882e8612dd09078c3dc89ab87",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0028",
+      "attempts": 1,
+      "hash": "dc7587656193313ffe17534ff6eddc6fe0caad065f7319f3f6c244bfc13ad085",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0029",
+      "attempts": 1,
+      "hash": "5b5f4b00b95b32d94aa661abec99778d9c4fbe6a9055468b9c244b1471e276a1",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0030",
+      "attempts": 1,
+      "hash": "4112474f0b08b55530b92750086727b2fcff9733e1882ed84a7243a62bae4d2b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0031",
+      "attempts": 1,
+      "hash": "04b35d642ece0d653df82ee5022d4d5efd2632a6f0a5e24461e33197d9eca349",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0032",
+      "attempts": 1,
+      "hash": "abfde866639e0cc2660eb6846a5583d2c865224adcf4af7d04febaac85b52485",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0033",
+      "attempts": 1,
+      "hash": "c8d87adc2752aace7ca8ee6a513c67f0df4387f67b6cfca0c1c19d727d32532e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0034",
+      "attempts": 1,
+      "hash": "387df9ef1573dba0cc85e53a5e7c7132fdafaee5f9db9716e292b455a9f2ee3e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0035",
+      "attempts": 1,
+      "hash": "7213c559358d46d89e3540dc37552e4a0e04ee0ff0cabf3ff3c84947fea49996",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0036",
+      "attempts": 1,
+      "hash": "0a0fbf1a76e4330e66daf3260402ab92a7e8b1e9e4ce3debbbf738331cc04d68",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0037",
+      "attempts": 1,
+      "hash": "886aacfbd5cbf58c9b899f88aff83a4a30b9536f3f527810a7a9ad57cbce0294",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0038",
+      "attempts": 1,
+      "hash": "4d902f17cfe088f891662c008d268a88f10a48c5dde0abc1215b3971718cb345",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0039",
+      "attempts": 1,
+      "hash": "ec99084cc3c8b29d11834e3dad8d7aba987a773e83566b09ab19164d7ae33a8a",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0040",
+      "attempts": 1,
+      "hash": "6b94a37329991c68dfe85788d1c0ae3f51ff8d5ef17f2272a35a676068f44e96",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0041",
+      "attempts": 1,
+      "hash": "a19228abc8abbf3e39f78d8404385e7f8cd82ab5625bbef426504c7d3d444279",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0042",
+      "attempts": 1,
+      "hash": "711169e2f4a499c781ae830cc6d3db9d0f3cc37385df7a7607831990b89089f8",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0043",
+      "attempts": 1,
+      "hash": "17d5fadf484067f74df1302c4dcf8a7d757adaf264f9de5bf919ae1f81efd491",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0044",
+      "attempts": 1,
+      "hash": "4beaa317c3a157575e77e3ad71757e17e11726fac3c48e2de1e49f4553bf5d40",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0045",
+      "attempts": 1,
+      "hash": "4a57170a5117cf4802086ecf070e0353c7aec10d26e38e63cccbd9c399e8cdb8",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0046",
+      "attempts": 1,
+      "hash": "241d851e0ffc8108d1172b037d46448447f095ddedf13aa73742b2e9fc64de47",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0047",
+      "attempts": 1,
+      "hash": "c9c2971df3e82f346d16fffe47209051cded3dac03c799fa6680c7397c8fa86a",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0048",
+      "attempts": 1,
+      "hash": "adcea8b344c6641a375654c64b40bef1adc387d200431f34ff781d261ff1e71e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0049",
+      "attempts": 1,
+      "hash": "5aee301ca7bded43dfc6144d21ee1dbbd9f71e58f0e9cb8c91757f10e8bef8fb",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0050",
+      "attempts": 1,
+      "hash": "e6092a2b0301f8899636de21e8159ebb602286521b397bd9dafbf69f07024ba1",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0051",
+      "attempts": 1,
+      "hash": "e7a27098919cd38253f05c1cefb234f4dbabee17358595c8c9496781f564341a",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0052",
+      "attempts": 1,
+      "hash": "caae524027f1d3a4dd363cdb36e491751eb1620d8efc3a940093d0968cb93b35",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0053",
+      "attempts": 1,
+      "hash": "f9ab9e266abbef45be844e9876b61aa9f76951f03916abea08ccacf7f10cdc69",
+      "score": 75,
+      "steps": 7,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair",
+        "swordfish"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0054",
+      "attempts": 1,
+      "hash": "189b96ee6a039bdca5ea509258b87d8b2b356b6181aa3c72b0c2e361dfd679b2",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0055",
+      "attempts": 1,
+      "hash": "ceee1869e77d0e256844c06839635e274352734b5f92843b67cba45437d91cbd",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0056",
+      "attempts": 1,
+      "hash": "3bacc2ead2f120adb4c4897149e19d139ce313530992e725e66573cc8731afdd",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0057",
+      "attempts": 1,
+      "hash": "62479753c8f3857aee73c67b7d778a3dfdf6a7a69d865170d0e198510b0f5a9f",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0058",
+      "attempts": 1,
+      "hash": "1d1bcd665d9fd4e75dbb1248bb92f8d9a23b96b6fb07ca054c7ff4d22e2222de",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0059",
+      "attempts": 1,
+      "hash": "e495fa36a69a57525bf816c7a65cdd04ed91e7e7a414aa61f7b4fc009fd96bca",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0060",
+      "attempts": 1,
+      "hash": "325db25fb490225f89c8f343ef3a524cd45bb925420c1af57e114e09de1ef450",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0061",
+      "attempts": 1,
+      "hash": "467bb89cdbe321c8afec24e8ad1000fbc3ee7e54155dcb0d7b6673dc5311a656",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0062",
+      "attempts": 1,
+      "hash": "164536074d683c60e64d630cb51024b0e796c98dabf1df8e2d9b1bfbcfbd3dff",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0063",
+      "attempts": 1,
+      "hash": "d0519c81f366b6b0bfe754be61d91a6e924c60a4b32d00174f8f77548df39e02",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0064",
+      "attempts": 1,
+      "hash": "ded8118b127f366e39d4d34ecf71ef5c167ca3699744c08227d67be5634b74e8",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0065",
+      "attempts": 1,
+      "hash": "ba36c7e5c7b3aff5428f5088f53ebbb76343f31806013a53e3f3404744373f6e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0066",
+      "attempts": 1,
+      "hash": "64731ce2b84356d06c7c47a902f6fa64b625fcec329ca4188d49a81506818e54",
+      "score": 75,
+      "steps": 7,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair",
+        "swordfish"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0067",
+      "attempts": 1,
+      "hash": "ef154adfab022db887385a57b6d4fccced10c3b43a69d74e576d404445331156",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0068",
+      "attempts": 1,
+      "hash": "0c690d320c5911149991338770a9a2e5075ab516400b28aa83ace415456e7944",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0069",
+      "attempts": 1,
+      "hash": "3141ccd99ff03f72a57b8cf8a7687f3a66c3de547bf86ff1121b834a1c2b196f",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0070",
+      "attempts": 1,
+      "hash": "54e484a46fa21785992421595f495dd3cc76e441646419afd4927bfcaa66cdf2",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0071",
+      "attempts": 1,
+      "hash": "b20e76496b7d9856e011a84fbc742e24ce6a33a863e50fdd0ba67bc3f5b1169a",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0072",
+      "attempts": 1,
+      "hash": "4f62ec6aee8852359626b903d0336ac4bb33516518c41f4e727f0098be8225d6",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0073",
+      "attempts": 1,
+      "hash": "b3aa81ff39d5ef03cea9741e8f10603c6767fbfdbb2ccece44b8dfebbc429b69",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0074",
+      "attempts": 1,
+      "hash": "73edc8a400522a16ab7e2eacf926f556fcaf487c69126f205b11f5001ba35aa1",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0075",
+      "attempts": 1,
+      "hash": "e43440a73c9218b01faa4f65cb002c30f546527fc35c34c87b0b271819f4e355",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0076",
+      "attempts": 1,
+      "hash": "6061c5ce4a8348d1539a5ce4d6bd9635c0f2cc3649a9455d8c045698e0607ce1",
+      "score": 75,
+      "steps": 7,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair",
+        "swordfish"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0077",
+      "attempts": 1,
+      "hash": "fcb74f36cab693837ab0d70012b3168dd2ece89e7b44731996f1689262e101be",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0078",
+      "attempts": 1,
+      "hash": "c9480f8c87448820ce6b2d89de799799621a2e1914775fdc7fec7b92798b33ca",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0079",
+      "attempts": 1,
+      "hash": "4ed23b4dae8c06a39a42d1e44138b994f25ef83286af9206188ff6c54ec7e9d5",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0080",
+      "attempts": 1,
+      "hash": "3f86b722710998c1b89614078e66e5d90931cc3418a27e08fa3f04290bb1c695",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0081",
+      "attempts": 1,
+      "hash": "b771916a72f8eee12709a892f667902bac93c789633c27232fc5c477cea5bf69",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0082",
+      "attempts": 1,
+      "hash": "6a0088f10ebbf005b06e335cabf882619ea51925d6109fd56fe523a223442a51",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0083",
+      "attempts": 1,
+      "hash": "6edc5fde09cea2a7b37b79719b15708736d45a81682a98695835fba0fef3617a",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0084",
+      "attempts": 1,
+      "hash": "62e95ac5a38a82ffb62b5d57d56e9bb9ed9336fc4f5119c245c4018877edcde8",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0085",
+      "attempts": 1,
+      "hash": "00ef4542aaec16c78c29aff7e814d409d68c03e68e0fa2e43fcbb2f73ef7dfb9",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0086",
+      "attempts": 1,
+      "hash": "de7bd0b78d617d9f13bd6eea80688f0f53dc238777a9fe7b410e2e61b0e925bc",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0087",
+      "attempts": 1,
+      "hash": "a47cc4bd3d5cb07957de707e8dcc86458d3651db59c246b55b6e594e0b1cd7a8",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0088",
+      "attempts": 1,
+      "hash": "3483de356886c67c492f967a31562d4e3356d73f7a8a612a4b92bc8ae7c9e44e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0089",
+      "attempts": 1,
+      "hash": "4d95f576405e3aa02b0ed5ea5936094f699942c72ce3304fec8184286ea99a9e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0090",
+      "attempts": 1,
+      "hash": "5f6fc79c51672061e88e94c7bac37ea52663efef13add3f0fba91d361005fc58",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0091",
+      "attempts": 1,
+      "hash": "1e9df058c894fc0c86e4d90fddb85dfbc3b535ef23a8923f20f9feb376cd8b7b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0092",
+      "attempts": 1,
+      "hash": "3f1ede5da3f3e4178814f43b5e04fd9b15bf3e607e586e3b122ff272ea4a262e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0093",
+      "attempts": 1,
+      "hash": "08eccce4839170ee38006f3b4ef30081fa65e8e3ab720ea059e94b6402b022da",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0094",
+      "attempts": 1,
+      "hash": "d8faa1f30df3575121fda942e67a1ecef8313f14b6c4490e235317182d567e72",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0095",
+      "attempts": 1,
+      "hash": "7b7ffb9da8410f12a6bca86e1817277ed990137430e82de986ad478ca99115d0",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0096",
+      "attempts": 1,
+      "hash": "0f90431d97deed5a3480a9378d0a41c972399c35072c08a5a2c54789ae889439",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0097",
+      "attempts": 1,
+      "hash": "d47c4d8948a90a6dae558fd88a1ea02c7c9dbfc47fd75d63e3e28f2fa705fd94",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0098",
+      "attempts": 1,
+      "hash": "8ea5056e60abc1b33bb81e529b884d24d7499f328f38c23d24beb95b17312019",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0099",
+      "attempts": 1,
+      "hash": "0fb6555ac4704177250e694ded1cb3c762e31676a459c8ea8d68ffb84a48450e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0100",
+      "attempts": 1,
+      "hash": "8c51466ff9f798bedf39443ec032bfdea28986b63804f05f21a7fd6604aa30b8",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0101",
+      "attempts": 1,
+      "hash": "625327d054bca98d1626e8a652e09aea5b4abee219685e80802cea7332b627f2",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0102",
+      "attempts": 1,
+      "hash": "6c0c873a392f32c9381e27542e58dff9eb98edd3d6e12e62d6dca6937e04329e",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0103",
+      "attempts": 1,
+      "hash": "23afa2595065332719704b38f8e7abe95e395c0626c45a2f1c61989caa1affff",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0104",
+      "attempts": 1,
+      "hash": "1d584a0cf7519208e68653b055e6a4d17674603ca087c206111b782a869abb0d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0105",
+      "attempts": 1,
+      "hash": "7133aa983a09b6dcb1c7ffc772cb92c2528a8850ac59b81f8c2fbceb4a60a2e5",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0106",
+      "attempts": 1,
+      "hash": "4498bffc23db2335b1fb9dbf3854c21488821502bc8ff7d60105ae640dd0facf",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0107",
+      "attempts": 1,
+      "hash": "a326a16eda525b7436fd385006af3ce10bd726a158c537789ae02db9a25f9d65",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0108",
+      "attempts": 1,
+      "hash": "36a2666d16473c6c7c2f098c5bc3e4cc33265cafe6d0a34f9d6632a488ac117f",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0109",
+      "attempts": 1,
+      "hash": "8c1aa25813f9afd0834cc66b2d67f0321a9a01cf03bba5967ce778a4dbb35a1c",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0110",
+      "attempts": 1,
+      "hash": "86a8f5646760d161f0893f1347a8644546ce896daca2cde1add9a2952ed0c04e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0111",
+      "attempts": 1,
+      "hash": "c3aefe31f233346592dbfbfd098430da9cdd05b45532f72b5b9ef6a098b9b32c",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0112",
+      "attempts": 1,
+      "hash": "91b60120d986ed9b4069383d8c6598e88ae16cf8347a048a32a3eef7b495e913",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0113",
+      "attempts": 1,
+      "hash": "a9ddf864494a2576b2d310ce182d6309b1174a5fb252648bf755f8d1f5629258",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0114",
+      "attempts": 1,
+      "hash": "b1e7c29ad534f9fa0da4104e7ef5f3646384caf40ef1a79437286666cada4827",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0115",
+      "attempts": 1,
+      "hash": "bd7c1550f161a4b936db292cc2aaaf29391fb8c331d0c701036f83061b99d2ac",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0116",
+      "attempts": 1,
+      "hash": "66f6893df34120c0395b880c36d1f464348cb5ec7156c682f391c1bccfaee2f3",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0117",
+      "attempts": 1,
+      "hash": "ef042a0888a82a73240064de671d208799ebfce8ce7743768428c2ee4d2f051e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0118",
+      "attempts": 1,
+      "hash": "053a0acf88ede01292e58620d1456d9e8b3d61730e891b271079be6044b507a1",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0119",
+      "attempts": 1,
+      "hash": "e353c32e6e12b50fde893593fffeb58b32a9ab8f26a8836c92cdaa1c3b988369",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0120",
+      "attempts": 1,
+      "hash": "931b9d04043366101db77e7e7a4bc632c6354568acbf63ecc63a5d3e34a0b1fb",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0121",
+      "attempts": 1,
+      "hash": "f83885c32faea1625c6210137dcb93ab98644589148661d9369b5390e0a9d576",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0122",
+      "attempts": 1,
+      "hash": "c96ebbb8a1d6510972dba8149743eb07945ab8c1b097b168840c30a52431303d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0123",
+      "attempts": 1,
+      "hash": "277d9840f6234e887388ed04e60f3ef610fe8cbe6e96055e42ffbba6afb4b901",
+      "score": 75,
+      "steps": 7,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair",
+        "swordfish"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0124",
+      "attempts": 1,
+      "hash": "9f8a0b12391099caec19f3c278bed3e861b58ad88690e8a11b1e342a15b45548",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0125",
+      "attempts": 1,
+      "hash": "b15ed6e34ef5e7f4438e38c543b503e881a49482efe3ab4b0e659e9e4e1eb040",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0126",
+      "attempts": 1,
+      "hash": "bfbd0bd05626ca3831c92f7bbc78b3e142a7382b63a21a1139093405bf629ca6",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0127",
+      "attempts": 1,
+      "hash": "20531ce7dee31bf710d660066b073f8b15bf346201240306705a825c0a4a5afe",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0128",
+      "attempts": 1,
+      "hash": "ed1b0da5521e437184049e2b58a5cc61adb850626f78ce39edf3d3b2053a9c5b",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0129",
+      "attempts": 1,
+      "hash": "8fafc253ed1aee40d98cc4b92804e0ccf7317d44e7af2146fe493431300e8214",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0130",
+      "attempts": 1,
+      "hash": "3dcbf38f68bb22d4ec39e391e42ef09617de21f2ddb54364193b6ed4e7317bdd",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0131",
+      "attempts": 1,
+      "hash": "d8cda267fbf0009d7481f914094979d533890b2a5e41ca475d1b4369fa3cad5d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0132",
+      "attempts": 1,
+      "hash": "df003a58ca9ed4687579abf79326e1945f94b7e8c7825dddf0a292352d5df3b6",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0133",
+      "attempts": 1,
+      "hash": "81f3d6de8ef7dda7f813718289deb5422bd56912348dbb0d33590aa5d95b7add",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0134",
+      "attempts": 1,
+      "hash": "7f59cff0549c3b2b9541e71f5c5277219added065c57cc3ba346f2b9c7d49c5a",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0135",
+      "attempts": 1,
+      "hash": "a62725b6144d321678fa2ab42687c8df52068c4b7f028183318ed2673c094f5b",
+      "score": 75,
+      "steps": 7,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair",
+        "swordfish"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0136",
+      "attempts": 1,
+      "hash": "05f139e80d4c6fbfae18193aa8797757b1b87c3f179d57198184f70142b0e0e5",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0137",
+      "attempts": 1,
+      "hash": "37032c6c203994946e13554e32bb850749b657cc64d1452e16172b7f6ebbd1e6",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0138",
+      "attempts": 1,
+      "hash": "a59ac063cf3cd97006c9111c1c158b74eca07a5a3aa6f670bbe8598e68204a66",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0139",
+      "attempts": 1,
+      "hash": "8a44a2a1135a25bf35ca16dbf901477d0f9ad9c9039753b098272c32e0dcdb4c",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0140",
+      "attempts": 1,
+      "hash": "cca24d952a793ff9f6ed687c4d8209767eff80e84521c685f1c6a5884b5e02fe",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0141",
+      "attempts": 1,
+      "hash": "115de0d9a7c7be7ed85e528371494f86defbb53623b96b6573dafbf829a46131",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0142",
+      "attempts": 1,
+      "hash": "5cdee984b59d3b9e9e92f5e79001e87a27ced0f638aef95f7e44116dae7e89f4",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0143",
+      "attempts": 1,
+      "hash": "ecdc0fd3839bd8dcfb7a25b1b314036059e082297deb7f2243432b550125df39",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0144",
+      "attempts": 1,
+      "hash": "26e508ea1352fc55f16fd0efffb3c71ffa416063bc32300fc485c9ca14cd622f",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0145",
+      "attempts": 1,
+      "hash": "e2ce30956a418d9ab57e8880afc4153f09b4d2258257a761a3ca3f65e750374a",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0146",
+      "attempts": 1,
+      "hash": "54906e3af60119a4d219dff96471fe0c892021e98c0a4b6f4a88a15c45a83a87",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0147",
+      "attempts": 1,
+      "hash": "4a8b08765544b817fb876d840ca98a732b09f86ddfaee61713152eea37a2413b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0148",
+      "attempts": 1,
+      "hash": "db03449e28c8305758daf2c93a5d2428c56f2e23e3d942517cd1822921198cb1",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0149",
+      "attempts": 1,
+      "hash": "a0ed82ba66af8307389b8d49067493bd92d65709e75ac522fb8c64c95f69255d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0150",
+      "attempts": 1,
+      "hash": "fc308f2596f6d513a1823f160d1df31074a915bcf269c7bcea8f61b024e1bf0b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0151",
+      "attempts": 1,
+      "hash": "7379ff8c05095d20b9bc62687593d7760acc100caa1b62d167d85970d459d7d0",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0152",
+      "attempts": 1,
+      "hash": "efe4f85b340bee14187ef67d166b040307e4fe1583ad5a2e7becc96ca104d659",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0153",
+      "attempts": 1,
+      "hash": "528c63de90490cdaa0140ca5417ccc9658cabe8352ee3da17ce0687d68e420d7",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0154",
+      "attempts": 1,
+      "hash": "5f9e045136abcb0ccaf39f0b5d6d7f039a94b43866a336a40dbe70946d225152",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0155",
+      "attempts": 1,
+      "hash": "ad61898b0e30def1c3c9f65c594db6e3c8fffa496ae11b8c1e97b3da8ef3c69f",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0156",
+      "attempts": 1,
+      "hash": "eaf130e17b8ef4a366298c722c2532eaf484997d64ef7dc7c5e11e09f4989fed",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0157",
+      "attempts": 1,
+      "hash": "d720220286210a1a79982ff406be2636b0749dac5c06c9686d705a84fcc5cdb9",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0158",
+      "attempts": 1,
+      "hash": "0c429c2da615c59c350844d96a5f8c9cce01a70df04e612575f99d27adf59e6f",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0159",
+      "attempts": 1,
+      "hash": "5ca5f38839cae7c0a616c3327c9f7a56f82dcf51e9e042b3cdaea33b12349761",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0160",
+      "attempts": 1,
+      "hash": "61a45c8263ac2d4a762897790e33e1be4c34cbf545baecd317da06173121a8f3",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0161",
+      "attempts": 1,
+      "hash": "3e3fdb1971e2a3959a53b481a4caac641124edcfd2780172fec703883ef1fefb",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0162",
+      "attempts": 1,
+      "hash": "2fb8ee3cb79a5ef79a56ae3bae89a1d291cb20150d933b00b2b0ab0dc08b4464",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0163",
+      "attempts": 1,
+      "hash": "f5fb3f5aa5dcb03aed4afb80ccd9e586b83d8613dc44801a94992931ac8a3892",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0164",
+      "attempts": 1,
+      "hash": "0aa36b24d4481eb625ca7bc14f824b17758936da93eb7442a64ef019f2881044",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0165",
+      "attempts": 1,
+      "hash": "263a7fe548aa289c53df4663fb8fcc00747f36716bf2bb43bc42cb315b67a022",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0166",
+      "attempts": 1,
+      "hash": "e0f0e11304507ddf2b9e8cc616a05fc269cd07bec84494a5ae57ad95f56515ea",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0167",
+      "attempts": 1,
+      "hash": "0f2a1e5512708cd23901afac9c72658a16ae00d5dde211e7ed8975935cc4fc83",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0168",
+      "attempts": 1,
+      "hash": "9600882dfcc7a859284e6fe0d4302d140ba9bb72ecae514f756acd1da39144ca",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0169",
+      "attempts": 1,
+      "hash": "a7fc604bca317dea9198b6bb7453b43036b331403cde309a6ee6480b5a1f42c9",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0170",
+      "attempts": 1,
+      "hash": "d38841f8b792569f186a7a4ba8b1a10705f839c691315a9cf26421d9284fefb7",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0171",
+      "attempts": 1,
+      "hash": "c093e5e8681187dc82a3836a07619769a5d1d2d2c785ba990363f52614a179df",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0172",
+      "attempts": 1,
+      "hash": "62cefe43c37a1c6fcb9b4a1ec01bcc6155cdd3d72d2baf88d104229b6350761d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0173",
+      "attempts": 1,
+      "hash": "bd804e235bacdca250af3acb7a9b205997ef2b83637d5fbaadd3fb29cd8c2c87",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0174",
+      "attempts": 1,
+      "hash": "89695fb7c73a093ba44c7d2f49628691152bbe3c09e410059c20a63d2b6f455d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0175",
+      "attempts": 1,
+      "hash": "c1f9fdefee3a1641ec2b82ab430bc32cc65a4592a4d079a93b4e02fbee2aac70",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0176",
+      "attempts": 1,
+      "hash": "45a56d442dcdffef9f3328667133590692f73cbcf4473fc9f6c9d8aa463e3bac",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0177",
+      "attempts": 1,
+      "hash": "c0ed511901348ae55f807d31f40d259439e8cf5c572f0dfb9770da59b5d4e37a",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0178",
+      "attempts": 1,
+      "hash": "6cb1fbd56f361ad9a2985ce76a44866e2ae7e141e338dbe1294d371d9acfbc8e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0179",
+      "attempts": 1,
+      "hash": "7ac4b347a8692c09e96d5239e6371a8be34ca71812d979d21b15c1b5961eaee6",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0180",
+      "attempts": 1,
+      "hash": "d75a6df326b37594dcc08a25fbbe2ef64462a228a89794f28d25a7e2258fd243",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0181",
+      "attempts": 1,
+      "hash": "964da5208f7eebfa887ff745fa532987521e5e65f485e6854cec906165e2d7fb",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0182",
+      "attempts": 1,
+      "hash": "fbf615abfcc8189a0346b5a4091f6bc7bd0c423bbbb63a34e20895ec4cae10c6",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0183",
+      "attempts": 1,
+      "hash": "480334e3bd35c2337f55368b36e2ecee581faaebd04cf364cc1109eb5cc9e9ba",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0184",
+      "attempts": 1,
+      "hash": "984f5ca5e948693ea6870de27d0148e61a3c4b465dbf9a1fe07a30cad8446bff",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0185",
+      "attempts": 1,
+      "hash": "0ebcd7633e29521afe4cc14c3f0b2637fcaf0e4b5c85f8444d5204faad6e34a3",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0186",
+      "attempts": 1,
+      "hash": "3001e74bccfe628e0ae9a4ae0c53aa583bf74ff77a93d769b14afc262bcf68e4",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0187",
+      "attempts": 1,
+      "hash": "586549728ef3e49d754b87ff6d0a5152cb4cf3cdd17464fb978c97d60f4c3756",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0188",
+      "attempts": 1,
+      "hash": "15c8efc75b41db23d518ea2049bc0cdc8ca81ffb42a66ebcb8257a0d6e499b40",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0189",
+      "attempts": 1,
+      "hash": "2169fc9237cc5f2ed25c1a3ae52c1fe9fd53619735c727a9a1ba7038239fa2fc",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0190",
+      "attempts": 1,
+      "hash": "0b582e81101775f27549cb985e31175d0e1dd2a732282a30a84b6fd3e83dcac7",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0191",
+      "attempts": 1,
+      "hash": "aaf03a864e9ba7448841f2da580fd27b15a259e5454a99121240b8eef5bb8f09",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0192",
+      "attempts": 1,
+      "hash": "fd2f321b14fd8c96784cff9018fed8588f042ef3fc3639afae76e4768fd3b745",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0193",
+      "attempts": 1,
+      "hash": "c459bdefbcf83fd9a3117a1ca9e69927dca3714ee8d9ebcc0b12e3a2c23b6532",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0194",
+      "attempts": 1,
+      "hash": "aa19c08ccb2d6873fff21e62d92dfb6a2a71fb7a2a232196139ab6d57f4396c5",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0195",
+      "attempts": 1,
+      "hash": "58c8dba78f28b06fd13363610599897866b3017c018f965f2d16ac92ef70b49a",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0196",
+      "attempts": 1,
+      "hash": "32d100f95e1a5c69fd68a36af5d9fd721c98e6a1914d2070d2ae9eb16b67a92f",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0197",
+      "attempts": 1,
+      "hash": "440696f404b608d931298669bb2a2d307c24b0a03bbc54fea8a16e236dc44741",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0198",
+      "attempts": 1,
+      "hash": "a300736f35c91b712371c169c2cac2a514df3ea8aa12519319be2846039a1f22",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0199",
+      "attempts": 1,
+      "hash": "46bcd92c6fbcbf64e9b89070166395534751e5f48473fced472cfb420aefe9d4",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0200",
+      "attempts": 1,
+      "hash": "d510aa8efa511d7d198a9efd08ee339c49b695c3c8b644cf0eee5b92d6fadc79",
+      "score": 75,
+      "steps": 7,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair",
+        "swordfish"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0201",
+      "attempts": 1,
+      "hash": "d35a89b27f498b5efcce202eee91f169519996052fd6fcdf99c9fe54ffef3a83",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0202",
+      "attempts": 1,
+      "hash": "7464af26ae595a24ae094a26f06b174ee3dcfad43ec77ba84668a75caea989f9",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0203",
+      "attempts": 1,
+      "hash": "d9612b56f071d5640b20eaf52751c5bebdf90e0916ae02f5d20f9c6a62bbeef6",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0204",
+      "attempts": 1,
+      "hash": "5317f82ff7bcb00aa0e40e3ad27153e7d3bc1dcf8fcb2de1d7a3908accdf67ef",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0205",
+      "attempts": 1,
+      "hash": "bfd1af05192bc2194a5f362f134b03a65f667b71aa1d79ff405c068a033457ad",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0206",
+      "attempts": 1,
+      "hash": "a15efd732246f2b2d252e98cfb749f0b63b4a5f35afe905a2e2473f02779fdc0",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0207",
+      "attempts": 1,
+      "hash": "9526992cebdea533532bc683b821ea1f62ed458730a27e98c1dfa29986e4a6e2",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0208",
+      "attempts": 1,
+      "hash": "6db2ee7e9dfeb398f369f32ad733be32857977706e104b66527b9f1ea97778da",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0209",
+      "attempts": 1,
+      "hash": "be9597539828b1e17b84054c5e73ce0b85d680f65d2d27650c3d5fcd3a6505eb",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0210",
+      "attempts": 1,
+      "hash": "e090c3d5830cc3b37af78e9cf42f33b70fa6edc93d19885d502cdc3e228d163e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0211",
+      "attempts": 1,
+      "hash": "89529c68af3a2189f02f83d8cf53044f2d6cb115f881f86b7ae25dc7d3f6ea0f",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0212",
+      "attempts": 1,
+      "hash": "a94308f61cca59373357383d02f28b644c4a1fbc4a0fe3e1fb83fc7e42b785c9",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0213",
+      "attempts": 1,
+      "hash": "58271fc8f7836c098e8ea71c664fb6c3df7595b07fdaa3f17da35790027d8ad9",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0214",
+      "attempts": 1,
+      "hash": "90df96390ba0b24e9bbe7c2b7e17537b961778697ae1fdc0769a84e05b5d7378",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0215",
+      "attempts": 1,
+      "hash": "37090e5fd9732810d56c0bfa7eee151f8ab7701604969a8ed001f9b7f15d2c1b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0216",
+      "attempts": 1,
+      "hash": "7f364573d6f027ab06ab8c57ad52214319d07a68b2068fea0d945b4a8a80e1bf",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0217",
+      "attempts": 1,
+      "hash": "9bcb36ba4fb3722fc3afeeafdcedb5ebc158022cd00d352a1e4d09bc457135b9",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0218",
+      "attempts": 1,
+      "hash": "7023ff86c51eab073ccbb0ac5a1218249332ed574ab7d00cd62e593ac8b6fbfd",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0219",
+      "attempts": 1,
+      "hash": "94c44c925e3ba4c0a20fb5484aff1c279a9fd265159c65b370471fb8afb5425a",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0220",
+      "attempts": 1,
+      "hash": "74e02c0b26708b66bb65648d679f13fd91031c56487edcb331090767a4552462",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0221",
+      "attempts": 1,
+      "hash": "af22a55962e4f982215bb90b4a1a104518aa2c1aef49f3e6e185cb52c19f33bc",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0222",
+      "attempts": 1,
+      "hash": "d24dcfe53161af112343dab80da5379c0d4fc1e9a020a8d3e4669ad4bc2cbf14",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0223",
+      "attempts": 1,
+      "hash": "3375282364b488f9898da1f3b4f1952df6bd81dfa52cab138fa13697c3a362cf",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0224",
+      "attempts": 1,
+      "hash": "2fe40f6bcf0e92d7e61995a524dcfe883df29ef12f5e7cf7704c012b1ebeab40",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0225",
+      "attempts": 1,
+      "hash": "8b1aedcae23519a9d7cdb2651cfc07729d122800d42c2c85a5a9555fdc397f17",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0226",
+      "attempts": 1,
+      "hash": "fcc1d3f8d7835020bc33af2497eab75b39249501be8f9c34bddbd10291824fef",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0227",
+      "attempts": 1,
+      "hash": "3a1a38cc8156d8f7f86792b95a0a8c0537b4652474079876e19a50915031f21d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0228",
+      "attempts": 1,
+      "hash": "9a548a89432c9ff959e3787db2b013a3a0e71ddacd2cfb0f7523553b6265618d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0229",
+      "attempts": 1,
+      "hash": "2b1ce32aa7b9637e837b75c258dc9f9188d198ba5f3f070bed41e836ebeb476b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0230",
+      "attempts": 1,
+      "hash": "4d8e16cc817e610fc831251d5167304fd997ed483184a9c38d33d0d1f161c4c4",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0231",
+      "attempts": 1,
+      "hash": "6dda8a037420bfde4efbf195fddd7e6ed5aec3cd9c897f4932e42e94e4a07c81",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0232",
+      "attempts": 1,
+      "hash": "5dea953065c5fa50f8152b02d073fed507c0d23a9859852c21bb99dfae93c925",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0233",
+      "attempts": 1,
+      "hash": "2223f3e04921ce40aff0e3a0cdcbfc5adacd563bf3c58b455e858e67c13401e1",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0234",
+      "attempts": 1,
+      "hash": "d87eef261592dec9ff1e032427d88382cdd41075d7a9b34b7ddd9ccb5a920458",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0235",
+      "attempts": 1,
+      "hash": "2f29c49c45a0fc9f14d0cd16546ef31cea5121d3fd966b9c91ae7f84e9a3c0a6",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0236",
+      "attempts": 1,
+      "hash": "de55abf46d6343357401eacd4da536513b654f4453d5942c26e15f4d0f02b917",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0237",
+      "attempts": 1,
+      "hash": "32f5a2c8b24db362d92b3d529b729bf93af482fa289bd03f826fe1442b26593d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0238",
+      "attempts": 1,
+      "hash": "94c44b2cff4b1c1e8735f72140e14f79dfffaa7b3d55e9cafa1c07a9ac966605",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0239",
+      "attempts": 1,
+      "hash": "d2a7db2e89040b653a52978d40d4b5309ac6f5a6aa55e1af24b12684d958a009",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0240",
+      "attempts": 1,
+      "hash": "803cde929f2ce573f32d529440328fbb13a78b9b3aefe98f6d8367a7b5330e74",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0241",
+      "attempts": 1,
+      "hash": "ed9e4e022a9f25ec13aed6d50b5d1fa28bfae010f49c18f4c7e5e86a6ae28caf",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0242",
+      "attempts": 1,
+      "hash": "6c9e7cb9305a4b56144e3c82aac9b1208b8e6e0998fffb66e8f7d7f90e7f7c6d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0243",
+      "attempts": 1,
+      "hash": "cfd44702b6c637fa1e2baa691c281efa2b46694c978d7cb99abc2f02213e6d3e",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0244",
+      "attempts": 1,
+      "hash": "4c7565b17fe4349ac4dfe2f8fdc12d06aa3ab4125768d61e5a166fae241b3981",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0245",
+      "attempts": 1,
+      "hash": "1671b91d6f23d269d83acf6d2796694bbedd0f0626abfa2aae144d81d48f46d0",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0246",
+      "attempts": 1,
+      "hash": "e269ba3fcd48a7993953eb3172c50638bfc2285fdcbc2c9df2cbad5d6bbd6e3b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0247",
+      "attempts": 1,
+      "hash": "c4aa9693bbf4de60244cca8e2060b83851974abbfe8d1c35985ff5bc67faaa68",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0248",
+      "attempts": 1,
+      "hash": "875f812e3271c9a829b022d6c7a7478737fadaecf65cb0e0adba3f800c723ba4",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0249",
+      "attempts": 1,
+      "hash": "b0b49d438fcfc0c9e30a30ee44a1854543d33288803e21823f29c97426f34539",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0250",
+      "attempts": 1,
+      "hash": "4d7259310d741ed934a77ed471fa7a5b12f18db99a17c59c349ee010852f130f",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0251",
+      "attempts": 1,
+      "hash": "1fced3012922d7b344501db097fd689a3342348c2bfea7ecaac22aff6838dbc7",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0252",
+      "attempts": 1,
+      "hash": "f17f8090fd4dc8c5230d29c086ebe5139d85fe931328eb5cb9394c0a4444b5ea",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0253",
+      "attempts": 1,
+      "hash": "8a885a0936259f8bee66f221b6bb57d5e01043a01139eb635188ddcde2c1cee3",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0254",
+      "attempts": 1,
+      "hash": "cb3991c886ca1432a11f015e232e9e26387f97baf4c6b84409116ce73fe469bc",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0255",
+      "attempts": 1,
+      "hash": "945913996a38cc652e643f949c5e714555ed5a3d2d2af9654ddb7a47cd87bdd4",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0256",
+      "attempts": 1,
+      "hash": "c399ee443a71684e5adeadd8a115d437851fa7832455c403f0598945489da67a",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0257",
+      "attempts": 1,
+      "hash": "f8f64c0a8dbb873add78d2871dd2898dcc2a11a71a8cadcd63e14de439a2fab5",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0258",
+      "attempts": 1,
+      "hash": "649487e3b171df700edb7532ab4cdcb60b6cf1d2c661cfe2a5e8c90f9128d122",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0259",
+      "attempts": 1,
+      "hash": "04ceb9a19497e9ef5bab0fb882b8fdcfb059d0f7bf9c75b03238694aa84a6b2b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0260",
+      "attempts": 1,
+      "hash": "85e0266d37721438400cc06176b14a19e699ca6afc924bf0725f1a37ed7c1a26",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0261",
+      "attempts": 1,
+      "hash": "da3123efba6271d43663dd92a00c15856b4e4289bbb2102fd8b6a09580dade7c",
+      "score": 60,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "naked_pair"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0262",
+      "attempts": 1,
+      "hash": "1118e7d63ba7e762400244fa8f6bc57663b58d3ccf1de0014e975feb7dd54451",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0263",
+      "attempts": 1,
+      "hash": "e18004ec8c89bc3927b83be6a503c9de8a98d6e73786f1e4de9e3dcd2c0aebdd",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0264",
+      "attempts": 1,
+      "hash": "bf76be87fc975de453678bf864f4c16adca85be701cdb9b1b401a47eb342cb6d",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0265",
+      "attempts": 1,
+      "hash": "1ce1ccff7477a846071a4d7aebca40841d504b4fe70e953206cca18d41f59ed0",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0266",
+      "attempts": 1,
+      "hash": "5740756a842091daa1bb0ebbf5c6480b66ebb3c384063eb4930c169698dd92df",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0267",
+      "attempts": 1,
+      "hash": "d1f91c426d5e70fa0dd8ea299d641650a65010f89679f588504aca565b816bfd",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0268",
+      "attempts": 1,
+      "hash": "07cab01f651e515addb19b26762736b3133179da0e35b21b47cc6b89228b9b3b",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0269",
+      "attempts": 1,
+      "hash": "2c014288db35f04aeef0d91d1b3837a55fafcb2b224adca629692b1faef59413",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0270",
+      "attempts": 1,
+      "hash": "822390c59787cece8fecdd758f600a13d5dc5c2da24f944dd97cc74fabb90d20",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0271",
+      "attempts": 1,
+      "hash": "df3d9767bf342ae6150a5eb983ed10f0c4dab5eaf5285ff7182d4bc19e0d5c77",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0272",
+      "attempts": 1,
+      "hash": "21ea5d15437191b005940f4afa8e40ae1b2caf940effe013e97899be3318e520",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0273",
+      "attempts": 1,
+      "hash": "7e924fd64eabc47c58701b1def409d1809b8bfee60f6b0abcf4c86050305a498",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0274",
+      "attempts": 1,
+      "hash": "84049373118731b060493374a86748f39127ef5e711f266abf24fcf48fb91ad8",
+      "score": 57,
+      "steps": 5,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "clues": 24
+    },
+    {
+      "id": "mythic_0275",
+      "attempts": 1,
+      "hash": "2652c70a5b650d73f1a026238aca31d3b1aa8b42b796040b34f0a263a42b19a6",
+      "score": 62,
+      "steps": 6,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain",
+        "box_line_reduction"
+      ],
+      "clues": 24
+    }
+  ],
+  "rejected": {},
+  "duplicate_avoided": 0,
+  "geometry_avoided": 0,
+  "status": "running",
+  "last_completed_batch": "0251-0275"
+}

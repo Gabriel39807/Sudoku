@@ -1,0 +1,20 @@
+{
+  "id": "expert_0253",
+  "difficulty": "expert",
+  "puzzle": "000009040400070000063040100007100320020080010010090060000002008000900006806000090",
+  "solution": "178629543459371682263845179987156324624783915315294867591462738732918456846537291",
+  "techniques": [
+    "hidden_single",
+    "naked_single",
+    "naked_pair",
+    "hidden_pair",
+    "pointing_pair",
+    "box_line_reduction",
+    "xwing"
+  ],
+  "steps": 7,
+  "score": 28,
+  "clues": 25,
+  "hash": "c8a3c5372442e85ea64b9b54f9f91e50912729b6f3feb55e68a468babcba0b82",
+  "checksum": "c8a3c5372442e85ea64b9b54f9f91e50912729b6f3feb55e68a468babcba0b82"
+}

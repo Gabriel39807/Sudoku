@@ -1,0 +1,18 @@
+{
+  "id": "evil_0328",
+  "difficulty": "evil",
+  "puzzle": "016000008009063410005000020000009046800040200000036000500002000000310900700090800",
+  "solution": "316724598289563417475981623127859346863147259954236781598672134642318975731495862",
+  "techniques": [
+    "naked_single",
+    "hidden_single",
+    "naked_pair",
+    "swordfish",
+    "xywing"
+  ],
+  "steps": 5,
+  "score": 40,
+  "hash": "267be1ca14885c6022fbb3b13bdb1d45eed1b574b1a1f2c530d731cd4b2cbd27",
+  "checksum": "267be1ca14885c6022fbb3b13bdb1d45eed1b574b1a1f2c530d731cd4b2cbd27",
+  "clues": 26
+}

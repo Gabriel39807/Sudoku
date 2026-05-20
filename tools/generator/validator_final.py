@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from typing import Dict, List
+from typing import Any, Dict, List
 
 from classify_by_techniques import classify_by_techniques
+from difficulty_profiles import techniques_match_profile
+from difficulty_score import human_score
 from human_solver import solve_human
 from validator import count_solutions, solve
 
@@ -36,7 +38,32 @@ def _conflicts(board):
     return errors
 
 
-def validate_board(puzzle, solution=None, difficulty=None) -> Dict[str, object]:
+def validate_human_profile(techniques: List[str], steps: int, difficulty: str) -> List[str]:
+    errors: List[str] = []
+    from difficulty_profiles import get_profile
+    profile = get_profile(difficulty)
+    if profile is None:
+        errors.append(f"no profile found for {difficulty}")
+        return errors
+    forbidden = set(profile["forbidden"])
+    technique_set = set(techniques)
+    if technique_set & forbidden:
+        errors.append(f"forbidden techniques found: {technique_set & forbidden}")
+    max_steps = profile["max_steps"]
+    if steps > max_steps:
+        errors.append(f"steps {steps} exceeds max {max_steps} for {difficulty}")
+    min_steps = profile["min_steps"]
+    if steps < min_steps:
+        errors.append(f"steps {steps} below min {min_steps} for {difficulty}")
+    score = human_score(techniques)
+    from difficulty_score import score_range_for_difficulty
+    lo, hi = score_range_for_difficulty(difficulty)
+    if score < lo or score > hi:
+        errors.append(f"human_score {score} out of range [{lo}, {hi}] for {difficulty}")
+    return errors
+
+
+def validate_board(puzzle, solution=None, difficulty=None) -> Dict[str, Any]:
     errors: List[str] = []
     puzzle_grid = to_grid(puzzle)
     solution_grid = to_grid(solution) if solution is not None else None
@@ -53,14 +80,14 @@ def validate_board(puzzle, solution=None, difficulty=None) -> Dict[str, object]:
             "errors": errors,
             "classification": None,
             "techniques": [],
-            "steps": [],
+            "steps": 0,
             "solution": None,
         }
 
     solved = solve(puzzle_grid)
     if solved is None:
         errors.append("solution does not exist")
-    if count_solutions(deepcopy(puzzle_grid), 2) != 1:
+    elif count_solutions(deepcopy(puzzle_grid), 2) != 1:
         errors.append("solution is not unique")
 
     if solution_grid is not None:
@@ -76,19 +103,32 @@ def validate_board(puzzle, solution=None, difficulty=None) -> Dict[str, object]:
                 if puzzle_grid[r][c] != 0 and puzzle_grid[r][c] != solution_grid[r][c]:
                     errors.append(f"preloaded value mismatch at {r},{c}")
 
-    human = solve_human(puzzle_grid)
-    if not human["solved"]:
-        errors.append("puzzle is not human-solvable by implemented techniques")
+    techniques: List[str] = []
+    steps = 0
+    classified = None
+    score = 0
 
-    classified = classify_by_techniques(human["techniques"])
-    if difficulty is not None and classified != difficulty:
-        errors.append(f"classification mismatch: expected {difficulty}, got {classified}")
+    if not errors:
+        human = solve_human(puzzle_grid)
+        if not human["solved"]:
+            errors.append("puzzle is not human-solvable by implemented techniques")
+        else:
+            techniques = human["techniques"]
+            steps = human["steps"]
+            classified = classify_by_techniques(techniques)
+            if difficulty is not None and classified != difficulty:
+                errors.append(f"classification mismatch: expected {difficulty}, got {classified}")
+            score = human_score(techniques)
+
+    if not errors and difficulty is not None:
+        errors.extend(validate_human_profile(techniques, steps, difficulty))
 
     return {
         "valid": not errors,
         "errors": errors,
         "classification": classified,
-        "techniques": human["techniques"],
-        "steps": human["steps"],
+        "techniques": techniques,
+        "steps": steps,
         "solution": solved,
+        "human_score": score,
     }

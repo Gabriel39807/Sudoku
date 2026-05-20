@@ -1,0 +1,1808 @@
+{
+  "generated_at": "2026-05-20T09:51:27",
+  "scope": "expert_0001-expert_0100",
+  "valid": [
+    {
+      "id": "expert_0001",
+      "hash": "7d8a208063cb4056c09d9cce145a0c4b6056bdf05a3c1942413d5ed4dbe5925d",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0002",
+      "hash": "3be06f8ebc69b13a727676a37a86eaa72c6491690b2cfb7fd83487512a2654c8",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0003",
+      "hash": "6d8b420e7ea1fba595f47540d6de380b0ccc50aa1580a5059d07bf3a4841fb1b",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0004",
+      "hash": "2285d2ba0e043d31af99bae61a1f6bacd496307f3b887494a545c82016fb7601",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0005",
+      "hash": "fa72edcb6e586edf54fe5178f30c4344cb125ab9fe3c7706755a9295912cb73d",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0006",
+      "hash": "aa3c812399791bbac1f9e5aa9671c40dc9d4626446e1c439a6527bad91a41c58",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0007",
+      "hash": "2d638e3295b20f465a49b2e94af50c206a3cfd52530aab5240523aefe1927da0",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0008",
+      "hash": "ef873602d2d3c032a8c3573825f537b3135e135798bc619b066ced12de5b8655",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0009",
+      "hash": "4522f7fc6ac9a720582e283eb404895e57768c048b4b506e64eb23a3ec67c6da",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0010",
+      "hash": "abf156838e9e2f3c9452da1e6af76b90b1ed23b4472f19da6bbe0574bd3f26a1",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0011",
+      "hash": "7ed53def0ffc9bec6c21b35dde0e8f5e34154e0a1a0c6f5f7775eb22a70cc826",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0012",
+      "hash": "fa88456305e7a4f7ae847c71c4e0251e023f923bd052064fef8aff5cf5cd82fa",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0013",
+      "hash": "50d17d3579440dde152b2fcd4d54e5a470391b431924ec868bfab7b690f371f1",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0014",
+      "hash": "23db1f2ce11cab1394881af9c60f65dba8defc27fb0c4fb5fe221e4aab9faf96",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0015",
+      "hash": "066db72379d53f5b806aa7d09fa54a3d1b95090819c227c8beedddd0f9d064a3",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0016",
+      "hash": "5f01971683b7c830d97a14914501b860803d6b950802557db3e4e39444d99db0",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0017",
+      "hash": "83b3f421da7fe9ff39053b1096e6b9bc977475415d2a7ec1ccc264e46c1f8aa2",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0018",
+      "hash": "d26a3ad826de843b877c0987af314df3a88126c92a83fd77842a0d8429aa668e",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0019",
+      "hash": "359100a626a83efaa5fce500f0fac9081b10cad8ea8dd6f062b0048d7628f903",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0020",
+      "hash": "d345b7285bebe47c76e872f4169814826a1d49fb650231ba58300ddf425e1f1c",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0021",
+      "hash": "10b81170cc4224b9bb358e263cc6a887b05cc9d0913dfc1c9c10d3dba0f35380",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0022",
+      "hash": "ec51591cb32d298c026b9fa1bca38f61adab80bc65dedd2e529b764aeec65b40",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0023",
+      "hash": "50966d2d892ddade3fa07fa5f3b25972586ceb4d3eeb8829cc38af1297e11f4d",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0024",
+      "hash": "e6a17663bd1c491fa55e35b6aab1e592e53946b771c49e04939f3b235ee6e614",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0025",
+      "hash": "9739fd20f690bab12ced02abbf652e345c9967f5c7dffa3c444dd4fcd0046477",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0026",
+      "hash": "2580739755ca58d2052627caf1ba8750973e58874df1086e4f352e25f19f9360",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0027",
+      "hash": "aedcbf3da19ad49dd6788c267f3e2d7728a393d75e863f90e954e9e4d73e4654",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0028",
+      "hash": "614e27dbbddd5e9c54803c264aa865f80bf6fbefbb948675638844c093b675b8",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0029",
+      "hash": "234586aae8fa5faff26dd44a01329254c3e7fe1cffd08e2cff16f9ece82a22e9",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0030",
+      "hash": "138f8ecc9ce7590c55fc029e52046db7c1dcc9c066abdbc2419b30ae9d3b0e82",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0031",
+      "hash": "9421b2f81ed96fce3ba8c971a920ae9042def26676f0357f4ec21369626b5229",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0032",
+      "hash": "f78b2fafd907bc976652761a30f773fcec175463abcf06797f8d866b375f100e",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0033",
+      "hash": "80265748fc09f1eb4424e8a0d4182dd95f0dcb6e006af0a75fd985e5facf8c96",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0034",
+      "hash": "fb4f4b2a37767a3b1b92e13827e289c756acb7fae005848eff702a0f64b6cf7d",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0035",
+      "hash": "c17c170a44a835412866bd17a0b5b1ac4fa970e45412723360949ab259b5cbe1",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0036",
+      "hash": "1f9ad59297970792b87c9c9a71e56758448d7538f6fb57b0784618c4d9defac1",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0037",
+      "hash": "f54cd5fb0fe2c655080d6ce9a2d80f95b97c84da96090e6d76959eff8a4fba46",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0038",
+      "hash": "e40fe896d574d1ef079c9f19af6bd1b992667c32c841877aa1b98fb0f117b117",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0039",
+      "hash": "d57356ec6c67701fad5fd180e9abe5989d460d90b29b91edbf0aa2fbe6fb516e",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0040",
+      "hash": "23f0255732d2d2cf76024d7e25f9647c2512a49fdee0cdad5946cbaea5bd2511",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0041",
+      "hash": "b27cab4c838ef2b4f538f7d9dcc6f7d37657b420184b4f0a398114004729d2d0",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0042",
+      "hash": "5cf3b41a4b189062767d71df5b76dd9a23998e00f73e197b8fe5db76137c54db",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0043",
+      "hash": "e2ecfd1e15edb46493b1d1f7a6e7bf2f82951851bc6ad13fb083f8f1915bd016",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0044",
+      "hash": "7ff6cf45096c354774ebc5858f0dec1e322c1e08bf8bb4b1daad842ee79398b5",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0045",
+      "hash": "1f419c6db10460396ec9dc51a22d1dce2d3d1978a62dacd3c1f6e8662cdc7bb5",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0046",
+      "hash": "b605abbe60888eb3c54dffc03ef674a87d45abcba4eeebbe6af64d63050181a0",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0047",
+      "hash": "c2f0be2efd580fc36afcf6e9e21712ffbe96a00beae9619b32457f0e11a8285a",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0048",
+      "hash": "259e037590eaff3e7b54c6db79732564db5f24333b7e3cc86ef4cb31ee84d303",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0049",
+      "hash": "67d4fce5065934e02c1554935a132fdb95b77ab836287309bc3037e0a4f93a0c",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0050",
+      "hash": "fde71a3f47ba521e53eebb9b23d44c7f43e59038a5b3e56cc695d394d89438ea",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0051",
+      "hash": "2028c1f1b402d2e96d61ee3d9a8cd0881c6faaf6c776302f2dc65ef1ad0293a5",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0052",
+      "hash": "6c46ac7b2e4af827d7c8058d1f378fabfcee52a6af36743731b4abaef6835f12",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0053",
+      "hash": "dd28b15ff01970f85b1e550d4f15bfd586740a9246e99ce25c706e005d774864",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0054",
+      "hash": "bf726cb4340cdff2cd35f90413b92ce847a6edd4b05f341386dbe16d8351188a",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0055",
+      "hash": "d253825c935f5972b021e34afc14388ce3b6999fde5320fa03e68522b091ce29",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0056",
+      "hash": "e2ddf795edef707021868d0117ddc04d6513b5f389275831acb9048e02b34bca",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0057",
+      "hash": "0163ba04b6d944bc1898bd5101cde2030d58432f97b296dca9e57f41314d64ef",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0058",
+      "hash": "ad2ea0041d8bae2d6a2fffcc29fffa28e53fcf08b3bc8b1f75435811cdfae681",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0059",
+      "hash": "5272b1bccba597d08b9e3b1b2bab732b940ba0791a545374071a15415793609b",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0060",
+      "hash": "6f8476210d4a6930a3696edf8454b222128c1f51539355ac01a3722d7bee2e88",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0061",
+      "hash": "1776f0a47530a73383250a67cf7f5ca64313e5b8f253d00650f6206a677b912b",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0062",
+      "hash": "d2030f88c70398e2066a77207f6cc68935dd8868efa303b67fe2feb842d339e9",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0063",
+      "hash": "e0d31dd8dca7b3b48631f7c3cec2d52e90621a93491ae9a77259fd9d8c305ae5",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0064",
+      "hash": "cd6416acf879e16eab95f5cf09aa320e2f1a03e3df753bdef55f43fdd180af6c",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0065",
+      "hash": "0dfde26a2726cdbf1466d22cab167eec14acd1c9103c78319b4a50fde0497b28",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0066",
+      "hash": "3840b76eb7a486dbba2544ed2b3c1291e48c7034d5eb86d88c145763a0ae4555",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0067",
+      "hash": "21c073c2f4d8c47d412afbbdb29837a5174b5013d097b8e1824dd71883164013",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0068",
+      "hash": "e97bbb09d06bcafc1bf9e5396f8f510b09a13e1bbdd4f4239ca337beab1dfafc",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0069",
+      "hash": "4d5cb2d78966fc64061b2bfd4240c113e7f5c3034fa305128f7ad2a8f8f2168e",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0070",
+      "hash": "5a02b2a643938fc795a55d857dda884f13b3347b995be8235b8cb0214debc5b3",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0071",
+      "hash": "a4b663e8c752a1b4731b1a3de625c7da496e53a089809ed28f149dde7490c60b",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0072",
+      "hash": "8bab8d3882d757049e7f28664335e0ac08359cd1a8dfd9f0ebf2108abb9d0db9",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0073",
+      "hash": "d4b1663fdc1edc11ed21ca9db04aaae24e73b15fee09948a966664cdcf29e12f",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0074",
+      "hash": "980458d95faffeca27f27e730989161aea7de40eeff6505bff4836df58c9bda3",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0075",
+      "hash": "3630ab77994ff5723f56debfbebc95c50e5a2838d46cd837e8b8236388b4f90c",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0076",
+      "hash": "dcd1d0fb9d976574339b5deba9a5ea83cb09d32301cfed80687c6e29c4d27aa4",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0077",
+      "hash": "4f584b1bbd3f8cbfccca53cbde5e1ea00c84bbed52d3859c3287d059d64aeb91",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0078",
+      "hash": "ba6b1dbc228701c57b2d2b519c5b089ae24249ca7d1dc175576dc51abc814ede",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0079",
+      "hash": "792904aed1cf6b93e151f727816ae9163b0511ef345f933489cb489947aeb24d",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0080",
+      "hash": "8b2bdd012ec1f7f32debc062fd9c80f48a5d298f3cd8a7943ef412e7865d1c76",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0081",
+      "hash": "88217bbe044341be32ef58bfe2585dc3f94151edce2059385f3b6cd74c7a76c7",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0082",
+      "hash": "763ecbc4fefa6cc9fadcb819760ee2c7e724991b378b52f1971ea425d0187c36",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0083",
+      "hash": "f07bcce6e05854d81231197111194f5ad552be3208eead93985cab463ab0b3cb",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0084",
+      "hash": "a564a419a5121d4e82401f08cf1c698b13ca1be287673050f75cf9b38f58d333",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0085",
+      "hash": "fdf07972ad675dc792d2735e2ef6ae459242ccaca85937fd2e8388dbac8c59e2",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0086",
+      "hash": "09f8bb8cd042c755b12d95eae7cf297281f11c03fe3605c9882ea0fe86765bac",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0087",
+      "hash": "899049bf6326f89a4d6f6f7efff4369513875aa682f0b5769748a76bdd490993",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0088",
+      "hash": "e5b0cdf45928bb0fd159761ae93854e865ef4902b9d41195920ad4c5311a2f24",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0089",
+      "hash": "2236bbc7c61709d3d1805cf60ffa318eff571ccb9fe3d93720eaca8cce38eea6",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0090",
+      "hash": "92c56d6b98d818044e8e47842fd011793a7527b8ab5c518ad217fc85a0a182f7",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0091",
+      "hash": "9be1a905d191c99182b97ab92b14fa76b1c0f3eac1a420075b9651a162562221",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0092",
+      "hash": "98db498c98dc856435b836078307a0f651cdd9158965b9ee30d7b95a4b56af27",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0093",
+      "hash": "90aeed38e28928b6e1e9053cb849eafe461e801405b032bacb61f0b650ddf212",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0094",
+      "hash": "46842d447bee772c3f10b1acd056b2928dbd3bb090904b93f0c1ac4a22c6859a",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0095",
+      "hash": "32ddb287ba039e58d76d672f4112f69d3129c883462792a9b0c8be7169edceab",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0096",
+      "hash": "d7b2addf31931d1209aa2ee082c6502f83a24203950e349a6e4d1fb7bc8b9fe4",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0097",
+      "hash": "c458344ea640494a1fff26f7de4b02756be110f3be8cd71ec5c21afc21a38d4d",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0098",
+      "hash": "56729573d59f73462ecb3a82c4ed6eb812751828f9a03045d401ba5b6a6be9ba",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0099",
+      "hash": "afa4dee7be1e404dc56e1277338ab97c37e51badf6e130a709fba29d1c9f9775",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    },
+    {
+      "id": "expert_0100",
+      "hash": "f5c21c4d8e848f24ab92ecb9d3421553feb9b3653a7c3f1291eef97babcadb25",
+      "score": 28,
+      "steps": 7,
+      "clues": 25,
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "xwing"
+      ],
+      "classification": "expert",
+      "errors": []
+    }
+  ],
+  "invalid": [],
+  "reasons": {}
+}

@@ -37,11 +37,18 @@ def solve_human(puzzle: List[List[int]], max_steps: int = 1000) -> Dict[str, obj
     board = deepcopy(puzzle)
     candidates = init_candidates(board)
     used: List[str] = []
-    steps = []
+    logs: List[str] = []
+    applications: List[Dict[str, object]] = []
 
     for _ in range(max_steps):
         if all(board[r][c] != 0 for r in range(9) for c in range(9)):
-            return {"solved": True, "techniques": used, "used_techniques": used, "steps": steps}
+            return {
+                "solved": True,
+                "techniques": used,
+                "steps": len(used),
+                "logs": logs,
+                "applications": applications,
+            }
 
         progressed = False
         for technique in TECHNIQUE_ORDER:
@@ -50,13 +57,35 @@ def solve_human(puzzle: List[List[int]], max_steps: int = 1000) -> Dict[str, obj
                 progressed = True
                 if result.technique not in used:
                     used.append(result.technique)
-                steps.append({
+                application: Dict[str, object] = {
                     "technique": result.technique,
-                    "affected_cells": [[r, c] for r, c in result.affected_cells],
-                })
+                    "affected_cells": [list(cell) for cell in result.affected_cells],
+                }
+                details = getattr(technique, "last_details", None)
+                if result.technique == "forcing_chain" and details:
+                    application.update(details)
+                    logs.append(
+                        "FORCING_CHAIN_TRIGGERED "
+                        f"depth={details.get('depth')} "
+                        f"cells={details.get('cells')} "
+                        f"removed={details.get('eliminations')}"
+                    )
+                applications.append(application)
                 break
 
         if not progressed:
-            return {"solved": False, "techniques": used, "used_techniques": used, "steps": steps}
+            return {
+                "solved": False,
+                "techniques": used,
+                "steps": len(used),
+                "logs": logs,
+                "applications": applications,
+            }
 
-    return {"solved": False, "techniques": used, "used_techniques": used, "steps": steps}
+    return {
+        "solved": False,
+        "techniques": used,
+        "steps": len(used),
+        "logs": logs,
+        "applications": applications,
+    }

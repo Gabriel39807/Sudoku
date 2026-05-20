@@ -1,0 +1,1711 @@
+{
+  "generated_at": "2026-05-20T10:38:04",
+  "scope": "evil_0001-evil_0100",
+  "valid": [
+    {
+      "id": "evil_0001",
+      "file": "flutter_app/assets/boards/evil\\evil_0001.json",
+      "hash": "4c052627e1f448801ae643a1bf247a726c537e8ed7e06f99a3a2d93e146af821",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0002",
+      "file": "flutter_app/assets/boards/evil\\evil_0002.json",
+      "hash": "0a5e752a95fdc97b861580fc7841aaadbef92f592dd6a6620791d1f78260685b",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0003",
+      "file": "flutter_app/assets/boards/evil\\evil_0003.json",
+      "hash": "cf25f498458b5576402303a767178ec0697fc52aafd4fc4d75640c7e12eedeea",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0004",
+      "file": "flutter_app/assets/boards/evil\\evil_0004.json",
+      "hash": "e9b28f3cb4efe0bd1a59d707817a587797303188ee52752d1002fdfbf674c4b8",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0005",
+      "file": "flutter_app/assets/boards/evil\\evil_0005.json",
+      "hash": "845ff58dc3e04a8ed142f1f9929e8bfa252209084ef85f0eada9f65dad12d9b4",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0006",
+      "file": "flutter_app/assets/boards/evil\\evil_0006.json",
+      "hash": "326d5009a7e4ba767aa9bbd2f8e28c9c99514b35ee237a72715f0dc13e86e1ba",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0007",
+      "file": "flutter_app/assets/boards/evil\\evil_0007.json",
+      "hash": "4f93273f853006f2dfe03a41ff2957ef9fc07f327168b99e622512d7f13ed5e8",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0008",
+      "file": "flutter_app/assets/boards/evil\\evil_0008.json",
+      "hash": "b245c6d5cf406f09634c6458d62ca735ffbf392819653670065633c1d88a932a",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0009",
+      "file": "flutter_app/assets/boards/evil\\evil_0009.json",
+      "hash": "301409fa4134667d6a313e246968558d62a1b6e2c378ce1e3d974eb0cddfac8d",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0010",
+      "file": "flutter_app/assets/boards/evil\\evil_0010.json",
+      "hash": "ae324283ad390188412a9ddfc934fe45ae799391caa51d8ea51368a55e2eb5be",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0011",
+      "file": "flutter_app/assets/boards/evil\\evil_0011.json",
+      "hash": "81bb54a176711eeae562a86ae32690ce083ec859452bf00d1dcbfbaf021bd9e8",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0012",
+      "file": "flutter_app/assets/boards/evil\\evil_0012.json",
+      "hash": "67fa7a296c312de5cb2ee991fc91e05e70f335bcb3d2f6035a832d21f1956f3c",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0013",
+      "file": "flutter_app/assets/boards/evil\\evil_0013.json",
+      "hash": "0835aacc49fd88606d3c2aa1c8f9d8e54ce9a914d51e4f3d079d44abd7ec1620",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0014",
+      "file": "flutter_app/assets/boards/evil\\evil_0014.json",
+      "hash": "6319e98a1a549cb6e398b630f8230671e8928c1c59dc08506621e1f6364094d2",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0015",
+      "file": "flutter_app/assets/boards/evil\\evil_0015.json",
+      "hash": "22db9ad0b336daefc07d990b4bb16b68f0efe6c4226b50018c0208c7f8cfeab7",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0016",
+      "file": "flutter_app/assets/boards/evil\\evil_0016.json",
+      "hash": "c0fc1c84848f38488ac9415124ab13a57fbd649cdcfacc0a562229320732e560",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0017",
+      "file": "flutter_app/assets/boards/evil\\evil_0017.json",
+      "hash": "afa744fec43ff14c803e7a8de3bfa8e4c2407f71dc367c1b8fe44dad12b1638f",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0018",
+      "file": "flutter_app/assets/boards/evil\\evil_0018.json",
+      "hash": "72e9726a8b3e016d7d6ddf3311f66c12a02db0c59f71c014e2826eedc2a13603",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0019",
+      "file": "flutter_app/assets/boards/evil\\evil_0019.json",
+      "hash": "973a93372052eb75d639cdccd526c8ef06fe5e5fac92f6cf206c90429d9d2396",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0020",
+      "file": "flutter_app/assets/boards/evil\\evil_0020.json",
+      "hash": "44117f0e2d01cf0f4ce839c363336fa6b3ed01a946e4873b1566b9276ce5bb0c",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0021",
+      "file": "flutter_app/assets/boards/evil\\evil_0021.json",
+      "hash": "b902f1376ff929accd62b4e9194d5c2cbb220035f95723cc14e8ef2579205de3",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0022",
+      "file": "flutter_app/assets/boards/evil\\evil_0022.json",
+      "hash": "370b2120e28c5468591efd0a5d4b5ebdcc60f81fd7f8d150b490b886f1a4e534",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0023",
+      "file": "flutter_app/assets/boards/evil\\evil_0023.json",
+      "hash": "774611ba4f622718281635bf87e8e3fced5f4465fafc9f4821b5e156cd5c1927",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0024",
+      "file": "flutter_app/assets/boards/evil\\evil_0024.json",
+      "hash": "1e12c1d8d3c4b468f72b446bd4213990b0482e5770153f4512d6e5161332a79f",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0025",
+      "file": "flutter_app/assets/boards/evil\\evil_0025.json",
+      "hash": "4e5cafe300f34b701b89148fac80b5e9e2b6fd4071bf6634ceee672da1a63c34",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0026",
+      "file": "flutter_app/assets/boards/evil\\evil_0026.json",
+      "hash": "6d3572017f9f83b5fb2b681d5b747242635b07948130cc3d228502ad3b370629",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0027",
+      "file": "flutter_app/assets/boards/evil\\evil_0027.json",
+      "hash": "ab477c4700be0a6b224facb22f329579c1db53d83f34cccaaaab0f068384cfed",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0028",
+      "file": "flutter_app/assets/boards/evil\\evil_0028.json",
+      "hash": "6d932a8c0649bcc7638b30b50f9b89ba03c8faa558a01f4d76874b64a476ce9e",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0029",
+      "file": "flutter_app/assets/boards/evil\\evil_0029.json",
+      "hash": "c26c910007ceedb2ae0d819263ca131306b9ae4bb34b1ad2cf071e274fd5ab51",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0030",
+      "file": "flutter_app/assets/boards/evil\\evil_0030.json",
+      "hash": "e842bb24cc697b871d350f37c4c88c598dc64786f2338562b97995b31a5853e1",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0031",
+      "file": "flutter_app/assets/boards/evil\\evil_0031.json",
+      "hash": "285890805af16adbc3c7e6138f3efaa43aabb4e5a247d098849ba9d2acf1fff1",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0032",
+      "file": "flutter_app/assets/boards/evil\\evil_0032.json",
+      "hash": "055488db83315c7e1697691a81645d8380b1efc98b93df22f180f5af89c29b90",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0033",
+      "file": "flutter_app/assets/boards/evil\\evil_0033.json",
+      "hash": "6e3bcd2abd9d414aaff671d87fc46f4326d0c2964e4f712516dba74121a95373",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0034",
+      "file": "flutter_app/assets/boards/evil\\evil_0034.json",
+      "hash": "48be80d788b81b6ee602f5f9294320680455985f26a1a82c947071655f252207",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0035",
+      "file": "flutter_app/assets/boards/evil\\evil_0035.json",
+      "hash": "2d9d712fac5c5fb1cd71ffe8f7f78f2f2f1f379308c4064d14bf84139cd56f3b",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0036",
+      "file": "flutter_app/assets/boards/evil\\evil_0036.json",
+      "hash": "1c4e2a5721e947b478c7867e8850a3dbd9de32f260d4b9952b6902931fee5df0",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0037",
+      "file": "flutter_app/assets/boards/evil\\evil_0037.json",
+      "hash": "f30f0145157f70e65010408691c3f67e4f2ecb71d217dc4be3193d38f4741c7a",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0038",
+      "file": "flutter_app/assets/boards/evil\\evil_0038.json",
+      "hash": "2a9b875acc26ebb9dd7cd26cd21315390dae7472ce163bcd0d0a06730b54ec83",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0039",
+      "file": "flutter_app/assets/boards/evil\\evil_0039.json",
+      "hash": "913050b696568b57e02a7dc346163f65ee34183e60a02fada663be629418a08d",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0040",
+      "file": "flutter_app/assets/boards/evil\\evil_0040.json",
+      "hash": "aacf06ad7dcf36e92efd97bbff974f3d7dc999c5b3a717bf77e44bb28cbe28ad",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0041",
+      "file": "flutter_app/assets/boards/evil\\evil_0041.json",
+      "hash": "0b1aff81217718f3b21be0772a929c94abbb32379e7c26ba641e85aebe7daf94",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0042",
+      "file": "flutter_app/assets/boards/evil\\evil_0042.json",
+      "hash": "e3072ca85a4e61e6e0af2ef3050caee7835d1e796419c4dc04b5d0213970f405",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0043",
+      "file": "flutter_app/assets/boards/evil\\evil_0043.json",
+      "hash": "07b623c8f56d00eb14e9c4ea143057824349cd10e79c7a295809d71e678d6eaa",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0044",
+      "file": "flutter_app/assets/boards/evil\\evil_0044.json",
+      "hash": "2fea547eb59d8d2e944c503276328c6164cb38bc45979df2146fcffcc03d537b",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0045",
+      "file": "flutter_app/assets/boards/evil\\evil_0045.json",
+      "hash": "b8c0ad07eb98e7d30c512ecff99541828b602a7d11771e0a79f8880fc8997001",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0046",
+      "file": "flutter_app/assets/boards/evil\\evil_0046.json",
+      "hash": "f73f446284e41143ad1c81d06dba4d32ae4765de623439dc66afc16028f90656",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0047",
+      "file": "flutter_app/assets/boards/evil\\evil_0047.json",
+      "hash": "8d78f0b2b5d565a03b8108ce90385b28aa3f004257f924a45d0e58c49146c4a8",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0048",
+      "file": "flutter_app/assets/boards/evil\\evil_0048.json",
+      "hash": "e0361b5adc5a535914c0db0550a2fc5b23e6891dbba63cf57f6aa86061b9eac2",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0049",
+      "file": "flutter_app/assets/boards/evil\\evil_0049.json",
+      "hash": "b8d706a7cbec1b888fd2b2d4f9fe0df3dc56f75aeaaf4f0401301d74469f845d",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0050",
+      "file": "flutter_app/assets/boards/evil\\evil_0050.json",
+      "hash": "2824c41d0d913aa516bc87b86ed7b8d142662ed56fe54aea9b0c04c52b224bd8",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0051",
+      "file": "flutter_app/assets/boards/evil\\evil_0051.json",
+      "hash": "249c82fc6032abbfeba036eca898cff1a551a10b18e6dd71bd286a7174aec3ea",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0052",
+      "file": "flutter_app/assets/boards/evil\\evil_0052.json",
+      "hash": "e28a6bc67f934b48c56a962d651ba75881823e7536f5ebff9a84778a292db65a",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0053",
+      "file": "flutter_app/assets/boards/evil\\evil_0053.json",
+      "hash": "0d363b868cfec1ca1e7d7d455d80fc4d315bf58ce763812d20b732822eb9879b",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0054",
+      "file": "flutter_app/assets/boards/evil\\evil_0054.json",
+      "hash": "78177de852737fabf97f9c4492cc9d1270a20f59c3ebcfd7959cdef856e508f5",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0055",
+      "file": "flutter_app/assets/boards/evil\\evil_0055.json",
+      "hash": "277ac2c36f1bc58b1fefbea9e26a1f1c85c0def126442dab0b9f32743d662e8c",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0056",
+      "file": "flutter_app/assets/boards/evil\\evil_0056.json",
+      "hash": "e6740e64e1733d1e7b2776f82de69f38647890ba61ecbf4d936e7773abcdde31",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0057",
+      "file": "flutter_app/assets/boards/evil\\evil_0057.json",
+      "hash": "3a6702a04012c105f98ea3f8c1635f92e05c04213421026a75475e3a531f9bd4",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0058",
+      "file": "flutter_app/assets/boards/evil\\evil_0058.json",
+      "hash": "fac8d906b673a16d75830d5c4590b21c95020844ebf89f7028f3d97a4f294369",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0059",
+      "file": "flutter_app/assets/boards/evil\\evil_0059.json",
+      "hash": "fbdf51edb96e0317dab0bf6b8a3511d0b63cdf69fce478d6d7e2e712c470e317",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0060",
+      "file": "flutter_app/assets/boards/evil\\evil_0060.json",
+      "hash": "726bfaaec6a42135c227d43b2465df856d76d9be9b5390be5a503e8e352e4d21",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0061",
+      "file": "flutter_app/assets/boards/evil\\evil_0061.json",
+      "hash": "e8e8c191b4e1512a9696bd1ed4efe8fafb041b429aa004546c32bf811228c0a7",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0062",
+      "file": "flutter_app/assets/boards/evil\\evil_0062.json",
+      "hash": "659964414f885322d1f22fbb2817c6c5887cac04597a094f3e105577cfe16283",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0063",
+      "file": "flutter_app/assets/boards/evil\\evil_0063.json",
+      "hash": "c657a4586d7ed52cef7c25094669b163874d270a6e6115922d7e70cee3a25107",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0064",
+      "file": "flutter_app/assets/boards/evil\\evil_0064.json",
+      "hash": "b99b2f190384719a93dc14fd6b1c39cfa68ca55b4827fa4deba2c98613a143e2",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0065",
+      "file": "flutter_app/assets/boards/evil\\evil_0065.json",
+      "hash": "2aaa6ed9efb7b6b9f7d9e17eb909b3b03498a72686c625f830182c8760c6ff4f",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0066",
+      "file": "flutter_app/assets/boards/evil\\evil_0066.json",
+      "hash": "8b1c0d7eb2ebfe65425339bc9288066da1bd5c440d074a02a48907c94742e8eb",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0067",
+      "file": "flutter_app/assets/boards/evil\\evil_0067.json",
+      "hash": "bb6aa2165cea05ff7b496e06b6f62113f72a009cbb2cc825ba97b8d2fdc14539",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0068",
+      "file": "flutter_app/assets/boards/evil\\evil_0068.json",
+      "hash": "1abd6d4122ed52c382842372669346b867177643d3886fe15ef25bb3a05fca22",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0069",
+      "file": "flutter_app/assets/boards/evil\\evil_0069.json",
+      "hash": "60b27d5b1184b34551d869335ab902878b9a82ebf923849f12792d41a5ee8378",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0070",
+      "file": "flutter_app/assets/boards/evil\\evil_0070.json",
+      "hash": "859bbc698feaea1eb4b6fadfe50138029a05e7070e621987c96d2cb9f34848a2",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0071",
+      "file": "flutter_app/assets/boards/evil\\evil_0071.json",
+      "hash": "49daf8a3ad98536ed73061ad562a484f5fcfccfcd79fdceeba6a14478cff73ad",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0072",
+      "file": "flutter_app/assets/boards/evil\\evil_0072.json",
+      "hash": "72b358945498285253e17f975c4e395df8ebc3017a1a05b0182347ca759e3916",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0073",
+      "file": "flutter_app/assets/boards/evil\\evil_0073.json",
+      "hash": "536ad0cb2046ced1e1c9ed8a741194134eadeb9acc405be20929827c0ea12aa7",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0074",
+      "file": "flutter_app/assets/boards/evil\\evil_0074.json",
+      "hash": "1256f1298af894118ef30beb801792a1110504aae4a1b14c0b758924118854ed",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0075",
+      "file": "flutter_app/assets/boards/evil\\evil_0075.json",
+      "hash": "c403cccc5666f45807fa9c3d84dfcd23cb960d15d155275fe423306e37bf6198",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0076",
+      "file": "flutter_app/assets/boards/evil\\evil_0076.json",
+      "hash": "42578373cac976793a6cee17e625217b8a7e641130c18e4a7fa70a14532f62bb",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0077",
+      "file": "flutter_app/assets/boards/evil\\evil_0077.json",
+      "hash": "35031aa13861d5794e3fe4e3b32eba21db77caa9c8c2f2b599f4c3d29c5a9abd",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0078",
+      "file": "flutter_app/assets/boards/evil\\evil_0078.json",
+      "hash": "c166af6f0405e9530a2b7fcb5889fe02b307bb9bfbbc3e91de45e8d8945e6036",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0079",
+      "file": "flutter_app/assets/boards/evil\\evil_0079.json",
+      "hash": "6baa5f74a3ffb37dcafe4d5090df35cc68a6c35b6403002895920c0199a80853",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0080",
+      "file": "flutter_app/assets/boards/evil\\evil_0080.json",
+      "hash": "753137027c4d63e85d2136ba6066c911dbf9eca533716f735f132141b5d87219",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0081",
+      "file": "flutter_app/assets/boards/evil\\evil_0081.json",
+      "hash": "a503eb1a13450036cb439e52f4c854f158553643d72b36d20c19d45ec6ce66e0",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0082",
+      "file": "flutter_app/assets/boards/evil\\evil_0082.json",
+      "hash": "3c02d243e690dd950424afee430b35c1c2421281eb0fcf5ece17025b681d5967",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0083",
+      "file": "flutter_app/assets/boards/evil\\evil_0083.json",
+      "hash": "474c52c9d6ba1ab39a4490ca2d51cd7cb957db54544649e950be8d7f02bf142a",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0084",
+      "file": "flutter_app/assets/boards/evil\\evil_0084.json",
+      "hash": "607a48528566f0ef3d2a724b855188da91ce718e5f3d7d32ede82ccc82fc4bcf",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0085",
+      "file": "flutter_app/assets/boards/evil\\evil_0085.json",
+      "hash": "8f2898bb82d8b0324142dcb5091dd5509e82e0f7ae1dd2e58052a72315bd8e29",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0086",
+      "file": "flutter_app/assets/boards/evil\\evil_0086.json",
+      "hash": "07f0ebe25ff8407d0cea8f1ab6a7f4e615ff6de973985f9bd61d0bf8a8565a7c",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0087",
+      "file": "flutter_app/assets/boards/evil\\evil_0087.json",
+      "hash": "459dac9af1bcde21426e4e2a65a4da6d0fb41b23f7bd25627fa1cea7d7a270ba",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0088",
+      "file": "flutter_app/assets/boards/evil\\evil_0088.json",
+      "hash": "120b72be12de9945d900664b203330a268baf6f4d97e503ccb4ef51fc54799c7",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0089",
+      "file": "flutter_app/assets/boards/evil\\evil_0089.json",
+      "hash": "9334a4585e88c879551c5ed7fadb70e0000852f7949b87b785bc501a13988f5c",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0090",
+      "file": "flutter_app/assets/boards/evil\\evil_0090.json",
+      "hash": "c6d83d58c49c90f0bf6dcb2a5e34a19e66f25258a95371c16700fd0c8f601abc",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0091",
+      "file": "flutter_app/assets/boards/evil\\evil_0091.json",
+      "hash": "e2ceeb87c088f59fbe3b904cbe57672c64485dd540a88199e6c16171caedff70",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0092",
+      "file": "flutter_app/assets/boards/evil\\evil_0092.json",
+      "hash": "ab610135323eb91c7555eaf8a0ee598b096ac0996e88864d4c91ec5e78f56cc3",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0093",
+      "file": "flutter_app/assets/boards/evil\\evil_0093.json",
+      "hash": "b7384a62a10f2762a77fecfd79d2473e5e36ef515cd6d354f1a9052586a20f50",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0094",
+      "file": "flutter_app/assets/boards/evil\\evil_0094.json",
+      "hash": "6503fbbe077bac0945f680a7e74b12c69ccc9bcba870d6598440517adf051af8",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0095",
+      "file": "flutter_app/assets/boards/evil\\evil_0095.json",
+      "hash": "c1c0f91b4df83ebce4b762120e44347c720781f97879bb127f2112be18e9b91f",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0096",
+      "file": "flutter_app/assets/boards/evil\\evil_0096.json",
+      "hash": "880fa8c92ca25ce6dde0835869e26219ea2189496c63d7997cd254dd382b6d79",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0097",
+      "file": "flutter_app/assets/boards/evil\\evil_0097.json",
+      "hash": "0d70b30b530dd06a5426d6cbf42a09d9985d2c3951bfb69d2450c2be58f84426",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0098",
+      "file": "flutter_app/assets/boards/evil\\evil_0098.json",
+      "hash": "a3170a26c28aee676f21338fc9852a3c49c43276f5cb7aad5699c73a07383b0a",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0099",
+      "file": "flutter_app/assets/boards/evil\\evil_0099.json",
+      "hash": "3c8ea7d1d3fa4c3e3d7c93eea83c2579b23f5ad93c697b48fd284a73c0aced30",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    },
+    {
+      "id": "evil_0100",
+      "file": "flutter_app/assets/boards/evil\\evil_0100.json",
+      "hash": "a4cc9d585cdbec7e1988e4608371e92c982d6281f5d99ebc6110321d127ceafb",
+      "score": 40,
+      "steps": 5,
+      "clues": 26,
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "swordfish",
+        "xywing"
+      ],
+      "classification": "evil",
+      "errors": []
+    }
+  ],
+  "invalid": [],
+  "reasons": {},
+  "duplicate_hashes": {},
+  "duplicates": 0,
+  "misclassified": []
+}

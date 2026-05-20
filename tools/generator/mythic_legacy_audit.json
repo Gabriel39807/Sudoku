@@ -1,0 +1,2515 @@
+{
+  "generated_at": "2026-05-20T11:03:00",
+  "scope": "mythic_0001-mythic_0100",
+  "valid": [],
+  "invalid": [
+    {
+      "id": "mythic_0001",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0001.json",
+      "hash": "6a142d6bd1cf05ffd2edfe8b16fdb55c517653556050f5212313369521240cfc",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0002",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0002.json",
+      "hash": "6771dc740e8d5b7e653d71879f0c2daef8ca0cf4926ae98598d4dbba3192f991",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0003",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0003.json",
+      "hash": "4f9329e547e775443983c1f37eaac04610ed5f8ea1972166a1c2af85856a4c8f",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0004",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0004.json",
+      "hash": "447d9d21718498912205776b80c2a24d54070a0445032553e4569a61668574c9",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0005",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0005.json",
+      "hash": "2798426a1ea54cdc6034685bb778b45e2b4cc9630e1c5213d9be3dd51537b657",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0006",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0006.json",
+      "hash": "91303b5a9b753088062bd9f3dfa88b96f3f8891afdda06f26309739569f1b433",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0007",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0007.json",
+      "hash": "af7287e2e97819216d11958b0614daa7588ad406f5ab50d8cabfb748993d40fd",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0008",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0008.json",
+      "hash": "447c39cf78cd5a559b36e72fef5243427a55959b3f3183071dfbe052754fa1c7",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0009",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0009.json",
+      "hash": "0e4fcf0b1c25914dc4d75ac5a2a41272bad14bbf2e2f3ee804d232b2d0cbb159",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0010",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0010.json",
+      "hash": "91ea1ee571ec680cd5f6e4250e2a4f82b78185cd3dedbefc674dacd55e8fa3d3",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0011",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0011.json",
+      "hash": "f0cb6ee429d8f06afc566b26f8c068885e04e10dd9edc81ffa201e5eedccce57",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0012",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0012.json",
+      "hash": "eb7a609b40a2d23486280d3d892e4fd2b97b04ee0895e26d8b160e1861f6f5cd",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0013",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0013.json",
+      "hash": "f295b72c38697eca5226ca82c1324d52e33b7697f6a5497881cdc4c4578ab610",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0014",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0014.json",
+      "hash": "f0e16b51c5ae55faedc358675924ad2dcf537c1bbe05fbf8a2f5491be06ff63f",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0015",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0015.json",
+      "hash": "d82ed4297172626153263523d0d934290f13e6ce7b8beafc3df78cc7457b99ae",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0016",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0016.json",
+      "hash": "986264bd9794eb4fd491f2882ea8241691c3a0230a2ec0ed992014f805dc55c6",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0017",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0017.json",
+      "hash": "bcc25a3a4944d59500573b9ba7dbfe0c3e5e5b52b5bdac8d2238973494a58414",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0018",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0018.json",
+      "hash": "72fe7efaec029a6028bc20f3e32a76342c70667235339664afdf6559db30f8fe",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0019",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0019.json",
+      "hash": "8da2d377a9b711bbbb2e5d95d0541d0062adbc274a0ee609d8d496e33c1e28f4",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0020",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0020.json",
+      "hash": "8dcea154720cd91ff1615f380ee0a3c7c1cde368e6b4341c90d7f47c5db429a6",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0021",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0021.json",
+      "hash": "facb1bd5b78af22fc8c5005ca6b38c9eaf78ac678c78b35c5dcf2ef379d1c0b3",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0022",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0022.json",
+      "hash": "1f5d3114576a8582bccfa06b5a1fe65504b5474c08ad2d53ab9a538fef4678ff",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0023",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0023.json",
+      "hash": "a9a121e993b0b2aa3337fc5a417363729d2cc573c26f6c99e4b1ef9e837806ca",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0024",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0024.json",
+      "hash": "d79a624c2d821f73065478588aa21a579446333d838713c6b9521e40e52946dc",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0025",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0025.json",
+      "hash": "ecac8dfc267736c4cb5e65897cc86d8b8dbe4c47da580c18e9288fcdbb6fdb8d",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0026",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0026.json",
+      "hash": "5bb648fc4d6714193dd34a489e73a6c18dfbad91f0e57c06f2efdca9263fd776",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0027",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0027.json",
+      "hash": "0f8150d1a9d96b6a0761b23f80b5c88ce39fb26e1982aab955805edd33ca84f7",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0028",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0028.json",
+      "hash": "f156c5e3fea89ad29780705cb6f4c1c8e53c2cafac4900cbf2ac496b9089c4ba",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0029",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0029.json",
+      "hash": "4026aa7646b3e7a8cbf16476a48a9583cc0e16d345538495f90e40b0ee357ce0",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0030",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0030.json",
+      "hash": "95c3f10473333a869fdb18d8d035f6da9379f3e0b9d30923039fefcfad63b359",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0031",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0031.json",
+      "hash": "5f1ba6469e653863e8925681e06d18d77e709d541d82bc36babd80b0b8323535",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0032",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0032.json",
+      "hash": "03f0ef52934161e9439a77175bc3b13ccc98b1942e20de949018ff62bd7a8002",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0033",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0033.json",
+      "hash": "fe12bf05474a2686e244a434638a26b14e6d99e56b5bf75413c1fc5ff850938d",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0034",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0034.json",
+      "hash": "89a78d980a08753323e9c7ac3f87fb5c40a3d5492a279698878cbc552de76e14",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0035",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0035.json",
+      "hash": "7dd5aeb73f634619e119b25a5b818c55799fdf9b481c8f26e2b77d6093cb28b4",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0036",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0036.json",
+      "hash": "75605ab9b8915eb5d992ef66d857ddad95d99de5c58be6947b082af44d8bd773",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0037",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0037.json",
+      "hash": "03320dc7bd7a4c492398fd401443cf45504ac19bf08d0682aa28ff6047bdfb57",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0038",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0038.json",
+      "hash": "1fab36432e9a63253c302adb118faf686f446d3face31c46a1c55d72e19a780b",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0039",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0039.json",
+      "hash": "bc443c7a86ad86bceb9cfa1e0d995945a182effb0fce28a173bcd2e07b36e3ff",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0040",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0040.json",
+      "hash": "e126372f8b961f494b60892aa696ff10eb9eadf7baaf703fd4dc08de866fd773",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0041",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0041.json",
+      "hash": "ccdb6d949be0d9c6193b86973963b3544993d3cc63df877a30d12c2de87d8cde",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0042",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0042.json",
+      "hash": "27f1e221479c949b8e49fc3b3c673501047bd12814a1062e1a53549347270cd3",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0043",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0043.json",
+      "hash": "86b6dd3681ea41396b5a10a2e9b2db1f53363ce11bbc8f99d36cf2c71a40125c",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0044",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0044.json",
+      "hash": "6bad9736b03d42145c36b5de89b795bd55d9c228189fb6a154e89701fa8ffd02",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0045",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0045.json",
+      "hash": "4c1337c2b4c7678ed106d033a3b250674680cb276a02a679273b8c933fdb55a3",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0046",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0046.json",
+      "hash": "a59e98d7143633b3cab4e1d1207f7dd94f8603cc419160b75593a19b38275326",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0047",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0047.json",
+      "hash": "39e488b5ab8637dbf232e896e318ec92f1b614f78cfb2e72e8c958d3e78895bf",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0048",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0048.json",
+      "hash": "2095587fddd0f1e55f4dbdd11f715226d96d7b499ae6c02d695f666b5b2c22e9",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0049",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0049.json",
+      "hash": "7e5c71a660c852faa4f5724a91a6d8e51634a7c0df36318547f9693743c2d2a3",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0050",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0050.json",
+      "hash": "5214d4017bd713d76994f2fe9b903565d59c753b0942c8cb7cbc7dd7448c35d7",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0051",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0051.json",
+      "hash": "05311eff950c5ecd98567f957e7e66525c3a3a137eb8a46691f8d3d681a9efc5",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0052",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0052.json",
+      "hash": "7362632ce57369481b49133d35a9fd65f4fb59499417be6a7466137d6ece6b83",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0053",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0053.json",
+      "hash": "8366d4192da976c03a4be193936e40d09569a3c8642a42d1f2aed4874de509b4",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0054",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0054.json",
+      "hash": "24573b92cb2e30fb8486215604cfbb16610377180c0d5b92be327284575744da",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0055",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0055.json",
+      "hash": "bfad3627e3e6835e2d20fd6540fbe2550e98e2e84d52608f623d498052009958",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0056",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0056.json",
+      "hash": "5200b6965f538c55293ee5a7046775b1c17718a762d65557190a5600e24c8ec7",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0057",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0057.json",
+      "hash": "5c58625d8c3053e71f70409a9eb7ad009e6311dc4222c6fcaec244d9d1b5656c",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0058",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0058.json",
+      "hash": "3966b77620cb122526c7716c0b8626907671d1da0878d06ec248c79447ded38b",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0059",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0059.json",
+      "hash": "f7027122a7d890f0222a21d15d5c3d3babc210103583628aef256b91be50879d",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0060",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0060.json",
+      "hash": "9c2f8033d681520180e0d60efd2f748346e4c13938272d1d48cef5057ed68f3e",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0061",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0061.json",
+      "hash": "32c5e8a384bef5d9a96360cc378eed738dcbc149eb1cc31f60894fc7d1522f73",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0062",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0062.json",
+      "hash": "c465a8252ad7014dcdbd5f4d1f00a70d0126ca33ad7936051cec09cec54fae61",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0063",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0063.json",
+      "hash": "c871256a8bb13a8b0688c8228f613da340c179371efcdb018cf5c5e4003ede9a",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0064",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0064.json",
+      "hash": "d4f13f23be27ed01b155c9bc1c11f921c9d1824217a0a920d53947a9cf2cf911",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0065",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0065.json",
+      "hash": "1112a4b4b6994b4699ba7ec913fe374d1810e10f8e4ea640e371bee9813bcabb",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0066",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0066.json",
+      "hash": "dd53e1cc371b0628d0853953da8f56c66abcbf5a866a8c2ad6c9bb3fe67b5c20",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0067",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0067.json",
+      "hash": "e38c2aac1f7fabca66014b9883dca28fb25701e326813e83c68b2de535595c9d",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0068",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0068.json",
+      "hash": "01864b6a598fbafeb032bcec7693562c6b4380b74459bbe522abb27c3ee78a43",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0069",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0069.json",
+      "hash": "43bef1fe352244671cc1bb0c0143949b0195a16d503c50870208621488cfa060",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0070",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0070.json",
+      "hash": "b0ffb3a1c0c1f4a9d252511f7e4a69aaef4a5831a3625db6580766b7a0501b1a",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0071",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0071.json",
+      "hash": "d007176ce06d9b9697b0cc2f68ad5b46c03288c7af2aa94e18f287b28e9c85cf",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0072",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0072.json",
+      "hash": "b9196eb9ce48db93ffd0a58352073f08c7eba2663ad2148ed632a0bb871d1402",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0073",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0073.json",
+      "hash": "eec7fcdb996575f47a8bca6bbea74c81c4907696f182c22fae50235b97a1ad44",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0074",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0074.json",
+      "hash": "6624f4d2fd52abda02ccaede677982f1766551495f3e97e42febfb91fef6754a",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0075",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0075.json",
+      "hash": "34fe3ad5941a029fd7c0765e2fddb94e15376840bd59a271389c24f8a1730689",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0076",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0076.json",
+      "hash": "21829bb2ec1ed34b9d4758a7312fe56f6220097dcee7c72ec59384ba5b29c01a",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0077",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0077.json",
+      "hash": "f7964884ead3d11b8c288d5364c15f62ae7da42cbde70c9828aab3d1cbe43346",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0078",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0078.json",
+      "hash": "bb47e9047a5f8071a225ffbfbd8f5c47d11b46015de21a11cd21cc2efbc81cae",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0079",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0079.json",
+      "hash": "a50aefe61dc1845888d88bd7492c35cefadf98b9b4406a04ee28546534cf7ed9",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0080",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0080.json",
+      "hash": "d9ecff0dcaafb33d15721b5c3b372c4e940d652305c7ec0511d6a6cf58ac5973",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0081",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0081.json",
+      "hash": "28810afc249d4b243f56b597101561fe8d33a38397d19b19cdd71561acd6558c",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0082",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0082.json",
+      "hash": "ae85d9e30b8e672c96c5b5337783dea449d18101af2a133021aebaf91c0b822d",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0083",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0083.json",
+      "hash": "e2d2ef04e9ac9c2a019aba2f563f301b63aab8910dce3deb5fda009248cb5515",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0084",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0084.json",
+      "hash": "2aa0d4c78d1edc6fbf84e32eb7ecb962ad08fe27f84cbc16dd037bfe21330d5c",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0085",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0085.json",
+      "hash": "d9526b01bee70d83b48c8d69b888a93030cbe88916883564b60fc7d167599dd7",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0086",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0086.json",
+      "hash": "f9ee8acfd61705ca7537d7b01abe1d7f0aa4f0e3b5b678395804b3d1977211a7",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0087",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0087.json",
+      "hash": "da45bf9321d96c079e526c3437bce0586620e8bdef82768f779cdebeb1e4ab6f",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0088",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0088.json",
+      "hash": "e2f0ee1e52c1b4860e7e10a316dd54157accc28aad8a3c891cb6fd430e8d1e1c",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0089",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0089.json",
+      "hash": "ab27eb1912fa1f904bceff05f415d54912558fda860ddd2a3a1985bbe2005486",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0090",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0090.json",
+      "hash": "c71d81dbe3335d936d881283a12fc568d66675735dace95a4224711a0ec831de",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0091",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0091.json",
+      "hash": "4a350d61ace469181db6d26079afb4a328f3f264daa7973fbadc2efbdd80f589",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0092",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0092.json",
+      "hash": "0f296c3c4cf8ffe81dd061a6a14135725156f4cd17d27fef2f4bda620d0461d7",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0093",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0093.json",
+      "hash": "e85d71f35e6dc12f7f609e5d90fbb6fe7caa8b45a36c90a75248a707bdde3343",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0094",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0094.json",
+      "hash": "202f8cbf402d51ef81062ef8ed092106311321f23ddbf1feb177a6d8ba002194",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0095",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0095.json",
+      "hash": "165217e34d1a1aa3d4e507a45db41218d6bd9afa865e1102de05df00658bd7a8",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0096",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0096.json",
+      "hash": "0831fb7f2aa4472201d3a8d8eb9c52576d7c3548fe94234af01f307406b70cbf",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0097",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0097.json",
+      "hash": "552307780dd45c5ab8897de7607dd62df08d215fcef1fe9be92986d94af4292b",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0098",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0098.json",
+      "hash": "bacfd44b7c112979c233bc0d9aec9b2e1b2e25a908bf414ad737fc1c9141a6d7",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0099",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0099.json",
+      "hash": "83ed53ae88d164698eb204031e7e8dea3b3a54afb5d50e61bcf5ac1ff67953c9",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    },
+    {
+      "id": "mythic_0100",
+      "file": "flutter_app/assets/boards/mythic\\mythic_0100.json",
+      "hash": "55359659109df3b7ded7d37711dbfd09bb53d7c75e2af7ced5a6f5c035379862",
+      "score": 0,
+      "steps": 0,
+      "clues": 23,
+      "techniques": [],
+      "classification": null,
+      "errors": [
+        "missing_hash",
+        "missing_score",
+        "puzzle is not human-solvable by implemented techniques",
+        "classification_not_mythic:None",
+        "missing_forcing_chain"
+      ]
+    }
+  ],
+  "reasons": {
+    "mythic_0001": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0002": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0003": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0004": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0005": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0006": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0007": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0008": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0009": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0010": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0011": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0012": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0013": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0014": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0015": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0016": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0017": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0018": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0019": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0020": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0021": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0022": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0023": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0024": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0025": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0026": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0027": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0028": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0029": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0030": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0031": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0032": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0033": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0034": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0035": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0036": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0037": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0038": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0039": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0040": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0041": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0042": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0043": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0044": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0045": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0046": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0047": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0048": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0049": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0050": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0051": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0052": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0053": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0054": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0055": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0056": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0057": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0058": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0059": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0060": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0061": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0062": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0063": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0064": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0065": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0066": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0067": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0068": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0069": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0070": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0071": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0072": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0073": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0074": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0075": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0076": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0077": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0078": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0079": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0080": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0081": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0082": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0083": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0084": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0085": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0086": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0087": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0088": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0089": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0090": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0091": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0092": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0093": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0094": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0095": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0096": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0097": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0098": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0099": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ],
+    "mythic_0100": [
+      "missing_hash",
+      "missing_score",
+      "puzzle is not human-solvable by implemented techniques",
+      "classification_not_mythic:None",
+      "missing_forcing_chain"
+    ]
+  },
+  "duplicate_hashes": {},
+  "geometry_duplicates": {},
+  "duplicates_exact": 0,
+  "duplicates_geometry": 0,
+  "misclassified": [
+    "mythic_0001",
+    "mythic_0002",
+    "mythic_0003",
+    "mythic_0004",
+    "mythic_0005",
+    "mythic_0006",
+    "mythic_0007",
+    "mythic_0008",
+    "mythic_0009",
+    "mythic_0010",
+    "mythic_0011",
+    "mythic_0012",
+    "mythic_0013",
+    "mythic_0014",
+    "mythic_0015",
+    "mythic_0016",
+    "mythic_0017",
+    "mythic_0018",
+    "mythic_0019",
+    "mythic_0020",
+    "mythic_0021",
+    "mythic_0022",
+    "mythic_0023",
+    "mythic_0024",
+    "mythic_0025",
+    "mythic_0026",
+    "mythic_0027",
+    "mythic_0028",
+    "mythic_0029",
+    "mythic_0030",
+    "mythic_0031",
+    "mythic_0032",
+    "mythic_0033",
+    "mythic_0034",
+    "mythic_0035",
+    "mythic_0036",
+    "mythic_0037",
+    "mythic_0038",
+    "mythic_0039",
+    "mythic_0040",
+    "mythic_0041",
+    "mythic_0042",
+    "mythic_0043",
+    "mythic_0044",
+    "mythic_0045",
+    "mythic_0046",
+    "mythic_0047",
+    "mythic_0048",
+    "mythic_0049",
+    "mythic_0050",
+    "mythic_0051",
+    "mythic_0052",
+    "mythic_0053",
+    "mythic_0054",
+    "mythic_0055",
+    "mythic_0056",
+    "mythic_0057",
+    "mythic_0058",
+    "mythic_0059",
+    "mythic_0060",
+    "mythic_0061",
+    "mythic_0062",
+    "mythic_0063",
+    "mythic_0064",
+    "mythic_0065",
+    "mythic_0066",
+    "mythic_0067",
+    "mythic_0068",
+    "mythic_0069",
+    "mythic_0070",
+    "mythic_0071",
+    "mythic_0072",
+    "mythic_0073",
+    "mythic_0074",
+    "mythic_0075",
+    "mythic_0076",
+    "mythic_0077",
+    "mythic_0078",
+    "mythic_0079",
+    "mythic_0080",
+    "mythic_0081",
+    "mythic_0082",
+    "mythic_0083",
+    "mythic_0084",
+    "mythic_0085",
+    "mythic_0086",
+    "mythic_0087",
+    "mythic_0088",
+    "mythic_0089",
+    "mythic_0090",
+    "mythic_0091",
+    "mythic_0092",
+    "mythic_0093",
+    "mythic_0094",
+    "mythic_0095",
+    "mythic_0096",
+    "mythic_0097",
+    "mythic_0098",
+    "mythic_0099",
+    "mythic_0100"
+  ]
+}

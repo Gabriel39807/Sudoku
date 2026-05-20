@@ -1,0 +1,18 @@
+{
+  "id": "mythic_0136",
+  "difficulty": "mythic",
+  "puzzle": "300740000905000103020009000008100400040000065006400000009070030060000520030000000",
+  "solution": "381745692975628143624319758258163479143897265796452381519274836867931524432586917",
+  "techniques": [
+    "naked_single",
+    "hidden_single",
+    "pointing_pair",
+    "xywing",
+    "forcing_chain"
+  ],
+  "steps": 5,
+  "score": 57,
+  "hash": "05f139e80d4c6fbfae18193aa8797757b1b87c3f179d57198184f70142b0e0e5",
+  "checksum": "05f139e80d4c6fbfae18193aa8797757b1b87c3f179d57198184f70142b0e0e5",
+  "clues": 24
+}

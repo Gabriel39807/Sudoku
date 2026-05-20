@@ -1,0 +1,194 @@
+{
+  "seed": 20260520,
+  "total_attempts": 300,
+  "generated_candidates": 300,
+  "valid_mythic_candidates": 103,
+  "forcing_chain_hits": 103,
+  "xywing_hits": 29,
+  "avg_steps": 6.02,
+  "avg_score": 49.27,
+  "elapsed_seconds": 601.95,
+  "top_profiles": [
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single"
+      ],
+      "count": 86
+    },
+    {
+      "techniques": [
+        "hidden_single",
+        "naked_single"
+      ],
+      "count": 42
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair"
+      ],
+      "count": 17
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "pointing_pair",
+        "forcing_chain"
+      ],
+      "count": 5
+    },
+    {
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair"
+      ],
+      "count": 5
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "hidden_pair"
+      ],
+      "count": 5
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "box_line_reduction",
+        "forcing_chain"
+      ],
+      "count": 4
+    },
+    {
+      "techniques": [
+        "hidden_single",
+        "hidden_pair",
+        "naked_single"
+      ],
+      "count": 4
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "hidden_pair"
+      ],
+      "count": 3
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair"
+      ],
+      "count": 3
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "xywing"
+      ],
+      "count": 3
+    },
+    {
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "pointing_pair",
+        "forcing_chain"
+      ],
+      "count": 3
+    },
+    {
+      "techniques": [
+        "naked_single"
+      ],
+      "count": 3
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "pointing_pair",
+        "box_line_reduction",
+        "forcing_chain"
+      ],
+      "count": 3
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "pointing_pair",
+        "xywing",
+        "forcing_chain"
+      ],
+      "count": 2
+    },
+    {
+      "techniques": [
+        "hidden_single",
+        "naked_single",
+        "naked_pair",
+        "forcing_chain"
+      ],
+      "count": 2
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "hidden_pair",
+        "naked_pair",
+        "pointing_pair"
+      ],
+      "count": 2
+    },
+    {
+      "techniques": [
+        "naked_single",
+        "hidden_single",
+        "naked_pair",
+        "hidden_pair",
+        "pointing_pair",
+        "forcing_chain"
+      ],
+      "count": 2
+    },
+    {
+      "techniques": [
+        "hidden_single",
+        "naked_pair",
+        "pointing_pair",
+        "naked_single"
+      ],
+      "count": 2
+    },
+    {
+      "techniques": [
+        "hidden_single",
+        "naked_pair",
+        "hidden_pair",
+        "naked_single",
+        "pointing_pair",
+        "box_line_reduction",
+        "forcing_chain"
+      ],
+      "count": 2
+    }
+  ]
+}
