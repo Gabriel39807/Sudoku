@@ -27,3 +27,9 @@ Thumbs.db
 
 # Local configs
 local.properties
+
+# Python Virtual Environments
+.venv/
+venv/
+env/
+
