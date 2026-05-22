@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../../application/game_provider.dart';
 
 class KeypadWidget extends ConsumerWidget {
@@ -38,10 +39,17 @@ class KeypadWidget extends ConsumerWidget {
                             number: number,
                             fontSize: fontSize,
                             isLocked: lockedNumber == number,
+                            lockModeActive: lockedNumber != null,
                             isComplete: digitComplete,
                             onTap: digitComplete
                                 ? null
-                                : () => ref.read(gameProvider.notifier).inputNumber(number),
+                                : () {
+                                    if (lockedNumber != null && lockedNumber != number) {
+                                      ref.read(gameProvider.notifier).toggleLockedNumber(number);
+                                    } else if (lockedNumber == null) {
+                                      ref.read(gameProvider.notifier).inputNumber(number);
+                                    }
+                                  },
                             onLongHold: digitComplete
                                 ? null
                                 : () => ref
@@ -66,6 +74,7 @@ class _KeypadButton extends StatefulWidget {
   final int number;
   final double fontSize;
   final bool isLocked;
+  final bool lockModeActive;
   final bool isComplete;
   final VoidCallback? onTap;
   final VoidCallback? onLongHold;
@@ -74,6 +83,7 @@ class _KeypadButton extends StatefulWidget {
     required this.number,
     required this.fontSize,
     required this.isLocked,
+    required this.lockModeActive,
     required this.isComplete,
     this.onTap,
     this.onLongHold,
@@ -100,20 +110,12 @@ class _KeypadButtonState extends State<_KeypadButton> {
     _holdTimer?.cancel();
     _didLongHold = false;
     setState(() => _isHolding = true);
-    _holdTimer = Timer(const Duration(seconds: 3), () {
+    _holdTimer = Timer(const Duration(milliseconds: 1000), () {
       if (!mounted) return;
       _didLongHold = true;
       setState(() => _isHolding = false);
       widget.onLongHold?.call();
     });
-  }
-
-  void _handleTap() {
-    if (_didLongHold) {
-      _didLongHold = false;
-      return;
-    }
-    widget.onTap?.call();
   }
 
   void _cancelHold() {
@@ -144,21 +146,35 @@ class _KeypadButtonState extends State<_KeypadButton> {
             ? activeColor
             : activeColor;
 
+    final lockFontSize = widget.fontSize * 1.15;
+    final usedFontSize = widget.isLocked ? lockFontSize : widget.fontSize;
     final subFontSize = widget.fontSize * 0.38;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedScale(
-        scale: _isHovered && !widget.isComplete ? 1.05 : 1.0,
-        duration: const Duration(milliseconds: 100),
-        child: InkWell(
-          onTap: widget.onTap != null ? _handleTap : null,
-          onTapDown: widget.onTap != null ? (_) => _startHold() : null,
-          onTapCancel: _cancelHold,
-          onTapUp: (_) => _cancelHold(),
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
+      child: GestureDetector(
+        onTapDown: widget.onTap != null ? (_) => _startHold() : null,
+        onTapUp: widget.onTap != null
+            ? (_) {
+                _cancelHold();
+                if (!_didLongHold) {
+                  widget.onTap?.call();
+                }
+                _didLongHold = false;
+              }
+            : null,
+        onTapCancel: widget.onTap != null
+            ? () {
+                _cancelHold();
+                _didLongHold = false;
+              }
+            : null,
+        child: AnimatedScale(
+          scale: _isHovered && !widget.isComplete ? 1.05 : 1.0,
+          duration: const Duration(milliseconds: 100),
+          child: AnimatedContainer(
+            duration: 300.ms,
             decoration: BoxDecoration(
               color: bgColor,
               borderRadius: BorderRadius.circular(12),
@@ -166,35 +182,53 @@ class _KeypadButtonState extends State<_KeypadButton> {
                 color: borderColor,
                 width: widget.isLocked ? 2 : 1,
               ),
+              boxShadow: widget.isLocked
+                  ? [BoxShadow(color: activeColor.withValues(alpha: 0.3), blurRadius: 10, spreadRadius: 1)]
+                  : null,
             ),
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  widget.number.toString(),
-                  style: TextStyle(
-                    fontSize: widget.fontSize,
-                    color: textColor,
-                    fontWeight: widget.isComplete
-                        ? FontWeight.w300
-                        : FontWeight.bold,
-                  ),
-                ),
-                if (widget.isLocked)
-                  Text(
-                    'Modo rpido',
-                    style: TextStyle(fontSize: subFontSize, color: Colors.white70),
-                  ),
-                if (widget.isComplete && !widget.isLocked)
-                  Text(
-                    '${widget.number} listo',
+            child: Container(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AnimatedDefaultTextStyle(
+                    duration: 200.ms,
                     style: TextStyle(
-                      fontSize: subFontSize,
-                      color: Colors.greenAccent.withValues(alpha: 0.5),
+                      fontSize: usedFontSize,
+                      color: textColor,
+                      fontWeight: widget.isComplete
+                          ? FontWeight.w300
+                          : widget.isLocked
+                              ? FontWeight.w900
+                              : FontWeight.bold,
                     ),
+                    child: Text(widget.number.toString())
+                        .animate(target: widget.isLocked ? 1 : 0)
+                        .scaleXY(begin: 0.85, end: 1, duration: 300.ms, curve: Curves.easeOutBack),
                   ),
-              ],
+                  if (widget.isLocked)
+                    Container(
+                      margin: const EdgeInsets.only(top: 2),
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                      decoration: BoxDecoration(
+                        color: activeColor.withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(99),
+                      ),
+                      child: Text(
+                        'FIJADO',
+                        style: TextStyle(fontSize: subFontSize * 0.85, color: activeColor, fontWeight: FontWeight.bold),
+                      ),
+                    ).animate().fade(duration: 300.ms).scale(begin: Offset(0, 0)),
+                  if (widget.isComplete && !widget.isLocked)
+                    Text(
+                      '${widget.number} listo',
+                      style: TextStyle(
+                        fontSize: subFontSize,
+                        color: Colors.greenAccent.withValues(alpha: 0.5),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
         ),

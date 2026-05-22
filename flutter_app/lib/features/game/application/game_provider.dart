@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:developer' as dev;
-import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/game_state.dart';
 import '../domain/note_helpers.dart';
@@ -17,9 +17,41 @@ import '../../progression/domain/xp_calculator.dart';
 import '../../progression/domain/achievement.dart';
 import '../../progression/data/progression_storage.dart';
 import '../../cosmetics/application/cosmetic_inventory_provider.dart';
+import '../data/save/global_saved_game.dart';
+import '../../../shared/vibration_helper.dart';
+import '../../economy/application/wallet_provider.dart';
 
 class GameNotifier extends Notifier<GameState> {
   Timer? _timer;
+  bool _isDailyChallenge = false;
+  int _overlayPauseCount = 0;
+
+  void pauseTimer() {
+    _timer?.cancel();
+  }
+
+  void resumeTimer() {
+    final session = state.session;
+    if (session == null || session.status != GameStatus.playing) return;
+    if (_overlayPauseCount > 0) return;
+    _startTimer();
+  }
+
+  void onOverlayOpen() {
+    if (_overlayPauseCount == 0) pauseTimer();
+    _overlayPauseCount++;
+    onOverlayOpenHook?.call();
+  }
+
+  void onOverlayClose() {
+    if (_overlayPauseCount == 0) return;
+    _overlayPauseCount--;
+    if (_overlayPauseCount == 0) resumeTimer();
+    onOverlayCloseHook?.call();
+  }
+
+  VoidCallback? onOverlayOpenHook;
+  VoidCallback? onOverlayCloseHook;
 
   final _rowCompleted = StreamController<int>.broadcast();
   final _colCompleted = StreamController<int>.broadcast();
@@ -84,6 +116,7 @@ class GameNotifier extends Notifier<GameState> {
   Future<void> init(String difficulty) async {
     final diff = difficulty.toLowerCase();
     _timer?.cancel();
+    _overlayPauseCount = 0;
     state = const GameState(isLoading: true);
 
     try {
@@ -115,8 +148,67 @@ class GameNotifier extends Notifier<GameState> {
     }
   }
 
+  Future<void> initDaily(BoardData boardData) async {
+    _isDailyChallenge = true;
+    _timer?.cancel();
+    _overlayPauseCount = 0;
+    state = const GameState(isLoading: true);
+
+    try {
+      final session = GameSession.create(
+        boardId: boardData.id,
+        difficulty: 'daily',
+        puzzleFlat: boardData.puzzleFlat,
+        solutionFlat: boardData.solutionFlat,
+      );
+
+      state = GameState(
+        session: session,
+        isLoading: false,
+        remainingHints: 3,
+        advancedNotesEnabled: false,
+        completedDigits: _computeCompletedDigits(session),
+      );
+      await HintService.resetCurrentGame();
+      _startTimer();
+    } catch (e) {
+      state = const GameState(isLoading: false);
+    }
+  }
+
+  void restartCurrentBoard() {
+    final session = state.session;
+    if (session == null) return;
+
+    _timer?.cancel();
+    _overlayPauseCount = 0;
+    _isDailyChallenge = false;
+
+    final newSession = GameSession.create(
+      boardId: session.boardId,
+      difficulty: session.difficulty,
+      puzzleFlat: session.initialBoard,
+      solutionFlat: session.solution,
+    );
+
+    final maxHints = _canUseHints ? HintService.maxHintsFor(session.difficulty) : 0;
+
+    state = GameState(
+      session: newSession,
+      isLoading: false,
+      remainingHints: maxHints,
+      advancedNotesEnabled: false,
+      completedDigits: _computeCompletedDigits(newSession),
+    );
+
+    unawaited(HintService.resetCurrentGame());
+    unawaited(GameAutosave.clear());
+    _startTimer();
+  }
+
   Future<void> restoreGame(GameState savedState) async {
     _timer?.cancel();
+    _overlayPauseCount = 0;
     state = savedState.copyWith(isLoading: false);
 
     final maxHints = _canUseHints
@@ -278,10 +370,21 @@ class GameNotifier extends Notifier<GameState> {
     }
 
     final session = state.session;
-    if (locked == null || session == null) return;
+    if (session == null) return;
 
     final idx = row * 9 + col;
-    if (session.fixedCells.contains(idx) || session.currentBoard[idx] != 0) return;
+    final cellValue = session.currentBoard[idx];
+
+    if (cellValue != 0) {
+      final completed = state.completedDigits;
+      if ((completed[cellValue] ?? 0) < 9 && state.lockedNumber != cellValue) {
+        state = state.copyWith(lockedNumber: cellValue);
+      }
+      return;
+    }
+
+    if (locked == null) return;
+    if (session.fixedCells.contains(idx)) return;
     inputNumber(locked);
   }
 
@@ -295,6 +398,9 @@ class GameNotifier extends Notifier<GameState> {
     final session = state.session!;
     final idx = r * 9 + c;
     if (session.fixedCells.contains(idx)) return;
+
+    final oldValue = session.currentBoard[idx];
+    if (oldValue != 0 && oldValue == session.solution[idx]) return;
 
     if (state.pencilMode) {
       _handlePencil(session, idx, r, c, number);
@@ -433,11 +539,17 @@ class GameNotifier extends Notifier<GameState> {
 
   void _endGame(bool won, GameSession session, GameState oldState, int idx, int r, int c, int oldValue, int newValue) {
     _timer?.cancel();
+    _overlayPauseCount = 0;
     state = oldState.copyWith(
       session: session,
       clearLockedNumber: true,
       undoStack: [...oldState.undoStack, _makeMove(r, c, oldValue, newValue, oldState.session!, {})],
     );
+
+    if (_isDailyChallenge) {
+      _gameOverEvent.add(won);
+      return;
+    }
 
     if (won) {
       _onWon(session.difficulty, session.elapsed.inSeconds, session.boardId);
@@ -459,9 +571,34 @@ class GameNotifier extends Notifier<GameState> {
   }
 
   void _vibrateOnError(SettingsModel settings) {
-    if (settings.vibrateOnError && !_isExpert) {
-      HapticFeedback.mediumImpact();
+    if (!settings.vibrateOnError || _isExpert) return;
+    unawaited(VibrationHelper.vibrateError());
+  }
+
+  void _awardCoins(String difficulty) {
+    final souls = switch (difficulty) {
+      'easy' => 5,
+      'intermediate' => 8,
+      'hard' => 12,
+      'expert' => 18,
+      'evil' => 25,
+      'mythic' => 40,
+      _ => 0,
+    };
+    final tokens = 1;
+
+    var finalSouls = souls;
+    var finalTokens = tokens;
+
+    if (state.errors == 0 && state.usedHints == 0 && !state.completedWithAutocomplete) {
+      finalSouls = souls + (souls * 0.5).round();
+      finalTokens = tokens + 1;
+    } else if (state.errors == 0) {
+      finalSouls = souls + (souls * 0.25).round();
     }
+
+    unawaited(ref.read(walletProvider.notifier).addSouls(finalSouls));
+    unawaited(ref.read(walletProvider.notifier).addTokens(finalTokens));
   }
 
   void undo() {
@@ -500,6 +637,7 @@ class GameNotifier extends Notifier<GameState> {
     final session = oldState.session!;
     final idx = r * 9 + c;
     if (session.fixedCells.contains(idx)) return;
+    if (session.currentBoard[idx] != 0 && session.currentBoard[idx] == session.solution[idx]) return;
     if (session.currentBoard[idx] == 0 && (session.notes[idx]?.isEmpty ?? true)) return;
 
     final move = _makeMove(r, c, session.currentBoard[idx], 0, session, session.notes[idx] ?? {});
@@ -522,11 +660,14 @@ class GameNotifier extends Notifier<GameState> {
     state = state.copyWith(pencilMode: !state.pencilMode);
   }
 
-  void toggleAdvancedNotes() {
-    if (state.session == null || state.status != GameStatus.playing) return;
+  Future<bool> toggleAdvancedNotes() async {
+    if (state.session == null || state.status != GameStatus.playing) return false;
     final enabling = !state.advancedNotesEnabled;
 
     if (enabling) {
+      final wallet = ref.read(walletProvider);
+      if (wallet.advancedNoteConsumables <= 0) return false;
+      await ref.read(walletProvider.notifier).consumeAdvancedNote();
       final session = state.session!;
       final candidates = NoteHelpers.computeAllCandidates(
         session.currentBoard,
@@ -556,11 +697,16 @@ class GameNotifier extends Notifier<GameState> {
             : session,
       );
     }
+    return true;
   }
 
-  HintResult useHint() {
+  Future<HintResult> useHint() async {
     if (!_canInput || !_canUseHints) return HintResult.ignored;
-    if (state.remainingHints == 0) return HintResult.ignored;
+    if (state.remainingHints == 0) {
+      final wallet = ref.read(walletProvider);
+      if (wallet.hintConsumables <= 0) return HintResult.noHints;
+      await ref.read(walletProvider.notifier).consumeHint();
+    }
     final r = state.selectedRow;
     final c = state.selectedCol;
     if (r == null || c == null) return HintResult.noSelection;
@@ -587,8 +733,41 @@ class GameNotifier extends Notifier<GameState> {
     state = state.copyWith(clearLockedNumber: true);
   }
 
+  void saveToGlobalSlot() {
+    final session = state.session;
+    if (session == null || session.status != GameStatus.playing) return;
+
+    final game = GlobalSavedGame(
+      difficulty: session.difficulty,
+      boardId: session.boardId,
+      initialBoard: List<int>.from(session.initialBoard),
+      currentBoard: List<int>.from(session.currentBoard),
+      solution: List<int>.from(session.solution),
+      fixedCells: Set<int>.from(session.fixedCells),
+      notes: Map.from(session.notes),
+      mistakes: session.mistakes,
+      elapsedSeconds: session.elapsed.inSeconds,
+      hintsUsed: state.usedHints,
+      remainingHints: state.remainingHints,
+      correctStreak: state.correctStreak,
+      maxCombo: state.maxCombo,
+      totalMoves: state.totalMoves,
+      correctMoves: state.correctMoves,
+      noteUsageCount: state.noteUsageCount,
+      advancedNotesEnabled: state.advancedNotesEnabled,
+      cellTimeMs: Map<int, int>.from(state.cellTimeMs),
+      manualNotes: state.manualNotes != null ? Map<int, Set<int>>.from(state.manualNotes!) : null,
+      completedWithAutocomplete: state.completedWithAutocomplete,
+      autoCompleteUsed: state.autoCompleteUsed,
+      savedAt: DateTime.now(),
+    );
+    unawaited(GlobalSaveStorage.save(game));
+    ref.invalidate(globalSavedGameProvider);
+  }
+
   void abandonGame() {
     _timer?.cancel();
+    _overlayPauseCount = 0;
     final session = state.session;
     state = state.copyWith(clearLockedNumber: true);
     if (session != null && session.status == GameStatus.playing) {
@@ -675,6 +854,7 @@ class GameNotifier extends Notifier<GameState> {
     if (!complete) return;
 
     _timer?.cancel();
+    _overlayPauseCount = 0;
     await GameAutosave.clear();
 
     state = state.copyWith(
@@ -682,12 +862,20 @@ class GameNotifier extends Notifier<GameState> {
       clearLockedNumber: true,
     );
 
+    if (_isDailyChallenge) {
+      _gameOverEvent.add(true);
+      return;
+    }
+
     // Award XP
     final xpResult = XpCalculator.compute(state);
     final levelUps = await ref.read(playerLevelProvider.notifier).addXp(xpResult.total);
     for (var i = 0; i < levelUps; i++) {
       _levelUpEvent.add(state.session!.solution[0]);
     }
+
+    // Award coins
+    _awardCoins(session.difficulty);
 
     // Check background unlocks
     if (levelUps > 0) {
@@ -846,13 +1034,18 @@ class GameNotifier extends Notifier<GameState> {
 
   void _onLost(String diff, String boardId) {
     _timer?.cancel();
+    _overlayPauseCount = 0;
     GameAutosave.clear();
+    unawaited(GlobalSaveStorage.delete());
+    ref.invalidate(globalSavedGameProvider);
     unawaited(_recordLost(diff, boardId));
     unawaited(ref.read(missionsProvider.notifier).updateProgress('play_three', 1));
     _gameOverEvent.add(false);
   }
 
   void _onWon(String diff, int elapsed, String boardId) {
+    unawaited(GlobalSaveStorage.delete());
+    ref.invalidate(globalSavedGameProvider);
     unawaited(_recordWon(diff, elapsed, boardId));
   }
 
@@ -888,6 +1081,7 @@ class GameNotifier extends Notifier<GameState> {
 
   void _autosave() {
     if (state.status != GameStatus.playing) return;
+    if (_isDailyChallenge) return;
     unawaited(GameAutosave.save(state));
   }
 

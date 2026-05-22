@@ -7,6 +7,7 @@ import '../../application/game_provider.dart';
 import '../../../cosmetics/application/cosmetics_provider.dart';
 import '../../../cosmetics/domain/frame_skin.dart';
 import '../../../cosmetics/application/cosmetic_inventory_provider.dart';
+import '../../../settings/application/settings_provider.dart';
 
 class SudokuBoardWidget extends ConsumerStatefulWidget {
   const SudokuBoardWidget({super.key});
@@ -72,11 +73,12 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
     final state = ref.watch(gameProvider);
     final cosmetics = ref.watch(cosmeticsProvider);
     final inventory = ref.watch(cosmeticInventoryProvider);
+    final settings = ref.watch(settingsProvider);
 
     final bgPath = inventory.equippedAssetPath ?? cosmetics.selectedTheme.backgroundPath;
 
     final shortest = MediaQuery.sizeOf(context).shortestSide;
-    final boardSize = (shortest * 0.82).clamp(320.0, 520.0);
+    final boardSize = (shortest * 0.89).clamp(320.0, 520.0);
     final cellSize = boardSize / 9;
     final frameThickness = (boardSize * 0.07).clamp(24.0, 48.0);
     final cornerSize = frameThickness * 1.3;
@@ -98,7 +100,7 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
           _buildFrame(cosmetics.selectedFrame, frameThickness, cornerSize),
           Padding(
             padding: EdgeInsets.all(frameThickness),
-            child: _buildGrid(state, cellSize),
+            child:           _buildGrid(state, cellSize, settings.boardAnimations),
           ),
         ],
       ),
@@ -150,7 +152,7 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
     );
   }
 
-  Widget _buildGrid(GameState state, double cellSize) {
+  Widget _buildGrid(GameState state, double cellSize, bool boardAnimations) {
     final thick = cellSize * 0.08;
     return Container(
       decoration: BoxDecoration(
@@ -175,6 +177,7 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
                       cell: state.board[r][c],
                       gameState: state,
                       cellSize: cellSize,
+                      boardAnimations: boardAnimations,
                       isInGlowRow: r == _glowRow,
                       isInGlowCol: c == _glowCol,
                       isInGlowBlock: (r ~/ 3) * 3 + (c ~/ 3) == _glowBlock,
@@ -197,6 +200,7 @@ class _CellWidget extends ConsumerWidget {
   final SudokuCell cell;
   final GameState gameState;
   final double cellSize;
+  final bool boardAnimations;
   final bool isInGlowRow;
   final bool isInGlowCol;
   final bool isInGlowBlock;
@@ -206,6 +210,7 @@ class _CellWidget extends ConsumerWidget {
     required this.cell,
     required this.gameState,
     required this.cellSize,
+    required this.boardAnimations,
     this.isInGlowRow = false,
     this.isInGlowCol = false,
     this.isInGlowBlock = false,
@@ -229,20 +234,30 @@ class _CellWidget extends ConsumerWidget {
         (gameState.selectedRow! ~/ 3) == (cell.row ~/ 3) &&
         (gameState.selectedCol! ~/ 3) == (cell.col ~/ 3);
 
-    final isSameHouse = isSameRow || isSameCol || isSameBlock;
+    final lockNum = gameState.lockedNumber;
+    final isSameNumber = lockNum != null
+        ? (cell.value != 0 && lockNum == cell.value)
+        : (hasSelection && !selectedCell!.isEmpty && selectedCell.value == cell.value);
 
-    final isSameNumber = hasSelection &&
-        !selectedCell!.isEmpty &&
-        selectedCell.value == cell.value;
+    final settings = ref.watch(settingsProvider);
+
+    bool shouldHighlightHouse = false;
+    if (settings.highlightSameNumbers) {
+      if (isSameRow || isSameCol) {
+        shouldHighlightHouse = true;
+      } else if (isSameBlock && settings.highlightRegion) {
+        shouldHighlightHouse = true;
+      }
+    }
 
     Color bgColor = Colors.transparent;
     if (isSelected) {
       bgColor = const Color(0xFF7A5FFF);
     } else if (cell.isError) {
       bgColor = Colors.red.withValues(alpha: 0.3);
-    } else if (isSameNumber) {
+    } else if (settings.highlightSameNumbers && isSameNumber) {
       bgColor = Colors.blueAccent.withValues(alpha: 0.3);
-    } else if (isSameHouse) {
+    } else if (shouldHighlightHouse) {
       bgColor = Colors.white.withValues(alpha: 0.05);
     }
 
@@ -316,7 +331,7 @@ class _CellWidget extends ConsumerWidget {
           if (cell.notes.contains(n)) {
             final isConflict = cell.noteConflict;
             final isHighlighted = selectedNumber == n;
-            return Center(
+            final noteWidget = Center(
               child: Text(
                 n.toString(),
                 style: TextStyle(
@@ -329,15 +344,14 @@ class _CellWidget extends ConsumerWidget {
                   fontWeight:
                       isHighlighted || isConflict ? FontWeight.bold : FontWeight.normal,
                 ),
-              ).animate(
-                target: isHighlighted ? 1 : 0,
-              ).scaleXY(
-                begin: 1.0,
-                end: 1.1,
-                duration: 150.ms,
-                curve: Curves.easeOut,
               ),
             );
+            if (boardAnimations) {
+              return noteWidget
+                  .animate(target: isHighlighted ? 1 : 0)
+                  .scaleXY(begin: 1.0, end: 1.1, duration: 150.ms, curve: Curves.easeOut);
+            }
+            return noteWidget;
           }
           return const SizedBox.shrink();
         }),

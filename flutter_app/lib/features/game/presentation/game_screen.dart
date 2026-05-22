@@ -16,6 +16,11 @@ import 'widgets/keypad_widget.dart';
 import 'widgets/actions_widget.dart';
 import '../../cosmetics/models/background_catalog.dart';
 import '../../cosmetics/presentation/unlock_popup.dart';
+import '../data/save/global_saved_game.dart';
+import '../../../shared/widgets/game_modal_card.dart';
+import '../../../shared/widgets/game_exit_dialog.dart';
+import '../../../shared/widgets/pause_dialog.dart';
+import '../../../shared/widgets/gameplay_overlay_guard.dart';
 
 class GameScreen extends ConsumerStatefulWidget {
   final String difficulty;
@@ -48,26 +53,144 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
   Future<void> _initGame() async {
     final diff = widget.difficulty;
+    final currentState = ref.read(gameProvider);
+    if (currentState.session != null && currentState.session!.status == GameStatus.playing && !currentState.isLoading) {
+      return;
+    }
+
+    final globalSave = await GlobalSaveStorage.load();
+    if (globalSave != null && globalSave.difficulty == diff && mounted) {
+      final shouldContinue = await showDialog<bool>(
+        context: context,
+        barrierDismissible: false,
+        builder: (ctx) => GameplayOverlayGuard(
+          child: GameModalCard(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.save, size: 40, color: Colors.amber.shade300)
+                    .animate().fade().scale(begin: Offset(0, 0)),
+                const SizedBox(height: 16),
+                Text('PARTIDA GUARDADA',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2,
+                        color: Colors.amber.shade200)),
+                const SizedBox(height: 12),
+                Text('Tienes una partida guardada en ${diff.toUpperCase()} del ${_fmtDate(globalSave.savedAt)}.',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 13, color: Colors.white70)),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.pop(ctx, true),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    ),
+                    child: const Text('CONTINUAR', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () => Navigator.pop(ctx, false),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    ),
+                    child: const Text('NUEVA PARTIDA', style: TextStyle(fontSize: 13, color: Colors.white54)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      if (shouldContinue == true && mounted) {
+        final session = GameSession.restore(
+          boardId: globalSave.boardId,
+          difficulty: globalSave.difficulty,
+          initialBoard: globalSave.initialBoard,
+          currentBoard: globalSave.currentBoard,
+          solution: globalSave.solution,
+          fixedCells: globalSave.fixedCells,
+          notes: Map<int, Set<int>>.from(globalSave.notes),
+          mistakes: globalSave.mistakes,
+          elapsed: Duration(seconds: globalSave.elapsedSeconds),
+          paused: false,
+          status: GameStatus.playing,
+        );
+        final state = GameState(
+          session: session,
+          isLoading: false,
+          remainingHints: globalSave.remainingHints,
+          usedHints: globalSave.hintsUsed,
+          correctStreak: globalSave.correctStreak,
+          maxCombo: globalSave.maxCombo,
+          totalMoves: globalSave.totalMoves,
+          correctMoves: globalSave.correctMoves,
+          noteUsageCount: globalSave.noteUsageCount,
+          advancedNotesEnabled: globalSave.advancedNotesEnabled,
+          cellTimeMs: Map<int, int>.from(globalSave.cellTimeMs),
+          manualNotes: globalSave.manualNotes != null ? Map<int, Set<int>>.from(globalSave.manualNotes!) : null,
+          completedWithAutocomplete: globalSave.completedWithAutocomplete,
+          autoCompleteUsed: globalSave.autoCompleteUsed,
+        );
+        await ref.read(gameProvider.notifier).restoreGame(state);
+        return;
+      }
+    }
+
     final saved = await GameAutosave.restoreForDifficulty(diff);
 
     if (saved != null && mounted) {
       final shouldContinue = await showDialog<bool>(
         context: context,
         barrierDismissible: false,
-        builder: (ctx) => AlertDialog(
-          backgroundColor: Theme.of(context).cardTheme.color,
-          title: const Text('Partida encontrada'),
-          content: Text('Tienes una partida sin terminar en ${diff.toUpperCase()}.\nQuieres continuar?'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('Nueva partida', style: TextStyle(color: Colors.white54)),
+        builder: (ctx) => GameplayOverlayGuard(
+          child: GameModalCard(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.autorenew, size: 40, color: Colors.blue.shade300)
+                    .animate().fade().scale(begin: Offset(0, 0)),
+                const SizedBox(height: 16),
+                Text('PARTIDA ENCONTRADA',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 2,
+                        color: Colors.blue.shade200)),
+                const SizedBox(height: 12),
+                Text('Tienes una partida sin terminar en ${diff.toUpperCase()}.',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 13, color: Colors.white70)),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.pop(ctx, true),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    ),
+                    child: const Text('CONTINUAR', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () => Navigator.pop(ctx, false),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    ),
+                    child: const Text('NUEVA PARTIDA', style: TextStyle(fontSize: 13, color: Colors.white54)),
+                  ),
+                ),
+              ],
             ),
-            TextButton(
-              onPressed: () => Navigator.pop(ctx, true),
-              child: const Text('Continuar'),
-            ),
-          ],
+          ),
         ),
       );
 
@@ -80,6 +203,13 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     if (mounted) {
       await ref.read(gameProvider.notifier).init(diff);
     }
+  }
+
+  String _fmtDate(DateTime dt) {
+    return '${dt.day.toString().padLeft(2, '0')}/'
+        '${dt.month.toString().padLeft(2, '0')}/'
+        '${dt.year} ${dt.hour.toString().padLeft(2, '0')}:'
+        '${dt.minute.toString().padLeft(2, '0')}';
   }
 
   void _listenToDigitCompleted() {
@@ -120,7 +250,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (ctx) => UnlockPopup(background: bg),
+        builder: (ctx) => GameplayOverlayGuard(
+          child: UnlockPopup(background: bg),
+        ),
       );
     });
   }
@@ -266,22 +398,22 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                       children: [
                         Column(
                           children: [
-                            _Header(state: state, settings: settings, onExit: () => _showExitDialog(context)),
-                            _SessionStatsBar(stats: state.sessionStats, mode: settings.assistMode),
+                            GameHeaderWidget(state: state, settings: settings, onExit: () => _showExitDialog(context)),
+                            SessionStatsBarWidget(stats: state.sessionStats, mode: settings.assistMode),
                             Expanded(
                               flex: 58,
-                              child: _BoardArea(),
+                              child: BoardAreaWidget(),
                             ),
                             Expanded(
                               flex: 42,
-                              child: _ControlsArea(
+                              child: ControlsAreaWidget(
                                 showAutoComplete: showAutoComplete,
                                 onAutoComplete: () => ref.read(gameProvider.notifier).autoComplete(),
                               ),
                             ),
                           ],
                         ),
-                        if (state.isPaused) _PauseOverlay(difficulty: widget.difficulty),
+                        if (state.isPaused) PauseOverlayWidget(difficulty: widget.difficulty),
                       ],
                     ),
             ),
@@ -292,32 +424,14 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   }
 
   Future<void> _showExitDialog(BuildContext context) async {
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).cardTheme.color,
-        title: const Text('Leave game?'),
-        content: const Text('Are you sure you want to exit? Your progress will be saved.'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel', style: TextStyle(color: Colors.white54))),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              ref.read(gameProvider.notifier).abandonGame();
-              context.pop();
-            },
-            child: const Text('Exit', style: TextStyle(color: Colors.redAccent)),
-          ),
-        ],
-      ),
-    );
+    await showGameExitDialog(context, ref, widget.difficulty);
   }
 }
 
 // ── Board Area ───────────────────────────────────────────────────────────────
 
-class _BoardArea extends StatelessWidget {
-  const _BoardArea();
+class BoardAreaWidget extends StatelessWidget {
+  const BoardAreaWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -335,11 +449,12 @@ class _BoardArea extends StatelessWidget {
 
 // ── Controls Area ────────────────────────────────────────────────────────────
 
-class _ControlsArea extends ConsumerWidget {
+class ControlsAreaWidget extends ConsumerWidget {
   final bool showAutoComplete;
   final VoidCallback onAutoComplete;
 
-  const _ControlsArea({
+  const ControlsAreaWidget({
+    super.key,
     required this.showAutoComplete,
     required this.onAutoComplete,
   });
@@ -365,17 +480,17 @@ class _ControlsArea extends ConsumerWidget {
             left: 0,
             right: 0,
             top: 52,
-            child: _AutoCompleteButton(onTap: onAutoComplete),
+              child: AutoCompleteButtonWidget(onTap: onAutoComplete),
           ),
       ],
     );
   }
 }
 
-class _AutoCompleteButton extends StatelessWidget {
+class AutoCompleteButtonWidget extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _AutoCompleteButton({required this.onTap});
+  const AutoCompleteButtonWidget({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -398,12 +513,12 @@ class _AutoCompleteButton extends StatelessWidget {
 
 // ── Header ──────────────────────────────────────────────────────────────────
 
-class _Header extends ConsumerWidget {
+class GameHeaderWidget extends ConsumerWidget {
   final GameState state;
   final dynamic settings;
   final VoidCallback onExit;
 
-  const _Header({required this.state, required this.settings, required this.onExit});
+  const GameHeaderWidget({super.key, required this.state, required this.settings, required this.onExit});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -455,11 +570,11 @@ class _Header extends ConsumerWidget {
 
 // ── Session Stats Bar ──────────────────────────────────────────────────────
 
-class _SessionStatsBar extends StatelessWidget {
+class SessionStatsBarWidget extends StatelessWidget {
   final SessionStats stats;
   final AssistMode mode;
 
-  const _SessionStatsBar({required this.stats, required this.mode});
+  const SessionStatsBarWidget({super.key, required this.stats, required this.mode});
 
   @override
   Widget build(BuildContext context) {
@@ -493,48 +608,4 @@ class _SessionStatsBar extends StatelessWidget {
   }
 }
 
-// ── Pause Overlay ──────────────────────────────────────────────────────────
 
-class _PauseOverlay extends ConsumerWidget {
-  final String difficulty;
-  const _PauseOverlay({required this.difficulty});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Positioned.fill(
-      child: Container(
-        color: Colors.black.withValues(alpha: 0.8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('PAUSED', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, letterSpacing: 4))
-                .animate().fade().scale(),
-            const SizedBox(height: 40),
-            ElevatedButton.icon(
-              onPressed: () => ref.read(gameProvider.notifier).togglePause(),
-              icon: const Icon(Icons.play_arrow),
-              label: const Text('Resume'),
-              style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-            ),
-            const SizedBox(height: 16),
-            OutlinedButton.icon(
-              onPressed: () => ref.read(gameProvider.notifier).init(difficulty),
-              icon: const Icon(Icons.refresh),
-              label: const Text('Restart'),
-              style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16)),
-            ),
-            const SizedBox(height: 16),
-            TextButton.icon(
-              onPressed: () {
-                ref.read(gameProvider.notifier).abandonGame();
-                context.pop();
-              },
-              icon: const Icon(Icons.exit_to_app, color: Colors.redAccent),
-              label: const Text('Exit', style: TextStyle(color: Colors.redAccent)),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

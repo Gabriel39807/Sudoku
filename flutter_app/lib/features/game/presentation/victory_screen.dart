@@ -518,8 +518,8 @@ class _ActionButtons extends ConsumerWidget {
               side: BorderSide(color: Colors.white.withValues(alpha: 0.3)),
             ),
             onPressed: () {
-              context.pop();
-              ref.read(gameProvider.notifier).init(difficulty);
+              ref.read(gameProvider.notifier).restartCurrentBoard();
+              context.pushReplacement('/game', extra: difficulty);
             },
           ),
         ),
@@ -535,8 +535,7 @@ class _ActionButtons extends ConsumerWidget {
                   color: Theme.of(context).primaryColor.withValues(alpha: 0.5)),
             ),
             onPressed: () {
-              context.pop();
-              ref.read(gameProvider.notifier).init(difficulty);
+              context.pushReplacement('/game', extra: difficulty);
             },
           ),
         ),

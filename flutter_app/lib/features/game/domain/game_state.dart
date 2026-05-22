@@ -6,7 +6,7 @@ export 'game_session.dart' show GameSession;
 
 enum GameStatus { playing, won, lost }
 
-enum HintResult { applied, noSelection, ignored }
+enum HintResult { applied, noSelection, ignored, noHints }
 
 class SudokuCell {
   final int row;
