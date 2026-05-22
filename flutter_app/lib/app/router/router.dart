@@ -5,9 +5,12 @@ import '../../features/game/presentation/game_screen.dart';
 import '../../features/game/presentation/victory_screen.dart';
 import '../../features/game/presentation/defeat_screen.dart';
 import '../../features/stats/presentation/stats_screen.dart';
+import '../../features/stats/presentation/achievements_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
 import '../../features/cosmetics/presentation/customization_screen.dart';
+import '../../features/challenge/presentation/daily_challenge_screen.dart';
+import '../../features/economy/presentation/shop_screen.dart';
 
 final goRouter = GoRouter(
   initialLocation: '/',
@@ -45,6 +48,10 @@ final goRouter = GoRouter(
       },
     ),
     GoRoute(
+      path: '/achievements',
+      builder: (context, state) => const AchievementsScreen(),
+    ),
+    GoRoute(
       path: '/stats',
       builder: (context, state) => const StatsScreen(),
     ),
@@ -59,6 +66,14 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/customization',
       builder: (context, state) => const CustomizationScreen(),
+    ),
+    GoRoute(
+      path: '/shop',
+      builder: (context, state) => const ShopScreen(),
+    ),
+    GoRoute(
+      path: '/daily',
+      builder: (context, state) => const DailyChallengeScreen(),
     ),
   ],
 );

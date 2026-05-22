@@ -143,7 +143,7 @@ class AchievementRegistry {
     // ── Errors ──────────────────────────────────────────────────────────────
     Achievement(id: 'lost_10', title: '10 Derrotas', description: 'Pierde 10 partidas', target: 10, xpReward: 50),
     Achievement(id: 'expert_no_errors', title: 'Expert sin Errores', description: 'Completa Expert sin cometer errores', target: 1, xpReward: 200),
-    Achievement(id: 'mythic_no_errors', title: 'Mythic sin Errores', description: 'Completa Mythic sin cometer errores', target: 1, xpReward: 500),
+    Achievement(id: 'mythic_no_errors', title: '???', description: '???', target: 1, xpReward: 500, hidden: true),
 
     // ── Missions ────────────────────────────────────────────────────────────
     Achievement(id: 'missions_1', title: 'Primera Misión', description: 'Completa tu primera misión diaria', target: 1, xpReward: 50),
