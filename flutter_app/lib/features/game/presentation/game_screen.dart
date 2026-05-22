@@ -14,6 +14,8 @@ import '../data/game_autosave.dart';
 import 'widgets/sudoku_board.dart';
 import 'widgets/keypad_widget.dart';
 import 'widgets/actions_widget.dart';
+import '../../cosmetics/models/background_catalog.dart';
+import '../../cosmetics/presentation/unlock_popup.dart';
 
 class GameScreen extends ConsumerStatefulWidget {
   final String difficulty;
@@ -28,6 +30,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   OverlayEntry? _comboFeedback;
   StreamSubscription<int>? _comboSub;
   StreamSubscription<bool>? _gameOverSub;
+  StreamSubscription<String>? _bgUnlockSub;
 
   @override
   void initState() {
@@ -39,6 +42,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       _listenToDigitCompleted();
       _listenToCombo();
       _listenToGameOver();
+      _listenToBackgroundUnlocks();
     });
   }
 
@@ -53,7 +57,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         builder: (ctx) => AlertDialog(
           backgroundColor: Theme.of(context).cardTheme.color,
           title: const Text('Partida encontrada'),
-          content: Text('Tienes una partida sin terminar en ${diff.toUpperCase()}.\n¿Quieres continuar?'),
+          content: Text('Tienes una partida sin terminar en ${diff.toUpperCase()}.\nQuieres continuar?'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
@@ -104,6 +108,20 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       } else {
         context.pushReplacement('/defeat', extra: widget.difficulty);
       }
+    });
+  }
+
+  void _listenToBackgroundUnlocks() {
+    _bgUnlockSub?.cancel();
+    _bgUnlockSub = ref.read(gameProvider.notifier).backgroundUnlockEvent.listen((id) {
+      if (!mounted) return;
+      final bg = BackgroundCatalog.byId(id);
+      if (bg == null) return;
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (ctx) => UnlockPopup(background: bg),
+      );
     });
   }
 
@@ -217,6 +235,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     _comboFeedback?.remove();
     _comboSub?.cancel();
     _gameOverSub?.cancel();
+    _bgUnlockSub?.cancel();
     super.dispose();
   }
 
@@ -233,59 +252,39 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         remainingCells > 0 && remainingCells <= 8;
 
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 700),
-            child: state.isLoading || state.session == null
-                ? const Center(child: CircularProgressIndicator())
-                : Stack(
-                    children: [
-                      Column(
-                        children: [
-                          _Header(state: state, settings: settings, onExit: () => _showExitDialog(context)),
-                          const SizedBox(height: 4),
-                          _SessionStatsBar(stats: state.sessionStats, mode: settings.assistMode),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Center(
-                                child: const SudokuBoardWidget()
-                                    .animate()
-                                    .fade(duration: 400.ms)
-                                    .scale(begin: const Offset(0.95, 0.95)),
+      body: MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaler: TextScaler.linear(1),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 700),
+              child: state.isLoading || state.session == null
+                  ? const Center(child: CircularProgressIndicator())
+                  : Stack(
+                      children: [
+                        Column(
+                          children: [
+                            _Header(state: state, settings: settings, onExit: () => _showExitDialog(context)),
+                            _SessionStatsBar(stats: state.sessionStats, mode: settings.assistMode),
+                            Expanded(
+                              flex: 58,
+                              child: _BoardArea(),
+                            ),
+                            Expanded(
+                              flex: 42,
+                              child: _ControlsArea(
+                                showAutoComplete: showAutoComplete,
+                                onAutoComplete: () => ref.read(gameProvider.notifier).autoComplete(),
                               ),
                             ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: ActionsWidget(),
-                          ),
-                          if (showAutoComplete)
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0, left: 16, right: 16),
-                              child: SizedBox(
-                                width: 200,
-                                child: OutlinedButton.icon(
-                                  icon: const Icon(Icons.auto_fix_high, size: 16),
-                                  label: const Text('AUTO COMPLETE', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-                                  style: OutlinedButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(vertical: 10),
-                                    side: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.5)),
-                                  ),
-                                  onPressed: () => ref.read(gameProvider.notifier).autoComplete(),
-                                ),
-                              ),
-                            ),
-                          const Padding(
-                            padding: EdgeInsets.only(bottom: 24.0, left: 16.0, right: 16.0),
-                            child: KeypadWidget(),
-                          ),
-                        ],
-                      ),
-                      if (state.isPaused) _PauseOverlay(difficulty: widget.difficulty),
-                    ],
-                  ),
+                          ],
+                        ),
+                        if (state.isPaused) _PauseOverlay(difficulty: widget.difficulty),
+                      ],
+                    ),
+            ),
           ),
         ),
       ),
@@ -312,6 +311,88 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         ],
       ),
     );
+  }
+}
+
+// ── Board Area ───────────────────────────────────────────────────────────────
+
+class _BoardArea extends StatelessWidget {
+  const _BoardArea();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: const SudokuBoardWidget()
+            .animate()
+            .fade(duration: 400.ms)
+            .scale(begin: Offset(0.95, 0.95)),
+      ),
+    );
+  }
+}
+
+// ── Controls Area ────────────────────────────────────────────────────────────
+
+class _ControlsArea extends ConsumerWidget {
+  final bool showAutoComplete;
+  final VoidCallback onAutoComplete;
+
+  const _ControlsArea({
+    required this.showAutoComplete,
+    required this.onAutoComplete,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Stack(
+      children: [
+        Column(
+          children: [
+            const SizedBox(height: 8),
+            const ActionsWidget(),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 24),
+                child: KeypadWidget(),
+              ),
+            ),
+          ],
+        ),
+        if (showAutoComplete)
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 52,
+            child: _AutoCompleteButton(onTap: onAutoComplete),
+          ),
+      ],
+    );
+  }
+}
+
+class _AutoCompleteButton extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const _AutoCompleteButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        width: 200,
+        child: OutlinedButton.icon(
+          icon: const Icon(Icons.auto_fix_high, size: 16),
+          label: const Text('AUTO COMPLETE', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          style: OutlinedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            side: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.5)),
+          ),
+          onPressed: onTap,
+        ),
+      ),
+    ).animate().fade(duration: 300.ms).scale(begin: const Offset(0.85, 0.85));
   }
 }
 

@@ -16,6 +16,7 @@ import '../../progression/application/progression_provider.dart';
 import '../../progression/domain/xp_calculator.dart';
 import '../../progression/domain/achievement.dart';
 import '../../progression/data/progression_storage.dart';
+import '../../cosmetics/application/cosmetic_inventory_provider.dart';
 
 class GameNotifier extends Notifier<GameState> {
   Timer? _timer;
@@ -27,6 +28,7 @@ class GameNotifier extends Notifier<GameState> {
   final _comboEvent = StreamController<int>.broadcast();
   final _levelUpEvent = StreamController<int>.broadcast();
   final _achievementEvent = StreamController<String>.broadcast();
+  final _backgroundUnlockEvent = StreamController<String>.broadcast();
   final _gameOverEvent = StreamController<bool>.broadcast(); // true=win, false=loss
 
   Stream<int> get rowCompleted => _rowCompleted.stream;
@@ -36,6 +38,7 @@ class GameNotifier extends Notifier<GameState> {
   Stream<int> get comboEvent => _comboEvent.stream;
   Stream<int> get levelUpEvent => _levelUpEvent.stream;
   Stream<String> get achievementEvent => _achievementEvent.stream;
+  Stream<String> get backgroundUnlockEvent => _backgroundUnlockEvent.stream;
   Stream<bool> get gameOverEvent => _gameOverEvent.stream;
 
   @override
@@ -49,6 +52,7 @@ class GameNotifier extends Notifier<GameState> {
       _comboEvent.close();
       _levelUpEvent.close();
       _achievementEvent.close();
+      _backgroundUnlockEvent.close();
       _gameOverEvent.close();
     });
     return const GameState(isLoading: false);
@@ -683,6 +687,15 @@ class GameNotifier extends Notifier<GameState> {
     final levelUps = await ref.read(playerLevelProvider.notifier).addXp(xpResult.total);
     for (var i = 0; i < levelUps; i++) {
       _levelUpEvent.add(state.session!.solution[0]);
+    }
+
+    // Check background unlocks
+    if (levelUps > 0) {
+      final newLevel = ref.read(playerLevelProvider).level;
+      final newBgIds = ref.read(cosmeticInventoryProvider.notifier).checkNewUnlocksAtLevel(newLevel);
+      for (final id in newBgIds) {
+        _backgroundUnlockEvent.add(id);
+      }
     }
 
     // Check achievements

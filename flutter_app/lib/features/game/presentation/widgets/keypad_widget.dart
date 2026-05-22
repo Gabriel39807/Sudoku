@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import '../../application/game_provider.dart';
 
 class KeypadWidget extends ConsumerWidget {
@@ -15,38 +14,46 @@ class KeypadWidget extends ConsumerWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final maxWidth = constraints.maxWidth > 350
-            ? 350.0
-            : constraints.maxWidth;
-        return SizedBox(
-          width: maxWidth,
-          child: GridView.count(
-            crossAxisCount: 3,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
-            childAspectRatio: 2.0,
-            children: List.generate(9, (index) {
-              final number = index + 1;
-              final digitComplete = (completedDigits[number] ?? 0) >= 9;
-              return _KeypadButton(
-                    number: number,
-                    isLocked: lockedNumber == number,
-                    isComplete: digitComplete,
-                    onTap: digitComplete
-                        ? null
-                        : () =>
-                            ref.read(gameProvider.notifier).inputNumber(number),
-                    onLongHold: digitComplete
-                        ? null
-                        : () => ref
-                            .read(gameProvider.notifier)
-                            .toggleLockedNumber(number),
-                  )
-                  .animate()
-                  .fade(delay: (50 * index).ms)
-                  .scale(begin: const Offset(0.8, 0.8));
+        final h = constraints.maxHeight;
+        final keyHeight = (h * 0.24).clamp(48.0, 72.0);
+        final fontSize = (keyHeight * 0.35).clamp(16.0, 26.0);
+        const spacing = 8.0;
+
+        return Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(3, (row) {
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: spacing / 2),
+                child: Row(
+                  children: List.generate(3, (col) {
+                    final number = row * 3 + col + 1;
+                    final digitComplete = (completedDigits[number] ?? 0) >= 9;
+                    return Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: spacing / 2),
+                        child: SizedBox(
+                          height: keyHeight,
+                          child: _KeypadButton(
+                            number: number,
+                            fontSize: fontSize,
+                            isLocked: lockedNumber == number,
+                            isComplete: digitComplete,
+                            onTap: digitComplete
+                                ? null
+                                : () => ref.read(gameProvider.notifier).inputNumber(number),
+                            onLongHold: digitComplete
+                                ? null
+                                : () => ref
+                                    .read(gameProvider.notifier)
+                                    .toggleLockedNumber(number),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              );
             }),
           ),
         );
@@ -57,6 +64,7 @@ class KeypadWidget extends ConsumerWidget {
 
 class _KeypadButton extends StatefulWidget {
   final int number;
+  final double fontSize;
   final bool isLocked;
   final bool isComplete;
   final VoidCallback? onTap;
@@ -64,6 +72,7 @@ class _KeypadButton extends StatefulWidget {
 
   const _KeypadButton({
     required this.number,
+    required this.fontSize,
     required this.isLocked,
     required this.isComplete,
     this.onTap,
@@ -135,6 +144,8 @@ class _KeypadButtonState extends State<_KeypadButton> {
             ? activeColor
             : activeColor;
 
+    final subFontSize = widget.fontSize * 0.38;
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
@@ -162,7 +173,8 @@ class _KeypadButtonState extends State<_KeypadButton> {
               children: [
                 Text(
                   widget.number.toString(),
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  style: TextStyle(
+                    fontSize: widget.fontSize,
                     color: textColor,
                     fontWeight: widget.isComplete
                         ? FontWeight.w300
@@ -170,15 +182,15 @@ class _KeypadButtonState extends State<_KeypadButton> {
                   ),
                 ),
                 if (widget.isLocked)
-                  const Text(
-                    'Modo rápido',
-                    style: TextStyle(fontSize: 9, color: Colors.white70),
+                  Text(
+                    'Modo rpido',
+                    style: TextStyle(fontSize: subFontSize, color: Colors.white70),
                   ),
                 if (widget.isComplete && !widget.isLocked)
                   Text(
                     '${widget.number} listo',
                     style: TextStyle(
-                      fontSize: 8,
+                      fontSize: subFontSize,
                       color: Colors.greenAccent.withValues(alpha: 0.5),
                     ),
                   ),

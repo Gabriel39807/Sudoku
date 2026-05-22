@@ -32,52 +32,61 @@ class ActionsWidget extends ConsumerWidget {
         ? 'PISTA ILIM'
         : 'PISTA $remainingHints';
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _ActionButton(
-          icon: Icons.undo,
-          label: 'DESHACER',
-          onTap: canUndo ? () => ref.read(gameProvider.notifier).undo() : null,
-          isDisabled: !canUndo,
+    return Center(
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _ActionButton(
+              icon: Icons.undo,
+              label: 'DESHACER',
+              onTap: canUndo ? () => ref.read(gameProvider.notifier).undo() : null,
+              isDisabled: !canUndo,
+            ),
+            _ActionButton(
+              icon: Icons.backspace_outlined,
+              label: 'BORRAR',
+              onTap: () => ref.read(gameProvider.notifier).erase(),
+            ),
+            _ActionButton(
+              icon: Icons.edit,
+              label: 'PENCIL',
+              isActive: pencilMode,
+              onTap: () => ref.read(gameProvider.notifier).togglePencil(),
+            ),
+            _ActionButton(
+              icon: Icons.auto_awesome,
+              label: 'ADV',
+              isActive: advancedNotes,
+              onTap: () => ref.read(gameProvider.notifier).toggleAdvancedNotes(),
+            ),
+            _ActionButton(
+              icon: Icons.lightbulb_outline,
+              label: hintLabel,
+              onTap: showHints
+                  ? () {
+                      final result = ref.read(gameProvider.notifier).useHint();
+                      if (result == HintResult.noSelection) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Selecciona una casilla')),
+                        );
+                      }
+                    }
+                  : null,
+              isDisabled: !showHints,
+              isHidden: !showHints,
+            ),
+            _ActionButton(
+              icon: Icons.pause,
+              label: 'PAUSA',
+              onTap: !isExtreme ? () => ref.read(gameProvider.notifier).togglePause() : null,
+              isDisabled: isExtreme,
+              isHidden: isExtreme,
+            ),
+          ],
         ),
-        _ActionButton(
-          icon: Icons.backspace_outlined,
-          label: 'BORRAR',
-          onTap: () => ref.read(gameProvider.notifier).erase(),
-        ),
-        _ActionButton(
-          icon: Icons.edit,
-          label: 'PENCIL',
-          isActive: pencilMode,
-          onTap: () => ref.read(gameProvider.notifier).togglePencil(),
-        ),
-        _ActionButton(
-          icon: Icons.auto_awesome,
-          label: 'ADV',
-          isActive: advancedNotes,
-          onTap: () => ref.read(gameProvider.notifier).toggleAdvancedNotes(),
-        ),
-        if (showHints)
-          _ActionButton(
-            icon: Icons.lightbulb_outline,
-            label: hintLabel,
-            onTap: () {
-              final result = ref.read(gameProvider.notifier).useHint();
-              if (result == HintResult.noSelection) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Selecciona una casilla')),
-                );
-              }
-            },
-          ),
-        if (!isExtreme)
-          _ActionButton(
-            icon: Icons.pause,
-            label: 'PAUSA',
-            onTap: () => ref.read(gameProvider.notifier).togglePause(),
-          ),
-      ],
+      ),
     );
   }
 }
@@ -88,6 +97,7 @@ class _ActionButton extends StatelessWidget {
   final VoidCallback? onTap;
   final bool isActive;
   final bool isDisabled;
+  final bool isHidden;
 
   const _ActionButton({
     required this.icon,
@@ -95,6 +105,7 @@ class _ActionButton extends StatelessWidget {
     required this.onTap,
     this.isActive = false,
     this.isDisabled = false,
+    this.isHidden = false,
   });
 
   @override
@@ -105,27 +116,36 @@ class _ActionButton extends StatelessWidget {
         ? Theme.of(context).primaryColor
         : Colors.white70;
 
+    final child = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 28, color: color),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+              color: color,
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (isHidden) {
+      return Opacity(
+        opacity: 0,
+        child: child,
+      );
+    }
+
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 28, color: color),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-                color: color,
-              ),
-            ),
-          ],
-        ),
-      ),
+      child: child,
     );
   }
 }

@@ -6,8 +6,7 @@ import '../../domain/game_state.dart';
 import '../../application/game_provider.dart';
 import '../../../cosmetics/application/cosmetics_provider.dart';
 import '../../../cosmetics/domain/frame_skin.dart';
-
-const _frameThickness = 40.0;
+import '../../../cosmetics/application/cosmetic_inventory_provider.dart';
 
 class SudokuBoardWidget extends ConsumerStatefulWidget {
   const SudokuBoardWidget({super.key});
@@ -72,53 +71,90 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
   Widget build(BuildContext context) {
     final state = ref.watch(gameProvider);
     final cosmetics = ref.watch(cosmeticsProvider);
+    final inventory = ref.watch(cosmeticInventoryProvider);
 
-    return AspectRatio(
-      aspectRatio: 1.0,
+    final bgPath = inventory.equippedAssetPath ?? cosmetics.selectedTheme.backgroundPath;
+
+    final shortest = MediaQuery.sizeOf(context).shortestSide;
+    final boardSize = (shortest * 0.82).clamp(320.0, 520.0);
+    final cellSize = boardSize / 9;
+    final frameThickness = (boardSize * 0.07).clamp(24.0, 48.0);
+    final cornerSize = frameThickness * 1.3;
+
+    return SizedBox(
+      width: boardSize,
+      height: boardSize,
       child: Stack(
         children: [
           Positioned.fill(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
-                cosmetics.selectedTheme.backgroundPath,
+                bgPath,
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          _buildFrame(cosmetics.selectedFrame),
+          _buildFrame(cosmetics.selectedFrame, frameThickness, cornerSize),
           Padding(
-            padding: const EdgeInsets.all(_frameThickness),
-            child: _buildGrid(state),
+            padding: EdgeInsets.all(frameThickness),
+            child: _buildGrid(state, cellSize),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildFrame(FrameSkin frame) {
+  Widget _buildFrame(FrameSkin frame, double ft, double cs) {
     return Stack(
+      clipBehavior: Clip.none,
       children: [
-        Positioned(top: 0, left: 0, child: Image.asset(frame.corners.tl, width: _frameThickness, height: _frameThickness)),
-        Positioned(top: 0, right: 0, child: Image.asset(frame.corners.tr, width: _frameThickness, height: _frameThickness)),
-        Positioned(bottom: 0, left: 0, child: Image.asset(frame.corners.bl, width: _frameThickness, height: _frameThickness)),
-        Positioned(bottom: 0, right: 0, child: Image.asset(frame.corners.br, width: _frameThickness, height: _frameThickness)),
-        Positioned(top: 0, left: _frameThickness, right: _frameThickness, child: Image.asset(frame.edges.top, height: _frameThickness, fit: BoxFit.fill)),
-        Positioned(bottom: 0, left: _frameThickness, right: _frameThickness, child: Image.asset(frame.edges.bottom, height: _frameThickness, fit: BoxFit.fill)),
-        Positioned(left: 0, top: _frameThickness, bottom: _frameThickness, child: Image.asset(frame.edges.left, width: _frameThickness, fit: BoxFit.fill)),
-        Positioned(right: 0, top: _frameThickness, bottom: _frameThickness, child: Image.asset(frame.edges.right, width: _frameThickness, fit: BoxFit.fill)),
-        Positioned(top: 0, left: 0, right: 0, child: Center(child: Image.asset(frame.decorations.topCenter, width: _frameThickness, height: _frameThickness))),
-        Positioned(bottom: 0, left: 0, right: 0, child: Center(child: Image.asset(frame.decorations.bottomCenter, width: _frameThickness, height: _frameThickness))),
-        Positioned(left: 0, top: 0, bottom: 0, child: Center(child: Image.asset(frame.decorations.leftCenter, width: _frameThickness, height: _frameThickness))),
-        Positioned(right: 0, top: 0, bottom: 0, child: Center(child: Image.asset(frame.decorations.rightCenter, width: _frameThickness, height: _frameThickness))),
+        _buildSides(frame, ft),
+        _buildCorners(frame, cs),
+        _buildOrnaments(frame, ft),
       ],
     );
   }
 
-  Widget _buildGrid(GameState state) {
+  Widget _buildSides(FrameSkin frame, double ft) {
+    return Stack(
+      children: [
+        Positioned(top: 0, left: ft, right: ft, child: Image.asset(frame.edges.top, height: ft, fit: BoxFit.fill)),
+        Positioned(bottom: 0, left: ft, right: ft, child: Image.asset(frame.edges.bottom, height: ft, fit: BoxFit.fill)),
+        Positioned(left: 0, top: ft, bottom: ft, child: Image.asset(frame.edges.left, width: ft, fit: BoxFit.fill)),
+        Positioned(right: 0, top: ft, bottom: ft, child: Image.asset(frame.edges.right, width: ft, fit: BoxFit.fill)),
+      ],
+    );
+  }
+
+  Widget _buildCorners(FrameSkin frame, double cs) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Positioned(top: 0, left: 0, child: Image.asset(frame.corners.tl, width: cs, height: cs)),
+        Positioned(top: 0, right: 0, child: Image.asset(frame.corners.tr, width: cs, height: cs)),
+        Positioned(bottom: 0, left: 0, child: Image.asset(frame.corners.bl, width: cs, height: cs)),
+        Positioned(bottom: 0, right: 0, child: Image.asset(frame.corners.br, width: cs, height: cs)),
+      ],
+    );
+  }
+
+  Widget _buildOrnaments(FrameSkin frame, double ft) {
+    return Stack(
+      children: [
+        Positioned(top: 0, left: 0, right: 0, child: Center(child: Image.asset(frame.decorations.topCenter, width: ft, height: ft))),
+        Positioned(bottom: 0, left: 0, right: 0, child: Center(child: Image.asset(frame.decorations.bottomCenter, width: ft, height: ft))),
+        Positioned(left: 0, top: 0, bottom: 0, child: Center(child: Image.asset(frame.decorations.leftCenter, width: ft, height: ft))),
+        Positioned(right: 0, top: 0, bottom: 0, child: Center(child: Image.asset(frame.decorations.rightCenter, width: ft, height: ft))),
+      ],
+    );
+  }
+
+  Widget _buildGrid(GameState state, double cellSize) {
+    final thick = cellSize * 0.08;
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFF2B2B2B), width: 4),
+        border: Border.all(color: const Color(0xFF2B2B2B), width: thick),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.3),
@@ -138,6 +174,7 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
                     child: _CellWidget(
                       cell: state.board[r][c],
                       gameState: state,
+                      cellSize: cellSize,
                       isInGlowRow: r == _glowRow,
                       isInGlowCol: c == _glowCol,
                       isInGlowBlock: (r ~/ 3) * 3 + (c ~/ 3) == _glowBlock,
@@ -159,6 +196,7 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
 class _CellWidget extends ConsumerWidget {
   final SudokuCell cell;
   final GameState gameState;
+  final double cellSize;
   final bool isInGlowRow;
   final bool isInGlowCol;
   final bool isInGlowBlock;
@@ -167,6 +205,7 @@ class _CellWidget extends ConsumerWidget {
   const _CellWidget({
     required this.cell,
     required this.gameState,
+    required this.cellSize,
     this.isInGlowRow = false,
     this.isInGlowCol = false,
     this.isInGlowBlock = false,
@@ -207,8 +246,11 @@ class _CellWidget extends ConsumerWidget {
       bgColor = Colors.white.withValues(alpha: 0.05);
     }
 
-    final topBorder = (cell.row % 3 == 0 && cell.row != 0) ? 4.0 : 1.0;
-    final leftBorder = (cell.col % 3 == 0 && cell.col != 0) ? 4.0 : 1.0;
+    final thick = cellSize * 0.05;
+    final thin = cellSize * 0.02;
+
+    final topBorder = (cell.row % 3 == 0 && cell.row != 0) ? thick : thin;
+    final leftBorder = (cell.col % 3 == 0 && cell.col != 0) ? thick : thin;
     final borderColor = const Color(0xFF2B2B2B);
 
     final glowOpacity = glowProgress?.value ?? 0.0;
@@ -236,8 +278,8 @@ class _CellWidget extends ConsumerWidget {
           border: Border(
             top: BorderSide(color: borderColor, width: topBorder),
             left: BorderSide(color: borderColor, width: leftBorder),
-            bottom: BorderSide(color: borderColor, width: 1.0),
-            right: BorderSide(color: borderColor, width: 1.0),
+            bottom: BorderSide(color: borderColor, width: thin),
+            right: BorderSide(color: borderColor, width: thin),
           ),
         ),
         child: Center(
@@ -251,7 +293,8 @@ class _CellWidget extends ConsumerWidget {
     if (cell.value != 0) {
       return Text(
         cell.value.toString(),
-        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+        style: TextStyle(
+          fontSize: cellSize * 0.62,
           color: cell.isError
               ? Colors.redAccent
               : cell.isFixed
@@ -266,7 +309,7 @@ class _CellWidget extends ConsumerWidget {
       final selectedNumber = gameState.lockedNumber;
       return GridView.count(
         crossAxisCount: 3,
-        padding: const EdgeInsets.all(2),
+        padding: EdgeInsets.all(cellSize * 0.05),
         physics: const NeverScrollableScrollPhysics(),
         children: List.generate(9, (i) {
           final n = i + 1;
@@ -277,7 +320,7 @@ class _CellWidget extends ConsumerWidget {
               child: Text(
                 n.toString(),
                 style: TextStyle(
-                  fontSize: isHighlighted ? 9 : 8,
+                  fontSize: cellSize * 0.18,
                   color: isHighlighted
                       ? const Color(0xFFBCA6FF)
                       : isConflict
