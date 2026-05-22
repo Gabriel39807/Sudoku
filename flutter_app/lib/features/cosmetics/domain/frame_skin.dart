@@ -184,6 +184,29 @@ class FrameSkin {
       ),
     ),
     FrameSkin(
+      id: 'crystal_reference_v2',
+      name: 'Crystal (Refined)',
+      rarity: 'rare',
+      corners: FrameCorners(
+        tl: '${_base("crystal_reference_v2")}/tl.webp',
+        tr: '${_base("crystal_reference_v2")}/tr.webp',
+        bl: '${_base("crystal_reference_v2")}/bl.webp',
+        br: '${_base("crystal_reference_v2")}/br.webp',
+      ),
+      edges: FrameEdges(
+        top: '${_base("crystal")}/top.webp',
+        bottom: '${_base("crystal")}/bottom.webp',
+        left: '${_base("crystal")}/left.webp',
+        right: '${_base("crystal")}/right.webp',
+      ),
+      decorations: FrameDecorations(
+        topCenter: '${_base("crystal")}/top_center.webp',
+        bottomCenter: '${_base("crystal")}/bottom_center.webp',
+        leftCenter: '${_base("crystal")}/left_center.webp',
+        rightCenter: '${_base("crystal")}/right_center.webp',
+      ),
+    ),
+    FrameSkin(
       id: 'shadow',
       name: 'Shadow',
       rarity: 'uncommon',

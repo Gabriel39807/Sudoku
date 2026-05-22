@@ -34,4 +34,5 @@ flutter:
     - assets/cosmetics/frames/default/
     - assets/cosmetics/frames/gold/
     - assets/cosmetics/frames/crystal/
+    - assets/cosmetics/frames/crystal_reference_v2/
     - assets/cosmetics/frames/shadow/
