@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app/router/router.dart';
 import 'app/theme/theme.dart';
+import 'features/customization/application/customization_provider.dart';
 
 void main() {
   runApp(
@@ -11,14 +12,15 @@ void main() {
   );
 }
 
-class SudokuApp extends StatelessWidget {
+class SudokuApp extends ConsumerWidget {
   const SudokuApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final palette = ref.watch(customizationProvider).palette;
     return MaterialApp.router(
       title: 'Sudoku Classic',
-      theme: AppTheme.darkTheme,
+      theme: buildTheme(palette),
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
     );
