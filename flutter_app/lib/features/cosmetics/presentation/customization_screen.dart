@@ -6,6 +6,9 @@ import '../application/cosmetic_inventory_provider.dart';
 import '../models/background_cosmetic.dart';
 import '../models/background_catalog.dart';
 import '../../progression/application/progression_provider.dart';
+import '../../../core/theme/theme_palette.dart';
+import '../../customization/application/customization_provider.dart';
+import '../../customization/domain/game_background_theme.dart';
 
 class CustomizationScreen extends ConsumerStatefulWidget {
   const CustomizationScreen({super.key});
@@ -21,7 +24,7 @@ class _CustomizationScreenState extends ConsumerState<CustomizationScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -43,6 +46,8 @@ class _CustomizationScreenState extends ConsumerState<CustomizationScreen>
           tabs: const [
             Tab(text: 'Fondos'),
             Tab(text: 'Marcos'),
+            Tab(text: 'Paletas'),
+            Tab(text: 'Global'),
           ],
         ),
       ),
@@ -58,6 +63,8 @@ class _CustomizationScreenState extends ConsumerState<CustomizationScreen>
               children: [
                 _FondosTab(),
                 _FrameGrid(cosmetics: cosmetics),
+                _PalettesTab(),
+                _GlobalBackgroundsTab(),
               ],
             ),
           ),
@@ -587,6 +594,189 @@ class _CosmeticCard extends StatelessWidget {
                   if (rarity != 'common')
                     Text(rarity.toUpperCase(), style: TextStyle(fontSize: 9, color: _rarityColor(), fontWeight: FontWeight.bold)),
                 ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ── Palettes Tab ────────────────────────────────────────────────────────────
+
+class _PalettesTab extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final customization = ref.watch(customizationProvider);
+    return GridView.builder(
+      padding: const EdgeInsets.all(16),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 1.3,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+      ),
+      itemCount: AppPalette.all.length,
+      itemBuilder: (context, index) {
+        final palette = AppPalette.all[index];
+        final selected = customization.palette == palette;
+        return _PaletteCard(palette: palette, selected: selected);
+      },
+    );
+  }
+}
+
+class _PaletteCard extends ConsumerWidget {
+  final AppPalette palette;
+  final bool selected;
+
+  const _PaletteCard({required this.palette, required this.selected});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return GestureDetector(
+      onTap: () => ref.read(customizationProvider.notifier).setPalette(palette),
+      child: AnimatedContainer(
+        duration: 200.ms,
+        decoration: BoxDecoration(
+          color: palette.primary.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: selected ? palette.accent : palette.primary.withValues(alpha: 0.2),
+            width: selected ? 3 : 1,
+          ),
+          boxShadow: selected
+              ? [BoxShadow(color: palette.glow.withValues(alpha: 0.3), blurRadius: 12, spreadRadius: 2)]
+              : null,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _Swatch(color: palette.primary),
+                const SizedBox(width: 6),
+                _Swatch(color: palette.secondary),
+                const SizedBox(width: 6),
+                _Swatch(color: palette.accent),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(palette.label,
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                  color: selected ? palette.accent : Colors.white70,
+                )),
+            if (selected) ...[
+              const SizedBox(height: 4),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                decoration: BoxDecoration(
+                  color: palette.accent.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(99),
+                  border: Border.all(color: palette.accent.withValues(alpha: 0.3)),
+                ),
+                child: Text('ACTIVA',
+                    style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1, color: palette.accent)),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Swatch extends StatelessWidget {
+  final Color color;
+  const _Swatch({required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 28, height: 28,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+      ),
+    );
+  }
+}
+
+// ── Global Backgrounds Tab ─────────────────────────────────────────────────
+
+class _GlobalBackgroundsTab extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final customization = ref.watch(customizationProvider);
+    return GridView.builder(
+      padding: const EdgeInsets.all(16),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 1.5,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+      ),
+      itemCount: GameBackgroundTheme.values.length,
+      itemBuilder: (context, index) {
+        final bg = GameBackgroundTheme.values[index];
+        final selected = customization.background == bg;
+        return _GlobalBgCard(background: bg, selected: selected);
+      },
+    );
+  }
+}
+
+class _GlobalBgCard extends ConsumerWidget {
+  final GameBackgroundTheme background;
+  final bool selected;
+
+  const _GlobalBgCard({required this.background, required this.selected});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return GestureDetector(
+      onTap: () => ref.read(customizationProvider.notifier).setBackground(background),
+      child: AnimatedContainer(
+        duration: 200.ms,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: selected ? Colors.white : Colors.white24,
+            width: selected ? 3 : 1,
+          ),
+          boxShadow: selected
+              ? [BoxShadow(color: Colors.white.withValues(alpha: 0.15), blurRadius: 12, spreadRadius: 2)]
+              : null,
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: background.gradientColors,
+                  ),
+                ),
+                child: selected
+                    ? const Center(child: Icon(Icons.check, color: Colors.white, size: 32))
+                    : null,
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              color: Colors.black26,
+              child: Text(
+                background.label,
+                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
               ),
             ),
           ],
