@@ -4,9 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../application/game_provider.dart';
 import '../domain/game_state.dart';
+import '../domain/game_session_context.dart';
 import '../../progression/application/progression_provider.dart';
 import '../../progression/domain/player_level.dart';
 import '../../progression/domain/xp_calculator.dart';
+import '../../campaign/domain/campaign_level.dart';
 
 class VictoryScreen extends ConsumerWidget {
   final String difficulty;
@@ -394,25 +396,35 @@ class _StatsGrid extends StatelessWidget {
   }
 }
 
-// ── Heatmap Summary ─────────────────────────────────────────────────────────
+// ── Board Dimension-Aware Heatmap Summary ─────────────────────────────────────
 
-class _HeatmapSummary extends StatelessWidget {
+class BoardDimensionAwareHeatmap extends StatelessWidget {
   final Map<int, int> cellTimeMs;
   final dynamic session;
   final Color accentColor;
 
-  const _HeatmapSummary(
+  const BoardDimensionAwareHeatmap(
       {required this.cellTimeMs, required this.session, required this.accentColor});
 
   @override
   Widget build(BuildContext context) {
     if (cellTimeMs.isEmpty) return const SizedBox.shrink();
 
+    final config = session?.config;
+    final boardSize = config?.boardSize ?? 9;
+    final totalCells = boardSize * boardSize;
+
+    if (totalCells <= 0 || totalCells > 81) {
+      return const SizedBox.shrink();
+    }
+
     final maxTime = cellTimeMs.values.reduce((a, b) => a > b ? a : b);
     final errorIndices = <int>{};
     if (session != null) {
-      for (var i = 0; i < 81; i++) {
-        if (session.currentBoard[i] != 0 &&
+      for (var i = 0; i < totalCells; i++) {
+        if (i < session.currentBoard.length &&
+            session.currentBoard[i] != 0 &&
+            i < session.solution.length &&
             session.currentBoard[i] != session.solution[i]) {
           errorIndices.add(i);
         }
@@ -444,13 +456,13 @@ class _HeatmapSummary extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           GridView.count(
-            crossAxisCount: 9,
+            crossAxisCount: boardSize,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             mainAxisSpacing: 2,
             crossAxisSpacing: 2,
             childAspectRatio: 1,
-            children: List.generate(81, (i) {
+            children: List.generate(totalCells, (i) {
               final timeMs = cellTimeMs[i] ?? 0;
               final hasError = errorIndices.contains(i);
               final intensity = maxTime > 0 ? timeMs / maxTime : 0.0;
@@ -498,6 +510,26 @@ class _HeatmapSummary extends StatelessWidget {
   }
 }
 
+// ── Old Heatmap — now delegates to BoardDimensionAwareHeatmap ─────────────────
+
+class _HeatmapSummary extends StatelessWidget {
+  final Map<int, int> cellTimeMs;
+  final dynamic session;
+  final Color accentColor;
+
+  const _HeatmapSummary(
+      {required this.cellTimeMs, required this.session, required this.accentColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return BoardDimensionAwareHeatmap(
+      cellTimeMs: cellTimeMs,
+      session: session,
+      accentColor: accentColor,
+    );
+  }
+}
+
 // ── Action Buttons ─────────────────────────────────────────────────────────
 
 class _ActionButtons extends ConsumerWidget {
@@ -506,6 +538,12 @@ class _ActionButtons extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.read(gameProvider.notifier);
+    final ctx = notifier.currentContext;
+    final isCampaign = ctx?.mode == GameMode.campaign;
+    final isDaily = ctx?.mode == GameMode.daily;
+    final isCampaignOrDaily = isCampaign || isDaily;
+
     return Row(
       children: [
         Expanded(
@@ -518,40 +556,53 @@ class _ActionButtons extends ConsumerWidget {
               side: BorderSide(color: Colors.white.withValues(alpha: 0.3)),
             ),
             onPressed: () {
-              ref.read(gameProvider.notifier).restartCurrentBoard();
-              context.pushReplacement('/game', extra: difficulty);
+              notifier.restartCurrentBoard();
+              if (isCampaign) {
+                final level = ctx!.progress!;
+                final variant = CampaignStage.fromLevel(level).variant.name;
+                context.pushReplacement('/campaign-game', extra: {'level': level, 'variant': variant});
+              } else {
+                context.pushReplacement('/game', extra: difficulty);
+              }
             },
           ),
         ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: OutlinedButton.icon(
-            icon: const Icon(Icons.skip_next, size: 18),
-            label: const Text('SIGUIENTE',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-            style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              side: BorderSide(
-                  color: Theme.of(context).primaryColor.withValues(alpha: 0.5)),
+        if (!isCampaignOrDaily) ...[
+          const SizedBox(width: 12),
+          Expanded(
+            child: OutlinedButton.icon(
+              icon: const Icon(Icons.skip_next, size: 18),
+              label: const Text('SIGUIENTE',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                side: BorderSide(
+                    color: Theme.of(context).primaryColor.withValues(alpha: 0.5)),
+              ),
+              onPressed: () {
+                context.pushReplacement('/game', extra: difficulty);
+              },
             ),
-            onPressed: () {
-              context.pushReplacement('/game', extra: difficulty);
-            },
           ),
-        ),
+        ],
         const SizedBox(width: 12),
         Expanded(
           child: OutlinedButton.icon(
             icon: const Icon(Icons.menu, size: 18),
-            label: const Text('MENÚ',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+            label: Text(isCampaign ? 'CAMPAÑA' : 'MENÚ',
+                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
             style: OutlinedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 14),
               side: BorderSide(color: Colors.white.withValues(alpha: 0.3)),
             ),
             onPressed: () {
-              context.pop();
-              context.pop();
+              if (isCampaignOrDaily) {
+                context.pop();
+                context.pop();
+              } else {
+                context.pop();
+                context.pop();
+              }
             },
           ),
         ),

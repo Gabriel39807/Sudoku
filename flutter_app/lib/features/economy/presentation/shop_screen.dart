@@ -7,6 +7,9 @@ import '../domain/wallet.dart';
 import '../domain/shop_catalog.dart';
 import '../../../features/cosmetics/application/cosmetic_inventory_provider.dart';
 import '../../../shared/widgets/game_modal_card.dart';
+import '../../../ui/currency/currency_assets.dart';
+import '../../../ui/currency/currency_type.dart';
+import '../../../ui/currency/currency_widget.dart';
 
 class ShopScreen extends ConsumerWidget {
   const ShopScreen({super.key});
@@ -189,68 +192,11 @@ class _ShopHeader extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _CoinBadge(
-                icon: Icons.diamond,
-                iconColor: const Color(0xFF9B59B6),
-                label: 'SOULS',
-                amount: wallet.souls,
-              ),
+              CurrencyWidget(type: CurrencyType.souls, amount: wallet.souls, size: 18, showLabel: true),
               const SizedBox(width: 24),
-              _CoinBadge(
-                icon: Icons.water_drop,
-                iconColor: const Color(0xFF3498DB),
-                label: 'TOKENS',
-                amount: wallet.tokens,
-              ),
+              CurrencyWidget(type: CurrencyType.tokens, amount: wallet.tokens, size: 18, showLabel: true),
             ],
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class _CoinBadge extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
-  final String label;
-  final int amount;
-
-  const _CoinBadge({
-    required this.icon,
-    required this.iconColor,
-    required this.label,
-    required this.amount,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: iconColor.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: iconColor.withValues(alpha: 0.3)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 18, color: iconColor),
-          const SizedBox(width: 8),
-          Text(amount.toString(),
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: iconColor,
-              )),
-          const SizedBox(width: 6),
-          Text(label,
-              style: TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w600,
-                color: iconColor.withValues(alpha: 0.7),
-                letterSpacing: 1,
-              )),
         ],
       ),
     );
@@ -340,8 +286,8 @@ class _CosmeticCard extends StatelessWidget {
                 ))
           else
             _PriceButton(
-              icon: Icons.diamond,
-              iconColor: const Color(0xFF9B59B6),
+              icon: CurrencyAssets.iconFor(CurrencyType.souls),
+              iconColor: CurrencyAssets.colorFor(CurrencyType.souls),
               price: item.soulCost,
               canAfford: canAfford,
               onTap: onBuy,
@@ -417,8 +363,8 @@ class _ConsumableCard extends StatelessWidget {
             ),
           ),
           _PriceButton(
-            icon: Icons.water_drop,
-            iconColor: const Color(0xFF3498DB),
+            icon: CurrencyAssets.iconFor(CurrencyType.tokens),
+            iconColor: CurrencyAssets.colorFor(CurrencyType.tokens),
             price: item.tokenCost,
             canAfford: canAfford,
             onTap: onBuy,
