@@ -1,0 +1,41 @@
+{
+  "puzzle": "2008003000000000000300075001400004000060136085000014028600307410",
+  "solution": "2748563131562874428361575671432884251763136785427514328668327415",
+  "clues": 24,
+  "variant": "mini_8x8",
+  "level_id": "campaign_8x8_0069",
+  "stage": 3,
+  "chapter": "Advanced Intro",
+  "level_index": 69,
+  "difficulty": "Advanced Intro",
+  "tier_max": 4,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction",
+    "NakedPair",
+    "HiddenPair",
+    "NakedTriple",
+    "HiddenTriple",
+    "NakedQuad"
+  ],
+  "visual_score": 0.375,
+  "human_score": 4,
+  "tutorial": false,
+  "economy": {
+    "coins": 552,
+    "souls": 8,
+    "perfect_bonus": 15,
+    "combo_bonus": 8,
+    "chapter_reward": 200
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

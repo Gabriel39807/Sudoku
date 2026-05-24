@@ -1,0 +1,33 @@
+{
+  "puzzle": "207315860100092540359468172072850631091634708630271950960000485714500090025946317",
+  "solution": "247315869186792543359468172472859631591634728638271954963127485714583296825946317",
+  "clues": 60,
+  "variant": "classic_9x9",
+  "level_id": "campaign_9x9_0009",
+  "stage": 4,
+  "chapter": "First Real Sudoku",
+  "level_index": 9,
+  "difficulty": "First Real Sudoku",
+  "tier_max": 1,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle"
+  ],
+  "visual_score": 0.741,
+  "human_score": 1,
+  "tutorial": false,
+  "economy": {
+    "coins": 90,
+    "souls": 1,
+    "perfect_bonus": 20,
+    "chapter_reward": 100,
+    "first_clear": 0
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

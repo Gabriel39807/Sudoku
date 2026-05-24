@@ -1,0 +1,38 @@
+{
+  "puzzle": "020106000000045030200000003002100064",
+  "solution": "324156516423645231231645463512152364",
+  "clues": 12,
+  "variant": "mini_6x6",
+  "level_id": "campaign_6x6_0062",
+  "stage": 2,
+  "chapter": "Hidden & Triples",
+  "level_index": 62,
+  "difficulty": "Hidden & Triples",
+  "tier_max": 4,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction",
+    "NakedPair",
+    "HiddenPair",
+    "NakedTriple"
+  ],
+  "visual_score": 0.333,
+  "human_score": 4,
+  "tutorial": false,
+  "economy": {
+    "coins": 310,
+    "souls": 6,
+    "perfect_bonus": 10,
+    "streak_bonus": 5
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

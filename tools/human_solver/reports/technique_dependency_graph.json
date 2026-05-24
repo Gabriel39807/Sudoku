@@ -1,0 +1,371 @@
+{
+  "schema_version": "1.0",
+  "description": "Dependency graph for all Sudoku solving techniques. Each technique lists its prerequisites — board features, candidate states, and sub-techniques it relies on.",
+  "dependencies": {
+    "last_blank_cell": {
+      "requires": ["grid_9x9"],
+      "uses": ["house_scan", "set_difference"],
+      "description": "Finds the single empty cell in a house; computes missing digit via set difference of givens."
+    },
+    "full_house": {
+      "requires": ["grid_9x9"],
+      "uses": ["house_scan", "empty_cell_count"],
+      "description": "Scans each house for exactly one empty cell; the missing digit is forced."
+    },
+    "naked_single": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["candidate_count"],
+      "description": "A cell with exactly one candidate remaining must be that digit."
+    },
+    "hidden_single": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["house_candidates", "digit_occurrence_count"],
+      "description": "A digit that appears as a candidate in exactly one cell of a house must go there."
+    },
+    "pointing_pair": {
+      "requires": ["candidate_system", "pencil_marks", "block_analysis"],
+      "uses": ["candidate_position_filtering"],
+      "description": "When a candidate in a block is restricted to a single row/col, eliminate from rest of that row/col."
+    },
+    "pointing_triple": {
+      "requires": ["candidate_system", "pencil_marks", "block_analysis"],
+      "uses": ["candidate_position_filtering"],
+      "description": "Three cells of a candidate in a block restricted to a single row/col."
+    },
+    "box_line_reduction": {
+      "requires": ["candidate_system", "pencil_marks", "block_analysis"],
+      "uses": ["candidate_position_filtering"],
+      "description": "When a candidate in a row/col is restricted to a single block, eliminate from rest of that block."
+    },
+    "naked_pair": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["identical_candidate_sets", "house_scan"],
+      "description": "Two cells in a house with identical 2-candidate sets; eliminate those candidates from all other cells in the house."
+    },
+    "hidden_pair": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["candidate_restriction", "house_scan"],
+      "description": "Two candidates restricted to the same two cells in a house."
+    },
+    "naked_triple": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["candidate_set_union", "house_scan"],
+      "description": "Three cells whose candidate sets collectively contain ≤3 unique candidates."
+    },
+    "hidden_triple": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["candidate_restriction", "house_scan"],
+      "description": "Three candidates restricted to the same three cells in a house."
+    },
+    "naked_quad": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["candidate_set_union", "house_scan"],
+      "description": "Four cells whose candidate sets collectively contain ≤4 unique candidates."
+    },
+    "hidden_quad": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["candidate_restriction", "house_scan"],
+      "description": "Four candidates restricted to the same four cells in a house."
+    },
+    "xwing": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["row_col_candidate_matching", "fish_anatomy"],
+      "description": "A digit appears in exactly two rows in two columns, forming a rectangle; eliminate from intersecting columns."
+    },
+    "swordfish": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["row_col_candidate_matching", "fish_anatomy"],
+      "description": "Three rows where a digit appears in at most three common columns (or vice versa)."
+    },
+    "jellyfish": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["row_col_candidate_matching", "fish_anatomy"],
+      "description": "Four rows where a digit appears in at most four common columns (or vice versa)."
+    },
+    "xywing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells"],
+      "uses": ["pivot_wing_matching", "cell_peer_analysis"],
+      "description": "A bivalue pivot cell (xy) with two bivalue wings (xz, yz) that see the pivot; eliminates z from cells seen by both wings."
+    },
+    "xyzwing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells", "trivalue_cells"],
+      "uses": ["pivot_wing_matching", "cell_peer_analysis"],
+      "description": "A trivalue pivot (xyz) with two bivalue wings (xz, yz); eliminates z from cells seen by pivot and both wings."
+    },
+    "wwing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells", "strong_links"],
+      "uses": ["bivalue_pair_matching", "strong_link_chain"],
+      "description": "Two bivalue cells with the same pair (ab) connected by a strong link on a in a house; eliminates b from cells seen by both."
+    },
+    "mwing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells", "strong_links"],
+      "uses": ["bivalue_strong_link_combo"],
+      "description": "A bivalue cell (ab) and a strong link on a in a house, with a cell containing a as candidate seen by both."
+    },
+    "swing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells"],
+      "uses": ["pivot_connector", "bivalue_chain"],
+      "description": "A bivalue cell (ab) connected to another bivalue cell (ac) via a third cell (bc) that sees both."
+    },
+    "lwing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells"],
+      "uses": ["l_shape_pattern", "cell_peer_analysis"],
+      "description": "Two identical bivalue cells (ab) sharing a house, with a branching cell containing a or b."
+    },
+    "hwing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells"],
+      "uses": ["h_shape_pattern", "cell_peer_analysis"],
+      "description": "Two bivalue cells sharing one candidate, with a third cell connecting them."
+    },
+    "wxyzwing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells", "trivalue_cells"],
+      "uses": ["extended_pivot_wing"],
+      "description": "A trivalue pivot (wxyz) with three bivalue wings; eliminates z from overlap."
+    },
+    "vwxyzwing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells", "quadvalue_cells"],
+      "uses": ["extended_pivot_wing"],
+      "description": "A quadvalue pivot (vwxyz) with four bivalue wings; eliminates z from overlap."
+    },
+    "unique_rectangle": {
+      "requires": ["candidate_system", "pencil_marks", "deadly_pattern_awareness"],
+      "uses": ["ur_anatomy", "floor_ceiling_analysis"],
+      "description": "Four cells forming a rectangle across two boxes where a deadly pattern would occur; Types 1-4 handle different candidate configurations."
+    },
+    "hidden_rectangle": {
+      "requires": ["candidate_system", "pencil_marks", "deadly_pattern_awareness"],
+      "uses": ["hidden_ur_pattern"],
+      "description": "A UR variant where extra candidates on the rectangle cells allow elimination."
+    },
+    "avoidable_rectangle": {
+      "requires": ["candidate_system", "pencil_marks", "deadly_pattern_awareness"],
+      "uses": ["avoidable_deadly_pattern"],
+      "description": "A UR variant that considers already-placed values as part of the deadly pattern."
+    },
+    "bug": {
+      "requires": ["candidate_system", "pencil_marks", "deadly_pattern_awareness"],
+      "uses": ["bivalue_grid_analysis"],
+      "description": "BUG+1: every unsolved cell except one is bivalue; the extra candidate in the non-bivalue cell is the solution."
+    },
+    "simple_coloring": {
+      "requires": ["candidate_system", "pencil_marks", "strong_links"],
+      "uses": ["graph_traversal", "bipartite_coloring", "conflict_detection"],
+      "description": "Color alternating strong links for a single digit; candidates of same color that see each other create conflicts."
+    },
+    "xcycle": {
+      "requires": ["candidate_system", "pencil_marks", "strong_links"],
+      "uses": ["cycle_detection", "alternating_parity"],
+      "description": "X-Cycles: closed alternating chains of strong and weak links for a single digit."
+    },
+    "remote_pairs": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells"],
+      "uses": ["chain_building", "peer_elimination"],
+      "description": "A chain of bivalue cells where alternating links share candidates; eliminates the common candidates from cells seen by both ends."
+    },
+    "xychain": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells"],
+      "uses": ["chain_building", "alternating_candidates"],
+      "description": "A chain of bivalue cells linked by shared candidates; the start and end cells share a candidate that can be eliminated from their peers."
+    },
+    "aic": {
+      "requires": ["candidate_system", "pencil_marks", "strong_links", "weak_links"],
+      "uses": ["alternating_inference", "chain_building"],
+      "description": "Alternating Inference Chains: alternating strong and weak links between candidates across multiple digits."
+    },
+    "alsxz": {
+      "requires": ["candidate_system", "pencil_marks", "als_detection"],
+      "uses": ["als_pair_analysis", "restricted_common"],
+      "description": "Two Almost Locked Sets sharing a Restricted Common (X); digits seen by both ALS (Z) can be eliminated."
+    },
+    "finned_fish": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy", "block_analysis"],
+      "uses": ["fin_detection", "block_restricted_candidates"],
+      "description": "Fish (X-Wing/Swordfish/Jellyfish) with an extra fin cell in a block that prevents normal elimination."
+    },
+    "finned_xwing": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy", "block_analysis"],
+      "uses": ["fin_detection"],
+      "description": "Finned X-Wing: the base fish is an X-Wing; the fin breaks the pattern but allows elimination from the fin's block."
+    },
+    "finned_swordfish": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy", "block_analysis"],
+      "uses": ["fin_detection"],
+      "description": "Finned Swordfish: the base fish is a Swordfish; the fin blocks complete coverage."
+    },
+    "finned_jellyfish": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy", "block_analysis"],
+      "uses": ["fin_detection"],
+      "description": "Finned Jellyfish: the base fish is a Jellyfish; the fin blocks complete coverage."
+    },
+    "empty_rectangle": {
+      "requires": ["candidate_system", "pencil_marks", "block_analysis", "strong_links"],
+      "uses": ["er_pattern", "box_line_interaction"],
+      "description": "A box with a candidate forming an L-shape (empty rectangle) combined with a strong link on the same candidate in a line."
+    },
+    "alsxywing": {
+      "requires": ["candidate_system", "pencil_marks", "als_detection"],
+      "uses": ["als_xz_chain"],
+      "description": "Three ALS sets where two share a restricted common with the third (ALS-XY-Wing). [STUB: not implemented]"
+    },
+    "sashimi_fish": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy", "block_analysis"],
+      "uses": ["sashimi_pattern"],
+      "description": "A Sashimi Fish is a Finned Fish where the fin cell(s) are not in the same block as the elimination target. [STUB: not implemented]"
+    },
+    "sue_de_coq": {
+      "requires": ["candidate_system", "pencil_marks", "als_detection", "block_analysis"],
+      "uses": ["double_als_restricted"],
+      "description": "A cell with N candidates in a box intersecting a row/col, combined with two ALS sets. [STUB: not implemented]"
+    },
+    "extended_rectangle": {
+      "requires": ["candidate_system", "pencil_marks", "deadly_pattern_awareness"],
+      "uses": ["extended_deadly_pattern"],
+      "description": "A larger deadly pattern involving more than 4 cells in 2+ boxes. [EXPERIMENTAL]"
+    },
+    "borescope_grid": {
+      "requires": ["candidate_system", "pencil_marks", "deadly_pattern_awareness"],
+      "uses": ["borescope_analysis"],
+      "description": "A grid analysis technique for detecting potential deadly patterns. [EXPERIMENTAL]"
+    },
+    "qwing": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells", "deadly_pattern_awareness"],
+      "uses": ["q_pattern"],
+      "description": "A wing pattern related to Unique Rectangles and bivalue cells. [EXPERIMENTAL]"
+    },
+    "gurth_symmetry": {
+      "requires": ["candidate_system", "pencil_marks", "symmetry_awareness"],
+      "uses": ["symmetry_detection"],
+      "description": "Exploits givens symmetry (180°, reflection) to deduce placements. [EXPERIMENTAL]"
+    },
+    "twinned_xychain": {
+      "requires": ["candidate_system", "pencil_marks", "bivalue_cells"],
+      "uses": ["parallel_chain_building"],
+      "description": "Two simultaneous XY-Chains sharing common endpoints. [EXPERIMENTAL]"
+    },
+    "grouped_aic": {
+      "requires": ["candidate_system", "pencil_marks", "strong_links", "weak_links", "grouped_nodes"],
+      "uses": ["grouped_alternating_inference"],
+      "description": "AIC where nodes can be groups of cells (e.g., all candidates of a digit in a house). [EXPERIMENTAL]"
+    },
+    "grouped_xcycle": {
+      "requires": ["candidate_system", "pencil_marks", "strong_links", "grouped_nodes"],
+      "uses": ["grouped_cycle_detection"],
+      "description": "X-Cycle with grouped nodes. [EXPERIMENTAL]"
+    },
+    "continuous_loop": {
+      "requires": ["candidate_system", "pencil_marks", "strong_links"],
+      "uses": ["closed_loop_inference"],
+      "description": "A closed AIC loop where all weak links become strong. [EXPERIMENTAL]"
+    },
+    "medusa3d": {
+      "requires": ["candidate_system", "pencil_marks", "strong_links", "multi_digit_coloring"],
+      "uses": ["3d_coloring", "conflict_propagation"],
+      "description": "3D Medusa: extended coloring across multiple digits. [EXPERIMENTAL]"
+    },
+    "alschain": {
+      "requires": ["candidate_system", "pencil_marks", "als_detection", "chain_building"],
+      "uses": ["als_link_chain"],
+      "description": "A chain of ALS sets linked by Restricted Commons. [EXPERIMENTAL]"
+    },
+    "death_blossom": {
+      "requires": ["candidate_system", "pencil_marks", "als_detection", "bivalue_cells"],
+      "uses": ["stem_cell_als_network"],
+      "description": "A stem cell connected to multiple ALS sets. [EXPERIMENTAL]"
+    },
+    "franken_fish": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy", "mixed_house"],
+      "uses": ["mixed_house_fish"],
+      "description": "Fish using mixed row/col/box cover sets. [EXPERIMENTAL]"
+    },
+    "mutant_fish": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy", "mixed_house"],
+      "uses": ["complex_fish_pattern"],
+      "description": "Fish with non-standard cover sets mixing rows, cols, and boxes. [EXPERIMENTAL]"
+    },
+    "squidward": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy"],
+      "uses": ["large_fish_pattern"],
+      "description": "A 5-fish (5 rows × 5 columns). [EXPERIMENTAL]"
+    },
+    "leviathan": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy"],
+      "uses": ["largest_fish_pattern"],
+      "description": "A 6-fish (6 rows × 6 columns). [EXPERIMENTAL]"
+    },
+    "multivalue_xwing": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy", "multiple_candidates"],
+      "uses": ["multi_digit_fish"],
+      "description": "X-Wing pattern involving multiple candidates. [EXPERIMENTAL]"
+    },
+    "siamese_fish": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy"],
+      "uses": ["shared_fish_pattern"],
+      "description": "Two overlapping fish patterns sharing base or cover sets. [EXPERIMENTAL]"
+    },
+    "aligned_pair_exclusion": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["pairwise_exclusion"],
+      "description": "APE: two cells that see each other; value pairs that would make the puzzle invalid can be eliminated. [EXPERIMENTAL — uses clone+place]"
+    },
+    "pattern_overlay": {
+      "requires": ["candidate_system", "pencil_marks", "template_analysis"],
+      "uses": ["template_verification"],
+      "description": "POM: exhaustive template intersection for each digit. [EXPERIMENTAL — uses backtracking]"
+    },
+    "forcing_chains": {
+      "requires": ["candidate_system", "pencil_marks", "strong_links", "propagation"],
+      "uses": ["cell_forcing", "region_forcing", "contradiction_forcing"],
+      "description": "Forcing Chains: assume a candidate and follow inferences to a common conclusion or contradiction. [EXPERIMENTAL — uses clone+place]"
+    },
+    "nishio": {
+      "requires": ["candidate_system", "pencil_marks", "single_digit_analysis"],
+      "uses": ["digit_placement_testing"],
+      "description": "Nishio: for a single digit, test if placing it in a cell leads to a contradiction. [EXPERIMENTAL — delegates to ForcingChains]"
+    },
+    "bowmans_bingo": {
+      "requires": ["candidate_system", "pencil_marks", "propagation"],
+      "uses": ["depth_limited_search"],
+      "description": "Bowman's Bingo: select a cell, try a value, propagate, and check for contradiction. [EXPERIMENTAL — uses 2-level clone+try]"
+    },
+    "extended_sue_de_coq": {
+      "requires": ["candidate_system", "pencil_marks", "als_detection", "block_analysis"],
+      "uses": ["extended_als_intersection"],
+      "description": "Sue de Coq extended to larger intersections. [EXPERIMENTAL]"
+    },
+    "aligned_triple_exclusion": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["triple_exclusion"],
+      "description": "Triple version of APE. [EXPERIMENTAL]"
+    },
+    "fireworks": {
+      "requires": ["candidate_system", "pencil_marks"],
+      "uses": ["firework_pattern"],
+      "description": "A firework pattern: a candidate appears in exactly one cell outside a box intersection. [EXPERIMENTAL]"
+    },
+    "guardians": {
+      "requires": ["candidate_system", "pencil_marks", "fish_anatomy"],
+      "uses": ["guardian_cell_detection"],
+      "description": "Guardians (also called Broken Wings): extra candidates preventing a fish pattern. [EXPERIMENTAL]"
+    },
+    "tridagon": {
+      "requires": ["candidate_system", "pencil_marks", "deadly_pattern_awareness"],
+      "uses": ["triangular_deadly_pattern"],
+      "description": "A Triangular Deadly Pattern involving 3 digits in 3 cells across 3 boxes. [EXPERIMENTAL]"
+    },
+    "skloop": {
+      "requires": ["candidate_system", "pencil_marks", "als_detection"],
+      "uses": ["sk_loop_pattern"],
+      "description": "An SK Loop is a pattern of four ALS pairs forming a loop around the grid. [EXPERIMENTAL]"
+    },
+    "exocet": {
+      "requires": ["candidate_system", "pencil_marks", "als_detection", "fish_anatomy"],
+      "uses": ["exocet_pattern"],
+      "description": "An Exocet: a base cell(s) whose candidates are locked in target cells across the grid. [EXPERIMENTAL]"
+    },
+    "double_exocet": {
+      "requires": ["candidate_system", "pencil_marks", "als_detection", "fish_anatomy"],
+      "uses": ["double_exocet_pattern"],
+      "description": "Double version of Exocet with two base sets and two target sets. [EXPERIMENTAL]"
+    }
+  }
+}

@@ -44,9 +44,9 @@ def score_to_difficulty(score: int) -> str:
 
 def score_range_for_difficulty(difficulty: str) -> tuple:
     ranges = {
-        "easy": (1, 6),
-        "intermediate": (3, 14),
-        "hard": (8, 24),
+        "easy": (1, 2),
+        "intermediate": (1, 13),
+        "hard": (6, 34),
         "expert": (13, 35),
         "evil": (18, 50),
         "mythic": (25, 150),

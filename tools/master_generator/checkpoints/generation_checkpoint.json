@@ -1,0 +1,122 @@
+{
+  "results": [
+    {
+      "puzzle": "006783594395204081874501300008925637032407950759638100003802415480306279527149800",
+      "solution": "216783594395264781874591326148925637632417958759638142963872415481356279527149863",
+      "difficulty": "easy",
+      "difficulty_label": "Easy",
+      "difficulty_score": 7.2,
+      "tier_max": 1,
+      "clues": 60,
+      "fill_percent": 74.1,
+      "symmetry": "rotational",
+      "attempts": 1,
+      "technique_breakdown": {
+        "last_blank_cell": 17,
+        "naked_single": 4
+      },
+      "hash": "ecd095319c09f5da",
+      "timestamp": 1779560795.5331619
+    },
+    {
+      "puzzle": "873169004000537198105240673640901230359406817021803069234015906587692000900384752",
+      "solution": "873169524462537198195248673648971235359426817721853469234715986587692341916384752",
+      "difficulty": "easy",
+      "difficulty_label": "Easy",
+      "difficulty_score": 7.2,
+      "tier_max": 1,
+      "clues": 60,
+      "fill_percent": 74.1,
+      "symmetry": "rotational",
+      "attempts": 3,
+      "technique_breakdown": {
+        "last_blank_cell": 17,
+        "naked_single": 4
+      },
+      "hash": "46cca527ebab5cbb",
+      "timestamp": 1779560860.254381
+    },
+    {
+      "puzzle": "003421590469350701120076834587169302240000059906542178392680017708014963014793200",
+      "solution": "873421596469358721125976834587169342241837659936542178392685417758214963614793285",
+      "difficulty": "easy",
+      "difficulty_label": "Easy",
+      "difficulty_score": 7.2,
+      "tier_max": 1,
+      "clues": 60,
+      "fill_percent": 74.1,
+      "symmetry": "rotational",
+      "attempts": 4,
+      "technique_breakdown": {
+        "last_blank_cell": 21
+      },
+      "hash": "e9112219c4b3ed3f",
+      "timestamp": 1779560861.322696
+    },
+    {
+      "puzzle": "652419807407052960013678502760200410248107395039004026504831670071940203306725184",
+      "solution": "652419837487352961913678542765293418248167395139584726524831679871946253396725184",
+      "difficulty": "easy",
+      "difficulty_label": "Easy",
+      "difficulty_score": 7.2,
+      "tier_max": 1,
+      "clues": 60,
+      "fill_percent": 74.1,
+      "symmetry": "rotational",
+      "attempts": 3,
+      "technique_breakdown": {
+        "last_blank_cell": 20,
+        "naked_single": 1
+      },
+      "hash": "c6b876dffffb772a",
+      "timestamp": 1779560862.1946623
+    },
+    {
+      "puzzle": "073090586206035190905768324837659402690000035104382769368527901049810203521040670",
+      "solution": "473291586286435197915768324837659412692174835154382769368527941749816253521943678",
+      "difficulty": "easy",
+      "difficulty_label": "Easy",
+      "difficulty_score": 7.2,
+      "tier_max": 1,
+      "clues": 60,
+      "fill_percent": 74.1,
+      "symmetry": "rotational",
+      "attempts": 4,
+      "technique_breakdown": {
+        "last_blank_cell": 19,
+        "naked_single": 2
+      },
+      "hash": "26a34279f14f4368",
+      "timestamp": 1779560863.2240474
+    }
+  ],
+  "hashes": [
+    "ecd095319c09f5da",
+    "46cca527ebab5cbb",
+    "e9112219c4b3ed3f",
+    "26a34279f14f4368",
+    "c6b876dffffb772a"
+  ],
+  "generated": 5,
+  "duplicates": 0,
+  "invalid": 0,
+  "elapsed": 2.3403053283691406,
+  "profile": {
+    "variant": "classic_9x9",
+    "difficulty": "mythic",
+    "count": 1,
+    "symmetry": null,
+    "min_clues": null,
+    "max_clues": null,
+    "required_techniques": [],
+    "forbidden_techniques": [],
+    "campaign_stage": null,
+    "seed": null,
+    "output_format": "json",
+    "export_path": "exports/",
+    "checkpoint": true,
+    "checkpoint_interval": 50
+  },
+  "completed": true,
+  "_saved_at": 1779560863.6010342
+}

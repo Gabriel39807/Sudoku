@@ -1,0 +1,20 @@
+[
+  {
+    "puzzle": "006783594395204081874501300008925637032407950759638100003802415480306279527149800",
+    "solution": "216783594395264781874591326148925637632417958759638142963872415481356279527149863",
+    "difficulty": "easy",
+    "difficulty_label": "Easy",
+    "difficulty_score": 7.2,
+    "tier_max": 1,
+    "clues": 60,
+    "fill_percent": 74.1,
+    "symmetry": "rotational",
+    "attempts": 1,
+    "technique_breakdown": {
+      "last_blank_cell": 17,
+      "naked_single": 4
+    },
+    "hash": "ecd095319c09f5da",
+    "timestamp": 1779560795.5331619
+  }
+]

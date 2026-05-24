@@ -1,0 +1,27 @@
+{
+  "puzzle": "0001213400403002",
+  "solution": "4321213412433412",
+  "clues": 8,
+  "tier_max": 1,
+  "variant": "mini_4x4",
+  "level_id": "campaign_4x4_0025",
+  "stage": 1,
+  "level_index": 25,
+  "difficulty": "Pointing Practice",
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "Pointing"
+  ],
+  "visual_score": 0.5,
+  "human_score": 1,
+  "ui": {
+    "stars": 0,
+    "perfect": false,
+    "coins": 0,
+    "souls": 0,
+    "first_clear": false
+  }
+}

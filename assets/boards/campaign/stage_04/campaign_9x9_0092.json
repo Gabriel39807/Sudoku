@@ -1,0 +1,42 @@
+{
+  "puzzle": "260807034750034802800029006004960107100040603608370425900402060502796348006003079",
+  "solution": "261857934759634812843129756324965187175248693698371425937482561512796348486513279",
+  "clues": 48,
+  "variant": "classic_9x9",
+  "level_id": "campaign_9x9_0092",
+  "stage": 4,
+  "chapter": "Quads",
+  "level_index": 92,
+  "difficulty": "Quads",
+  "tier_max": 4,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction",
+    "NakedPair",
+    "HiddenPair",
+    "NakedTriple",
+    "HiddenTriple",
+    "NakedQuad",
+    "HiddenQuad"
+  ],
+  "visual_score": 0.593,
+  "human_score": 4,
+  "tutorial": false,
+  "economy": {
+    "coins": 920,
+    "souls": 18,
+    "perfect_bonus": 20,
+    "chapter_reward": 400,
+    "first_clear": 0
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

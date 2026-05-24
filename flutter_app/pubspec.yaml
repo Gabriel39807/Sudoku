@@ -12,6 +12,7 @@ dependencies:
   flutter_animate: ^4.5.2
   flutter_riverpod: ^3.3.1
   go_router: ^17.2.3
+  google_fonts: ^8.1.0
   shared_preferences: ^2.5.5
   vibration: ^3.1.8
 
@@ -23,6 +24,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/ui/difficulties/
     - assets/boards/easy/
     - assets/boards/intermediate/
     - assets/boards/hard/
@@ -37,3 +39,6 @@ flutter:
     - assets/cosmetics/frames/crystal/
     - assets/cosmetics/frames/crystal_reference_v2/
     - assets/cosmetics/frames/shadow/
+    - assets/boards/campaign/stage_01/
+    - assets/boards/campaign/stage_02/
+    - assets/boards/campaign/stage_03/

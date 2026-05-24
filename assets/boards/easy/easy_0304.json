@@ -1,0 +1,25 @@
+{
+  "id": "easy_0304",
+  "puzzle": "238905607641072953907360108192708406406293501503106792309021805725680314804507269",
+  "solution": "238915647641872953957364128192758436476293581583146792369421875725689314814537269",
+  "difficulty": "easy",
+  "clues": 63,
+  "fill_percent": 77.8,
+  "symmetry": "rotational",
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle"
+  ],
+  "steps": 18,
+  "hash": "f0abd56790ac65cf",
+  "checksum": "f0abd56790ac65cf",
+  "human_score": 1,
+  "visual_score": 0.778,
+  "tier_max": 1,
+  "estimated_time_minutes": 2.5,
+  "tramo": 251,
+  "level_index": 304,
+  "difficulty_label": "Easy"
+}

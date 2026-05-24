@@ -1,0 +1,38 @@
+{
+  "puzzle": "902564803806317249014289675143970502287050400560428100000600708028700900705842361",
+  "solution": "972564813856317249314289675143976582287153496569428137431695728628731954795842361",
+  "clues": 56,
+  "variant": "classic_9x9",
+  "level_id": "campaign_9x9_0048",
+  "stage": 4,
+  "chapter": "Intersections",
+  "level_index": 48,
+  "difficulty": "Intersections",
+  "tier_max": 2,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction",
+    "NakedPair",
+    "HiddenPair"
+  ],
+  "visual_score": 0.691,
+  "human_score": 2,
+  "tutorial": false,
+  "economy": {
+    "coins": 480,
+    "souls": 9,
+    "perfect_bonus": 20,
+    "chapter_reward": 200,
+    "first_clear": 0
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

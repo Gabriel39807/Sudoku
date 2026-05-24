@@ -1,0 +1,27 @@
+{
+  "puzzle": "4000200100100423",
+  "solution": "4132234132141423",
+  "clues": 7,
+  "tier_max": 1,
+  "variant": "mini_4x4",
+  "level_id": "campaign_4x4_0044",
+  "stage": 1,
+  "level_index": 44,
+  "difficulty": "Mini Challenge",
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "Pointing"
+  ],
+  "visual_score": 0.438,
+  "human_score": 1,
+  "ui": {
+    "stars": 0,
+    "perfect": false,
+    "coins": 0,
+    "souls": 0,
+    "first_clear": false
+  }
+}

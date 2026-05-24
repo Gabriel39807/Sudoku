@@ -1,0 +1,32 @@
+{
+  "id": "hard_0467",
+  "puzzle": "809670410000509006560030927473108500920754000000200104007380040200417853348025761",
+  "solution": "839672415712549386564831927473168592921754638685293174157386249296417853348925761",
+  "difficulty": "hard",
+  "clues": 48,
+  "fill_percent": 59.3,
+  "symmetry": "random",
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction",
+    "NakedPair",
+    "HiddenPair",
+    "NakedTriple",
+    "HiddenTriple"
+  ],
+  "steps": 33,
+  "hash": "5a04a5cf6190b03e",
+  "checksum": "5a04a5cf6190b03e",
+  "human_score": 4,
+  "visual_score": 0.593,
+  "tier_max": 4,
+  "estimated_time_minutes": 7,
+  "tramo": 401,
+  "level_index": 467,
+  "difficulty_label": "Hard"
+}

@@ -1,0 +1,33 @@
+{
+  "puzzle": "0007000416400253002400058760042028000047647153000002003640062570",
+  "solution": "5237681416487253312487658765342128531647647153827582413643162578",
+  "clues": 34,
+  "variant": "mini_8x8",
+  "level_id": "campaign_8x8_0017",
+  "stage": 3,
+  "chapter": "Foundation",
+  "level_index": 17,
+  "difficulty": "Foundation",
+  "tier_max": 1,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle"
+  ],
+  "visual_score": 0.531,
+  "human_score": 1,
+  "tutorial": false,
+  "economy": {
+    "coins": 136,
+    "souls": 2,
+    "perfect_bonus": 15,
+    "combo_bonus": 8,
+    "chapter_reward": 50
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "puzzle": "054036620010000640060003300002002064",
+  "solution": "154236623415235641461523346152512364",
+  "clues": 16,
+  "variant": "mini_6x6",
+  "level_id": "campaign_6x6_0024",
+  "stage": 2,
+  "chapter": "Pointing",
+  "level_index": 24,
+  "difficulty": "Pointing",
+  "tier_max": 2,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple"
+  ],
+  "visual_score": 0.444,
+  "human_score": 2,
+  "tutorial": false,
+  "economy": {
+    "coins": 120,
+    "souls": 2,
+    "perfect_bonus": 10,
+    "streak_bonus": 5
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

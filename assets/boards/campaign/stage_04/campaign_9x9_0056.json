@@ -1,0 +1,40 @@
+{
+  "puzzle": "603120809890005041145839267324500970000000035906387124207040010539670480081253000",
+  "solution": "673124859892765341145839267324516978718492635956387124267948513539671482481253796",
+  "clues": 52,
+  "variant": "classic_9x9",
+  "level_id": "campaign_9x9_0056",
+  "stage": 4,
+  "chapter": "Hidden Triples",
+  "level_index": 56,
+  "difficulty": "Hidden Triples",
+  "tier_max": 3,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction",
+    "NakedPair",
+    "HiddenPair",
+    "NakedTriple",
+    "HiddenTriple"
+  ],
+  "visual_score": 0.642,
+  "human_score": 3,
+  "tutorial": false,
+  "economy": {
+    "coins": 560,
+    "souls": 11,
+    "perfect_bonus": 20,
+    "chapter_reward": 300,
+    "first_clear": 0
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

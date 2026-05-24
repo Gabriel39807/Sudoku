@@ -1,0 +1,25 @@
+{
+  "puzzle": "0342423104033104",
+  "solution": "1342423124133124",
+  "clues": 12,
+  "tier_max": 1,
+  "variant": "mini_4x4",
+  "level_id": "campaign_4x4_0003",
+  "stage": 1,
+  "level_index": 3,
+  "difficulty": "Guided Intro",
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle"
+  ],
+  "visual_score": 0.75,
+  "human_score": 1,
+  "ui": {
+    "stars": 0,
+    "perfect": false,
+    "coins": 0,
+    "souls": 0,
+    "first_clear": false
+  }
+}

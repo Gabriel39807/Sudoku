@@ -1,0 +1,36 @@
+{
+  "puzzle": "216003000000020500005060540006300105",
+  "solution": "216453453612624531135264541326362145",
+  "clues": 14,
+  "variant": "mini_6x6",
+  "level_id": "campaign_6x6_0039",
+  "stage": 2,
+  "chapter": "Pairs & Box/Line",
+  "level_index": 39,
+  "difficulty": "Pairs & Box/Line",
+  "tier_max": 3,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction",
+    "NakedPair"
+  ],
+  "visual_score": 0.389,
+  "human_score": 3,
+  "tutorial": false,
+  "economy": {
+    "coins": 195,
+    "souls": 3,
+    "perfect_bonus": 10,
+    "streak_bonus": 5
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

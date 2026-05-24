@@ -1,0 +1,44 @@
+{
+  "puzzle": "080020941491386020705094800058943002207058009900710586000060308809001600000000214",
+  "solution": "386527941491386725725194863658943172217658439934712586172465398849231657563879214",
+  "clues": 44,
+  "variant": "classic_9x9",
+  "level_id": "campaign_9x9_0103",
+  "stage": 4,
+  "chapter": "Wings",
+  "level_index": 103,
+  "difficulty": "Wings",
+  "tier_max": 5,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction",
+    "NakedPair",
+    "HiddenPair",
+    "NakedTriple",
+    "HiddenTriple",
+    "NakedQuad",
+    "HiddenQuad",
+    "XWing",
+    "XYWing"
+  ],
+  "visual_score": 0.543,
+  "human_score": 5,
+  "tutorial": false,
+  "economy": {
+    "coins": 1030,
+    "souls": 20,
+    "perfect_bonus": 20,
+    "chapter_reward": 500,
+    "first_clear": 0
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

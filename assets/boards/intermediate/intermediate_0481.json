@@ -1,0 +1,27 @@
+{
+  "id": "intermediate_0481",
+  "puzzle": "000830045009106837803795621305481206480907013906523704758214309231609400690058000",
+  "solution": "167832945529146837843795621375481296482967513916523784758214369231679458694358172",
+  "difficulty": "intermediate",
+  "clues": 56,
+  "fill_percent": 69.1,
+  "symmetry": "rotational",
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple"
+  ],
+  "steps": 25,
+  "hash": "cf3a963496c664f3",
+  "checksum": "cf3a963496c664f3",
+  "human_score": 2,
+  "visual_score": 0.691,
+  "tier_max": 2,
+  "estimated_time_minutes": 4,
+  "tramo": 251,
+  "level_index": 481,
+  "difficulty_label": "Intermediate"
+}

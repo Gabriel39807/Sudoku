@@ -1,0 +1,33 @@
+{
+  "before": {
+    "count": 500,
+    "clues_avg": 24.9,
+    "clues_min": 23,
+    "clues_max": 28,
+    "density_avg_pct": 30.8,
+    "density_min_pct": 28.4,
+    "density_max_pct": 34.6,
+    "steps_avg": 12.6,
+    "score_avg": 2.0,
+    "time_est_avg_sec": 448.6,
+    "technique_frequency_pct": {
+      "hidden_single": 99.0,
+      "naked_single": 100.0
+    }
+  },
+  "after": {
+    "count": 100,
+    "clues_avg": 65.0,
+    "clues_min": 65,
+    "clues_max": 65,
+    "density_avg_pct": 80.2,
+    "density_min_pct": 80.2,
+    "density_max_pct": 80.2,
+    "steps_avg": 1.0,
+    "score_avg": 1.0,
+    "time_est_avg_sec": 128.0,
+    "technique_frequency_pct": {
+      "naked_single": 100.0
+    }
+  }
+}

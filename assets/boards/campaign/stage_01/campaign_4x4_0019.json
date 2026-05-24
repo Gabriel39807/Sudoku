@@ -1,0 +1,26 @@
+{
+  "puzzle": "0043341242300300",
+  "solution": "2143341242311324",
+  "clues": 10,
+  "tier_max": 1,
+  "variant": "mini_4x4",
+  "level_id": "campaign_4x4_0019",
+  "stage": 1,
+  "level_index": 19,
+  "difficulty": "Hidden Discovery",
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle"
+  ],
+  "visual_score": 0.625,
+  "human_score": 1,
+  "ui": {
+    "stars": 0,
+    "perfect": false,
+    "coins": 0,
+    "souls": 0,
+    "first_clear": false
+  }
+}

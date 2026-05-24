@@ -1,0 +1,36 @@
+{
+  "puzzle": "0000140007452003001082302050670180607024050200000620000808004670",
+  "solution": "3286145717452863641782352358674181637524457231867624531858314672",
+  "clues": 30,
+  "variant": "mini_8x8",
+  "level_id": "campaign_8x8_0038",
+  "stage": 3,
+  "chapter": "Intersections",
+  "level_index": 38,
+  "difficulty": "Intersections",
+  "tier_max": 2,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction"
+  ],
+  "visual_score": 0.469,
+  "human_score": 2,
+  "tutorial": false,
+  "economy": {
+    "coins": 304,
+    "souls": 4,
+    "perfect_bonus": 15,
+    "combo_bonus": 8,
+    "chapter_reward": 100
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}

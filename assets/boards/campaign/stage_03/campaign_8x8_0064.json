@@ -1,0 +1,39 @@
+{
+  "puzzle": "0000060760000801280043000407600080020064100570300160045052000000",
+  "solution": "4581362767235841281643753457618283721564164572387168245352348716",
+  "clues": 26,
+  "variant": "mini_8x8",
+  "level_id": "campaign_8x8_0064",
+  "stage": 3,
+  "chapter": "Structures",
+  "level_index": 64,
+  "difficulty": "Structures",
+  "tier_max": 3,
+  "techniques": [
+    "LastBlank",
+    "FullHouse",
+    "NakedSingle",
+    "HiddenSingle",
+    "PointingPair",
+    "PointingTriple",
+    "BoxLineReduction",
+    "NakedPair",
+    "HiddenPair",
+    "NakedTriple"
+  ],
+  "visual_score": 0.406,
+  "human_score": 3,
+  "tutorial": false,
+  "economy": {
+    "coins": 512,
+    "souls": 8,
+    "perfect_bonus": 15,
+    "combo_bonus": 8,
+    "chapter_reward": 150
+  },
+  "stars": {
+    "clear": 1,
+    "perfect": 2,
+    "fast_clear": 3
+  }
+}
