@@ -106,6 +106,7 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
         totalMoves: savedData['totalMoves'] as int? ?? 0,
         correctMoves: savedData['correctMoves'] as int? ?? 0,
         advancedNotesEnabled: savedData['advancedNotesEnabled'] as bool? ?? false,
+        advancedNotesUnlockedForRun: savedData['advancedNotesUnlockedForRun'] as bool? ?? false,
         manualNotes: savedData['manualNotes'] != null
             ? (savedData['manualNotes'] as Map<String, dynamic>).map(
                 (k, v) => MapEntry(int.parse(k), Set<int>.from((v as List).cast<int>())),
@@ -131,7 +132,8 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
       if (won) {
         DailyChallengeStorage.markCompleted();
         ref.read(streakProvider.notifier).onDailyWin();
-        setState(() { _completed = true; });
+        if (!mounted) return;
+        context.pushReplacement('/victory', extra: 'daily');
       }
     });
   }
@@ -152,7 +154,7 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
             children: [
               const CircularProgressIndicator(),
               const SizedBox(height: 16),
-              Text('Cargando desafío diario...',
+              Text('Cargando desafío diario…',
                   style: TextStyle(color: Colors.white54, fontSize: 14)),
             ],
           ),
@@ -181,7 +183,7 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
                     style: TextStyle(
                         fontSize: 24, fontWeight: FontWeight.bold, letterSpacing: 2)),
                 const SizedBox(height: 12),
-                Text('Vuelve mañana para uno nuevo.',
+                Text('Nuevo puzzle mañana.',
                     style: TextStyle(fontSize: 14, color: Colors.white54),
                     textAlign: TextAlign.center),
                 const SizedBox(height: 32),
@@ -239,6 +241,7 @@ class _DailyGameContentState extends ConsumerState<_DailyGameContent> {
         'totalMoves': next.totalMoves,
         'correctMoves': next.correctMoves,
         'advancedNotesEnabled': next.advancedNotesEnabled,
+        'advancedNotesUnlockedForRun': next.advancedNotesUnlockedForRun,
         'manualNotes': next.manualNotes?.map((k, v) => MapEntry(k.toString(), v.toList())),
         'completedWithAutocomplete': next.completedWithAutocomplete,
         'autoCompleteUsed': next.autoCompleteUsed,
@@ -311,6 +314,8 @@ class _DailyHeader extends StatelessWidget {
     final dateStr = '${now.day.toString().padLeft(2, '0')}/'
         '${now.month.toString().padLeft(2, '0')}/'
         '${now.year}';
+    final diff = DailyChallengeService.currentDifficulty?.toUpperCase() ?? '???';
+    final boardId = DailyChallengeService.currentBoardId ?? '';
 
     return SizedBox(
       height: 64,
@@ -323,13 +328,13 @@ class _DailyHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('DESAFÍO DIARIO',
+                Text('DESAFÍO DIARIO · $diff',
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2,
                         color: Theme.of(context).primaryColor)),
-                Text(dateStr,
+                Text('$dateStr · $boardId',
                     style: const TextStyle(fontSize: 11, color: Colors.white54)),
               ],
             ),
