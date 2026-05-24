@@ -1,14 +1,17 @@
 import 'dart:async';
+import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../onboarding/difficulty_intro_service.dart';
+import '../../onboarding/difficulty_unlock_dialog.dart';
 import '../../settings/application/settings_provider.dart';
 import '../../settings/domain/settings_model.dart';
 import '../../stats/data/stats_service.dart';
 import '../application/game_provider.dart';
 import '../domain/game_state.dart';
+import '../domain/game_session_context.dart';
 import '../domain/session_stats.dart';
 import '../data/game_autosave.dart';
 import 'widgets/sudoku_board.dart';
@@ -53,9 +56,20 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
   Future<void> _initGame() async {
     final diff = widget.difficulty;
+    dev.log('[GameScreen] >>> _initGame for difficulty="$diff"');
     final currentState = ref.read(gameProvider);
-    if (currentState.session != null && currentState.session!.status == GameStatus.playing && !currentState.isLoading) {
-      return;
+    final notifier = ref.read(gameProvider.notifier);
+
+    if (currentState.session != null && !currentState.isLoading) {
+      final ctx = notifier.currentContext;
+      if (ctx != null && ctx.mode == GameMode.normal && ctx.difficulty == diff && currentState.session!.status == GameStatus.playing) {
+        dev.log('[GameScreen] Context match for $diff — skipping init');
+        return;
+      }
+      if (currentState.session!.status == GameStatus.playing) {
+        dev.log('[GameScreen] Context mismatch (expected normal/$diff, got ${ctx?.mode}/${ctx?.difficulty}) — clearing stale session');
+        notifier.abandonGame();
+      }
     }
 
     final globalSave = await GlobalSaveStorage.load();
@@ -133,6 +147,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
           correctMoves: globalSave.correctMoves,
           noteUsageCount: globalSave.noteUsageCount,
           advancedNotesEnabled: globalSave.advancedNotesEnabled,
+          advancedNotesUnlockedForRun: globalSave.advancedNotesUnlockedForRun,
           cellTimeMs: Map<int, int>.from(globalSave.cellTimeMs),
           manualNotes: globalSave.manualNotes != null ? Map<int, Set<int>>.from(globalSave.manualNotes!) : null,
           completedWithAutocomplete: globalSave.completedWithAutocomplete,
@@ -350,13 +365,16 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     if (!mounted) return;
     await showDialog<void>(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).cardTheme.color,
-        title: Text('Dificultad ${difficulty.toUpperCase()}'),
-        content: const Text('Max hints ilimitadas\nErrores permitidos: 3'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Entendido')),
-        ],
+      barrierDismissible: false,
+      builder: (context) => DifficultyUnlockDialog(
+        difficulty: difficulty,
+        onPlay: () {
+          if (mounted) context.pop();
+        },
+        onBack: () {
+          if (mounted) context.pop();
+          if (mounted) context.pop();
+        },
       ),
     );
   }
@@ -392,7 +410,18 @@ class _GameScreenState extends ConsumerState<GameScreen> {
           child: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 700),
-              child: state.isLoading || state.session == null
+              child: state.errorMessage != null
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(32),
+                        child: Text(
+                          state.errorMessage!,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.red.shade300, fontSize: 16),
+                        ),
+                      ),
+                    )
+                  : state.isLoading || state.session == null
                   ? const Center(child: CircularProgressIndicator())
                   : Stack(
                       children: [

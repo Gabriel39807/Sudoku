@@ -20,6 +20,7 @@ class GlobalSavedGame {
   final int correctMoves;
   final int noteUsageCount;
   final bool advancedNotesEnabled;
+  final bool advancedNotesUnlockedForRun;
   final Map<int, int> cellTimeMs;
   final Map<int, Set<int>>? manualNotes;
   final bool completedWithAutocomplete;
@@ -44,6 +45,7 @@ class GlobalSavedGame {
     required this.correctMoves,
     required this.noteUsageCount,
     required this.advancedNotesEnabled,
+    required this.advancedNotesUnlockedForRun,
     required this.cellTimeMs,
     this.manualNotes,
     required this.completedWithAutocomplete,
@@ -74,6 +76,7 @@ class GlobalSavedGame {
     'correctMoves': correctMoves,
     'noteUsageCount': noteUsageCount,
     'advancedNotesEnabled': advancedNotesEnabled,
+    'advancedNotesUnlockedForRun': advancedNotesUnlockedForRun,
     'cellTimeMs': cellTimeMs.map((k, v) => MapEntry(k.toString(), v)),
     'manualNotes': manualNotes?.map((k, v) => MapEntry(k.toString(), v.toList())),
     'completedWithAutocomplete': completedWithAutocomplete,
@@ -102,6 +105,7 @@ class GlobalSavedGame {
       correctMoves: json['correctMoves'] as int? ?? 0,
       noteUsageCount: json['noteUsageCount'] as int? ?? 0,
       advancedNotesEnabled: json['advancedNotesEnabled'] as bool? ?? false,
+      advancedNotesUnlockedForRun: json['advancedNotesUnlockedForRun'] as bool? ?? false,
       cellTimeMs: (json['cellTimeMs'] as Map<String, dynamic>? ?? {})
           .map((k, v) => MapEntry(int.parse(k), v as int)),
       manualNotes: (json['manualNotes'] as Map<String, dynamic>?)

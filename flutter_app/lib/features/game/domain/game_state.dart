@@ -1,6 +1,7 @@
 import 'game_session.dart';
 import 'note_helpers.dart';
 import 'session_stats.dart';
+import '../../campaign/domain/sudoku_variant.dart';
 
 export 'game_session.dart' show GameSession;
 
@@ -84,29 +85,31 @@ class GameState {
 
   final int animationEventId;
 
-  // Phase 3: Combo / performance
   final int correctStreak;
   final int maxCombo;
   final int pauseCount;
 
-  // Accuracy tracking
   final int totalMoves;
   final int correctMoves;
 
-  // Phase 5: Analytics
   final Map<int, int> cellTimeMs;
   final int noteUsageCount;
   final int autoCompleteUsed;
   final Map<int, Set<int>>? manualNotes;
+  final bool advancedNotesUnlockedForRun;
+  final String? errorMessage;
 
   List<List<SudokuCell>> get board {
     if (session == null) return _emptyBoard();
+    final cfg = session!.config;
+    final size = cfg.boardSize;
+
     final conflicts = advancedNotesEnabled
-        ? NoteHelpers.findConflicts(session!.notes, session!.currentBoard)
+        ? NoteHelpers.findConflicts(session!.notes, session!.currentBoard, config: cfg)
         : <int, Set<int>>{};
-    return List.generate(9, (r) {
-      return List.generate(9, (c) {
-        final idx = r * 9 + c;
+    return List.generate(size, (r) {
+      return List.generate(size, (c) {
+        final idx = r * size + c;
         final val = session!.currentBoard[idx];
         final sol = session!.solution[idx];
         final notes = session!.notes[idx] ?? const {};
@@ -127,27 +130,33 @@ class GameState {
     });
   }
 
-  bool get errorsVisible => true; // controlled by assist mode
+  bool get errorsVisible => true;
 
   String get boardId => session?.boardId ?? '';
-  String get difficulty => session?.difficulty ?? 'easy';
+  String get difficulty => session?.difficulty ?? '';
   int get errors => session?.mistakes ?? 0;
   int get elapsedSeconds => session?.elapsed.inSeconds ?? 0;
   bool get isPaused => session?.paused ?? false;
   GameStatus get status => session?.status ?? GameStatus.playing;
 
-  SessionStats get sessionStats => SessionStats(
-    elapsedSeconds: elapsedSeconds,
-    errors: errors,
-    remainingCells: session == null ? 81 : session!.currentBoard.where((v) => v == 0).length,
-    completionPercent: session == null ? 0.0 : (81 - session!.currentBoard.where((v) => v == 0).length) / 81.0 * 100.0,
-    remainingHints: remainingHints,
-    currentStreak: correctStreak,
-    currentCombo: maxCombo,
-    accuracy: totalMoves == 0 ? 1.0 : correctMoves / totalMoves,
-    totalMoves: totalMoves,
-    correctMoves: correctMoves,
-  );
+  SessionStats get sessionStats {
+    final cfg = session?.config ?? BoardConfig.normal9;
+    final total = cfg.totalCells;
+    final remaining = session == null ? total : session!.currentBoard.where((v) => v == 0).length;
+    final filled = total - remaining;
+    return SessionStats(
+      elapsedSeconds: elapsedSeconds,
+      errors: errors,
+      remainingCells: remaining,
+      completionPercent: session == null ? 0.0 : filled / total * 100.0,
+      remainingHints: remainingHints,
+      currentStreak: correctStreak,
+      currentCombo: maxCombo,
+      accuracy: totalMoves == 0 ? 1.0 : correctMoves / totalMoves,
+      totalMoves: totalMoves,
+      correctMoves: correctMoves,
+    );
+  }
 
   const GameState({
     this.session,
@@ -175,6 +184,8 @@ class GameState {
     this.noteUsageCount = 0,
     this.autoCompleteUsed = 0,
     this.manualNotes,
+    this.advancedNotesUnlockedForRun = false,
+    this.errorMessage,
   });
 
   factory GameState.loading(String difficulty) =>
@@ -209,6 +220,8 @@ class GameState {
     int? noteUsageCount,
     int? autoCompleteUsed,
     Map<int, Set<int>>? manualNotes,
+    bool? advancedNotesUnlockedForRun,
+    String? errorMessage,
   }) {
     return GameState(
       session: clearSession ? null : (session ?? this.session),
@@ -239,6 +252,9 @@ class GameState {
       noteUsageCount: noteUsageCount ?? this.noteUsageCount,
       autoCompleteUsed: autoCompleteUsed ?? this.autoCompleteUsed,
       manualNotes: manualNotes ?? this.manualNotes,
+      advancedNotesUnlockedForRun:
+          advancedNotesUnlockedForRun ?? this.advancedNotesUnlockedForRun,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 
@@ -246,11 +262,14 @@ class GameState {
   GameState select(int row, int col) =>
       copyWith(selectedRow: row, selectedCol: col);
 
-  static List<List<SudokuCell>> _emptyBoard() => List.generate(
-    9,
-    (r) => List.generate(
-      9,
-      (c) => SudokuCell(row: r, col: c, value: 0, solution: 0),
-    ),
-  );
+  List<List<SudokuCell>> _emptyBoard() {
+    final size = session?.config.boardSize ?? 9;
+    return List.generate(
+      size,
+      (r) => List.generate(
+        size,
+        (c) => SudokuCell(row: r, col: c, value: 0, solution: 0),
+      ),
+    );
+  }
 }

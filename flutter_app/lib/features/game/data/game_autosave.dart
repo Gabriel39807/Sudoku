@@ -34,6 +34,7 @@ class GameAutosave {
       'totalMoves': state.totalMoves,
       'correctMoves': state.correctMoves,
       'advancedNotesEnabled': state.advancedNotesEnabled,
+      'advancedNotesUnlockedForRun': state.advancedNotesUnlockedForRun,
       'manualNotes': state.manualNotes
           ?.map((k, v) => MapEntry(k.toString(), v.toList())),
     };
@@ -102,6 +103,7 @@ class GameAutosave {
         totalMoves: d['totalMoves'] as int? ?? 0,
         correctMoves: d['correctMoves'] as int? ?? 0,
         advancedNotesEnabled: d['advancedNotesEnabled'] as bool? ?? false,
+        advancedNotesUnlockedForRun: d['advancedNotesUnlockedForRun'] as bool? ?? false,
         manualNotes: d['manualNotes'] != null
             ? (d['manualNotes'] as Map<String, dynamic>).map(
                 (k, v) => MapEntry(

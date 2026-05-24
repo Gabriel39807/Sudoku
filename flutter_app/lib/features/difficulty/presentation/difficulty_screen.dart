@@ -85,7 +85,7 @@ class DifficultyScreen extends ConsumerWidget {
                       crossAxisCount: crossAxisCount,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 24,
-                      mainAxisExtent: 240,
+                      mainAxisExtent: 280,
                     ),
                     itemCount: difficulties.length,
                     itemBuilder: (context, index) {

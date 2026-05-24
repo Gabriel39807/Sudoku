@@ -1,17 +1,17 @@
 import 'game_state.dart';
+import '../../campaign/domain/sudoku_variant.dart';
 
-/// Snapshot inmutable de una partida. Cada partida nueva = objeto nuevo.
-/// NUNCA compartir referencias de listas entre instancias.
 class GameSession {
   final String boardId;
   final String difficulty;
+  final BoardConfig config;
 
-  final List<int> initialBoard;  // snapshot original, nunca muta
-  final List<int> currentBoard;  // estado actual del tablero
+  final List<int> initialBoard;
+  final List<int> currentBoard;
   final List<int> solution;
 
-  final Set<int> fixedCells;          // índices (row*9+col) de celdas fijas
-  final Map<int, Set<int>> notes;     // índice → conjunto de notas
+  final Set<int> fixedCells;
+  final Map<int, Set<int>> notes;
 
   final int mistakes;
   final Duration elapsed;
@@ -21,6 +21,7 @@ class GameSession {
   const GameSession._({
     required this.boardId,
     required this.difficulty,
+    this.config = BoardConfig.normal9,
     required this.initialBoard,
     required this.currentBoard,
     required this.solution,
@@ -32,10 +33,10 @@ class GameSession {
     required this.status,
   });
 
-  /// Restore from autosave data.
   factory GameSession.restore({
     required String boardId,
     required String difficulty,
+    BoardConfig config = BoardConfig.normal9,
     required List<int> initialBoard,
     required List<int> currentBoard,
     required List<int> solution,
@@ -49,6 +50,7 @@ class GameSession {
     return GameSession._(
       boardId: boardId,
       difficulty: difficulty,
+      config: config,
       initialBoard: List<int>.from(initialBoard),
       currentBoard: List<int>.from(currentBoard),
       solution: List<int>.from(solution),
@@ -61,10 +63,10 @@ class GameSession {
     );
   }
 
-  /// Siempre crea listas frescas — sin referencias compartidas.
   factory GameSession.create({
     required String boardId,
     required String difficulty,
+    BoardConfig config = BoardConfig.normal9,
     required List<int> puzzleFlat,
     required List<int> solutionFlat,
   }) {
@@ -75,6 +77,7 @@ class GameSession {
     return GameSession._(
       boardId: boardId,
       difficulty: difficulty,
+      config: config,
       initialBoard: List<int>.from(puzzleFlat),
       currentBoard: List<int>.from(puzzleFlat),
       solution: List<int>.from(solutionFlat),
@@ -87,7 +90,6 @@ class GameSession {
     );
   }
 
-  /// copyWith con copias profundas de mutable containers.
   GameSession copyWith({
     List<int>? currentBoard,
     Map<int, Set<int>>? notes,
@@ -99,12 +101,13 @@ class GameSession {
     return GameSession._(
       boardId: boardId,
       difficulty: difficulty,
-      initialBoard: initialBoard,   // inmutable, reusar referencia
+      config: config,
+      initialBoard: initialBoard,
       currentBoard: currentBoard != null
           ? List<int>.from(currentBoard)
           : List<int>.from(this.currentBoard),
-      solution: solution,           // inmutable, reusar referencia
-      fixedCells: fixedCells,       // inmutable, reusar referencia
+      solution: solution,
+      fixedCells: fixedCells,
       notes: _deepCopyNotes(notes ?? this.notes),
       mistakes: mistakes ?? this.mistakes,
       elapsed: elapsed ?? this.elapsed,
