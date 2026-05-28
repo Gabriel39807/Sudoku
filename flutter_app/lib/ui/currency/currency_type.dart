@@ -1,1 +1,1 @@
-enum CurrencyType { tokens, souls }
+enum CurrencyType { tokens, gems }

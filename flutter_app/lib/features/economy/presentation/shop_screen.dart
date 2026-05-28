@@ -6,6 +6,8 @@ import '../application/wallet_provider.dart';
 import '../domain/wallet.dart';
 import '../domain/shop_catalog.dart';
 import '../../../features/cosmetics/application/cosmetic_inventory_provider.dart';
+import '../../../features/cosmetics/application/avatar_inventory_provider.dart';
+import '../../../features/cosmetics/presentation/widgets/player_profile_avatar.dart';
 import '../../../shared/widgets/game_modal_card.dart';
 import '../../../ui/currency/currency_assets.dart';
 import '../../../ui/currency/currency_type.dart';
@@ -54,41 +56,21 @@ class ShopScreen extends ConsumerWidget {
                       const SizedBox(height: 24),
                       _SectionTitle(title: 'AVATARES'),
                       const SizedBox(height: 8),
-                      if (ShopCatalog.premiumAvatars.isEmpty)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 24),
-                          child: Center(
-                            child: Text('PRÓXIMAMENTE',
-                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 3,
-                                    color: Colors.white.withValues(alpha: 0.25))),
-                          ),
-                        )
-                      else
-                        ...ShopCatalog.premiumAvatars.map(
-                          (item) => Container(
-                            padding: const EdgeInsets.all(16),
-                            margin: const EdgeInsets.only(bottom: 8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
-                            ),
-                            child: Row(
-                              children: [
-                                Container(width: 48, height: 48, decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white.withValues(alpha: 0.05),
-                                  border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
-                                )),
-                                const SizedBox(width: 12),
-                                Expanded(child: Text(item.name,
-                                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white))),
-                                Text('${item.soulCost} 💎',
-                                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600,
-                                        color: const Color(0xFF9B59B6).withValues(alpha: 0.8))),
-                              ],
-                            ),
-                          ),
+                      ...ShopCatalog.premiumAvatars.map(
+                        (item) => _AvatarShopCard(
+                          item: item,
+                          onBuy: () => _buyAvatar(context, ref, item),
                         ),
+                      ),
+                      const SizedBox(height: 24),
+                      _SectionTitle(title: 'MARCOS DE AVATAR'),
+                      const SizedBox(height: 8),
+                      ...ShopCatalog.premiumAvatarFrames.map(
+                        (item) => _AvatarFrameShopCard(
+                          item: item,
+                          onBuy: () => _buyAvatarFrame(context, ref, item),
+                        ),
+                      ),
                       const SizedBox(height: 24),
                       _SectionTitle(title: 'CONSUMIBLES'),
                       const SizedBox(height: 8),
@@ -114,11 +96,11 @@ class ShopScreen extends ConsumerWidget {
 
   Future<void> _buyCosmetic(BuildContext context, WidgetRef ref, ShopCosmetic item) async {
     final notifier = ref.read(walletProvider.notifier);
-    final ok = await notifier.buyPremiumCosmetic(item.id, item.soulCost);
+    final ok = await notifier.buyPremiumCosmetic(item.id, item.gemCost);
     if (!ok) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No tienes suficientes SOULS')),
+        const SnackBar(content: Text('No tienes suficientes GEMS')),
       );
       return;
     }
@@ -126,6 +108,44 @@ class ShopScreen extends ConsumerWidget {
     if (item.type == 'background') {
       await inv.unlockBackground(item.id);
     }
+  }
+
+  Future<void> _buyAvatar(BuildContext context, WidgetRef ref, ShopAvatar item) async {
+    final notifier = ref.read(walletProvider.notifier);
+    final ok = await notifier.buyPremiumCosmetic(item.id, item.gemCost);
+    if (!ok) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No tienes suficientes GEMS')),
+      );
+      return;
+    }
+    final inv = ref.read(avatarInventoryProvider.notifier);
+    await inv.unlockAvatar(item.id);
+    await inv.selectAvatar(item.id);
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('¡Avatar desbloqueado y equipado!')),
+    );
+  }
+
+  Future<void> _buyAvatarFrame(BuildContext context, WidgetRef ref, ShopAvatar item) async {
+    final notifier = ref.read(walletProvider.notifier);
+    final ok = await notifier.buyPremiumCosmetic(item.id, item.gemCost);
+    if (!ok) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No tienes suficientes GEMS')),
+      );
+      return;
+    }
+    final inv = ref.read(avatarInventoryProvider.notifier);
+    await inv.unlockFrame(item.id);
+    await inv.selectFrame(item.id);
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('¡Marco desbloqueado y equipado!')),
+    );
   }
 
   Future<void> _buyConsumable(BuildContext context, WidgetRef ref, ShopConsumable item) async {
@@ -230,7 +250,7 @@ class _ShopHeader extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CurrencyWidget(type: CurrencyType.souls, amount: wallet.souls, size: 18, showLabel: true),
+              CurrencyWidget(type: CurrencyType.gems, amount: wallet.gems, size: 18, showLabel: true),
               const SizedBox(width: 24),
               CurrencyWidget(type: CurrencyType.tokens, amount: wallet.tokens, size: 18, showLabel: true),
             ],
@@ -272,7 +292,7 @@ class _CosmeticCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final canAfford = wallet.souls >= item.soulCost;
+    final canAfford = wallet.gems >= item.gemCost;
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(14),
@@ -324,9 +344,9 @@ class _CosmeticCard extends StatelessWidget {
                 ))
           else
             _PriceButton(
-              icon: CurrencyAssets.iconFor(CurrencyType.souls),
-              iconColor: CurrencyAssets.colorFor(CurrencyType.souls),
-              price: item.soulCost,
+              icon: CurrencyAssets.iconFor(CurrencyType.gems),
+              iconColor: CurrencyAssets.colorFor(CurrencyType.gems),
+              price: item.gemCost,
               canAfford: canAfford,
               onTap: onBuy,
             ),
@@ -495,6 +515,177 @@ class _InventoryRow extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _AvatarShopCard extends ConsumerWidget {
+  final ShopAvatar item;
+  final VoidCallback onBuy;
+  const _AvatarShopCard({required this.item, required this.onBuy});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final wallet = ref.watch(walletProvider);
+    final owned = wallet.ownedPremiumCosmetics.contains(item.id);
+    final canAfford = wallet.gems >= item.gemCost;
+    final rarityColor = _avatarRarityColor(item.rarity);
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: owned ? 0.03 : 0.05),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: owned
+              ? Colors.greenAccent.withValues(alpha: 0.2)
+              : rarityColor.withValues(alpha: 0.15),
+        ),
+      ),
+      child: Row(
+        children: [
+          PlayerProfileAvatar(
+            avatarId: item.id,
+            frameId: null,
+            size: 48,
+            showBreathing: false,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(item.name,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                const SizedBox(height: 2),
+                Row(
+                  children: [
+                    _avatarRarityChip(item.rarity, rarityColor),
+                    const SizedBox(width: 8),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          if (owned)
+            const Text('PROPIEDAD',
+                style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.greenAccent))
+          else
+            _PriceButton(
+              icon: CurrencyAssets.iconFor(CurrencyType.gems),
+              iconColor: CurrencyAssets.colorFor(CurrencyType.gems),
+              price: item.gemCost,
+              canAfford: canAfford,
+              onTap: onBuy,
+            ),
+        ],
+      ),
+    ).animate().fade(duration: 300.ms).slideX(begin: 0.05);
+  }
+
+  Color _avatarRarityColor(String rarity) {
+    switch (rarity) {
+      case 'rare': return const Color(0xFF3498DB);
+      case 'epic': return const Color(0xFF9B59B6);
+      case 'legendary': return const Color(0xFFFF6B35);
+      case 'mythic': return const Color(0xFFE91E63);
+      default: return Colors.white54;
+    }
+  }
+
+  Widget _avatarRarityChip(String rarity, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(99),
+      ),
+      child: Text(rarity.toUpperCase(),
+          style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: color)),
+    );
+  }
+}
+
+class _AvatarFrameShopCard extends ConsumerWidget {
+  final ShopAvatar item;
+  final VoidCallback onBuy;
+  const _AvatarFrameShopCard({required this.item, required this.onBuy});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final wallet = ref.watch(walletProvider);
+    final owned = wallet.ownedPremiumCosmetics.contains(item.id);
+    final canAfford = wallet.gems >= item.gemCost;
+    final rarityColor = _avatarRarityColor(item.rarity);
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: owned ? 0.03 : 0.05),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: owned
+              ? Colors.greenAccent.withValues(alpha: 0.2)
+              : rarityColor.withValues(alpha: 0.15),
+        ),
+      ),
+      child: Row(
+        children: [
+          PlayerProfileAvatar(
+            avatarId: null,
+            frameId: item.id,
+            size: 48,
+            showBreathing: false,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(item.name,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                const SizedBox(height: 2),
+                _avatarRarityChip(item.rarity, rarityColor),
+              ],
+            ),
+          ),
+          if (owned)
+            const Text('PROPIEDAD',
+                style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.greenAccent))
+          else
+            _PriceButton(
+              icon: CurrencyAssets.iconFor(CurrencyType.gems),
+              iconColor: CurrencyAssets.colorFor(CurrencyType.gems),
+              price: item.gemCost,
+              canAfford: canAfford,
+              onTap: onBuy,
+            ),
+        ],
+      ),
+    ).animate().fade(duration: 300.ms).slideX(begin: 0.05);
+  }
+
+  Color _avatarRarityColor(String rarity) {
+    switch (rarity) {
+      case 'rare': return const Color(0xFF3498DB);
+      case 'epic': return const Color(0xFF9B59B6);
+      case 'legendary': return const Color(0xFFFF6B35);
+      case 'mythic': return const Color(0xFFE91E63);
+      default: return Colors.white54;
+    }
+  }
+
+  Widget _avatarRarityChip(String rarity, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(99),
+      ),
+      child: Text(rarity.toUpperCase(),
+          style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: color)),
     );
   }
 }

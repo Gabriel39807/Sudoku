@@ -27,8 +27,8 @@ class ThemedCurrency extends StatelessWidget {
     switch (type) {
       case CurrencyType.tokens:
         return const Color(0xFF42A5F5);
-      case CurrencyType.souls:
-        return const Color(0xFF66BB6A);
+      case CurrencyType.gems:
+        return CurrencyAssets.colorFor(type);
     }
   }
 

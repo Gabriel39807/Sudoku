@@ -17,8 +17,8 @@ class WalletNotifier extends Notifier<Wallet> {
     state = await WalletStorage.load();
   }
 
-  Future<void> addSouls(int amount) async {
-    state = state.copyWith(souls: state.souls + amount);
+  Future<void> addGems(int amount) async {
+    state = state.copyWith(gems: state.gems + amount);
     await WalletStorage.save(state);
   }
 
@@ -27,9 +27,9 @@ class WalletNotifier extends Notifier<Wallet> {
     await WalletStorage.save(state);
   }
 
-  Future<bool> spendSouls(int amount) async {
-    if (state.souls < amount) return false;
-    state = state.copyWith(souls: state.souls - amount);
+  Future<bool> spendGems(int amount) async {
+    if (state.gems < amount) return false;
+    state = state.copyWith(gems: state.gems - amount);
     await WalletStorage.save(state);
     return true;
   }
@@ -76,10 +76,10 @@ class WalletNotifier extends Notifier<Wallet> {
   }
 
   Future<bool> buyPremiumCosmetic(String id, int cost) async {
-    if (state.souls < cost) return false;
+    if (state.gems < cost) return false;
     if (state.ownedPremiumCosmetics.contains(id)) return false;
     state = state.copyWith(
-      souls: state.souls - cost,
+      gems: state.gems - cost,
       ownedPremiumCosmetics: [...state.ownedPremiumCosmetics, id],
     );
     await WalletStorage.save(state);
