@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/player_level.dart';
 import '../domain/achievement.dart';
 import '../domain/daily_mission.dart';
 import '../data/progression_storage.dart';
+import '../../economy/application/wallet_provider.dart';
 
 /// Notifier for player level & XP.
 class PlayerLevelNotifier extends Notifier<PlayerLevel> {
@@ -22,7 +24,13 @@ class PlayerLevelNotifier extends Notifier<PlayerLevel> {
     final oldLevel = state.level;
     state = PlayerLevel.addXp(state, amount);
     await ProgressionStorage.savePlayerLevel(state);
-    return state.level - oldLevel;
+    final levelsGained = state.level - oldLevel;
+    if (levelsGained > 0) {
+      final rng = math.Random();
+      final souls = 5 + rng.nextInt(6); // 5–10 souls per level
+      await ref.read(walletProvider.notifier).addSouls(souls * levelsGained);
+    }
+    return levelsGained;
   }
 
   Future<void> reload() async {

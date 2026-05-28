@@ -109,4 +109,20 @@ class ProgressionStorage {
     await prefs.setString(_missionsKey, jsonEncode(list));
     await prefs.setString(_missionsDateKey, dateKey ?? DailyMission.todayKey());
   }
+
+  // ── First Win of Day ─────────────────────────────────────────────────────
+
+  static const _firstWinDateKey = 'progression_first_win_date';
+
+  static Future<bool> hasClaimedFirstWinToday() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getString(_firstWinDateKey);
+    final today = DailyMission.todayKey();
+    return saved == today;
+  }
+
+  static Future<void> markFirstWinClaimed() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_firstWinDateKey, DailyMission.todayKey());
+  }
 }

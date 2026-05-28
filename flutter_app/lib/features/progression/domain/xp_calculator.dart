@@ -46,12 +46,12 @@ class XpCalculator {
   XpCalculator._();
 
   static const baseXp = {
-    'easy': 40,
-    'intermediate': 70,
-    'hard': 110,
-    'expert': 170,
-    'evil': 250,
-    'mythic': 350,
+    'easy': 35,
+    'intermediate': 55,
+    'hard': 80,
+    'expert': 120,
+    'evil': 170,
+    'mythic': 250,
   };
 
   static const targetSeconds = {
@@ -64,20 +64,20 @@ class XpCalculator {
   };
 
   static const maxXp = {
-    'easy': 120,
-    'intermediate': 180,
-    'hard': 250,
-    'expert': 350,
-    'evil': 500,
-    'mythic': 700,
+    'easy': 50,
+    'intermediate': 70,
+    'hard': 100,
+    'expert': 140,
+    'evil': 220,
+    'mythic': 350,
   };
 
   static XpResult compute(GameState state) {
     final diff = state.difficulty;
-    final base = baseXp[diff] ?? 40;
+    final base = baseXp[diff] ?? 35;
     final elapsed = state.elapsedSeconds;
     final target = targetSeconds[diff] ?? 480;
-    final cap = maxXp[diff] ?? 120;
+    final cap = maxXp[diff] ?? 50;
     final errors = state.errors;
     final hints = state.usedHints;
     final isAutocomplete = state.completedWithAutocomplete;
@@ -86,18 +86,15 @@ class XpCalculator {
     final isPerfect = errors == 0 && hints == 0 && !isAutocomplete;
     final isFlawless = isPerfect && state.pauseCount == 0 && elapsed < target;
 
-    // Bonuses
     final perfectBonus = isPerfect ? (base * 0.4).round() : 0;
     final flawlessBonus = isFlawless ? (base * 0.25).round() : 0;
 
-    // Speed bonus
     final speedBonus = elapsed < target * 0.8
         ? 30
         : elapsed < target
             ? 15
             : 0;
 
-    // Combo bonus
     final comboBonus = combo >= 30
         ? 35
         : combo >= 20
@@ -108,13 +105,11 @@ class XpCalculator {
                     ? 5
                     : 0;
 
-    // Completion bonus
     final rowsDone = state.completedRows.length.clamp(0, 9);
     final colsDone = state.completedCols.length.clamp(0, 9);
     final blocksDone = state.completedBlocks.length.clamp(0, 9);
     final completionBonus = rowsDone * 2 + colsDone * 2 + blocksDone * 4 + 15;
 
-    // Penalties (percentage-based, applied to subtotal)
     final penaltyFactor =
         (1.0 - hints * 0.15 - (errors > 0 ? 0.20 : 0) - (isAutocomplete ? 0.35 : 0))
             .clamp(0.0, 1.0);
@@ -124,7 +119,6 @@ class XpCalculator {
     final rawTotal = (subtotal * penaltyFactor).round();
     final total = rawTotal.clamp(0, cap);
 
-    // Compute deduction amounts for display
     final appliedHintPenalty =
         hints > 0 ? (subtotal - (subtotal * (1.0 - hints * 0.15)).round()) : 0;
     final appliedFailPenalty =
