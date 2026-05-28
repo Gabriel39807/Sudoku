@@ -7,6 +7,7 @@ class SettingsModel {
   final bool boardAnimations;
   final bool showAutoComplete;
   final bool autoCandidates;
+  final bool intenseSubgrids;
   final AssistMode assistMode;
 
   const SettingsModel({
@@ -16,6 +17,7 @@ class SettingsModel {
     this.boardAnimations = true,
     this.showAutoComplete = true,
     this.autoCandidates = true,
+    this.intenseSubgrids = false,
     this.assistMode = AssistMode.classic,
   });
 
@@ -26,6 +28,7 @@ class SettingsModel {
     bool? boardAnimations,
     bool? showAutoComplete,
     bool? autoCandidates,
+    bool? intenseSubgrids,
     AssistMode? assistMode,
   }) {
     return SettingsModel(
@@ -35,6 +38,7 @@ class SettingsModel {
       boardAnimations: boardAnimations ?? this.boardAnimations,
       showAutoComplete: showAutoComplete ?? this.showAutoComplete,
       autoCandidates: autoCandidates ?? this.autoCandidates,
+      intenseSubgrids: intenseSubgrids ?? this.intenseSubgrids,
       assistMode: assistMode ?? this.assistMode,
     );
   }

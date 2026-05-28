@@ -79,6 +79,15 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const Divider(color: Colors.white12),
           _SettingsSwitch(
+            icon: Icons.grid_on,
+            iconColor: Colors.amberAccent,
+            title: 'Subgrids intensos',
+            subtitle: 'Mayor contraste en bordes de bloques para mejor legibilidad',
+            value: settings.intenseSubgrids,
+            onChanged: (v) => ref.read(settingsProvider.notifier).setIntenseSubgrids(v),
+          ),
+          const Divider(color: Colors.white12),
+          _SettingsSwitch(
             icon: Icons.auto_fix_high,
             iconColor: Colors.greenAccent,
             title: 'Mostrar autocompletar',

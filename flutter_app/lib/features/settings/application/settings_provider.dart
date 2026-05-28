@@ -18,6 +18,7 @@ class SettingsNotifier extends Notifier<SettingsModel> {
       highlightSameNumbers:
           prefs.getBool('setting_highlight_same_numbers') ?? true,
       boardAnimations: prefs.getBool('setting_board_animations') ?? true,
+      intenseSubgrids: prefs.getBool('setting_intense_subgrids') ?? false,
       showAutoComplete: prefs.getBool('setting_show_auto_complete') ?? true,
       autoCandidates: prefs.getBool('setting_auto_candidates') ?? true,
       assistMode: AssistMode.values.firstWhere(
@@ -33,6 +34,7 @@ class SettingsNotifier extends Notifier<SettingsModel> {
     await prefs.setBool('setting_highlight_region', state.highlightRegion);
     await prefs.setBool('setting_highlight_same_numbers', state.highlightSameNumbers);
     await prefs.setBool('setting_board_animations', state.boardAnimations);
+    await prefs.setBool('setting_intense_subgrids', state.intenseSubgrids);
     await prefs.setBool('setting_show_auto_complete', state.showAutoComplete);
     await prefs.setBool('setting_auto_candidates', state.autoCandidates);
     await prefs.setString('setting_assist_mode', state.assistMode.name);
@@ -55,6 +57,11 @@ class SettingsNotifier extends Notifier<SettingsModel> {
 
   Future<void> setBoardAnimations(bool value) async {
     state = state.copyWith(boardAnimations: value);
+    await _save();
+  }
+
+  Future<void> setIntenseSubgrids(bool value) async {
+    state = state.copyWith(intenseSubgrids: value);
     await _save();
   }
 
