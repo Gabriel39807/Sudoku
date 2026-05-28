@@ -25,7 +25,7 @@ class WheelReward {
 
   String get displayText => '$icon $amount';
 
-  bool get isCurrency => id.startsWith('soul') || id.startsWith('token');
+  bool get isCurrency => id.startsWith('gem') || id.startsWith('token');
   bool get isEmpty => id == 'empty';
   bool get isAdvancedNotes => id.startsWith('advanced_notes');
   bool get isHint => id.startsWith('hint');
@@ -36,7 +36,7 @@ class WheelReward {
   bool get isLegendaryReward => id.startsWith('legendary_reward');
 
   CurrencyType? get currencyType {
-    if (id.startsWith('soul')) return CurrencyType.souls;
+    if (id.startsWith('gem')) return CurrencyType.gems;
     if (id.startsWith('token')) return CurrencyType.tokens;
     return null;
   }
@@ -81,24 +81,24 @@ final wheelSegments = [
     color: const Color(0xFF4A148C),
   ),
   WheelSegment(
-    reward: WheelReward(id: 'soul_1', icon: CurrencyAssets.emojiFor(CurrencyType.souls), label: 'Souls', amount: 1, rarity: RewardRarity.common),
+    reward: WheelReward(id: 'gem_1', icon: CurrencyAssets.emojiFor(CurrencyType.gems), label: 'GEMS', amount: 1, rarity: RewardRarity.common),
     weight: 14,
-    color: const Color(0xFF66BB6A),
+    color: const Color(0xFFE91E63),
   ),
   WheelSegment(
-    reward: WheelReward(id: 'soul_3', icon: CurrencyAssets.emojiFor(CurrencyType.souls), label: 'Souls', amount: 3, rarity: RewardRarity.common),
+    reward: WheelReward(id: 'gem_3', icon: CurrencyAssets.emojiFor(CurrencyType.gems), label: 'GEMS', amount: 3, rarity: RewardRarity.common),
     weight: 12,
-    color: const Color(0xFF9CCC65),
+    color: const Color(0xFFF06292),
   ),
   WheelSegment(
-    reward: WheelReward(id: 'soul_5', icon: CurrencyAssets.emojiFor(CurrencyType.souls), label: 'Souls', amount: 5, rarity: RewardRarity.medium),
+    reward: WheelReward(id: 'gem_5', icon: CurrencyAssets.emojiFor(CurrencyType.gems), label: 'GEMS', amount: 5, rarity: RewardRarity.medium),
     weight: 8,
-    color: const Color(0xFFFF7043),
+    color: const Color(0xFFEC407A),
   ),
   WheelSegment(
-    reward: WheelReward(id: 'soul_8', icon: CurrencyAssets.emojiFor(CurrencyType.souls), label: 'Souls', amount: 8, rarity: RewardRarity.medium),
+    reward: WheelReward(id: 'gem_8', icon: CurrencyAssets.emojiFor(CurrencyType.gems), label: 'GEMS', amount: 8, rarity: RewardRarity.medium),
     weight: 4,
-    color: const Color(0xFFEF5350),
+    color: const Color(0xFFD81B60),
   ),
   WheelSegment(
     reward: const WheelReward(id: 'hint_1', icon: '\u{1F4A1}', label: 'Hint', amount: 1, rarity: RewardRarity.common),

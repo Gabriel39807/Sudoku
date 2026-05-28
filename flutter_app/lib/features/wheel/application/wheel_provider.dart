@@ -209,19 +209,19 @@ class WheelNotifier extends Notifier<WheelState> {
     if (reward.isHint) {
       await ref.read(walletProvider.notifier).addHints(reward.amount);
     } else if (reward.isAdvancedNotes) {
-      await ref.read(walletProvider.notifier).addSouls(3);
+      await ref.read(walletProvider.notifier).addGems(3);
     } else if (reward.isFreeSpin) {
       await WheelStorage.addExtraSpins(1);
       state = state.copyWith(extraSpins: await WheelStorage.getExtraSpins());
     } else if (reward.isX2Reward) {
-      await ref.read(walletProvider.notifier).addSouls(reward.amount);
+      await ref.read(walletProvider.notifier).addGems(reward.amount);
       await ref.read(walletProvider.notifier).addTokens(reward.amount);
     } else if (reward.isEmpty) {
       // no reward
     } else if (reward.isCurrency && reward.currencyType == CurrencyType.tokens) {
       await ref.read(walletProvider.notifier).addTokens(reward.amount);
     } else {
-      await ref.read(walletProvider.notifier).addSouls(reward.amount);
+      await ref.read(walletProvider.notifier).addGems(reward.amount);
     }
 
     final canDoAnything = state.hasFreeSpin || state.extraSpins > 0 || state.adSpins > 0;

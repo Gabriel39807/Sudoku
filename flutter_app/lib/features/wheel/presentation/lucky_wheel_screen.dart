@@ -333,7 +333,7 @@ class _WheelResultDialogState extends State<_WheelResultDialog>
   String _rewardName() {
     if (widget.reward.id.contains('hint')) return 'Pista';
     if (widget.reward.id.contains('token')) return 'Token';
-    return 'Souls';
+    return 'GEMS';
   }
 
   @override
