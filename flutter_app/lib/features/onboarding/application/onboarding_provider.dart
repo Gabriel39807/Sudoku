@@ -1,15 +1,26 @@
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/onboarding_progress.dart';
 
 class OnboardingNotifier extends Notifier<OnboardingProgress> {
+  final Completer<void> _loaded = Completer<void>();
+
+  /// Returns the fully loaded state. Awaits async persistence load if not done yet.
+  Future<OnboardingProgress> waitForLoad() async {
+    await _loaded.future;
+    return state;
+  }
+
   @override
   OnboardingProgress build() {
+    ref.onDispose(() => _loaded.completeError(StateError('onboarding disposed')));
     _load();
     return const OnboardingProgress();
   }
 
   Future<void> _load() async {
     state = await OnboardingProgress.load();
+    if (!_loaded.isCompleted) _loaded.complete();
   }
 
   Future<void> completeIntro() async {

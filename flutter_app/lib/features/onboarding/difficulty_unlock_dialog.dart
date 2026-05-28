@@ -43,14 +43,14 @@ class _DifficultyUnlockDialogState extends State<DifficultyUnlockDialog>
 
   static const _descriptions = {
     'easy': 'Perfecto para empezar. Resuelve tableros con celdas predefinidas, solo necesitas lógica básica.',
-    'intermediate': 'Nuevas técnicas aparecen. Pares desnudos y ocultos te harán pensar antes de colocar.',
+    'intermediate': 'Nuevas técnicas aparecen. Pares descubiertos y ocultos te harán pensar antes de colocar.',
     'hard': 'Pares señaladores y reducción de caja-línea. El tablero exige más de tu concentración.',
     'expert': 'XWing y Swordfish. Patrones avanzados que pocos dominan. Bienvenido al siguiente nivel.',
     'evil': 'XYWing. Cada movimiento cuenta. Un error y el tablero se vuelve contra vos.',
     'mythic': 'Cadenas forzadas. Solo los mejores leyendarios superan este desafío.',
   };
 
-  static const _soulRewards = {
+  static const _gemRewards = {
     'easy': 2, 'intermediate': 3, 'hard': 5,
     'expert': 7, 'evil': 10, 'mythic': 15,
   };
@@ -59,7 +59,7 @@ class _DifficultyUnlockDialogState extends State<DifficultyUnlockDialog>
   String get _displayName => widget.difficulty.toUpperCase();
   String get _subtitle => _subtitles[widget.difficulty] ?? '';
   String get _description => _descriptions[widget.difficulty] ?? '';
-  int get _souls => _soulRewards[widget.difficulty] ?? 0;
+  int get _gems => _gemRewards[widget.difficulty] ?? 0;
 
   @override
   void initState() {
@@ -237,7 +237,7 @@ class _DifficultyUnlockDialogState extends State<DifficultyUnlockDialog>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _rewardChip('${CurrencyAssets.emojiFor(CurrencyType.souls)} $_souls', CurrencyAssets.colorFor(CurrencyType.souls)),
+          _rewardChip('${CurrencyAssets.emojiFor(CurrencyType.gems)} $_gems', CurrencyAssets.colorFor(CurrencyType.gems)),
           const SizedBox(width: 12),
           _rewardChip('${CurrencyAssets.emojiFor(CurrencyType.tokens)} 1', CurrencyAssets.colorFor(CurrencyType.tokens)),
         ],

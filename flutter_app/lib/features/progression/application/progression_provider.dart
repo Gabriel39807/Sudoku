@@ -27,8 +27,8 @@ class PlayerLevelNotifier extends Notifier<PlayerLevel> {
     final levelsGained = state.level - oldLevel;
     if (levelsGained > 0) {
       final rng = math.Random();
-      final souls = 5 + rng.nextInt(6); // 5–10 souls per level
-      await ref.read(walletProvider.notifier).addSouls(souls * levelsGained);
+      final gems = 5 + rng.nextInt(6); // 5–10 gems per level
+      await ref.read(walletProvider.notifier).addGems(gems * levelsGained);
     }
     return levelsGained;
   }

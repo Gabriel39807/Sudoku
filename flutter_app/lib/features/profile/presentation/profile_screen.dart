@@ -5,6 +5,8 @@ import '../../stats/application/stats_provider.dart';
 import '../../stats/domain/stats_model.dart';
 import '../../progression/application/progression_provider.dart';
 import '../../progression/domain/player_level.dart';
+import '../../cosmetics/application/avatar_inventory_provider.dart';
+import '../../cosmetics/presentation/widgets/player_profile_avatar.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -47,14 +49,16 @@ class ProfileScreen extends ConsumerWidget {
 
 // ── Player Header ──────────────────────────────────────────────────────────
 
-class _PlayerHeader extends StatelessWidget {
+class _PlayerHeader extends ConsumerWidget {
   final PlayerLevel playerLevel;
   final GameStats stats;
 
   const _PlayerHeader({required this.playerLevel, required this.stats});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final avatarInv = ref.watch(avatarInventoryProvider);
+
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -71,10 +75,10 @@ class _PlayerHeader extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 32,
-            backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
-            child: Icon(Icons.person, size: 32, color: Theme.of(context).primaryColor),
+          PlayerProfileAvatar(
+            avatarId: avatarInv.selectedAvatarId,
+            frameId: avatarInv.selectedFrameId,
+            size: 64,
           ),
           const SizedBox(width: 20),
           Expanded(

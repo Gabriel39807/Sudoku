@@ -13,7 +13,7 @@ class DailyMission {
   final String description;
   final int target;
   final int xpReward;
-  final int soulsReward;
+  final int gemsReward;
   final String dateKey;
   final MissionDifficulty difficulty;
   int progress;
@@ -30,7 +30,7 @@ class DailyMission {
     this.completed = false,
   }) : dateKey = dateKey ?? todayKey(),
        xpReward = _xpForDifficulty(difficulty),
-       soulsReward = _soulsForDifficulty(difficulty);
+       gemsReward = _gemsForDifficulty(difficulty);
 
   double get ratio => target > 0 ? (progress / target).clamp(0.0, 1.0) : 0.0;
 
@@ -75,7 +75,7 @@ class DailyMission {
     };
   }
 
-  static int _soulsForDifficulty(MissionDifficulty d) {
+  static int _gemsForDifficulty(MissionDifficulty d) {
     return switch (d) {
       MissionDifficulty.easy => 2 + math.Random().nextInt(3),    // 2-4
       MissionDifficulty.medium => 4 + math.Random().nextInt(4),  // 4-7

@@ -67,7 +67,7 @@ class _GradualUnlockScreenState extends ConsumerState<GradualUnlockScreen>
       await Future.delayed(1200.ms);
     }
     // Grant rewards
-    await ref.read(walletProvider.notifier).addSouls(100);
+    await ref.read(walletProvider.notifier).addGems(100);
     await ref.read(walletProvider.notifier).addTokens(25);
     await ref.read(cosmeticInventoryProvider.notifier).unlockBackground('celestial_horizon');
     if (!mounted) return;
@@ -175,7 +175,7 @@ class _GradualUnlockScreenState extends ConsumerState<GradualUnlockScreen>
         const Text('Has ganado:',
             style: TextStyle(fontSize: 14, color: Colors.white54)),
         const SizedBox(height: 16),
-        _RewardRow(icon: Icons.stars, label: '100 Almas', color: Colors.amber),
+        _RewardRow(icon: Icons.stars, label: '100 GEMS', color: const Color(0xFFE91E63)),
         const SizedBox(height: 6),
         _RewardRow(icon: Icons.token, label: '25 Fichas', color: Colors.cyan),
         const SizedBox(height: 6),
