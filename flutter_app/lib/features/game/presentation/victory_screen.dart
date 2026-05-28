@@ -23,6 +23,9 @@ class VictoryScreen extends ConsumerWidget {
 
     final victoryType = _victoryType(state);
     final accentColor = _accentColor(victoryType);
+
+    // Use actual earned XP (with daily/first-win bonuses) from the notifier
+    final earnedXp = ref.read(gameProvider.notifier).lastEarnedXp;
     final xpResult = XpCalculator.compute(state);
 
     return Scaffold(
@@ -39,6 +42,7 @@ class VictoryScreen extends ConsumerWidget {
                     accentColor: accentColor,
                     isAutocomplete: isAutocomplete,
                     xpResult: xpResult,
+                    earnedXp: earnedXp,
                   ).animate().fade(duration: 600.ms).scale(begin: const Offset(0.9, 0.9), curve: Curves.easeOut),
 
                   const SizedBox(height: 24),
@@ -47,6 +51,7 @@ class VictoryScreen extends ConsumerWidget {
                     playerLevel: playerLevel,
                     xpResult: xpResult,
                     accentColor: accentColor,
+                    earnedXp: earnedXp,
                   ).animate().fade(delay: 200.ms, duration: 400.ms).slideX(begin: 0.1),
 
                   const SizedBox(height: 20),
@@ -101,8 +106,9 @@ class _HeaderHero extends StatelessWidget {
   final Color accentColor;
   final bool isAutocomplete;
   final XpResult xpResult;
+  final int earnedXp;
 
-  const _HeaderHero({required this.victoryType, required this.accentColor, required this.isAutocomplete, required this.xpResult});
+  const _HeaderHero({required this.victoryType, required this.accentColor, required this.isAutocomplete, required this.xpResult, required this.earnedXp});
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +169,7 @@ class _HeaderHero extends StatelessWidget {
           Text(subtitle, style: const TextStyle(fontSize: 13, color: Colors.white60)),
           const SizedBox(height: 20),
           // XP breakdown
-          _XpBreakdown(xpResult: xpResult, accentColor: accentColor),
+          _XpBreakdown(xpResult: xpResult, accentColor: accentColor, earnedXp: earnedXp),
         ],
       ),
     );
@@ -175,11 +181,16 @@ class _HeaderHero extends StatelessWidget {
 class _XpBreakdown extends StatelessWidget {
   final XpResult xpResult;
   final Color accentColor;
+  final int earnedXp;
 
-  const _XpBreakdown({required this.xpResult, required this.accentColor});
+  const _XpBreakdown({required this.xpResult, required this.accentColor, required this.earnedXp});
 
   @override
   Widget build(BuildContext context) {
+    final isDaily = xpResult.difficulty == 'daily';
+    final hasBonus = earnedXp != xpResult.total;
+    final bonusDiff = earnedXp - xpResult.total;
+
     final items = <_BreakdownLine>[
       _BreakdownLine('${xpResult.difficulty.toUpperCase()} — Base', '', xpResult.base),
     ];
@@ -209,11 +220,17 @@ class _XpBreakdown extends StatelessWidget {
       items.add(_BreakdownLine('Auto Complete', '-35%', -xpResult.autoCompletePenalty));
     }
 
+    if (isDaily && hasBonus) {
+      items.add(_BreakdownLine('Bonus Diario', '+20%', bonusDiff));
+    } else if (hasBonus) {
+      items.add(_BreakdownLine('1er Victoria del Día', '+30%', bonusDiff));
+    }
+
     items.add(_BreakdownLine('', '', 0, isDivider: true));
     items.add(_BreakdownLine(
       'TOTAL XP',
       xpResult.capped ? 'CAP ${xpResult.maxCap}' : '',
-      xpResult.total,
+      earnedXp,
       isTotal: true,
       accentColor: accentColor,
     ));
@@ -276,8 +293,9 @@ class _XpBar extends StatelessWidget {
   final PlayerLevel playerLevel;
   final XpResult xpResult;
   final Color accentColor;
+  final int earnedXp;
 
-  const _XpBar({required this.playerLevel, required this.xpResult, required this.accentColor});
+  const _XpBar({required this.playerLevel, required this.xpResult, required this.accentColor, required this.earnedXp});
 
   @override
   Widget build(BuildContext context) {
@@ -302,7 +320,7 @@ class _XpBar extends StatelessWidget {
                       style: TextStyle(fontSize: 11, color: accentColor.withValues(alpha: 0.7))),
                 ],
               ),
-              Text('+${xpResult.total} XP',
+              Text('+$earnedXp XP',
                   style: TextStyle(color: accentColor, fontWeight: FontWeight.bold, fontSize: 16)),
             ],
           ),

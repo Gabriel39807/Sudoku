@@ -27,17 +27,8 @@ class BoardData {
 }
 
 /// Unified board repository.
-///
-/// Responsibilities:
-/// - Load boards by difficulty (easy / intermediate / … / mythic)
-/// - Random selection with anti-repeat history (last 20)
-/// - Daily challenge (deterministic, weighted distribution)
-/// - Campaign stage loading
-/// - In-memory cache (avoids re-loading same JSON within session)
 class BoardRepositoryV2 {
   BoardRepositoryV2._();
-
-  // ── Dataset sizes ─────────────────────────────────────────────────────────
 
   static const Map<String, int> boardCount = {
     'easy': 100,
@@ -57,20 +48,10 @@ class BoardRepositoryV2 {
     'mythic',
   ];
 
-  // ── History (last 20 per difficulty, in-memory) ───────────────────────────
-
   static final Map<String, List<String>> _history = {};
   static const int _historySize = 20;
-
-  // ── Simple memory cache ───────────────────────────────────────────────────
-
   static final Map<String, BoardData> _cache = {};
 
-  // ═══════════════════════════════════════════════════════════════════════════
-  // PUBLIC API
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  /// Returns a board for the given [difficulty].
   static Future<BoardData> loadRandomBoard(String difficulty) async {
     final diff = difficulty.toLowerCase();
     final count = boardCount[diff] ?? 0;
@@ -78,7 +59,6 @@ class BoardRepositoryV2 {
 
     final history = _getHistory(diff);
 
-    // build candidate indices, preferring non-recent ones
     final candidates = List.generate(count, (i) => i + 1);
     candidates.shuffle(Random());
 
@@ -96,7 +76,6 @@ class BoardRepositoryV2 {
       }
     }
 
-    // all candidates exhausted — try history entries as fallback
     for (final boardId in history.reversed) {
       try {
         final board = await _loadById(diff, boardId);
@@ -110,7 +89,6 @@ class BoardRepositoryV2 {
     );
   }
 
-  /// Deterministic daily board based on UTC date.
   static Future<BoardData> loadDailyBoard(DateTime utcDate) async {
     final d = utcDate.toUtc();
     final todayKey = _dateKey(d);
@@ -150,8 +128,6 @@ class BoardRepositoryV2 {
     }
   }
 
-  /// Load a campaign board for [stage] (1‑based) and [levelIndex] (1‑based
-  /// within that stage).
   static Future<BoardData> loadCampaignBoard(
     int stage,
     int levelIndex,
@@ -166,7 +142,6 @@ class BoardRepositoryV2 {
     return _loadFromAsset(assetPath, boardId: boardId, difficulty: 'campaign');
   }
 
-  /// Look-up a specific board by difficulty and id.
   static Future<BoardData> lookupBoard(
     String difficulty,
     String boardId,
@@ -174,19 +149,15 @@ class BoardRepositoryV2 {
     return _loadById(difficulty, boardId);
   }
 
-  /// Invalidate the in-memory cache (e.g. after a force-reload test).
   static void clearCache() {
     _cache.clear();
     _history.clear();
   }
 
-  /// Number of boards for the given difficulty.
   static int countFor(String difficulty) =>
       boardCount[difficulty.toLowerCase()] ?? 0;
 
-  // ═══════════════════════════════════════════════════════════════════════════
-  // DAILY DIFFICULTY DISTRIBUTION
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ── Daily difficulty weights ──────────────────────────────────────────────
 
   static final List<_WeightedDifficulty> _dailyWeights = [
     _WeightedDifficulty('easy', 57),
@@ -197,7 +168,6 @@ class BoardRepositoryV2 {
   ];
 
   static String _pickDailyDifficulty(Random rng) {
-    // mythic: 1 day every 366
     if (rng.nextInt(366) == 0) return 'mythic';
 
     final total = _dailyWeights.fold(0, (s, w) => s + w.weight);
@@ -210,35 +180,27 @@ class BoardRepositoryV2 {
     return 'easy';
   }
 
-  // ═══════════════════════════════════════════════════════════════════════════
-  // CAMPAIGN STAGE CONFIG
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ── Campaign stage configs ────────────────────────────────────────────────
 
   static const List<_CampaignStageConfig> _campaignStages = [
-    _CampaignStageConfig(
-      stage: 1,
-      variant: 'mini_4x4',
-      levelCount: 50,
-      boardSize: 4,
-      subgridWidth: 2,
-      subgridHeight: 2,
-    ),
-    _CampaignStageConfig(
-      stage: 2,
-      variant: 'mini_6x6',
-      levelCount: 75,
-      boardSize: 6,
-      subgridWidth: 3,
-      subgridHeight: 2,
-    ),
-    _CampaignStageConfig(
-      stage: 3,
-      variant: 'mini_8x8',
-      levelCount: 100,
-      boardSize: 8,
-      subgridWidth: 4,
-      subgridHeight: 2,
-    ),
+    // Stages 1-3: mini boards (existing)
+    _CampaignStageConfig(stage: 1, variant: 'mini_4x4', levelCount: 50, boardSize: 4, subgridWidth: 2, subgridHeight: 2),
+    _CampaignStageConfig(stage: 2, variant: 'mini_6x6', levelCount: 75, boardSize: 6, subgridWidth: 3, subgridHeight: 2),
+    _CampaignStageConfig(stage: 3, variant: 'mini_8x8', levelCount: 100, boardSize: 8, subgridWidth: 4, subgridHeight: 2),
+    // Stage 4: Assisted 9x9 — 100 levels, 60→44 clues, tier 1→5
+    _CampaignStageConfig(stage: 4, variant: '9x9', levelCount: 100, boardSize: 9, subgridWidth: 3, subgridHeight: 3),
+    // Stage 5: Beginner Journey 9x9 — 100 levels, 56→48 clues, tier 2→3
+    _CampaignStageConfig(stage: 5, variant: '9x9', levelCount: 100, boardSize: 9, subgridWidth: 3, subgridHeight: 3),
+    // Stage 6: Intermediate 9x9 — 100 levels, 48→40 clues, tier 3→4
+    _CampaignStageConfig(stage: 6, variant: '9x9', levelCount: 100, boardSize: 9, subgridWidth: 3, subgridHeight: 3),
+    // Stage 7: Advanced 9x9 — 100 levels, 44→36 clues, tier 4→5
+    _CampaignStageConfig(stage: 7, variant: '9x9', levelCount: 100, boardSize: 9, subgridWidth: 3, subgridHeight: 3),
+    // Stage 8: Expert 9x9 — 100 levels, 38→30 clues, tier 5→6
+    _CampaignStageConfig(stage: 8, variant: '9x9', levelCount: 100, boardSize: 9, subgridWidth: 3, subgridHeight: 3),
+    // Stage 9: Evil 9x9 — 100 levels, 32→24 clues, tier 6→7
+    _CampaignStageConfig(stage: 9, variant: '9x9', levelCount: 100, boardSize: 9, subgridWidth: 3, subgridHeight: 3),
+    // Stage 10: Mythic 9x9 — 50 levels, 26→20 clues, tier 7+
+    _CampaignStageConfig(stage: 10, variant: '9x9', levelCount: 50, boardSize: 9, subgridWidth: 3, subgridHeight: 3),
   ];
 
   static _CampaignStageConfig _campaignStageConfig(int stage) {
@@ -275,9 +237,7 @@ class BoardRepositoryV2 {
     return level - acc;
   }
 
-  // ═══════════════════════════════════════════════════════════════════════════
-  // INTERNAL LOADERS
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ── Internal loaders ──────────────────────────────────────────────────────
 
   static Future<BoardData> _loadById(String diff, String boardId) async {
     final cacheKey = '$diff/$boardId';
@@ -340,8 +300,6 @@ class BoardRepositoryV2 {
     return <int>[];
   }
 
-  // ── History helpers ──────────────────────────────────────────────────────
-
   static List<String> _getHistory(String diff) =>
       _history.putIfAbsent(diff, () => []);
 
@@ -353,10 +311,6 @@ class BoardRepositoryV2 {
     }
   }
 }
-
-// ═════════════════════════════════════════════════════════════════════════════
-// PRIVATE MODELS
-// ═════════════════════════════════════════════════════════════════════════════
 
 class _WeightedDifficulty {
   final String difficulty;

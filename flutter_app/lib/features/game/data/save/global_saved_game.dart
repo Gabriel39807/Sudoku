@@ -13,6 +13,8 @@ class GlobalSavedGame {
   final int mistakes;
   final int elapsedSeconds;
   final int hintsUsed;
+  final int retries;
+  final int continuesUsed;
   final int remainingHints;
   final int correctStreak;
   final int maxCombo;
@@ -38,6 +40,8 @@ class GlobalSavedGame {
     required this.mistakes,
     required this.elapsedSeconds,
     required this.hintsUsed,
+    required this.retries,
+    required this.continuesUsed,
     required this.remainingHints,
     required this.correctStreak,
     required this.maxCombo,
@@ -69,6 +73,8 @@ class GlobalSavedGame {
     'mistakes': mistakes,
     'elapsedSeconds': elapsedSeconds,
     'hintsUsed': hintsUsed,
+    'retries': retries,
+    'continuesUsed': continuesUsed,
     'remainingHints': remainingHints,
     'correctStreak': correctStreak,
     'maxCombo': maxCombo,
@@ -98,6 +104,8 @@ class GlobalSavedGame {
       mistakes: json['mistakes'] as int,
       elapsedSeconds: json['elapsedSeconds'] as int,
       hintsUsed: json['hintsUsed'] as int? ?? 0,
+      retries: json['retries'] as int? ?? 0,
+      continuesUsed: json['continuesUsed'] as int? ?? 0,
       remainingHints: json['remainingHints'] as int? ?? 3,
       correctStreak: json['correctStreak'] as int? ?? 0,
       maxCombo: json['maxCombo'] as int? ?? 0,

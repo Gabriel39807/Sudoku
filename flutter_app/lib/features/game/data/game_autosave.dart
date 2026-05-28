@@ -22,6 +22,8 @@ class GameAutosave {
       'fixedCells': session.fixedCells.toList(),
       'notes': session.notes.map((k, v) => MapEntry(k.toString(), v.toList())),
       'mistakes': session.mistakes,
+      'retries': session.retries,
+      'continuesUsed': session.continuesUsed,
       'elapsed': session.elapsed.inMilliseconds,
       'paused': session.paused,
       'status': session.status.index,
@@ -71,6 +73,9 @@ class GameAutosave {
       final notesRaw = d['notes'] as Map<String, dynamic>;
       final notes = notesRaw.map((k, v) => MapEntry(int.parse(k), Set<int>.from((v as List<dynamic>).cast<int>())));
       final mistakes = d['mistakes'] as int;
+      final hintsUsed = d['hintsUsed'] as int? ?? 0;
+      final retries = d['retries'] as int? ?? 0;
+      final continuesUsed = d['continuesUsed'] as int? ?? 0;
       final elapsed = Duration(milliseconds: d['elapsed'] as int);
       final paused = d['paused'] as bool;
       final statusIdx = d['status'] as int;
@@ -85,6 +90,9 @@ class GameAutosave {
         fixedCells: fixedCells,
         notes: notes,
         mistakes: mistakes,
+        hintsUsed: hintsUsed,
+        retries: retries,
+        continuesUsed: continuesUsed,
         elapsed: elapsed,
         paused: paused,
         status: status,

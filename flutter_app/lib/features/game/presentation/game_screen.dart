@@ -123,19 +123,22 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       );
 
       if (shouldContinue == true && mounted) {
-        final session = GameSession.restore(
-          boardId: globalSave.boardId,
-          difficulty: globalSave.difficulty,
-          initialBoard: globalSave.initialBoard,
-          currentBoard: globalSave.currentBoard,
-          solution: globalSave.solution,
-          fixedCells: globalSave.fixedCells,
-          notes: Map<int, Set<int>>.from(globalSave.notes),
-          mistakes: globalSave.mistakes,
-          elapsed: Duration(seconds: globalSave.elapsedSeconds),
-          paused: false,
-          status: GameStatus.playing,
-        );
+         final session = GameSession.restore(
+           boardId: globalSave.boardId,
+           difficulty: globalSave.difficulty,
+           initialBoard: globalSave.initialBoard,
+           currentBoard: globalSave.currentBoard,
+           solution: globalSave.solution,
+           fixedCells: globalSave.fixedCells,
+           notes: Map<int, Set<int>>.from(globalSave.notes),
+           mistakes: globalSave.mistakes,
+           hintsUsed: globalSave.hintsUsed,
+           retries: globalSave.retries,
+           continuesUsed: globalSave.continuesUsed,
+           elapsed: Duration(seconds: globalSave.elapsedSeconds),
+           paused: false,
+           status: GameStatus.playing,
+         );
         final state = GameState(
           session: session,
           isLoading: false,
@@ -421,7 +424,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                         ),
                       ),
                     )
-                  : state.isLoading || state.session == null
+                  : state.isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : Stack(
                       children: [

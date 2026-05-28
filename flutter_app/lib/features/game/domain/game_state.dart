@@ -95,6 +95,7 @@ class GameState {
   final Map<int, int> cellTimeMs;
   final int noteUsageCount;
   final int autoCompleteUsed;
+  final int restartCount;
   final Map<int, Set<int>>? manualNotes;
   final bool advancedNotesUnlockedForRun;
   final String? errorMessage;
@@ -135,6 +136,9 @@ class GameState {
   String get boardId => session?.boardId ?? '';
   String get difficulty => session?.difficulty ?? '';
   int get errors => session?.mistakes ?? 0;
+  int get hintsUsed => session?.hintsUsed ?? 0;
+  int get retries => session?.retries ?? 0;
+  int get continuesUsed => session?.continuesUsed ?? 0;
   int get elapsedSeconds => session?.elapsed.inSeconds ?? 0;
   bool get isPaused => session?.paused ?? false;
   GameStatus get status => session?.status ?? GameStatus.playing;
@@ -183,6 +187,7 @@ class GameState {
     this.cellTimeMs = const {},
     this.noteUsageCount = 0,
     this.autoCompleteUsed = 0,
+    this.restartCount = 0,
     this.manualNotes,
     this.advancedNotesUnlockedForRun = false,
     this.errorMessage,
