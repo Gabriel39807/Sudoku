@@ -9,6 +9,14 @@ class DailyStreak {
     this.lastDailyDate,
   });
 
+  bool get completedToday {
+    if (lastDailyDate == null) return false;
+    final now = DateTime.now();
+    return lastDailyDate!.year == now.year &&
+        lastDailyDate!.month == now.month &&
+        lastDailyDate!.day == now.day;
+  }
+
   DailyStreak copyWith({
     int? currentStreak,
     int? bestStreak,

@@ -12,6 +12,7 @@ import '../data/daily_challenge_storage.dart';
 import '../application/streak_provider.dart';
 import 'daily_resume_dialog.dart';
 import 'daily_exit_dialog.dart';
+import '../domain/trophy_collection.dart';
 
 class DailyChallengeScreen extends ConsumerStatefulWidget {
   const DailyChallengeScreen({super.key});
@@ -78,21 +79,24 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
     await ref.read(gameProvider.notifier).initDaily(boardData);
 
     try {
-      final session = GameSession.restore(
-        boardId: savedData['boardId'] as String,
-        difficulty: savedData['difficulty'] as String,
-        initialBoard: (savedData['initialBoard'] as List).cast<int>(),
-        currentBoard: (savedData['currentBoard'] as List).cast<int>(),
-        solution: (savedData['solution'] as List).cast<int>(),
-        fixedCells: Set<int>.from((savedData['fixedCells'] as List).cast<int>()),
-        notes: (savedData['notes'] as Map<String, dynamic>).map(
-          (k, v) => MapEntry(int.parse(k), Set<int>.from((v as List).cast<int>())),
-        ),
-        mistakes: savedData['mistakes'] as int,
-        elapsed: Duration(milliseconds: savedData['elapsed'] as int),
-        paused: savedData['paused'] as bool,
-        status: GameStatus.values[savedData['status'] as int],
-      );
+       final session = GameSession.restore(
+         boardId: savedData['boardId'] as String,
+         difficulty: savedData['difficulty'] as String,
+         initialBoard: (savedData['initialBoard'] as List).cast<int>(),
+         currentBoard: (savedData['currentBoard'] as List).cast<int>(),
+         solution: (savedData['solution'] as List).cast<int>(),
+         fixedCells: Set<int>.from((savedData['fixedCells'] as List).cast<int>()),
+         notes: (savedData['notes'] as Map<String, dynamic>).map(
+           (k, v) => MapEntry(int.parse(k), Set<int>.from((v as List).cast<int>())),
+         ),
+         mistakes: savedData['mistakes'] as int,
+         hintsUsed: savedData['hintsUsed'] as int? ?? 0,
+         retries: savedData['retries'] as int? ?? 0,
+         continuesUsed: savedData['continuesUsed'] as int? ?? 0,
+         elapsed: Duration(milliseconds: savedData['elapsed'] as int),
+         paused: savedData['paused'] as bool,
+         status: GameStatus.values[savedData['status'] as int],
+       );
       final restored = GameState(
         session: session,
         isLoading: false,
@@ -131,6 +135,7 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
       if (!mounted) return;
       if (won) {
         DailyChallengeStorage.markCompleted();
+        TrophyCollection.markDate(DateTime.now());
         ref.read(streakProvider.notifier).onDailyWin();
         if (!mounted) return;
         context.pushReplacement('/victory', extra: 'daily');
@@ -218,35 +223,37 @@ class _DailyGameContentState extends ConsumerState<_DailyGameContent> {
     final state = ref.watch(gameProvider);
     final settings = ref.watch(settingsProvider);
 
-    ref.listen<GameState>(gameProvider, (prev, next) {
-      if (next.session == null || next.status != GameStatus.playing) return;
-      DailyChallengeStorage.saveGameState({
-        'boardId': next.session!.boardId,
-        'difficulty': next.session!.difficulty,
-        'initialBoard': next.session!.initialBoard,
-        'currentBoard': next.session!.currentBoard,
-        'solution': next.session!.solution,
-        'fixedCells': next.session!.fixedCells.toList(),
-        'notes': next.session!.notes.map((k, v) => MapEntry(k.toString(), v.toList())),
-        'mistakes': next.session!.mistakes,
-        'elapsed': next.session!.elapsed.inMilliseconds,
-        'paused': next.session!.paused,
-        'status': next.session!.status.index,
-        'correctStreak': next.correctStreak,
-        'maxCombo': next.maxCombo,
-        'hintsUsed': next.usedHints,
-        'remainingHints': next.remainingHints,
-        'cellTimeMs': next.cellTimeMs.map((k, v) => MapEntry(k.toString(), v)),
-        'noteUsageCount': next.noteUsageCount,
-        'totalMoves': next.totalMoves,
-        'correctMoves': next.correctMoves,
-        'advancedNotesEnabled': next.advancedNotesEnabled,
-        'advancedNotesUnlockedForRun': next.advancedNotesUnlockedForRun,
-        'manualNotes': next.manualNotes?.map((k, v) => MapEntry(k.toString(), v.toList())),
-        'completedWithAutocomplete': next.completedWithAutocomplete,
-        'autoCompleteUsed': next.autoCompleteUsed,
-      });
-    });
+     ref.listen<GameState>(gameProvider, (prev, next) {
+       if (next.session == null || next.status != GameStatus.playing) return;
+       DailyChallengeStorage.saveGameState({
+         'boardId': next.session!.boardId,
+         'difficulty': next.session!.difficulty,
+         'initialBoard': next.session!.initialBoard,
+         'currentBoard': next.session!.currentBoard,
+         'solution': next.session!.solution,
+         'fixedCells': next.session!.fixedCells.toList(),
+         'notes': next.session!.notes.map((k, v) => MapEntry(k.toString(), v.toList())),
+         'mistakes': next.session!.mistakes,
+         'retries': next.session!.retries,
+         'continuesUsed': next.session!.continuesUsed,
+         'elapsed': next.session!.elapsed.inMilliseconds,
+         'paused': next.session!.paused,
+         'status': next.session!.status.index,
+         'correctStreak': next.correctStreak,
+         'maxCombo': next.maxCombo,
+         'hintsUsed': next.usedHints,
+         'remainingHints': next.remainingHints,
+         'cellTimeMs': next.cellTimeMs.map((k, v) => MapEntry(k.toString(), v)),
+         'noteUsageCount': next.noteUsageCount,
+         'totalMoves': next.totalMoves,
+         'correctMoves': next.correctMoves,
+         'advancedNotesEnabled': next.advancedNotesEnabled,
+         'advancedNotesUnlockedForRun': next.advancedNotesUnlockedForRun,
+         'manualNotes': next.manualNotes?.map((k, v) => MapEntry(k.toString(), v.toList())),
+         'completedWithAutocomplete': next.completedWithAutocomplete,
+         'autoCompleteUsed': next.autoCompleteUsed,
+       });
+     });
 
     return Scaffold(
       body: SafeArea(
