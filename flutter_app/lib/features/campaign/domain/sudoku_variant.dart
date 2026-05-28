@@ -1,3 +1,5 @@
+import 'campaign_level.dart';
+
 enum SudokuVariant {
   mini4,
   mini6,
@@ -15,9 +17,10 @@ enum SudokuVariant {
   int get boardSize => config.boardSize;
 
   static SudokuVariant fromLevel(int level) {
-    if (level <= 50) return SudokuVariant.mini4;
-    if (level <= 125) return SudokuVariant.mini6;
-    return SudokuVariant.mini8;
+    for (final stage in CampaignStage.values) {
+      if (stage.contains(level)) return stage.variant;
+    }
+    return SudokuVariant.mini4;
   }
 }
 

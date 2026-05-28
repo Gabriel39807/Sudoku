@@ -277,13 +277,13 @@ class _TutorialPage {
 
 Set<String> _buildRowHighlight(int size) {
   final cells = <String>{};
-  for (var c = 0; c < size; c++) cells.add('0,$c');
+  for (var c = 0; c < size; c++) { cells.add('0,$c'); }
   return cells;
 }
 
 Set<String> _buildColumnHighlight(int size) {
   final cells = <String>{};
-  for (var r = 0; r < size; r++) cells.add('$r,0');
+  for (var r = 0; r < size; r++) { cells.add('$r,0'); }
   return cells;
 }
 

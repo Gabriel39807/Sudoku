@@ -8,18 +8,23 @@ import '../../game/presentation/widgets/sudoku_board.dart';
 import '../../game/presentation/widgets/keypad_widget.dart';
 import '../../game/presentation/widgets/actions_widget.dart';
 import '../domain/sudoku_variant.dart';
+import '../domain/campaign_level.dart';
 import '../application/campaign_provider.dart';
+import '../../onboarding/application/onboarding_provider.dart';
+import '../../onboarding/presentation/tutorial_overlay.dart';
 import '../../../shared/widgets/game_modal_card.dart';
 import 'campaign_level_complete_card.dart';
 
 class CampaignGameScreen extends ConsumerStatefulWidget {
   final int level;
   final SudokuVariant variant;
+  final bool restore;
 
   const CampaignGameScreen({
     super.key,
     required this.level,
     required this.variant,
+    this.restore = false,
   });
 
   @override
@@ -29,15 +34,33 @@ class CampaignGameScreen extends ConsumerStatefulWidget {
 class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
   StreamSubscription<bool>? _gameOverSub;
   bool _levelComplete = false;
+  bool _isDefeat = false;
   int _elapsedAtWin = 0;
   int _mistakesAtWin = 0;
+  bool _showTutorial = false;
+  bool _dismissingTutorial = false;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(gameProvider.notifier).initCampaign(widget.level, widget.variant);
-      ref.read(campaignProvider.notifier).startRun(widget.level);
+      if (widget.restore) {
+        ref.read(gameProvider.notifier).restoreCampaign();
+      } else {
+        ref.read(gameProvider.notifier).initCampaign(widget.level, widget.variant);
+        ref.read(campaignProvider.notifier).startRun(widget.level);
+        // Show tutorial overlay for levels 1-5
+        if (widget.level <= 5 && !widget.restore) {
+          setState(() => _showTutorial = true);
+          // Timeout fallback
+          Future.delayed(6.seconds, () {
+            if (mounted) setState(() {
+              _showTutorial = false;
+              _dismissingTutorial = false;
+            });
+          });
+        }
+      }
       _listenToGameOver();
     });
   }
@@ -50,70 +73,19 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
         final gameState = ref.read(gameProvider);
         setState(() {
           _levelComplete = true;
+          _isDefeat = false;
           _elapsedAtWin = gameState.elapsedSeconds;
           _mistakesAtWin = gameState.errors;
         });
       } else {
-        _showDefeat();
+        setState(() {
+          _levelComplete = true;
+          _isDefeat = true;
+          _elapsedAtWin = 0; // Not relevant for defeat but required
+          _mistakesAtWin = 0; // Not relevant for defeat but required
+        });
       }
     });
-  }
-
-  void _showDefeat() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (ctx) => GameModalCard(
-        onClose: () {},
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.sentiment_dissatisfied, size: 56, color: Colors.redAccent)
-                  .animate().fade().scale(begin: Offset(0, 0), curve: Curves.easeOutBack),
-              const SizedBox(height: 16),
-              const Text('DERROTA',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 2)),
-              const SizedBox(height: 8),
-              Text('Nivel ${widget.level} · ¡Intentalo de nuevo!',
-                  style: const TextStyle(fontSize: 14, color: Colors.white54)),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    ref.read(gameProvider.notifier).restartCurrentBoard();
-                    Navigator.pop(ctx);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                  ),
-                  child: const Text('REINTENTAR',
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
-                ),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () {
-                    Navigator.pop(ctx);
-                    context.pop();
-                  },
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                  ),
-                  child: const Text('VOLVER', style: TextStyle(fontSize: 13, color: Colors.white54)),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 
   @override
@@ -134,9 +106,32 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
           child: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 700),
-              child: state.isLoading || state.session == null
+              child: state.isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : Stack(
+                  : state.session == null
+                      ? (state.errorMessage != null
+                          ? Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(32),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.error_outline, size: 48, color: Colors.redAccent),
+                                    const SizedBox(height: 16),
+                                    Text(state.errorMessage!,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(color: Colors.white54, fontSize: 14)),
+                                    const SizedBox(height: 24),
+                                    ElevatedButton(
+                                      onPressed: () => context.go('/'),
+                                      child: const Text('VOLVER AL INICIO'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          : const SizedBox.shrink())
+                      : Stack(
                       children: [
                         Column(
                           children: [
@@ -180,10 +175,37 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
                         ),
                         if (state.isPaused) _CampaignPauseOverlay(level: widget.level),
                         if (_levelComplete)
-                          CampaignLevelCompleteCard(
-                            level: widget.level,
-                            elapsedSeconds: _elapsedAtWin,
-                            mistakes: _mistakesAtWin,
+                           CampaignLevelCompleteCard(
+                              level: widget.level,
+                              elapsedSeconds: _elapsedAtWin,
+                              mistakes: _mistakesAtWin,
+                              victory: !_isDefeat,
+                              forcedStars: _isDefeat ? 0 : null,
+                              showNext: !_isDefeat,
+                              showPlatinum: !_isDefeat,
+                              defeatMode: _isDefeat,
+                              onContinue: _onContinue,
+                              onRepeat: _onRepeat,
+                              onHome: _onHome,
+                            ),
+                        if ((_showTutorial || _dismissingTutorial) && TutorialOverlay.lessons.containsKey(widget.level))
+                          AnimatedOpacity(
+                            opacity: _dismissingTutorial ? 0.0 : 1.0,
+                            duration: const Duration(milliseconds: 200),
+                            child: TutorialOverlay(
+                              level: widget.level,
+                              onDismiss: () {
+                                if (!_dismissingTutorial) {
+                                  setState(() => _dismissingTutorial = true);
+                                  Future.delayed(const Duration(milliseconds: 200), () {
+                                    if (mounted) setState(() {
+                                      _showTutorial = false;
+                                      _dismissingTutorial = false;
+                                    });
+                                  });
+                                }
+                              },
+                            ),
                           ),
                       ],
                     ),
@@ -192,6 +214,69 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
         ),
       ),
     );
+  }
+
+  void _onContinue() {
+    if (!mounted) return;
+    setState(() {
+      _levelComplete = false;
+      _isDefeat = false;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final notifier = ref.read(gameProvider.notifier);
+      notifier.finishSession();
+      notifier.startLoading();
+      final currentLevel = widget.level;
+      final nextLevel = currentLevel + 1;
+
+      if (currentLevel == 5) {
+        final onboarding = ref.read(onboardingProvider);
+        if (!onboarding.tutorialCompleted && !onboarding.claimedRewards) {
+          context.pushReplacement('/gradual-unlock');
+          return;
+        }
+      }
+
+      final stage = CampaignStage.fromLevel(nextLevel);
+      if (nextLevel > stage.levelEnd) {
+        context.go('/');
+        return;
+      }
+
+      context.pushReplacement('/campaign-game',
+          extra: {'level': nextLevel, 'variant': stage.variant.name});
+    });
+  }
+
+  void _onRepeat() {
+    if (!mounted) return;
+    setState(() {
+      _levelComplete = false;
+      _isDefeat = false;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final notifier = ref.read(gameProvider.notifier);
+      notifier.finishSession();
+      notifier.startLoading();
+      final stage = CampaignStage.fromLevel(widget.level);
+      context.pushReplacement('/campaign-game',
+          extra: {'level': widget.level, 'variant': stage.variant.name});
+    });
+  }
+
+  void _onHome() {
+    if (!mounted) return;
+    setState(() {
+      _levelComplete = false;
+      _isDefeat = false;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      ref.read(gameProvider.notifier).finishSession();
+      context.go('/');
+    });
   }
 
   Future<void> _showExitDialog(BuildContext context) async {
@@ -244,7 +329,7 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
     if (result == true && mounted) {
       ref.read(gameProvider.notifier).abandonGame();
       ref.read(campaignProvider.notifier).clearRun();
-      context.pop();
+      context.go('/');
     }
   }
 
