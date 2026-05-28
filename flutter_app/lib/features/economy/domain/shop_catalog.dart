@@ -3,7 +3,7 @@ class ShopCosmetic {
   final String name;
   final int soulCost;
   final String rarity;
-  final String type; // 'background' | 'frame'
+  final String type; // 'background' | 'frame' | 'avatar'
 
   const ShopCosmetic({
     required this.id,
@@ -30,15 +30,35 @@ class ShopConsumable {
   });
 }
 
+class ShopAvatar {
+  final String id;
+  final String name;
+  final int soulCost;
+  final String rarity;
+  final String assetPath;
+
+  const ShopAvatar({
+    required this.id,
+    required this.name,
+    required this.soulCost,
+    this.rarity = 'common',
+    this.assetPath = '',
+  });
+}
+
 class ShopCatalog {
   static const List<ShopCosmetic> premiumBackgrounds = [
-    ShopCosmetic(id: 'premium_void', name: 'Void', soulCost: 500, rarity: 'epic', type: 'background'),
-    ShopCosmetic(id: 'premium_neon', name: 'Neon', soulCost: 800, rarity: 'legendary', type: 'background'),
+    ShopCosmetic(id: 'premium_void', name: 'Void', soulCost: 650, rarity: 'epic', type: 'background'),
+    ShopCosmetic(id: 'premium_neon', name: 'Neon', soulCost: 1100, rarity: 'legendary', type: 'background'),
   ];
 
   static const List<ShopCosmetic> premiumFrames = [
-    ShopCosmetic(id: 'premium_royal', name: 'Royal', soulCost: 300, rarity: 'rare', type: 'frame'),
-    ShopCosmetic(id: 'premium_void_frame', name: 'Void Frame', soulCost: 600, rarity: 'epic', type: 'frame'),
+    ShopCosmetic(id: 'premium_royal', name: 'Royal', soulCost: 500, rarity: 'rare', type: 'frame'),
+    ShopCosmetic(id: 'premium_void_frame', name: 'Void Frame', soulCost: 750, rarity: 'epic', type: 'frame'),
+  ];
+
+  static const List<ShopAvatar> premiumAvatars = [
+    // AVAILABLE SOON — assets pending
   ];
 
   static const List<ShopConsumable> consumables = [

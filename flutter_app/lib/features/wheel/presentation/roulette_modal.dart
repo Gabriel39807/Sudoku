@@ -17,7 +17,7 @@ void showRouletteModal(BuildContext context) {
   try {
     showGeneralDialog(
       context: context,
-      barrierDismissible: true,
+      barrierDismissible: false,
       barrierLabel: 'Ruleta',
       barrierColor: Colors.black54,
       transitionDuration: const Duration(milliseconds: 400),
@@ -42,8 +42,8 @@ class _RouletteBodyState extends ConsumerState<_RouletteBody>
   late AnimationController _pulseCtrl;
   late AnimationController _particleCtrl;
   late AnimationController _popupCtrl;
-  late AnimationController _lockBobCtrl;
   late AnimationController _purchaseAnimCtrl;
+  late AnimationController _glowCtrl;
 
   double _wheelAngle = 0;
   bool _spinning = false;
@@ -78,11 +78,11 @@ class _RouletteBodyState extends ConsumerState<_RouletteBody>
 
     _popupCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
 
-    _lockBobCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 2500));
-    _lockBobCtrl.repeat(reverse: true);
-
     _purchaseAnimCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200));
     _purchaseAnimCtrl.addStatusListener(_onPurchaseAnimDone);
+
+    _glowCtrl = AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    _glowCtrl.repeat(reverse: true);
 
     for (var i = 0; i < _particleCount; i++) {
       _particles.add(_Particle._random());
@@ -98,9 +98,9 @@ class _RouletteBodyState extends ConsumerState<_RouletteBody>
     _particleCtrl.removeListener(_tickParticles);
     _particleCtrl.dispose();
     _popupCtrl.dispose();
-    _lockBobCtrl.dispose();
     _purchaseAnimCtrl.removeStatusListener(_onPurchaseAnimDone);
     _purchaseAnimCtrl.dispose();
+    _glowCtrl.dispose();
     super.dispose();
   }
 
@@ -200,10 +200,8 @@ class _RouletteBodyState extends ConsumerState<_RouletteBody>
     }
     final space = _maxSpins - current;
     final actual = spins > space ? space : spins;
-    final ok = await ref.read(walletProvider.notifier).spendTokens(cost);
-    if (!ok || !mounted) return;
-    await WheelStorage.addExtraSpins(actual);
-    ref.read(wheelProvider.notifier).refreshExtraSpins();
+    await ref.read(wheelProvider.notifier).buyWithTokens(cost, actual);
+    if (!mounted) return;
     if (actual < spins) {
       setState(() => _showingLimit = true);
       Future.delayed(const Duration(seconds: 2), () {
@@ -246,18 +244,12 @@ class _RouletteBodyState extends ConsumerState<_RouletteBody>
                 padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [
-                      p.surface,
-                      p.surface.withValues(alpha: 0.95),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+                    colors: [p.surface, p.surface.withValues(alpha: 0.95)],
+                    begin: Alignment.topLeft, end: Alignment.bottomRight,
                   ),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: p.border),
-                  boxShadow: [
-                    BoxShadow(color: p.glow.withValues(alpha: 0.1), blurRadius: 20, spreadRadius: 4),
-                  ],
+                  boxShadow: [BoxShadow(color: p.glow.withValues(alpha: 0.1), blurRadius: 20, spreadRadius: 4)],
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -271,23 +263,17 @@ class _RouletteBodyState extends ConsumerState<_RouletteBody>
                       child: Icon(Icons.money_off, color: p.danger, size: 24),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Sin tokens suficientes',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
+                    const Text('Sin tokens suficientes',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                     const SizedBox(height: 8),
-                    Text(
-                      'Gana más tokens resolviendo\npartidas y desafíos.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 13, color: Colors.white.withValues(alpha: 0.5)),
-                    ),
+                    Text('Gana más tokens resolviendo\npartidas y desafíos.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 13, color: Colors.white.withValues(alpha: 0.5))),
                     const SizedBox(height: 24),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          try { Navigator.maybeOf(ctx)?.pop(); } catch (_) {}
-                        },
+                        onPressed: () { try { Navigator.maybeOf(ctx)?.pop(); } catch (_) {} },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: p.buttonPrimary,
                           foregroundColor: Colors.white,
@@ -319,34 +305,40 @@ class _RouletteBodyState extends ConsumerState<_RouletteBody>
   Widget _buildSafe() {
     final state = ref.watch(wheelProvider);
     final wallet = ref.watch(walletProvider);
-    final hasSpins = state.canSpin || state.extraSpins > 0;
+    final canAct = state.canSpin;
     final p = ref.palette;
-    final screen = MediaQuery.of(context).size;
+    final mq = MediaQuery.of(context);
+    final screen = mq.size;
     final wheelSize = (screen.width * 0.75).clamp(220.0, 380.0);
-    final topPad = MediaQuery.of(context).padding.top;
+
+    final ready = state.status == WheelStatus.ready;
+    final offline = state.status == WheelStatus.offline;
+    final cooldown = state.status == WheelStatus.cooldown;
+
+    final viewH = screen.height - mq.padding.top - mq.padding.bottom;
+    final modalH = viewH * 0.85;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
-        alignment: Alignment.center,
         children: [
-          // Particles
+          // Particles (full screen)
           ..._particles.map((pt) {
-            final opacity = hasSpins
+            final opacity = ready
                 ? pt.life.clamp(0.0, 1.0)
-                : pt.life.clamp(0.0, 1.0) * 0.25;
+                : pt.life.clamp(0.0, 1.0) * 0.15;
             return Positioned(
               left: pt.x * screen.width,
               top: pt.y * screen.height,
               child: Opacity(
                 opacity: opacity,
                 child: Container(
-                  width: hasSpins ? 3 : 2,
-                  height: hasSpins ? 3 : 2,
+                  width: ready ? 3 : 2,
+                  height: ready ? 3 : 2,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: pt.color,
-                    boxShadow: hasSpins
+                    boxShadow: ready
                         ? [BoxShadow(color: pt.color, blurRadius: 4, spreadRadius: 1)]
                         : null,
                   ),
@@ -355,316 +347,359 @@ class _RouletteBodyState extends ConsumerState<_RouletteBody>
             );
           }),
 
-          // Close button
-          Positioned(
-            top: 40,
-            right: 16,
-            child: SafeArea(
-              child: GestureDetector(
-                onTap: _close,
-                child: Container(
-                  width: 44, height: 44,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white.withValues(alpha: 0.08),
-                    border: Border.all(color: Colors.white.withValues(alpha: 0.15)),
-                  ),
-                  child: const Icon(Icons.close, size: 20, color: Colors.white54),
-                ),
-              ),
-            ),
-          ),
-
-          // Main content — shifted up ~60px
-          Transform.translate(
-            offset: const Offset(0, -50),
+          // Centered modal content at 85% height
+          SafeArea(
             child: Center(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(height: topPad + 8),
+              child: Container(
+                height: modalH,
+                constraints: const BoxConstraints(maxWidth: 500),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final estimatedContentH = wheelSize + 340;
+                    final needsScroll = estimatedContentH > constraints.maxHeight;
 
-                    // Header
-                    AnimatedBuilder(
-                      animation: _purchaseAnimCtrl,
-                      builder: (context, _) {
-                        final s = _purchaseAmount > 0
-                            ? 1.0 + _pulseCtrl.value * 0.12
-                            : 1.0;
-                        return Transform.scale(
-                          scale: s,
-                          child: _HeaderText(state: state),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 8),
+                    return Stack(
+                      children: [
+                        // Main content (scrollable only if needed)
+                        if (needsScroll)
+                          SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
+                            child: _buildContent(state, wallet, canAct, p, wheelSize, ready, offline, cooldown, _pulseCtrl.value),
+                          )
+                        else
+                          Center(
+                            child: _buildContent(state, wallet, canAct, p, wheelSize, ready, offline, cooldown, _pulseCtrl.value),
+                          ),
 
-                    // Wheel + glow + pointer
-                    AnimatedBuilder(
-                      animation: _pulseCtrl,
-                      builder: (context, _) {
-                        final pulse = 0.85 + _pulseCtrl.value * 0.15;
-                        final glowI = hasSpins
-                            ? (0.2 + _pulseCtrl.value * 0.15)
-                            : (0.08 + _pulseCtrl.value * 0.06);
-                        final ws = wheelSize * pulse;
-
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              width: ws + 30,
-                              height: ws + 30,
+                        // Close button — on TOP of main content
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: _close,
+                            child: Container(
+                              width: 44,
+                              height: 44,
+                              margin: const EdgeInsets.only(top: 4, right: 4),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(color: p.wheelAccent.withValues(alpha: glowI), blurRadius: 50, spreadRadius: 10),
-                                  BoxShadow(color: p.glow.withValues(alpha: glowI * 0.5), blurRadius: 70, spreadRadius: 15),
-                                ],
+                                color: Colors.white.withValues(alpha: 0.08),
+                                border: Border.all(color: Colors.white.withValues(alpha: 0.15)),
                               ),
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 6),
-                                  CustomPaint(
-                                    size: const Size(28, 16),
-                                    painter: _PointerPainter(),
-                                  ),
-                                  const Spacer(),
-                                ],
-                              ),
-                            ),
-                            Transform.translate(
-                              offset: Offset(0, -ws * 0.08),
-                              child: SizedBox(
-                                width: ws,
-                                height: ws,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    _WheelCircle(
-                                      angle: _wheelAngle,
-                                      wheelSize: ws,
-                                      glowIntensity: glowI,
-                                      palette: p,
-                                    ),
-                                    if (!hasSpins)
-                                      Positioned.fill(
-                                        child: ClipOval(
-                                          child: Container(
-                                            color: Colors.black.withValues(alpha: 0.3),
-                                            child: AnimatedBuilder(
-                                              animation: _lockBobCtrl,
-                                              builder: (context, _) {
-                                                final bob = _lockBobCtrl.value * 6 - 3;
-                                                return Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Transform.translate(
-                                                      offset: Offset(0, bob),
-                                                      child: Icon(
-                                                        Icons.lock,
-                                                        size: ws * 0.2,
-                                                        color: Colors.white.withValues(alpha: 0.5),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-
-                    const SizedBox(height: 14),
-
-                    // Action area
-                    if (hasSpins)
-                      _SpinButton(
-                        canSpin: state.canSpin,
-                        extraSpins: state.extraSpins,
-                        spinning: _spinning,
-                        onSpin: _spin,
-                        palette: p,
-                      )
-                    else ...[
-                      Text(
-                        'SIN TIRADAS DISPONIBLES',
-                        style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 2,
-                          color: Colors.white.withValues(alpha: 0.6),
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Nueva tirada gratuita mañana',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white.withValues(alpha: 0.35),
-                        ),
-                      ),
-                    ],
-
-                    const SizedBox(height: 16),
-
-                    // Token shop — ACTIVE
-                    _TokenShop(
-                      wallet: wallet,
-                      palette: p,
-                      onBuy: _buyWithTokens,
-                    ),
-
-                    const SizedBox(height: 12),
-
-                    // Purchase feedback animation
-                    AnimatedBuilder(
-                      animation: _purchaseAnimCtrl,
-                      builder: (context, _) {
-                        if (_purchaseAmount <= 0) return const SizedBox.shrink();
-                        final fade = _purchaseAnimCtrl.value < 0.1
-                            ? _purchaseAnimCtrl.value / 0.1
-                            : (_purchaseAnimCtrl.value > 0.8
-                                ? (1.0 - _purchaseAnimCtrl.value) / 0.2
-                                : 1.0);
-                        final scale = 0.5 + _purchaseAnimCtrl.value * 0.5;
-                        return Opacity(
-                          opacity: fade.clamp(0.0, 1.0),
-                          child: Transform.scale(
-                            scale: scale,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    p.success.withValues(alpha: 0.15),
-                                    p.success.withValues(alpha: 0.05),
-                                  ],
-                                ),
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: p.success.withValues(alpha: 0.3)),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(Icons.check_circle, color: Colors.greenAccent, size: 20),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    _purchaseFeedback,
-                                    style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.bold,
-                                      color: Colors.greenAccent,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              child: const Icon(Icons.close, size: 20, color: Colors.white54),
                             ),
                           ),
-                        );
-                      },
-                    ),
-
-                    // Limit reached feedback
-                    if (_showingLimit)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4),
-                        child: Text(
-                          'Límite: $_maxSpins giros almacenados',
-                          style: TextStyle(
-                            fontSize: 11, fontWeight: FontWeight.bold,
-                            color: p.warning.withValues(alpha: 0.7),
-                          ),
                         ),
-                      ),
 
-                    const SizedBox(height: 20),
-
-                    // Future monetization (ad + premium packs) — PRÓXIMAMENTE
-                    _FutureMonetization(palette: p),
-
-                    const SizedBox(height: 32),
-                  ],
+                        // Result overlay — on TOP of everything
+                        if (_resultReward != null && _popping)
+                          Positioned.fill(
+                            child: _ResultOverlay(
+                              reward: _resultReward!,
+                              claimed: _claimed,
+                              popupCtrl: _popupCtrl,
+                              onClaim: _claim,
+                              onContinue: _close,
+                            ),
+                          ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ),
           ),
-
-          // Result popup overlay
-          if (_resultReward != null && _popping)
-            Positioned.fill(
-              child: _ResultOverlay(
-                reward: _resultReward!,
-                claimed: _claimed,
-                popupCtrl: _popupCtrl,
-                onClaim: _claim,
-                onContinue: _close,
-              ),
-            ),
         ],
       ),
     );
   }
+
+  Widget _buildContent(WheelState state, Wallet wallet, bool canAct, AppPalette p,
+      double wheelSize, bool ready, bool offline, bool cooldown, double pulseValue) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 8),
+
+        // Header
+        AnimatedBuilder(
+          animation: _purchaseAnimCtrl,
+          builder: (context, _) {
+            final s = _purchaseAmount > 0
+                ? 1.0 + _pulseCtrl.value * 0.12
+                : 1.0;
+            return Transform.scale(
+              scale: s,
+              child: _HeaderText(state: state, ready: ready, offline: offline, cooldown: cooldown, pulseValue: pulseValue),
+            );
+          },
+        ),
+        const SizedBox(height: 8),
+
+        // Wheel
+        _buildWheelSection(ready, canAct, p, wheelSize),
+
+        const SizedBox(height: 12),
+
+        // Status / buttons — cooldown info is in the header now
+        if (offline)
+          _StatusMessage(
+            icon: Icons.wifi_off,
+            message: 'Sin conexión',
+            submessage: 'Conéctate para sincronizar recompensas',
+            color: Colors.white54,
+          )
+        else if (ready)
+          _SpinButton(
+            canSpin: canAct,
+            spinning: _spinning,
+            onSpin: _spin,
+            palette: p,
+          ),
+
+        const SizedBox(height: 8),
+
+        // Token shop
+        _TokenShop(
+          wallet: wallet,
+          palette: p,
+          onBuy: _buyWithTokens,
+        ),
+
+        const SizedBox(height: 6),
+
+        // Purchase feedback
+        AnimatedBuilder(
+          animation: _purchaseAnimCtrl,
+          builder: (context, _) {
+            if (_purchaseAmount <= 0) return const SizedBox.shrink();
+            final fade = _purchaseAnimCtrl.value < 0.1
+                ? _purchaseAnimCtrl.value / 0.1
+                : (_purchaseAnimCtrl.value > 0.8
+                    ? (1.0 - _purchaseAnimCtrl.value) / 0.2
+                    : 1.0);
+            final scale = 0.5 + _purchaseAnimCtrl.value * 0.5;
+            return Opacity(
+              opacity: fade.clamp(0.0, 1.0),
+              child: Transform.scale(
+                scale: scale,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [p.success.withValues(alpha: 0.15), p.success.withValues(alpha: 0.05)],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: p.success.withValues(alpha: 0.3)),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.check_circle, color: Colors.greenAccent, size: 20),
+                      const SizedBox(width: 8),
+                      Text(_purchaseFeedback,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.greenAccent)),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+
+        if (_showingLimit)
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text('Límite: $_maxSpins giros almacenados',
+                style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: p.warning.withValues(alpha: 0.7))),
+          ),
+
+        // Future monetization
+        _FutureMonetization(palette: p),
+
+        const SizedBox(height: 12),
+      ],
+    );
+  }
+
+  Widget _buildWheelSection(bool ready, bool canAct, AppPalette p, double wheelSize) {
+    return AnimatedBuilder(
+      animation: _pulseCtrl,
+      builder: (context, _) {
+        final pulse = ready ? 0.85 + _pulseCtrl.value * 0.15 : 1.0;
+        final glowI = ready
+            ? (0.2 + _pulseCtrl.value * 0.15)
+            : 0.05;
+        final ws = wheelSize * pulse;
+
+        return GestureDetector(
+          onTap: canAct ? _spin : null,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Pointer
+              const SizedBox(height: 4),
+              CustomPaint(
+                size: const Size(28, 16),
+                painter: _PointerPainter(),
+              ),
+              // Glow + wheel
+              Container(
+                width: ws + 20,
+                height: ws + 20,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(color: p.wheelAccent.withValues(alpha: glowI), blurRadius: 50, spreadRadius: 10),
+                    BoxShadow(color: p.glow.withValues(alpha: glowI * 0.5), blurRadius: 70, spreadRadius: 15),
+                  ],
+                ),
+                child: SizedBox(
+                  width: ws,
+                  height: ws,
+                  child: _WheelCircle(
+                    angle: _wheelAngle,
+                    wheelSize: ws,
+                    glowIntensity: glowI,
+                    palette: p,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
 
-// ── Header ──────────────────────────────────────────────────────────────────
+// ── Status message (replaces lock) ───────────────────────────────────────
 
-class _HeaderText extends StatelessWidget {
-  final WheelState state;
-  const _HeaderText({required this.state});
+class _StatusMessage extends StatelessWidget {
+  final IconData icon;
+  final String message;
+  final String submessage;
+  final Color color;
+
+  const _StatusMessage({
+    required this.icon,
+    required this.message,
+    required this.submessage,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final (text, subtext, color) = switch ((state.canSpin, state.extraSpins)) {
-      (true, _) => ('TIRADA GRATIS DISPONIBLE', '1 / 1', Colors.greenAccent),
-      (false, > 0) => ('GIROS EXTRA DISPONIBLES', '${state.extraSpins} restantes', Colors.orangeAccent),
-      _ => ('', '', Colors.white54),
-    };
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 28, color: color),
+        const SizedBox(height: 8),
+        Text(message,
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 2, color: color)),
+        const SizedBox(height: 4),
+        Text(submessage,
+            style: TextStyle(fontSize: 12, color: color.withValues(alpha: 0.6))),
+      ],
+    );
+  }
+}
+
+// ── Header ───────────────────────────────────────────────────────────────
+
+class _HeaderText extends StatelessWidget {
+  final WheelState state;
+  final bool ready;
+  final bool offline;
+  final bool cooldown;
+  final double pulseValue;
+
+  const _HeaderText({
+    required this.state,
+    required this.ready,
+    required this.offline,
+    required this.cooldown,
+    required this.pulseValue,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (cooldown) {
+      final secs = state.remainingSeconds.clamp(0, 86400);
+      final h = secs ~/ 3600;
+      final m = (secs % 3600) ~/ 60;
+      final s = secs % 60;
+      final timeStr =
+          '${h.toString().padLeft(2, '0')}h ${m.toString().padLeft(2, '0')}m ${s.toString().padLeft(2, '0')}s';
+      final glow = 0.5 + pulseValue * 0.5;
+
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('SIN TIRADAS',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 4,
+                color: Colors.white.withValues(alpha: 0.9),
+                shadows: [
+                  Shadow(color: Colors.amber.withValues(alpha: glow * 0.35), blurRadius: 8 + pulseValue * 6),
+                ],
+              )),
+          const SizedBox(height: 6),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            transitionBuilder: (child, anim) => FadeTransition(opacity: anim, child: child),
+            child: Text(
+              timeStr,
+              key: ValueKey(timeStr),
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white70, letterSpacing: 2),
+            ),
+          ),
+        ],
+      );
+    }
+
+    late final String text;
+    late final String subtext;
+    late final Color color;
+    if (offline) {
+      text = 'SIN CONEXIÓN'; subtext = ''; color = Colors.white38;
+    } else if (ready && state.hasFreeSpin) {
+      text = 'TIRADA GRATIS'; subtext = state.timeUntilReset; color = Colors.greenAccent;
+    } else if (ready && state.extraSpins > 0) {
+      text = 'GIROS DISPONIBLES'; subtext = '${state.extraSpins} restantes'; color = Colors.orangeAccent;
+    } else if (ready && state.adSpins > 0) {
+      text = 'GIRO PUBLICITARIO'; subtext = '${state.adSpins} disponible'; color = Colors.cyanAccent;
+    } else {
+      text = 'SIN TIRADAS'; subtext = ''; color = Colors.white38;
+    }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 2,
-            color: color,
-          ),
-        ),
+        Text(text,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 2, color: color)),
         if (subtext.isNotEmpty) ...[
           const SizedBox(height: 4),
-          Text(
-            subtext,
-            style: const TextStyle(
-              fontSize: 24, fontWeight: FontWeight.w900,
-              color: Colors.white,
-            ),
-          ),
+          Text(subtext,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white)),
         ],
       ],
     );
   }
 }
 
-// ── Spin Button ─────────────────────────────────────────────────────────────
+// ── Spin Button ─────────────────────────────────────────────────────────
 
 class _SpinButton extends StatelessWidget {
   final bool canSpin;
-  final int extraSpins;
   final bool spinning;
   final VoidCallback onSpin;
   final AppPalette palette;
 
   const _SpinButton({
     required this.canSpin,
-    required this.extraSpins,
     required this.spinning,
     required this.onSpin,
     required this.palette,
@@ -672,16 +707,13 @@ class _SpinButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final enabled = (canSpin || extraSpins > 0) && !spinning;
-    final label = spinning
-        ? 'GIRANDO...'
-        : (canSpin ? '🎡 GIRAR' : '🎡 USAR GIRO');
+    final label = spinning ? 'GIRANDO...' : '🎡 GIRAR';
 
     return SizedBox(
       width: 180,
       height: 48,
       child: ElevatedButton(
-        onPressed: enabled ? onSpin : null,
+        onPressed: canSpin ? onSpin : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: palette.buttonPrimary,
           foregroundColor: palette.textPrimary,
@@ -691,39 +723,27 @@ class _SpinButton extends StatelessWidget {
           elevation: 8,
           shadowColor: palette.glow.withValues(alpha: 0.3),
         ),
-        child: Text(
-          label,
-          style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 2),
-        ),
+        child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 2)),
       ),
     );
   }
 }
 
-// ── Token Shop ──────────────────────────────────────────────────────────────
+// ── Token Shop ──────────────────────────────────────────────────────────
 
 class _TokenShop extends StatelessWidget {
   final Wallet wallet;
   final AppPalette palette;
   final Function(int cost, int spins) onBuy;
 
-  const _TokenShop({
-    required this.wallet,
-    required this.palette,
-    required this.onBuy,
-  });
+  const _TokenShop({required this.wallet, required this.palette, required this.onBuy});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          'COMPRAR CON TOKENS',
-          style: TextStyle(
-            fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 3,
-            color: palette.wheelAccent.withValues(alpha: 0.5),
-          ),
-        ),
+        Text('COMPRAR CON TOKENS',
+            style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 3, color: palette.wheelAccent.withValues(alpha: 0.5))),
         const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -772,84 +792,47 @@ class _TokenCard extends StatelessWidget {
               palette.wheelAccent.withValues(alpha: canAfford ? 0.08 : 0.03),
               Colors.white.withValues(alpha: 0.02),
             ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.topLeft, end: Alignment.bottomRight,
           ),
           border: Border.all(
-            color: canAfford
-                ? palette.wheelAccent.withValues(alpha: 0.2)
-                : Colors.white.withValues(alpha: 0.06),
+            color: canAfford ? palette.wheelAccent.withValues(alpha: 0.2) : Colors.white.withValues(alpha: 0.06),
             width: 1,
           ),
           boxShadow: canAfford
-              ? [
-                  BoxShadow(
-                    color: palette.wheelAccent.withValues(alpha: 0.06),
-                    blurRadius: 8,
-                    spreadRadius: 1,
-                  ),
-                ]
+              ? [BoxShadow(color: palette.wheelAccent.withValues(alpha: 0.06), blurRadius: 8, spreadRadius: 1)]
               : null,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Token icon + cost
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  CurrencyAssets.iconFor(CurrencyType.tokens),
-                  size: 14,
-                  color: canAfford
-                      ? CurrencyAssets.colorFor(CurrencyType.tokens)
-                      : CurrencyAssets.colorFor(CurrencyType.tokens).withValues(alpha: 0.3),
-                ),
+                Icon(CurrencyAssets.iconFor(CurrencyType.tokens), size: 14,
+                    color: canAfford ? CurrencyAssets.colorFor(CurrencyType.tokens) : CurrencyAssets.colorFor(CurrencyType.tokens).withValues(alpha: 0.3)),
                 const SizedBox(width: 4),
-                Text(
-                  '$cost',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w900,
-                    color: canAfford ? Colors.white : Colors.white.withValues(alpha: 0.3),
-                  ),
-                ),
+                Text('$cost',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900,
+                        color: canAfford ? Colors.white : Colors.white.withValues(alpha: 0.3))),
               ],
             ),
             const SizedBox(height: 6),
-            // Bonus
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: canAfford
-                    ? palette.success.withValues(alpha: 0.12)
-                    : Colors.white.withValues(alpha: 0.03),
+                color: canAfford ? palette.success.withValues(alpha: 0.12) : Colors.white.withValues(alpha: 0.03),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Text(
-                '+$spins Giro${spins > 1 ? 's' : ''}',
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
-                  color: canAfford
-                      ? palette.success
-                      : Colors.white.withValues(alpha: 0.2),
-                ),
-              ),
+              child: Text('+$spins Giro${spins > 1 ? 's' : ''}',
+                  style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold,
+                      color: canAfford ? palette.success : Colors.white.withValues(alpha: 0.2))),
             ),
-            // Efficiency tip
             if (spins > 1)
               Padding(
                 padding: const EdgeInsets.only(top: 4),
-                child: Text(
-                  '~${(ratio * 100).round()}% eficiencia',
-                  style: TextStyle(
-                    fontSize: 7,
-                    color: canAfford
-                        ? palette.wheelAccent.withValues(alpha: 0.35)
-                        : Colors.white.withValues(alpha: 0.1),
-                  ),
-                ),
+                child: Text('~${(ratio * 100).round()}% eficiencia',
+                    style: TextStyle(fontSize: 7,
+                        color: canAfford ? palette.wheelAccent.withValues(alpha: 0.35) : Colors.white.withValues(alpha: 0.1))),
               ),
           ],
         ),
@@ -858,7 +841,7 @@ class _TokenCard extends StatelessWidget {
   }
 }
 
-// ── Future monetization (PRÓXIMAMENTE) ─────────────────────────────────────
+// ── Future monetization ─────────────────────────────────────────────────
 
 class _FutureMonetization extends StatelessWidget {
   final AppPalette palette;
@@ -872,17 +855,13 @@ class _FutureMonetization extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _MonetButton(
-              icon: Icons.play_circle_outline,
-              title: 'Ver anuncio',
-              subtitle: '+1 giro',
-              palette: palette,
+              icon: Icons.play_circle_outline, title: 'Ver anuncio', subtitle: '+1 giro', palette: palette,
+              spinType: SpinType.ad,
             ),
             const SizedBox(width: 10),
             _MonetButton(
-              icon: Icons.shopping_cart_outlined,
-              title: 'Comprar giros',
-              subtitle: '3 / 10 / 25',
-              palette: palette,
+              icon: Icons.shopping_cart_outlined, title: 'Comprar giros', subtitle: '3 / 10 / 25', palette: palette,
+              spinType: SpinType.premium,
             ),
           ],
         ),
@@ -896,12 +875,14 @@ class _MonetButton extends StatelessWidget {
   final String title;
   final String subtitle;
   final AppPalette palette;
+  final SpinType spinType;
 
   const _MonetButton({
     required this.icon,
     required this.title,
     required this.subtitle,
     required this.palette,
+    required this.spinType,
   });
 
   @override
@@ -912,57 +893,22 @@ class _MonetButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
         gradient: LinearGradient(
-          colors: [
-            Colors.white.withValues(alpha: 0.05),
-            Colors.white.withValues(alpha: 0.02),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          colors: [Colors.white.withValues(alpha: 0.05), Colors.white.withValues(alpha: 0.02)],
+          begin: Alignment.topLeft, end: Alignment.bottomRight,
         ),
-        border: Border.all(
-          color: palette.wheelAccent.withValues(alpha: 0.15),
-          width: 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: palette.wheelAccent.withValues(alpha: 0.06),
-            blurRadius: 8,
-            spreadRadius: 1,
-          ),
-        ],
+        border: Border.all(color: palette.wheelAccent.withValues(alpha: 0.15), width: 1),
+        boxShadow: [BoxShadow(color: palette.wheelAccent.withValues(alpha: 0.06), blurRadius: 8, spreadRadius: 1)],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Icon(icon, size: 22, color: palette.wheelAccent.withValues(alpha: 0.35)),
-              Positioned(
-                top: -2,
-                right: -6,
-                child: Icon(Icons.lock, size: 10, color: Colors.white.withValues(alpha: 0.25)),
-              ),
-            ],
-          ),
+          Icon(icon, size: 22, color: palette.wheelAccent.withValues(alpha: 0.35)),
           const SizedBox(height: 6),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 10, fontWeight: FontWeight.bold,
-              color: Colors.white.withValues(alpha: 0.45),
-            ),
-          ),
+          Text(title, textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white.withValues(alpha: 0.45))),
           const SizedBox(height: 2),
-          Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 9,
-              color: palette.wheelAccent.withValues(alpha: 0.25),
-            ),
-          ),
+          Text(subtitle,
+              style: TextStyle(fontSize: 9, color: palette.wheelAccent.withValues(alpha: 0.25))),
           const SizedBox(height: 6),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -970,13 +916,8 @@ class _MonetButton extends StatelessWidget {
               color: palette.wheelAccent.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(4),
             ),
-            child: Text(
-              'PRÓXIMAMENTE',
-              style: TextStyle(
-                fontSize: 7, fontWeight: FontWeight.bold, letterSpacing: 1,
-                color: palette.wheelAccent.withValues(alpha: 0.4),
-              ),
-            ),
+            child: Text('PRÓXIMAMENTE',
+                style: TextStyle(fontSize: 7, fontWeight: FontWeight.bold, letterSpacing: 1, color: palette.wheelAccent.withValues(alpha: 0.4))),
           ),
         ],
       ),
@@ -984,7 +925,7 @@ class _MonetButton extends StatelessWidget {
   }
 }
 
-// ── Pure wheel circle ──────────────────────────────────────────────────────
+// ── Wheel Circle ────────────────────────────────────────────────────────
 
 class _WheelCircle extends StatelessWidget {
   final double angle;
@@ -992,12 +933,7 @@ class _WheelCircle extends StatelessWidget {
   final double glowIntensity;
   final AppPalette palette;
 
-  const _WheelCircle({
-    required this.angle,
-    required this.wheelSize,
-    required this.glowIntensity,
-    required this.palette,
-  });
+  const _WheelCircle({required this.angle, required this.wheelSize, required this.glowIntensity, required this.palette});
 
   @override
   Widget build(BuildContext context) {
@@ -1013,17 +949,13 @@ class _WheelCircle extends StatelessWidget {
               colors: [Color(0xFF8B7355), Color(0xFFD4AF37), Color(0xFF8B7355), Color(0xFFD4AF37), Color(0xFF8B7355)],
               stops: [0.0, 0.25, 0.5, 0.75, 1.0],
             ),
-            boxShadow: [
-              BoxShadow(color: palette.wheelAccent.withValues(alpha: glowIntensity * 0.3), blurRadius: 20, spreadRadius: 4),
-            ],
+            boxShadow: [BoxShadow(color: palette.wheelAccent.withValues(alpha: glowIntensity * 0.3), blurRadius: 20, spreadRadius: 4)],
           ),
           padding: const EdgeInsets.all(4),
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              gradient: const SweepGradient(
-                colors: [Color(0xFF3A3A3A), Color(0xFF5A5A5A), Color(0xFF3A3A3A)],
-              ),
+              gradient: const SweepGradient(colors: [Color(0xFF3A3A3A), Color(0xFF5A5A5A), Color(0xFF3A3A3A)]),
             ),
             padding: const EdgeInsets.all(2),
             child: Container(
@@ -1036,20 +968,16 @@ class _WheelCircle extends StatelessWidget {
           painter: _WheelPainter(angle: angle),
         ),
         Container(
-          width: 32,
-          height: 32,
+          width: 32, height: 32,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            gradient: const RadialGradient(
-              colors: [Color(0xFF5A5A5A), Color(0xFF1A1A1A)],
-            ),
+            gradient: const RadialGradient(colors: [Color(0xFF5A5A5A), Color(0xFF1A1A1A)]),
             border: Border.all(color: const Color(0xFFD4AF37).withValues(alpha: 0.6), width: 2),
             boxShadow: [BoxShadow(color: palette.wheelAccent.withValues(alpha: 0.4), blurRadius: 8, spreadRadius: 2)],
           ),
           child: Center(
             child: Container(
-              width: 12,
-              height: 12,
+              width: 12, height: 12,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: const Color(0xFFFFD700),
@@ -1063,7 +991,7 @@ class _WheelCircle extends StatelessWidget {
   }
 }
 
-// ── Wheel Painter ──────────────────────────────────────────────────────────
+// ── Wheel Painter ──────────────────────────────────────────────────────
 
 class _WheelPainter extends CustomPainter {
   final double angle;
@@ -1100,11 +1028,7 @@ class _WheelPainter extends CustomPainter {
       final tp = TextPainter(
         text: TextSpan(
           text: s.reward.displayText,
-          style: TextStyle(
-            color: Colors.white, fontSize: r > 80 ? 10 : 8,
-            fontWeight: FontWeight.bold,
-            shadows: const [Shadow(color: Colors.black54, blurRadius: 2)],
-          ),
+          style: TextStyle(color: Colors.white, fontSize: r > 80 ? 10 : 8, fontWeight: FontWeight.bold, shadows: const [Shadow(color: Colors.black54, blurRadius: 2)]),
         ),
         textDirection: TextDirection.ltr,
       );
@@ -1137,7 +1061,7 @@ class _PointerPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter old) => false;
 }
 
-// ── Particle ────────────────────────────────────────────────────────────────
+// ── Particle ────────────────────────────────────────────────────────────
 
 class _Particle {
   double x, y, vx, vy, life;
@@ -1149,26 +1073,21 @@ class _Particle {
     final rng = math.Random();
     const colors = [Color(0xFFFFD700), Color(0xFFFFA500), Color(0xFFFF6347), Color(0xFFFF4500)];
     return _Particle(
-      rng.nextDouble(),
-      rng.nextDouble() * 0.6,
-      (rng.nextDouble() - 0.5) * 0.01,
-      -(rng.nextDouble() * 0.02 + 0.005),
-      0.5 + rng.nextDouble() * 0.5,
-      colors[rng.nextInt(colors.length)],
+      rng.nextDouble(), rng.nextDouble() * 0.6,
+      (rng.nextDouble() - 0.5) * 0.01, -(rng.nextDouble() * 0.02 + 0.005),
+      0.5 + rng.nextDouble() * 0.5, colors[rng.nextInt(colors.length)],
     );
   }
 
   void _reset() {
     final rng = math.Random();
-    x = rng.nextDouble();
-    y = 0.5 + rng.nextDouble() * 0.3;
-    vx = (rng.nextDouble() - 0.5) * 0.01;
-    vy = -(rng.nextDouble() * 0.02 + 0.005);
+    x = rng.nextDouble(); y = 0.5 + rng.nextDouble() * 0.3;
+    vx = (rng.nextDouble() - 0.5) * 0.01; vy = -(rng.nextDouble() * 0.02 + 0.005);
     life = 0.5 + rng.nextDouble() * 0.5;
   }
 }
 
-// ── Result overlay ─────────────────────────────────────────────────────────
+// ── Result overlay ─────────────────────────────────────────────────────
 
 class _ResultOverlay extends StatelessWidget {
   final WheelReward reward;
@@ -1178,11 +1097,8 @@ class _ResultOverlay extends StatelessWidget {
   final VoidCallback onContinue;
 
   const _ResultOverlay({
-    required this.reward,
-    required this.claimed,
-    required this.popupCtrl,
-    required this.onClaim,
-    required this.onContinue,
+    required this.reward, required this.claimed, required this.popupCtrl,
+    required this.onClaim, required this.onContinue,
   });
 
   Color _rarityColor() => switch (reward.rarity) {
@@ -1234,8 +1150,7 @@ class _ResultOverlay extends StatelessWidget {
                       Text('+${reward.amount}',
                           style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white)),
                       const SizedBox(height: 4),
-                      Text(reward.label,
-                          style: TextStyle(fontSize: 14, color: rc.withValues(alpha: 0.8))),
+                      Text(reward.label, style: TextStyle(fontSize: 14, color: rc.withValues(alpha: 0.8))),
                       const SizedBox(height: 28),
                       if (!reward.isEmpty && !claimed)
                         SizedBox(
@@ -1243,12 +1158,10 @@ class _ResultOverlay extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: onClaim,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: rc,
-                              foregroundColor: Colors.white,
+                              backgroundColor: rc, foregroundColor: Colors.white,
                               padding: const EdgeInsets.symmetric(vertical: 14),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                              elevation: 8,
-                              shadowColor: rc.withValues(alpha: 0.5),
+                              elevation: 8, shadowColor: rc.withValues(alpha: 0.5),
                             ),
                             child: const Text('RECOGER', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, letterSpacing: 3)),
                           ),

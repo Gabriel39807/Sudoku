@@ -3,6 +3,9 @@ import 'dart:ui' show Color;
 import '../../../ui/currency/currency_assets.dart';
 import '../../../ui/currency/currency_type.dart';
 
+/// Spin types: free (daily), ad (watch), token (buy with tokens), premium (future IAP).
+enum SpinType { free, ad, token, premium }
+
 enum RewardRarity { common, medium, rare, jackpot }
 
 class WheelReward {

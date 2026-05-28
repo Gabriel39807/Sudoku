@@ -52,6 +52,44 @@ class ShopScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(height: 24),
+                      _SectionTitle(title: 'AVATARES'),
+                      const SizedBox(height: 8),
+                      if (ShopCatalog.premiumAvatars.isEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 24),
+                          child: Center(
+                            child: Text('PRÓXIMAMENTE',
+                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, letterSpacing: 3,
+                                    color: Colors.white.withValues(alpha: 0.25))),
+                          ),
+                        )
+                      else
+                        ...ShopCatalog.premiumAvatars.map(
+                          (item) => Container(
+                            padding: const EdgeInsets.all(16),
+                            margin: const EdgeInsets.only(bottom: 8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(width: 48, height: 48, decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white.withValues(alpha: 0.05),
+                                  border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+                                )),
+                                const SizedBox(width: 12),
+                                Expanded(child: Text(item.name,
+                                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white))),
+                                Text('${item.soulCost} 💎',
+                                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600,
+                                        color: const Color(0xFF9B59B6).withValues(alpha: 0.8))),
+                              ],
+                            ),
+                          ),
+                        ),
+                      const SizedBox(height: 24),
                       _SectionTitle(title: 'CONSUMIBLES'),
                       const SizedBox(height: 8),
                       ...ShopCatalog.consumables.map(
