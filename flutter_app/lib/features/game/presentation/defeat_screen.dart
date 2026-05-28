@@ -42,9 +42,14 @@ class DefeatScreen extends ConsumerWidget {
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           side: BorderSide(color: Colors.redAccent.withValues(alpha: 0.5)),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
+                          if (!context.mounted) return;
+                          await Future.microtask(() {});
+                          if (!context.mounted) return;
                           context.pop();
-                          ref.read(gameProvider.notifier).init(difficulty);
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            ref.read(gameProvider.notifier).init(difficulty);
+                          });
                         },
                       ),
                     ),
@@ -57,9 +62,11 @@ class DefeatScreen extends ConsumerWidget {
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           side: BorderSide(color: Colors.white.withValues(alpha: 0.3)),
                         ),
-                        onPressed: () {
-                          context.pop();
-                          context.pop();
+                        onPressed: () async {
+                          if (!context.mounted) return;
+                          await Future.microtask(() {});
+                          if (!context.mounted) return;
+                          context.go('/');
                         },
                       ),
                     ),

@@ -40,6 +40,7 @@ class GameNotifier extends Notifier<GameState> {
 
   GameSessionContext? get currentContext => _currentContext;
   int get lastEarnedXp => _lastEarnedXp;
+  int get campaignLevel => _campaignLevel;
 
   void pauseTimer() { _timer?.cancel(); }
 
@@ -655,7 +656,7 @@ class GameNotifier extends Notifier<GameState> {
 
   void _awardCoins(String difficulty) {
     final rng = dart_math.Random();
-    final soulsBase = switch (difficulty) {
+    final gemsBase = switch (difficulty) {
       'easy' => 6 + rng.nextInt(3),
       'intermediate' => 8 + rng.nextInt(3),
       'hard' => 10 + rng.nextInt(3),
@@ -667,31 +668,31 @@ class GameNotifier extends Notifier<GameState> {
     };
     final baseTokens = 1;
     var bonusToken = 0;
-    var finalSouls = soulsBase;
+    var finalGems = gemsBase;
     var finalTokens = baseTokens;
 
     if (state.errors == 0 && state.usedHints == 0 && !state.completedWithAutocomplete) {
-      finalSouls = soulsBase + (soulsBase * 0.20).round();
+      finalGems = gemsBase + (gemsBase * 0.20).round();
       if (rng.nextDouble() < 0.25) bonusToken = 1;
     } else if (state.errors == 0) {
-      finalSouls = soulsBase + (soulsBase * 0.15).round();
+      finalGems = gemsBase + (gemsBase * 0.15).round();
     }
 
     // Streak bonus
     final streak = ref.read(adventureProvider).streak.currentStreak;
     if (streak >= 30) {
-      finalSouls = (finalSouls * 1.20).round();
+      finalGems = (finalGems * 1.20).round();
     } else if (streak >= 20) {
-      finalSouls = (finalSouls * 1.15).round();
+      finalGems = (finalGems * 1.15).round();
     } else if (streak >= 10) {
-      finalSouls = (finalSouls * 1.10).round();
+      finalGems = (finalGems * 1.10).round();
     } else if (streak >= 1) {
-      finalSouls = (finalSouls * 1.05).round();
+      finalGems = (finalGems * 1.05).round();
     }
 
     if (rng.nextDouble() < 0.10 && bonusToken == 0) bonusToken = 1;
     finalTokens += bonusToken;
-    unawaited(ref.read(walletProvider.notifier).addSouls(finalSouls));
+    unawaited(ref.read(walletProvider.notifier).addGems(finalGems));
     unawaited(ref.read(walletProvider.notifier).addTokens(finalTokens));
   }
 

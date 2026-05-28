@@ -7,6 +7,7 @@ import '../../../cosmetics/application/cosmetics_provider.dart';
 import '../../../cosmetics/domain/frame_skin.dart';
 import '../../../cosmetics/application/cosmetic_inventory_provider.dart';
 import '../../../settings/application/settings_provider.dart';
+import '../../../settings/domain/settings_model.dart';
 import '../../../campaign/domain/sudoku_variant.dart';
 
 class SudokuBoardWidget extends ConsumerStatefulWidget {
@@ -17,7 +18,7 @@ class SudokuBoardWidget extends ConsumerStatefulWidget {
 }
 
 class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   AnimationController? _glowController;
   int _glowRow = -1;
   int _glowCol = -1;
@@ -48,7 +49,7 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
 
   void _triggerGlow({int? row, int? col, int? block}) {
     _glowController?.dispose();
-    _glowController = AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
+    _glowController = AnimationController(vsync: this, duration: const Duration(milliseconds: 700));
     setState(() {
       _glowRow = row ?? -1;
       _glowCol = col ?? -1;
@@ -88,7 +89,7 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
           _buildFrame(cosmetics.selectedFrame, frameThickness, cornerSize),
           Padding(
             padding: EdgeInsets.all(frameThickness),
-            child: _buildGrid(state, cellSize, config, settings.boardAnimations),
+            child: _buildGrid(state, cellSize, config, settings),
           ),
         ],
       ),
@@ -132,33 +133,43 @@ class _SudokuBoardWidgetState extends ConsumerState<SudokuBoardWidget>
     ]);
   }
 
-  Widget _buildGrid(GameState state, double cellSize, BoardConfig config, bool boardAnimations) {
+  Widget _buildGrid(GameState state, double cellSize, BoardConfig config, SettingsModel settings) {
     final size = config.boardSize;
     final sw = config.subgridWidth;
     final sh = config.subgridHeight;
-    final thick = cellSize * 0.08;
+    final thick = cellSize * 0.09;
+    final borderColor = settings.intenseSubgrids
+        ? const Color(0xFF777777)
+        : const Color(0xFF555555);
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFF2B2B2B), width: thick),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 10, offset: const Offset(0, 4))],
+        border: Border.all(color: borderColor, width: thick),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 10, offset: const Offset(0, 4)),
+          BoxShadow(color: borderColor.withValues(alpha: 0.08), blurRadius: 6, blurStyle: BlurStyle.inner),
+        ],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(4),
         child: Column(
           children: List.generate(size, (r) {
+            final blockRow = r ~/ sh;
             return Expanded(
               child: Row(
                 children: List.generate(size, (c) {
+                  final blockCol = c ~/ sw;
+                  final blockIdx = blockRow * (size ~/ sw) + blockCol;
                   return Expanded(
                     child: _CellWidget(
                       cell: state.board[r][c],
                       gameState: state,
                       cellSize: cellSize,
                       config: config,
-                      boardAnimations: boardAnimations,
+                      settings: settings,
+                      blockIndex: blockIdx,
                       isInGlowRow: r == _glowRow,
                       isInGlowCol: c == _glowCol,
-                      isInGlowBlock: (r ~/ sh) * (size ~/ sw) + (c ~/ sw) == _glowBlock,
+                      isInGlowBlock: blockIdx == _glowBlock,
                       glowProgress: _glowController?.drive(
                         CurveTween(curve: Curves.easeOut),
                       ),
@@ -179,7 +190,8 @@ class _CellWidget extends ConsumerWidget {
   final GameState gameState;
   final double cellSize;
   final BoardConfig config;
-  final bool boardAnimations;
+  final SettingsModel settings;
+  final int blockIndex;
   final bool isInGlowRow;
   final bool isInGlowCol;
   final bool isInGlowBlock;
@@ -190,7 +202,8 @@ class _CellWidget extends ConsumerWidget {
     required this.gameState,
     required this.cellSize,
     required this.config,
-    required this.boardAnimations,
+    required this.settings,
+    required this.blockIndex,
     this.isInGlowRow = false,
     this.isInGlowCol = false,
     this.isInGlowBlock = false,
@@ -214,44 +227,66 @@ class _CellWidget extends ConsumerWidget {
     final isSameNumber = lockNum != null
         ? (cell.value != 0 && lockNum == cell.value)
         : (hasSelection && !selectedCell!.isEmpty && selectedCell.value == cell.value);
-    final settings = ref.watch(settingsProvider);
 
-    bool shouldHighlightHouse = false;
-    if (settings.highlightSameNumbers) {
-      if (isSameRow || isSameCol) shouldHighlightHouse = true;
-      else if (isSameBlock && settings.highlightRegion) shouldHighlightHouse = true;
+    // Subgrid alternating background
+    final blockRow = cell.row ~/ sh;
+    final blockCol = cell.col ~/ sw;
+    final subgridShade = (blockRow + blockCol) % 2 == 0
+        ? Colors.white.withValues(alpha: 0.02)
+        : Colors.white.withValues(alpha: 0.045);
+
+    Color bgColor = subgridShade;
+    if (isSelected) {
+      bgColor = const Color(0xFF7A5FFF);
+    } else if (cell.isError) {
+      bgColor = Colors.red.withValues(alpha: 0.25);
+    } else if (hasSelection && isSameBlock) {
+      bgColor = const Color(0xFF7A5FFF).withValues(alpha: 0.08);
+    } else if (settings.highlightSameNumbers && isSameNumber) {
+      bgColor = Colors.blueAccent.withValues(alpha: 0.2);
+    } else if (isSameRow || isSameCol) {
+      bgColor = Colors.white.withValues(alpha: 0.06);
     }
 
-    Color bgColor = Colors.transparent;
-    if (isSelected) bgColor = const Color(0xFF7A5FFF);
-    else if (cell.isError) bgColor = Colors.red.withValues(alpha: 0.3);
-    else if (settings.highlightSameNumbers && isSameNumber) bgColor = Colors.blueAccent.withValues(alpha: 0.3);
-    else if (shouldHighlightHouse) bgColor = Colors.white.withValues(alpha: 0.05);
+    final blockSepColor = settings.intenseSubgrids
+        ? const Color(0xFF777777)
+        : const Color(0xFF555555);
+    final thinBorderColor = const Color(0xFF2B2B2B);
 
-    final thick = cellSize * 0.05;
+    final thick = cellSize * 0.09;
     final thin = cellSize * 0.02;
     final topBorder = (cell.row % sh == 0 && cell.row != 0) ? thick : thin;
     final leftBorder = (cell.col % sw == 0 && cell.col != 0) ? thick : thin;
-    final borderColor = const Color(0xFF2B2B2B);
+
     final glowOpacity = glowProgress?.value ?? 0.0;
     final hasGlow = (isInGlowRow || isInGlowCol || isInGlowBlock) && glowOpacity > 0 && cell.value != 0 && !cell.isError;
     Color? glowColor;
     if (hasGlow) {
-      glowColor = Color.lerp(Colors.transparent, const Color(0xFF7A5FFF).withValues(alpha: 0.3), glowOpacity * (1 - glowOpacity));
+      final peak = glowOpacity < 0.3 ? glowOpacity / 0.3 : (1.0 - glowOpacity) / 0.7;
+      glowColor = Color.lerp(Colors.transparent, const Color(0xFF7A5FFF).withValues(alpha: 0.25), peak);
     }
 
     return GestureDetector(
       onTap: () => ref.read(gameProvider.notifier).selectCell(cell.row, cell.col),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 150),
+        duration: const Duration(milliseconds: 120),
         decoration: BoxDecoration(
           color: glowColor ?? bgColor,
           border: Border(
-            top: BorderSide(color: borderColor, width: topBorder),
-            left: BorderSide(color: borderColor, width: leftBorder),
-            bottom: BorderSide(color: borderColor, width: thin),
-            right: BorderSide(color: borderColor, width: thin),
+            top: BorderSide(
+              color: topBorder > thin ? blockSepColor : thinBorderColor,
+              width: topBorder,
+            ),
+            left: BorderSide(
+              color: leftBorder > thin ? blockSepColor : thinBorderColor,
+              width: leftBorder,
+            ),
+            bottom: BorderSide(color: thinBorderColor, width: thin),
+            right: BorderSide(color: thinBorderColor, width: thin),
           ),
+          boxShadow: cell.isError
+              ? [BoxShadow(color: Colors.red.withValues(alpha: 0.2), blurRadius: 4, spreadRadius: 0.5)]
+              : null,
         ),
         child: Center(child: _buildContent()),
       ),

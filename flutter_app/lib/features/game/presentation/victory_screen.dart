@@ -573,7 +573,10 @@ class _ActionButtons extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 14),
               side: BorderSide(color: Colors.white.withValues(alpha: 0.3)),
             ),
-            onPressed: () {
+            onPressed: () async {
+              if (!context.mounted) return;
+              await Future.microtask(() {});
+              if (!context.mounted) return;
               notifier.restartCurrentBoard();
               if (isCampaign) {
                 final level = ctx!.progress!;
@@ -597,7 +600,10 @@ class _ActionButtons extends ConsumerWidget {
                 side: BorderSide(
                     color: Theme.of(context).primaryColor.withValues(alpha: 0.5)),
               ),
-              onPressed: () {
+              onPressed: () async {
+                if (!context.mounted) return;
+                await Future.microtask(() {});
+                if (!context.mounted) return;
                 context.pushReplacement('/game', extra: difficulty);
               },
             ),
@@ -613,14 +619,11 @@ class _ActionButtons extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 14),
               side: BorderSide(color: Colors.white.withValues(alpha: 0.3)),
             ),
-            onPressed: () {
-              if (isCampaignOrDaily) {
-                context.pop();
-                context.pop();
-              } else {
-                context.pop();
-                context.pop();
-              }
+            onPressed: () async {
+              if (!context.mounted) return;
+              await Future.microtask(() {});
+              if (!context.mounted) return;
+              context.go('/');
             },
           ),
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:go_router/go_router.dart';
 import '../../application/game_provider.dart';
 import '../../domain/game_state.dart';
 import '../../../settings/application/settings_provider.dart';
@@ -9,7 +8,9 @@ import '../../../settings/domain/settings_model.dart';
 import '../../../../shared/widgets/game_modal_card.dart';
 
 class ActionsWidget extends ConsumerWidget {
-  const ActionsWidget({super.key});
+  final VoidCallback? onShopRequested;
+
+  const ActionsWidget({super.key, this.onShopRequested});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -60,7 +61,8 @@ class ActionsWidget extends ConsumerWidget {
         onTap: () async {
           final ok = await ref.read(gameProvider.notifier).toggleAdvancedNotes();
           if (!ok && context.mounted) {
-            _showNoAvancedNotesDialog(context);
+            final wantsShop = await _showNoAvancedNotesDialog(context);
+            if (wantsShop) onShopRequested?.call();
           }
         },
       ),
@@ -75,7 +77,8 @@ class ActionsWidget extends ConsumerWidget {
                 const SnackBar(content: Text('Selecciona una casilla')),
               );
             } else if (result == HintResult.noHints && context.mounted) {
-              _showNoHintsDialog(context);
+              final wantsShop = await _showNoHintsDialog(context);
+              if (wantsShop) onShopRequested?.call();
             }
           },
         ),
@@ -147,11 +150,11 @@ class _ActionButton extends StatelessWidget {
   }
 }
 
-void _showNoHintsDialog(BuildContext context) {
-  showDialog(
+Future<bool> _showNoHintsDialog(BuildContext context) async {
+  final result = await showDialog<bool>(
     context: context,
     builder: (ctx) => GameModalCard(
-      onClose: () => Navigator.pop(ctx),
+      onClose: () => Navigator.pop(ctx, false),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -168,10 +171,7 @@ void _showNoHintsDialog(BuildContext context) {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-                context.push('/shop');
-              },
+              onPressed: () => Navigator.pop(ctx, true),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -183,7 +183,7 @@ void _showNoHintsDialog(BuildContext context) {
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: () => Navigator.pop(ctx),
+              onPressed: () => Navigator.pop(ctx, false),
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -195,13 +195,14 @@ void _showNoHintsDialog(BuildContext context) {
       ),
     ),
   );
+  return result ?? false;
 }
 
-void _showNoAvancedNotesDialog(BuildContext context) {
-  showDialog(
+Future<bool> _showNoAvancedNotesDialog(BuildContext context) async {
+  final result = await showDialog<bool>(
     context: context,
     builder: (ctx) => GameModalCard(
-      onClose: () => Navigator.pop(ctx),
+      onClose: () => Navigator.pop(ctx, false),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -218,10 +219,7 @@ void _showNoAvancedNotesDialog(BuildContext context) {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-                context.push('/shop');
-              },
+              onPressed: () => Navigator.pop(ctx, true),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -233,7 +231,7 @@ void _showNoAvancedNotesDialog(BuildContext context) {
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: () => Navigator.pop(ctx),
+              onPressed: () => Navigator.pop(ctx, false),
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -245,4 +243,5 @@ void _showNoAvancedNotesDialog(BuildContext context) {
       ),
     ),
   );
+  return result ?? false;
 }

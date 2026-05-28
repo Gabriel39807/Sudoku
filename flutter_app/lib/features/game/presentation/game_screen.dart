@@ -18,12 +18,18 @@ import 'widgets/sudoku_board.dart';
 import 'widgets/keypad_widget.dart';
 import 'widgets/actions_widget.dart';
 import '../../cosmetics/models/background_catalog.dart';
-import '../../cosmetics/presentation/unlock_popup.dart';
+import '../../cosmetics/models/background_cosmetic.dart';
+import '../../cosmetics/domain/unlock_reward.dart';
+import '../../progression/domain/achievement.dart';
+import '../../progression/domain/level_rewards.dart';
+import '../../../shared/widgets/gameplay_overlay_guard.dart';
+import '../../progression/application/progression_provider.dart';
+import '../../cosmetics/application/cosmetic_inventory_provider.dart';
+import '../../cosmetics/domain/avatar_def.dart';
 import '../data/save/global_saved_game.dart';
 import '../../../shared/widgets/game_modal_card.dart';
 import '../../../shared/widgets/game_exit_dialog.dart';
 import '../../../shared/widgets/pause_dialog.dart';
-import '../../../shared/widgets/gameplay_overlay_guard.dart';
 
 class GameScreen extends ConsumerStatefulWidget {
   final String difficulty;
@@ -39,6 +45,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   StreamSubscription<int>? _comboSub;
   StreamSubscription<bool>? _gameOverSub;
   StreamSubscription<String>? _bgUnlockSub;
+  StreamSubscription<String>? _achievementSub;
+  StreamSubscription<int>? _levelUpSub;
+  StreamSubscription<String>? _levelRewardSub;
 
   @override
   void initState() {
@@ -51,6 +60,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       _listenToCombo();
       _listenToGameOver();
       _listenToBackgroundUnlocks();
+      _listenToLevelUp();
+      _listenToAchievements();
+      _listenToLevelRewards();
     });
   }
 
@@ -251,11 +263,14 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     _gameOverSub?.cancel();
     _gameOverSub = ref.read(gameProvider.notifier).gameOverEvent.listen((won) {
       if (!mounted) return;
-      if (won) {
-        context.pushReplacement('/victory', extra: widget.difficulty);
-      } else {
-        context.pushReplacement('/defeat', extra: widget.difficulty);
-      }
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (won) {
+          context.pushReplacement('/victory', extra: widget.difficulty);
+        } else {
+          context.pushReplacement('/defeat', extra: widget.difficulty);
+        }
+      });
     });
   }
 
@@ -265,14 +280,96 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       if (!mounted) return;
       final bg = BackgroundCatalog.byId(id);
       if (bg == null) return;
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (ctx) => GameplayOverlayGuard(
-          child: UnlockPopup(background: bg),
-        ),
-      );
+      _showUnlockForBackground(bg);
     });
+  }
+
+  Future<void> _showUnlockForBackground(BackgroundCosmetic bg) async {
+    final reward = UnlockReward.fromBackground(bg);
+    final result = await RewardQueue.show(context, reward);
+    if (result == 'equip') {
+      ref.read(cosmeticInventoryProvider.notifier).equipBackground(bg.id);
+    } else if (result == 'view') {
+      if (!context.mounted) return;
+      context.push('/customization', extra: {'initialTab': 2});
+    }
+  }
+
+  void _listenToLevelUp() {
+    _levelUpSub?.cancel();
+    _levelUpSub = ref.read(gameProvider.notifier).levelUpEvent.listen((level) {
+      if (!mounted) return;
+      final reward = UnlockReward(
+        id: 'level_up_$level',
+        type: RewardType.levelUp,
+        rarity: level >= 25
+            ? AvatarRarity.legendary
+            : level >= 15
+                ? AvatarRarity.epic
+                : level >= 5
+                    ? AvatarRarity.rare
+                    : AvatarRarity.common,
+        title: '¡Nivel $level!',
+        cosmeticId: 'level_up_$level',
+        metadata: {'level': level},
+      );
+      RewardQueue.show(context, reward);
+    });
+  }
+
+  void _listenToAchievements() {
+    _achievementSub?.cancel();
+    _achievementSub = ref.read(gameProvider.notifier).achievementEvent.listen((id) {
+      if (!mounted) return;
+      final achievement = AchievementRegistry.byId(id);
+      if (achievement == null) return;
+      final rarity = _rarityForAchievement(achievement.target);
+      final reward = UnlockReward(
+        id: 'achievement_$id',
+        type: RewardType.achievement,
+        rarity: rarity,
+        title: achievement.title,
+        description: achievement.description,
+        cosmeticId: id,
+      );
+      RewardQueue.show(context, reward);
+    });
+  }
+
+  void _listenToLevelRewards() {
+    _levelRewardSub?.cancel();
+    _levelRewardSub = ref.read(gameProvider.notifier).levelRewardEvent.listen((id) {
+      if (!mounted) return;
+      final allRewards = LevelRewardRegistry.all;
+      LevelReward? match;
+      try {
+        match = allRewards.firstWhere((r) => r.id == id);
+      } catch (_) {}
+      if (match == null) return;
+      final rarity = match.level >= 25
+          ? AvatarRarity.legendary
+          : match.level >= 15
+              ? AvatarRarity.epic
+              : match.level >= 5
+                  ? AvatarRarity.rare
+                  : AvatarRarity.common;
+      final reward = UnlockReward(
+        id: match.id,
+        type: RewardType.background,
+        rarity: rarity,
+        title: match.name,
+        description: match.description,
+        cosmeticId: match.id,
+      );
+      RewardQueue.show(context, reward);
+    });
+  }
+
+  static AvatarRarity _rarityForAchievement(int target) {
+    if (target >= 500) return AvatarRarity.legendary;
+    if (target >= 250) return AvatarRarity.epic;
+    if (target >= 100) return AvatarRarity.rare;
+    return AvatarRarity.common;
   }
 
   void _showDigitFeedback(int digit) {
@@ -389,6 +486,9 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     _comboSub?.cancel();
     _gameOverSub?.cancel();
     _bgUnlockSub?.cancel();
+    _achievementSub?.cancel();
+    _levelUpSub?.cancel();
+    _levelRewardSub?.cancel();
     super.dispose();
   }
 
@@ -445,7 +545,10 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                             ),
                           ],
                         ),
-                        if (state.isPaused) PauseOverlayWidget(difficulty: widget.difficulty),
+                        if (state.isPaused) PauseOverlayWidget(
+                          difficulty: widget.difficulty,
+                          onExit: () => _showExitDialog(context),
+                        ),
                       ],
                     ),
             ),
@@ -456,7 +559,21 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   }
 
   Future<void> _showExitDialog(BuildContext context) async {
-    await showGameExitDialog(context, ref, widget.difficulty);
+    final action = await showGameExitDialog(context, ref, widget.difficulty);
+    if (action == null || !mounted) return;
+    await Future.microtask(() {});
+    if (!mounted) return;
+    switch (action) {
+      case GameExitAction.save:
+        ref.read(gameProvider.notifier).saveToGlobalSlot();
+        ref.read(gameProvider.notifier).abandonGame();
+        if (mounted) context.pop();
+      case GameExitAction.abandon:
+        ref.read(gameProvider.notifier).abandonGame();
+        if (mounted) context.pop();
+      case GameExitAction.cancel:
+        break;
+    }
   }
 }
 
@@ -498,7 +615,9 @@ class ControlsAreaWidget extends ConsumerWidget {
         Column(
           children: [
             const SizedBox(height: 8),
-            const ActionsWidget(),
+            ActionsWidget(
+              onShopRequested: () => context.push('/shop'),
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16, bottom: 24),
