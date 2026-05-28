@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../game/application/game_provider.dart';
 import '../../game/presentation/widgets/sudoku_board.dart';
 import '../../game/presentation/widgets/keypad_widget.dart';
 import '../../game/presentation/widgets/actions_widget.dart';
 import '../domain/sudoku_variant.dart';
-import '../domain/campaign_level.dart';
 import '../application/campaign_provider.dart';
 import '../../onboarding/application/onboarding_provider.dart';
 import '../../onboarding/presentation/tutorial_overlay.dart';
@@ -19,12 +17,18 @@ class CampaignGameScreen extends ConsumerStatefulWidget {
   final int level;
   final SudokuVariant variant;
   final bool restore;
+  final VoidCallback? onContinue;
+  final VoidCallback? onRepeat;
+  final VoidCallback? onHome;
 
   const CampaignGameScreen({
     super.key,
     required this.level,
     required this.variant,
     this.restore = false,
+    this.onContinue,
+    this.onRepeat,
+    this.onHome,
   });
 
   @override
@@ -49,16 +53,18 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
       } else {
         ref.read(gameProvider.notifier).initCampaign(widget.level, widget.variant);
         ref.read(campaignProvider.notifier).startRun(widget.level);
-        // Show tutorial overlay for levels 1-5
+        // Show tutorial overlay for levels 1-5 (only if not already completed)
         if (widget.level <= 5 && !widget.restore) {
-          setState(() => _showTutorial = true);
-          // Timeout fallback
-          Future.delayed(6.seconds, () {
-            if (mounted) setState(() {
-              _showTutorial = false;
-              _dismissingTutorial = false;
+          final onboarding = ref.read(onboardingProvider);
+          if (!onboarding.tutorialCompleted) {
+            setState(() => _showTutorial = true);
+            Future.delayed(6.seconds, () {
+              if (mounted) setState(() {
+                _showTutorial = false;
+                _dismissingTutorial = false;
+              });
             });
-          });
+          }
         }
       }
       _listenToGameOver();
@@ -123,7 +129,7 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
                                         style: const TextStyle(color: Colors.white54, fontSize: 14)),
                                     const SizedBox(height: 24),
                                     ElevatedButton(
-                                      onPressed: () => context.go('/'),
+                                      onPressed: () => widget.onHome?.call(),
                                       child: const Text('VOLVER AL INICIO'),
                                     ),
                                   ],
@@ -227,25 +233,7 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
       final notifier = ref.read(gameProvider.notifier);
       notifier.finishSession();
       notifier.startLoading();
-      final currentLevel = widget.level;
-      final nextLevel = currentLevel + 1;
-
-      if (currentLevel == 5) {
-        final onboarding = ref.read(onboardingProvider);
-        if (!onboarding.tutorialCompleted && !onboarding.claimedRewards) {
-          context.pushReplacement('/gradual-unlock');
-          return;
-        }
-      }
-
-      final stage = CampaignStage.fromLevel(nextLevel);
-      if (nextLevel > stage.levelEnd) {
-        context.go('/');
-        return;
-      }
-
-      context.pushReplacement('/campaign-game',
-          extra: {'level': nextLevel, 'variant': stage.variant.name});
+      widget.onContinue?.call();
     });
   }
 
@@ -260,9 +248,7 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
       final notifier = ref.read(gameProvider.notifier);
       notifier.finishSession();
       notifier.startLoading();
-      final stage = CampaignStage.fromLevel(widget.level);
-      context.pushReplacement('/campaign-game',
-          extra: {'level': widget.level, 'variant': stage.variant.name});
+      widget.onRepeat?.call();
     });
   }
 
@@ -275,7 +261,7 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       ref.read(gameProvider.notifier).finishSession();
-      context.go('/');
+      widget.onHome?.call();
     });
   }
 
@@ -329,7 +315,7 @@ class _CampaignGameScreenState extends ConsumerState<CampaignGameScreen> {
     if (result == true && mounted) {
       ref.read(gameProvider.notifier).abandonGame();
       ref.read(campaignProvider.notifier).clearRun();
-      context.go('/');
+      widget.onHome?.call();
     }
   }
 

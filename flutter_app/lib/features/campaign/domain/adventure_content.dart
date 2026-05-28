@@ -212,7 +212,7 @@ class WorldMission {
   final String title;
   final String description;
   final int target;
-  final int soulsReward;
+  final int gemsReward;
   final int tokensReward;
   final String? cosmeticRewardId;
 
@@ -222,7 +222,7 @@ class WorldMission {
     required this.title,
     required this.description,
     required this.target,
-    this.soulsReward = 0,
+    this.gemsReward = 0,
     this.tokensReward = 0,
     this.cosmeticRewardId,
   });
@@ -273,7 +273,7 @@ List<WorldMission> worldMissionsForStage(CampaignStage stage) {
       title: 'Completador',
       description: 'Completá ${stage.levelCount} niveles',
       target: stage.levelCount,
-      soulsReward: stage.datasetStage * 2,
+      gemsReward: stage.datasetStage * 2,
       tokensReward: stage.datasetStage * 5,
     ),
     WorldMission(
@@ -282,7 +282,7 @@ List<WorldMission> worldMissionsForStage(CampaignStage stage) {
       title: 'Perfecto',
       description: 'Conseguí 5 niveles sin errores',
       target: 5,
-      soulsReward: stage.datasetStage * 3,
+      gemsReward: stage.datasetStage * 3,
       tokensReward: stage.datasetStage * 3,
     ),
     WorldMission(
@@ -291,7 +291,7 @@ List<WorldMission> worldMissionsForStage(CampaignStage stage) {
       title: 'Coleccionista de Estrellas',
       description: 'Acumulá 60 estrellas en este mundo',
       target: 60,
-      soulsReward: stage.datasetStage * 5,
+      gemsReward: stage.datasetStage * 5,
       tokensReward: stage.datasetStage * 8,
     ),
     WorldMission(
@@ -300,7 +300,7 @@ List<WorldMission> worldMissionsForStage(CampaignStage stage) {
       title: 'Rayo',
       description: 'Completá 3 niveles en tiempo récord',
       target: 3,
-      soulsReward: stage.datasetStage * 2,
+      gemsReward: stage.datasetStage * 2,
       tokensReward: stage.datasetStage * 4,
     ),
     if (stage.hasBosses)
@@ -310,7 +310,7 @@ List<WorldMission> worldMissionsForStage(CampaignStage stage) {
         title: 'Sin Miedo',
         description: 'Derrotá al boss sin pistas',
         target: 1,
-        soulsReward: stage.datasetStage * 10,
+        gemsReward: stage.datasetStage * 10,
         tokensReward: stage.datasetStage * 10,
         cosmeticRewardId: 'boss_${stage.datasetStage}',
       ),
@@ -325,7 +325,7 @@ enum ChestType { mini, world, boss, completion }
 
 class ChestReward {
   final int tokens;
-  final int souls;
+  final int gems;
   final int hints;
   final int advancedNotes;
   final int spins;
@@ -334,7 +334,7 @@ class ChestReward {
 
   const ChestReward({
     this.tokens = 0,
-    this.souls = 0,
+    this.gems = 0,
     this.hints = 0,
     this.advancedNotes = 0,
     this.spins = 0,
@@ -366,19 +366,19 @@ class WorldChest {
     return switch (type) {
       ChestType.mini => ChestReward(
         tokens: 1 + rng.nextInt(3),
-        souls: 1 + rng.nextInt(2),
+        gems: 1 + rng.nextInt(2),
         hints: rng.nextInt(2),
       ),
       ChestType.world => ChestReward(
         tokens: 5 + rng.nextInt(6),
-        souls: 3 + rng.nextInt(4),
+        gems: 3 + rng.nextInt(4),
         hints: 1 + rng.nextInt(2),
         advancedNotes: rng.nextInt(2),
         spins: rng.nextInt(2),
       ),
       ChestType.boss => ChestReward(
         tokens: 1 + rng.nextInt(2),
-        souls: 10 + rng.nextInt(51),
+        gems: 10 + rng.nextInt(51),
         hints: 2 + rng.nextInt(2),
         advancedNotes: 1 + rng.nextInt(2),
         spins: 1 + rng.nextInt(2),
@@ -386,7 +386,7 @@ class WorldChest {
       ),
       ChestType.completion => ChestReward(
         tokens: 25 + rng.nextInt(26),
-        souls: 25 + rng.nextInt(26),
+        gems: 25 + rng.nextInt(26),
         hints: 5,
         advancedNotes: 3,
         spins: 3,

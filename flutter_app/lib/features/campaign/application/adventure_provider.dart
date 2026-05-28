@@ -100,7 +100,7 @@ class AdventureNotifier extends Notifier<AdventureState> {
       completed: {...state.missions.completed, mission.id},
     );
     await ref.read(walletProvider.notifier).addTokens(mission.tokensReward);
-    await ref.read(walletProvider.notifier).addSouls(mission.soulsReward);
+    await ref.read(walletProvider.notifier).addGems(mission.gemsReward);
     if (mission.cosmeticRewardId != null) {
       // Future: unlock cosmetic
     }
@@ -118,7 +118,7 @@ class AdventureNotifier extends Notifier<AdventureState> {
     final claimed = chest.claim();
 
     await ref.read(walletProvider.notifier).addTokens(reward.tokens);
-    await ref.read(walletProvider.notifier).addSouls(reward.souls);
+    await ref.read(walletProvider.notifier).addGems(reward.gems);
     if (reward.hints > 0) {
       // Future: add hints to inventory
     }
@@ -158,7 +158,7 @@ class AdventureNotifier extends Notifier<AdventureState> {
     await AdventureStorage.saveFragments(updated);
 
     if (updated.collectedIn(stageKey) >= FragmentProgress.totalPerStage) {
-      await ref.read(walletProvider.notifier).addSouls(50);
+      await ref.read(walletProvider.notifier).addGems(50);
     }
   }
 
@@ -176,9 +176,9 @@ class AdventureNotifier extends Notifier<AdventureState> {
 
     // Streak bonuses at 10, 25, 50
     if (updated.currentStreak == 10 || updated.currentStreak == 25 || updated.currentStreak == 50) {
-      final bonusSouls = updated.currentStreak * 2;
+      final bonusGems = updated.currentStreak * 2;
       final bonusTokens = updated.currentStreak;
-      await ref.read(walletProvider.notifier).addSouls(bonusSouls);
+      await ref.read(walletProvider.notifier).addGems(bonusGems);
       await ref.read(walletProvider.notifier).addTokens(bonusTokens);
     }
   }

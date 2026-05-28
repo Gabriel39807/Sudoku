@@ -12,12 +12,12 @@ import '../../challenge/application/streak_provider.dart';
 class CampaignReward {
   final int playerXp;
   final int tokens;
-  final int souls;
+  final int gems;
 
   const CampaignReward({
     required this.playerXp,
     required this.tokens,
-    required this.souls,
+    required this.gems,
   });
 }
 
@@ -61,7 +61,7 @@ class CampaignNotifier extends Notifier<CampaignProgress> {
     final mult = starMultiplier * (isBoss ? bossMult : 1.0);
     final finalXp = (baseReward.playerXp * mult).round();
     final finalTokens = isBoss ? (baseReward.tokens * bossMult).round() : baseReward.tokens;
-    final finalSouls = isBoss ? (baseReward.souls * bossMult).round() : baseReward.souls;
+    final finalGems = isBoss ? (baseReward.gems * bossMult).round() : baseReward.gems;
 
     final levelsGained = await ref.read(playerLevelProvider.notifier).addXp(finalXp);
 
@@ -71,9 +71,9 @@ class CampaignNotifier extends Notifier<CampaignProgress> {
     }
 
     await ref.read(walletProvider.notifier).addTokens(finalTokens);
-    await ref.read(walletProvider.notifier).addSouls(finalSouls);
+    await ref.read(walletProvider.notifier).addGems(finalGems);
 
-    final updated = state.completeLevel(level, timeSeconds, mistakes, finalXp, finalTokens, finalSouls,
+    final updated = state.completeLevel(level, timeSeconds, mistakes, finalXp, finalTokens, finalGems,
         overrideStars: stars);
     state = updated;
     await CampaignStorage.save(updated);
@@ -98,52 +98,52 @@ class CampaignNotifier extends Notifier<CampaignProgress> {
       CampaignStage.miniSudoku => CampaignReward(
         playerXp: 8 + rng.nextInt(8),
         tokens: 1 + rng.nextInt(2),
-        souls: 3 + rng.nextInt(3),
+        gems: 3 + rng.nextInt(3),
       ),
       CampaignStage.intermediate => CampaignReward(
         playerXp: 15 + rng.nextInt(11),
         tokens: 2 + rng.nextInt(2),
-        souls: 5 + rng.nextInt(3),
+        gems: 5 + rng.nextInt(3),
       ),
       CampaignStage.advanced => CampaignReward(
         playerXp: 25 + rng.nextInt(16),
         tokens: 3 + rng.nextInt(3),
-        souls: 7 + rng.nextInt(3),
+        gems: 7 + rng.nextInt(3),
       ),
       CampaignStage.assisted => CampaignReward(
         playerXp: 30 + rng.nextInt(16),
         tokens: 3 + rng.nextInt(2),
-        souls: 7 + rng.nextInt(3),
+        gems: 7 + rng.nextInt(3),
       ),
       CampaignStage.beginner => CampaignReward(
         playerXp: 35 + rng.nextInt(21),
         tokens: 3 + rng.nextInt(3),
-        souls: 8 + rng.nextInt(3),
+        gems: 8 + rng.nextInt(3),
       ),
       CampaignStage.intermediate9 => CampaignReward(
         playerXp: 45 + rng.nextInt(21),
         tokens: 4 + rng.nextInt(3),
-        souls: 10 + rng.nextInt(3),
+        gems: 10 + rng.nextInt(3),
       ),
       CampaignStage.advanced9 => CampaignReward(
         playerXp: 55 + rng.nextInt(26),
         tokens: 4 + rng.nextInt(4),
-        souls: 10 + rng.nextInt(3),
+        gems: 10 + rng.nextInt(3),
       ),
       CampaignStage.expert9 => CampaignReward(
         playerXp: 65 + rng.nextInt(31),
         tokens: 5 + rng.nextInt(4),
-        souls: 12 + rng.nextInt(4),
+        gems: 12 + rng.nextInt(4),
       ),
       CampaignStage.evil9 => CampaignReward(
         playerXp: 80 + rng.nextInt(36),
         tokens: 6 + rng.nextInt(5),
-        souls: 15 + rng.nextInt(4),
+        gems: 15 + rng.nextInt(4),
       ),
       CampaignStage.mythic9 => CampaignReward(
         playerXp: 100 + rng.nextInt(41),
         tokens: 8 + rng.nextInt(6),
-        souls: 18 + rng.nextInt(5),
+        gems: 18 + rng.nextInt(5),
       ),
     };
   }
@@ -155,16 +155,16 @@ class CampaignNotifier extends Notifier<CampaignProgress> {
     final mult = isBoss ? bossMult : 1.0;
 
     return switch (stage) {
-      CampaignStage.miniSudoku => CampaignReward(playerXp: (11 * mult).round(), tokens: (1 * mult).round(), souls: (4 * mult).round()),
-      CampaignStage.intermediate => CampaignReward(playerXp: (20 * mult).round(), tokens: (2 * mult).round(), souls: (6 * mult).round()),
-      CampaignStage.advanced => CampaignReward(playerXp: (32 * mult).round(), tokens: (4 * mult).round(), souls: (8 * mult).round()),
-      CampaignStage.assisted => CampaignReward(playerXp: (38 * mult).round(), tokens: (3 * mult).round(), souls: (8 * mult).round()),
-      CampaignStage.beginner => CampaignReward(playerXp: (45 * mult).round(), tokens: (4 * mult).round(), souls: (9 * mult).round()),
-      CampaignStage.intermediate9 => CampaignReward(playerXp: (55 * mult).round(), tokens: (5 * mult).round(), souls: (11 * mult).round()),
-      CampaignStage.advanced9 => CampaignReward(playerXp: (68 * mult).round(), tokens: (6 * mult).round(), souls: (11 * mult).round()),
-      CampaignStage.expert9 => CampaignReward(playerXp: (80 * mult).round(), tokens: (7 * mult).round(), souls: (14 * mult).round()),
-      CampaignStage.evil9 => CampaignReward(playerXp: (98 * mult).round(), tokens: (8 * mult).round(), souls: (17 * mult).round()),
-      CampaignStage.mythic9 => CampaignReward(playerXp: (120 * mult).round(), tokens: (11 * mult).round(), souls: (20 * mult).round()),
+      CampaignStage.miniSudoku => CampaignReward(playerXp: (11 * mult).round(), tokens: (1 * mult).round(), gems: (4 * mult).round()),
+      CampaignStage.intermediate => CampaignReward(playerXp: (20 * mult).round(), tokens: (2 * mult).round(), gems: (6 * mult).round()),
+      CampaignStage.advanced => CampaignReward(playerXp: (32 * mult).round(), tokens: (4 * mult).round(), gems: (8 * mult).round()),
+      CampaignStage.assisted => CampaignReward(playerXp: (38 * mult).round(), tokens: (3 * mult).round(), gems: (8 * mult).round()),
+      CampaignStage.beginner => CampaignReward(playerXp: (45 * mult).round(), tokens: (4 * mult).round(), gems: (9 * mult).round()),
+      CampaignStage.intermediate9 => CampaignReward(playerXp: (55 * mult).round(), tokens: (5 * mult).round(), gems: (11 * mult).round()),
+      CampaignStage.advanced9 => CampaignReward(playerXp: (68 * mult).round(), tokens: (6 * mult).round(), gems: (11 * mult).round()),
+      CampaignStage.expert9 => CampaignReward(playerXp: (80 * mult).round(), tokens: (7 * mult).round(), gems: (14 * mult).round()),
+      CampaignStage.evil9 => CampaignReward(playerXp: (98 * mult).round(), tokens: (8 * mult).round(), gems: (17 * mult).round()),
+      CampaignStage.mythic9 => CampaignReward(playerXp: (120 * mult).round(), tokens: (11 * mult).round(), gems: (20 * mult).round()),
     };
   }
 

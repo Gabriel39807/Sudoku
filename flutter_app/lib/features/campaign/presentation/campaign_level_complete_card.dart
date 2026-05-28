@@ -134,7 +134,7 @@ class _CampaignLevelCompleteCardState extends ConsumerState<CampaignLevelComplet
     final result = ref.watch(campaignProvider).resultFor(widget.level);
     final xpEarned = result?.xpEarned ?? 0;
     final displayTokens = result?.tokensEarned ?? 0;
-    final displaySouls = result?.soulsEarned ?? 0;
+    final displayGems = result?.gemsEarned ?? 0;
     final playerLevel = ref.watch(playerLevelProvider);
     final nextStage = isLast ? null : CampaignStage.fromLevel(nextLevel);
     final nextChapter = nextStage?.chapterForLevel(nextLevel);
@@ -157,7 +157,7 @@ class _CampaignLevelCompleteCardState extends ConsumerState<CampaignLevelComplet
     final bool displayIsPlatinum = widget.defeatMode ? false : isPlatinum;
     final int displayXpEarned = widget.defeatMode ? 0 : xpEarned;
     final int displayTokensEarned = widget.defeatMode ? 0 : displayTokens;
-    final int displaySoulsEarned = widget.defeatMode ? 0 : displaySouls;
+    final int displayGemsEarned = widget.defeatMode ? 0 : displayGems;
 
     // Random motivational message for 1★ (stable across builds)
     final motiMsg = _motivationalMessages[widget.level % _motivationalMessages.length];
@@ -283,7 +283,7 @@ class _CampaignLevelCompleteCardState extends ConsumerState<CampaignLevelComplet
 
                               // ── REWARDS ───────────────────────────────────
                               _RewardCards(
-                                souls: displaySoulsEarned,
+                                gems: displayGemsEarned,
                                 tokens: displayTokensEarned,
                                 xp: displayXpEarned,
                               ),
@@ -641,10 +641,10 @@ class _HeaderSection extends StatelessWidget {
 // ── REWARDS ──────────────────────────────────────────────────────────────────
 
 class _RewardCards extends StatelessWidget {
-  final int souls;
+  final int gems;
   final int tokens;
   final int xp;
-  const _RewardCards({required this.souls, required this.tokens, required this.xp});
+  const _RewardCards({required this.gems, required this.tokens, required this.xp});
 
   @override
   Widget build(BuildContext context) {
@@ -652,10 +652,10 @@ class _RewardCards extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(child: _RewardCard(
-          icon: CurrencyAssets.iconFor(CurrencyType.souls),
-          amount: souls,
-          label: 'ALMAS',
-          color: CurrencyAssets.colorFor(CurrencyType.souls),
+          icon: CurrencyAssets.iconFor(CurrencyType.gems),
+          amount: gems,
+          label: 'GEMS',
+          color: CurrencyAssets.colorFor(CurrencyType.gems),
           delay: 200,
         )),
         const SizedBox(width: 8),

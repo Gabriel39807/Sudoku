@@ -263,7 +263,7 @@ class _ChestOpenModalState extends State<ChestOpenModal>
     }
 
     if (r.tokens > 0) addItem(CurrencyAssets.iconFor(CurrencyType.tokens), '+${r.tokens} tokens', CurrencyAssets.colorFor(CurrencyType.tokens));
-    if (r.souls > 0) addItem(CurrencyAssets.iconFor(CurrencyType.souls), '+${r.souls} almas', CurrencyAssets.colorFor(CurrencyType.souls));
+    if (r.gems > 0) addItem(CurrencyAssets.iconFor(CurrencyType.gems), '+${r.gems} GEMS', CurrencyAssets.colorFor(CurrencyType.gems));
     if (r.hints > 0) addItem(Icons.lightbulb_outline, '+${r.hints} pistas', Colors.amber);
     if (r.advancedNotes > 0) addItem(Icons.auto_awesome, '+${r.advancedNotes} notas avanzadas', Colors.cyan);
     if (r.spins > 0) addItem(Icons.casino_outlined, '+${r.spins} giros', Colors.pinkAccent);

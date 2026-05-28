@@ -7,7 +7,7 @@ class WorldCompletionScreen extends StatefulWidget {
   final BiomeConfig biome;
   final int stageNum;
   final int tokensReward;
-  final int soulsReward;
+  final int gemsReward;
   final String? cosmeticReward;
 
   const WorldCompletionScreen({
@@ -15,7 +15,7 @@ class WorldCompletionScreen extends StatefulWidget {
     required this.biome,
     required this.stageNum,
     this.tokensReward = 50,
-    this.soulsReward = 25,
+    this.gemsReward = 25,
     this.cosmeticReward,
   });
 
@@ -129,7 +129,7 @@ class _WorldCompletionScreenState extends State<WorldCompletionScreen>
                       if (_showRewards) ...[
                         _buildRewardRow(Icons.monetization_on_outlined, '+${widget.tokensReward} tokens', Colors.amber),
                         const SizedBox(height: 8),
-                        _buildRewardRow(Icons.diamond_outlined, '+${widget.soulsReward} almas', Colors.purpleAccent),
+                        _buildRewardRow(Icons.diamond_outlined, '+${widget.gemsReward} GEMS', const Color(0xFFE91E63)),
                         if (widget.cosmeticReward != null) ...[
                           const SizedBox(height: 8),
                           _buildRewardRow(Icons.palette_outlined, 'Cosmético desbloqueado', Colors.cyan),

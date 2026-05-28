@@ -102,7 +102,7 @@ class _WorldMapScreenState extends ConsumerState<WorldMapScreen>
           biome: biome,
           stageNum: stage.datasetStage,
           tokensReward: stage.datasetStage * 10,
-          soulsReward: stage.datasetStage * 5,
+          gemsReward: stage.datasetStage * 5,
         ),
       ),
     ).then((_) {
@@ -1017,9 +1017,9 @@ class _MissionSheet extends StatelessWidget {
                           const SizedBox(width: 4),
                           Text('+${m.tokensReward}', style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.amber)),
                         ],
-                        if (m.soulsReward > 0) ...[
+                        if (m.gemsReward > 0) ...[
                           const SizedBox(width: 4),
-                          Text('+${m.soulsReward}', style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.purpleAccent)),
+                          Text('+${m.gemsReward}', style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: const Color(0xFFE91E63))),
                         ],
                       ],
                     ),

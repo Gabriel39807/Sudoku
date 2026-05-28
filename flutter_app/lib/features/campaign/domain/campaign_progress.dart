@@ -8,7 +8,7 @@ class CampaignLevelResult {
   final int attempts;
   final int xpEarned;
   final int tokensEarned;
-  final int soulsEarned;
+  final int gemsEarned;
   final bool isBoss;
   final bool isPlatinum;
   // ── Future hooks ──────────────────────────────────────────────────────
@@ -25,7 +25,7 @@ class CampaignLevelResult {
     this.attempts = 0,
     this.xpEarned = 0,
     this.tokensEarned = 0,
-    this.soulsEarned = 0,
+    this.gemsEarned = 0,
     this.isBoss = false,
     this.isPlatinum = false,
     this.perfectRuns = 0,
@@ -46,7 +46,7 @@ class CampaignLevelResult {
     int? attempts,
     int? xpEarned,
     int? tokensEarned,
-    int? soulsEarned,
+    int? gemsEarned,
     bool? isBoss,
     bool? isPlatinum,
     int? perfectRuns,
@@ -62,7 +62,7 @@ class CampaignLevelResult {
       attempts: attempts ?? this.attempts,
       xpEarned: xpEarned ?? this.xpEarned,
       tokensEarned: tokensEarned ?? this.tokensEarned,
-      soulsEarned: soulsEarned ?? this.soulsEarned,
+      gemsEarned: gemsEarned ?? this.gemsEarned,
       isBoss: isBoss ?? this.isBoss,
       isPlatinum: isPlatinum ?? this.isPlatinum,
       perfectRuns: perfectRuns ?? this.perfectRuns,
@@ -80,7 +80,7 @@ class CampaignLevelResult {
     'attempts': attempts,
     'xpEarned': xpEarned,
     'tokensEarned': tokensEarned,
-    'soulsEarned': soulsEarned,
+    'gemsEarned': gemsEarned,
     'isBoss': isBoss,
     'isPlatinum': isPlatinum,
     'perfectRuns': perfectRuns,
@@ -97,7 +97,7 @@ class CampaignLevelResult {
     attempts: json['attempts'] as int? ?? 0,
     xpEarned: json['xpEarned'] as int? ?? 0,
     tokensEarned: json['tokensEarned'] as int? ?? 0,
-    soulsEarned: json['soulsEarned'] as int? ?? 0,
+    gemsEarned: json['gemsEarned'] as int? ?? 0,
     isBoss: json['isBoss'] as bool? ?? false,
     isPlatinum: json['isPlatinum'] as bool? ?? false,
     perfectRuns: json['perfectRuns'] as int? ?? 0,
@@ -156,7 +156,7 @@ class CampaignProgress {
     int mistakes,
     int xpEarned,
     int tokensEarned,
-    int soulsEarned,
+    int gemsEarned,
     {int? overrideStars})
   {
     final existing = results[level] ?? CampaignLevelResult();
@@ -184,7 +184,7 @@ class CampaignProgress {
           attempts: existing.attempts + 1,
           xpEarned: better ? xpEarned : existing.xpEarned,
           tokensEarned: better ? tokensEarned : existing.tokensEarned,
-          soulsEarned: better ? soulsEarned : existing.soulsEarned,
+          gemsEarned: better ? gemsEarned : existing.gemsEarned,
           isBoss: stage.isBossLevel(level),
         ),
       },
