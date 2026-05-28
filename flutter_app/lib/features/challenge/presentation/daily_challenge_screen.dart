@@ -138,7 +138,10 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
         TrophyCollection.markDate(DateTime.now());
         ref.read(streakProvider.notifier).onDailyWin();
         if (!mounted) return;
-        context.pushReplacement('/victory', extra: 'daily');
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          context.pushReplacement('/victory', extra: 'daily');
+        });
       }
     });
   }
@@ -203,7 +206,12 @@ class _DailyChallengeScreenState extends ConsumerState<DailyChallengeScreen> {
       );
     }
 
-    return _DailyGameContent(onExit: () => showDailyExitDialog(context));
+    return _DailyGameContent(onExit: () async {
+      final shouldExit = await showDailyExitDialog(context);
+      if (shouldExit && context.mounted) {
+        context.pop();
+      }
+    });
   }
 }
 

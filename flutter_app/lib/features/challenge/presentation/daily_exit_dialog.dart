@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:go_router/go_router.dart';
 import '../../../shared/widgets/game_modal_card.dart';
 import '../../../shared/widgets/gameplay_overlay_guard.dart';
 
-Future<void> showDailyExitDialog(BuildContext context) async {
-  return showDialog(
+Future<bool> showDailyExitDialog(BuildContext context) async {
+  final result = await showDialog<bool>(
     context: context,
     builder: (ctx) => GameplayOverlayGuard(
       child: GameModalCard(
-        onClose: () => Navigator.pop(ctx),
+        onClose: () => Navigator.pop(ctx, false),
         child: _DailyExitBody(),
       ),
     ),
   );
+  return result ?? false;
 }
 
 class _DailyExitBody extends StatelessWidget {
@@ -46,10 +46,7 @@ class _DailyExitBody extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
-            onPressed: () {
-              Navigator.pop(context);
-              context.pop();
-            },
+            onPressed: () => Navigator.pop(context, true),
             icon: const Icon(Icons.logout, size: 18),
             label: const Text('SALIR', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
             style: OutlinedButton.styleFrom(
@@ -63,7 +60,7 @@ class _DailyExitBody extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton.icon(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(context, false),
             icon: const Icon(Icons.play_arrow, size: 18),
             label: const Text('CONTINUAR', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
             style: ElevatedButton.styleFrom(
