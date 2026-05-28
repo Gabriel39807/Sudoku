@@ -16,10 +16,20 @@ import '../../features/wheel/presentation/lucky_wheel_screen.dart';
 import '../../features/campaign/presentation/campaign_screen.dart';
 import '../../features/campaign/presentation/campaign_game_screen.dart';
 import '../../features/campaign/domain/sudoku_variant.dart';
+import '../../features/onboarding/presentation/intro_screen.dart';
+import '../../features/onboarding/presentation/gradual_unlock_screen.dart';
 
 final goRouter = GoRouter(
   initialLocation: '/',
   routes: [
+    GoRoute(
+      path: '/intro',
+      builder: (context, state) => const IntroScreen(),
+    ),
+    GoRoute(
+      path: '/gradual-unlock',
+      builder: (context, state) => const GradualUnlockScreen(),
+    ),
     ShellRoute(
       builder: (context, state, child) => GameBackgroundWrapper(child: child),
       routes: [
@@ -80,6 +90,9 @@ final goRouter = GoRouter(
         final extra = state.extra;
         assert(extra != null && extra is Map, '/campaign-game requires extra as Map');
         final data = extra as Map<String, dynamic>;
+        if (data['restore'] == true) {
+          return const CampaignGameScreen(level: 1, variant: SudokuVariant.mini4, restore: true);
+        }
         final level = data['level'] as int;
         final variantName = data['variant'] as String;
         final variant = SudokuVariant.values.firstWhere((v) => v.name == variantName);

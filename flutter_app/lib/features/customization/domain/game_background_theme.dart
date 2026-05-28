@@ -42,7 +42,7 @@ enum GameBackgroundTheme {
     gradientColors: [Color(0xFF1A0033), Color(0xFF4A148C)],
     assetPath: null,
     lockedByDefault: true,
-    unlockCost: 500,
+    unlockCost: 650,
   ),
   arcticDawn(
     id: 'arctic_dawn',
@@ -50,7 +50,7 @@ enum GameBackgroundTheme {
     gradientColors: [Color(0xFF1A237E), Color(0xFF81D4FA)],
     assetPath: null,
     lockedByDefault: true,
-    unlockCost: 300,
+    unlockCost: 350,
   ),
   sunsetBlaze(
     id: 'sunset_blaze',
@@ -58,7 +58,7 @@ enum GameBackgroundTheme {
     gradientColors: [Color(0xFF1A0000), Color(0xFFFF6F00)],
     assetPath: null,
     lockedByDefault: true,
-    unlockCost: 400,
+    unlockCost: 650,
   );
 
   final String id;

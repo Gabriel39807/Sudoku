@@ -6,18 +6,43 @@ import '../economy/application/wallet_provider.dart';
 import '../progression/application/progression_provider.dart';
 import '../progression/domain/daily_mission.dart';
 import '../challenge/application/streak_provider.dart';
+import '../onboarding/application/onboarding_provider.dart';
+import '../campaign/application/campaign_provider.dart';
+import '../campaign/application/campaign_autosave_provider.dart';
+import '../campaign/domain/campaign_level.dart';
 import '../../shared/widgets/game_modal_card.dart';
 import '../../ui/currency/currency_widget.dart';
 import '../../ui/currency/currency_type.dart';
 import '../../features/wheel/presentation/roulette_modal.dart';
-import '../campaign/application/campaign_provider.dart';
-import '../campaign/domain/campaign_level.dart';
+import '../challenge/presentation/streak_hub_modal.dart';
+import '../challenge/presentation/trophy_modal.dart';
+import '../challenge/domain/trophy_collection.dart';
 
-class MenuScreen extends StatelessWidget {
+class MenuScreen extends ConsumerStatefulWidget {
   const MenuScreen({super.key});
 
   @override
+  ConsumerState<MenuScreen> createState() => _MenuScreenState();
+}
+
+class _MenuScreenState extends ConsumerState<MenuScreen> {
+  bool _redirected = false;
+
+  @override
   Widget build(BuildContext context) {
+    final onboarding = ref.watch(onboardingProvider);
+    final campaign = ref.watch(campaignProvider);
+    final tutorialDone = onboarding.tutorialCompleted;
+    final isNewUser = campaign.completedCount == 0 && !tutorialDone;
+
+    // First-launch redirect (once)
+    if (onboarding.isFirstLaunch && !_redirected) {
+      _redirected = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) context.pushReplacement('/intro');
+      });
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -25,35 +50,24 @@ class MenuScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 8),
               const _EconomyHeader(),
-              const SizedBox(height: 4),
-              const _CircularNav(),
+              if (tutorialDone) ...[
+                const SizedBox(height: 4),
+                const _CircularNav(),
+              ],
               const Spacer(flex: 1),
               const _TitleSection(),
-              const Spacer(flex: 1),
-              _BigButton('CONTINUAR', () {}),
-              const SizedBox(height: 10),
-              _BigButton('JUGAR', () => context.push('/difficulty')),
-              const SizedBox(height: 10),
-              Consumer(
-                builder: (context, ref, _) {
-                  final progress = ref.watch(campaignProvider);
-                  if (progress.hasActiveRun) {
-                    return _CampaignContinueButton(
-                      level: progress.activeRunLevel,
-                      stage: CampaignStage.fromLevel(progress.activeRunLevel),
-                      onTap: () {
-                        final stage = CampaignStage.fromLevel(progress.activeRunLevel);
-                        context.push('/campaign-game', extra: {'level': progress.activeRunLevel, 'variant': stage.variant.name});
-                      },
-                    );
-                  }
-                  return _CampaignButton(onTap: () => context.push('/campaign'));
-                },
-              ),
-              const SizedBox(height: 10),
-              _BigButton('DESAFÍO DIARIO', () => context.push('/daily')),
-              const SizedBox(height: 12),
-              _LuckyWheelButton(onTap: () => showRouletteModal(context)),
+              const SizedBox(height: 16),
+              _HeroContinueButton(isNewUser: isNewUser),
+              if (tutorialDone) ...[
+                const SizedBox(height: 14),
+                _BigButton('JUGAR', () => context.push('/difficulty')),
+                const SizedBox(height: 10),
+                _BigButton('DESAFÍO DIARIO', () => context.push('/daily')),
+                const SizedBox(height: 6),
+                const _DailyTrophyCard(),
+                const SizedBox(height: 10),
+                _LuckyWheelButton(onTap: () => showRouletteModal(context)),
+              ],
               const Spacer(flex: 2),
             ],
           ),
@@ -63,74 +77,217 @@ class MenuScreen extends StatelessWidget {
   }
 }
 
-class _CampaignButton extends ConsumerWidget {
-  final VoidCallback onTap;
-  const _CampaignButton({required this.onTap});
+/// Hero continue button with 3 states:
+/// 1. Campaign autosave exists → Resume exact level
+/// 2. Campaign progress exists → Continue next level
+/// 3. New user → COMENZAR AVENTURA
+class _HeroContinueButton extends ConsumerWidget {
+  final bool isNewUser;
+  const _HeroContinueButton({required this.isNewUser});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final progress = ref.watch(campaignProvider);
-    return SizedBox(
-      width: 240,
-      height: 50,
-      child: ElevatedButton.icon(
-        onPressed: onTap,
-        icon: const Icon(Icons.flag, size: 16),
-        label: Text('CAMPAÑA  ·  ${progress.completedCount}/${progress.totalCount}',
-            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-          backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.15),
-        ),
-      ),
+    final campaign = ref.watch(campaignProvider);
+    final autosaveAsync = ref.watch(campaignAutosaveExistsProvider);
+
+    if (isNewUser) {
+      return _HeroButton(
+        label: 'COMENZAR AVENTURA',
+        subtitle: 'Campaña · Nivel 1',
+        color: const Color(0xFF6C3FB5),
+        glowColor: const Color(0xFF9C4DFF),
+        icon: Icons.flag,
+        onTap: () {
+          final stage = CampaignStage.fromLevel(1);
+          context.push('/campaign-game', extra: {'level': 1, 'variant': stage.variant.name});
+        },
+      );
+    }
+
+    // Check autosave first
+    final hasAutosave = autosaveAsync.asData?.value ?? false;
+    if (hasAutosave) {
+      return _HeroButton(
+        label: '▶  REANUDAR',
+        subtitle: 'Nivel en progreso',
+        color: Colors.amber.shade700,
+        glowColor: Colors.amber,
+        icon: Icons.play_circle_filled,
+        onTap: () {
+          // Will be restored by provider before navigation
+          context.push('/campaign-game', extra: {'restore': true});
+        },
+      );
+    }
+
+    // Active run (level started but no save)
+    if (campaign.hasActiveRun) {
+      final stage = CampaignStage.fromLevel(campaign.activeRunLevel);
+      return _HeroButton(
+        label: '▶  CONTINUAR',
+        subtitle: 'Nivel ${campaign.activeRunLevel}',
+        color: Colors.amber.shade700,
+        glowColor: Colors.amber,
+        icon: Icons.play_circle_filled,
+        onTap: () {
+          context.push('/campaign-game',
+              extra: {'level': campaign.activeRunLevel, 'variant': stage.variant.name});
+        },
+      );
+    }
+
+    // Regular progress — next level
+    final nextLevel = campaign.currentLevel;
+    final stage = CampaignStage.fromLevel(nextLevel);
+    final count = campaign.completedCount;
+    final total = campaign.totalCount;
+    return _HeroButton(
+      label: '▶  CONTINUAR',
+      subtitle: 'Nivel $nextLevel  ·  $count / $total completados',
+      color: Colors.amber.shade700,
+      glowColor: Colors.amber,
+      icon: Icons.play_circle_filled,
+      onTap: () {
+        context.push('/campaign-game',
+            extra: {'level': nextLevel, 'variant': stage.variant.name});
+      },
     );
   }
 }
 
-class _CampaignContinueButton extends ConsumerWidget {
-  final int level;
-  final CampaignStage stage;
+class _HeroButton extends StatefulWidget {
+  final String label;
+  final String subtitle;
+  final Color color;
+  final Color glowColor;
+  final IconData icon;
   final VoidCallback onTap;
-  const _CampaignContinueButton({
-    required this.level,
-    required this.stage,
+
+  const _HeroButton({
+    required this.label,
+    required this.subtitle,
+    required this.color,
+    required this.glowColor,
+    required this.icon,
     required this.onTap,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<_HeroButton> createState() => _HeroButtonState();
+}
+
+class _HeroButtonState extends State<_HeroButton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _shineCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _shineCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2500),
+    )..repeat(min: 0.3, max: 1.0);
+  }
+
+  @override
+  void dispose() {
+    _shineCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
-      width: 240,
-      height: 50,
-      child: ElevatedButton.icon(
-        onPressed: onTap,
-        icon: const Icon(Icons.play_arrow, size: 20),
-        label: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('CONTINUAR  ·  NIVEL $level',
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                  color: Colors.black87,
-                )),
-            Text('${stage.variant.boardSize}x${stage.variant.boardSize}',
-                style: TextStyle(
-                  fontSize: 9,
-                  color: Colors.black87.withValues(alpha: 0.6),
-                )),
-          ],
-        ),
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-          backgroundColor: Colors.amber.shade400,
-          foregroundColor: Colors.black87,
-          elevation: 6,
-          shadowColor: Colors.amber.withValues(alpha: 0.4),
+      width: 280,
+      height: 72,
+      child: AnimatedBuilder(
+        animation: _shineCtrl,
+        builder: (context, child) => Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(18),
+            gradient: LinearGradient(
+              colors: [widget.color, widget.color.withValues(alpha: 0.85)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: widget.glowColor.withValues(alpha: 0.5 * _shineCtrl.value),
+                blurRadius: 28,
+                spreadRadius: 2,
+              ),
+            ],
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: widget.onTap,
+              borderRadius: BorderRadius.circular(18),
+              child: Stack(
+                children: [
+                  // Shine sweep
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.transparent,
+                              Colors.white.withValues(alpha: 0.15 * _shineCtrl.value),
+                              Colors.transparent,
+                            ],
+                            stops: const [0.0, 0.5, 1.0],
+                            begin: Alignment(-1.5 + 3 * _shineCtrl.value, 0),
+                            end: Alignment(1.5 - 3 * _shineCtrl.value, 0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Content
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Icon(widget.icon, size: 28, color: Colors.white),
+                        const SizedBox(width: 14),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(widget.label,
+                                  style: const TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 1.5,
+                                    color: Colors.white,
+                                  )),
+                              const SizedBox(height: 2),
+                              Text(widget.subtitle,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white.withValues(alpha: 0.7),
+                                  )),
+                            ],
+                          ),
+                        ),
+                        const Icon(Icons.chevron_right, color: Colors.white54),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
-    ).animate().shimmer(duration: 2000.ms, color: Colors.white24);
+    ).animate(onPlay: (c) => c.repeat()).shimmer(
+      duration: 4000.ms,
+      color: Colors.white12,
+      delay: 1000.ms,
+    );
   }
 }
 
@@ -152,7 +309,11 @@ class _EconomyHeader extends ConsumerWidget {
             const SizedBox(width: 8),
             CurrencyWidget(type: CurrencyType.tokens, amount: wallet.tokens, size: 16, animated: false),
             const Spacer(),
-            _StreakBadge(streak: streak.currentStreak),
+            StreakCircleBtn(
+              streak: streak.currentStreak,
+              completedToday: streak.completedToday,
+              onTap: () => showStreakHub(context),
+            ),
             const SizedBox(width: 8),
             _CircleBtn(
               icon: Icons.settings,
@@ -340,46 +501,72 @@ class _LuckyWheelButton extends StatelessWidget {
   }
 }
 
-// ── Streak Badge ─────────────────────────────────────────────────────────────
+// ── Daily Trophy Card ───────────────────────────────────────────────────────
 
-class _StreakBadge extends StatelessWidget {
-  final int streak;
-  const _StreakBadge({required this.streak});
-
-  Color _glowColor() {
-    if (streak >= 30) return Colors.orangeAccent;
-    if (streak >= 7) return Colors.orange.withValues(alpha: 0.7);
-    return Colors.orange.withValues(alpha: 0.4);
-  }
-
-  double _glowSize() {
-    if (streak >= 30) return 6.0;
-    if (streak >= 7) return 3.0;
-    return 0.0;
-  }
+class _DailyTrophyCard extends ConsumerWidget {
+  const _DailyTrophyCard();
 
   @override
-  Widget build(BuildContext context) {
-    if (streak <= 0) return const SizedBox.shrink();
-    final glow = _glowSize();
-    final glowColor = _glowColor();
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        color: Colors.orange.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(99),
-        border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
-        boxShadow: glow > 0 ? [BoxShadow(color: glowColor, blurRadius: glow, spreadRadius: 1)] : null,
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.local_fire_department, size: 16, color: glowColor),
-          const SizedBox(width: 4),
-          Text(streak.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: glowColor)),
-        ],
-      ),
-    ).animate().fade(duration: 400.ms).then();
+  Widget build(BuildContext context, WidgetRef ref) {
+    return FutureBuilder<TrophyCollection>(
+      future: TrophyCollection.load(),
+      builder: (ctx, snapshot) {
+        final collection = snapshot.data;
+        if (collection == null) return const SizedBox.shrink();
+        final now = DateTime.now();
+        final total = collection.daysInMonth(now.year, now.month);
+        final done = collection.countForMonth(now.year, now.month);
+        final ratio = total > 0 ? done / total : 0.0;
+
+        return InkWell(
+          onTap: () => showTrophyModal(context),
+          borderRadius: BorderRadius.circular(14),
+          child: Container(
+            width: 240,
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            decoration: BoxDecoration(
+              color: Colors.amber.withValues(alpha: 0.06),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: Colors.amber.withValues(alpha: 0.12)),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.emoji_events, size: 18, color: Colors.amber),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('TROFEOS',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 2,
+                            color: Colors.amber.shade200,
+                          )),
+                      const SizedBox(height: 4),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(99),
+                        child: LinearProgressIndicator(
+                          value: ratio,
+                          minHeight: 4,
+                          backgroundColor: Colors.white.withValues(alpha: 0.08),
+                          valueColor: const AlwaysStoppedAnimation<Color>(Colors.amber),
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text('$done / $total',
+                          style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.white.withValues(alpha: 0.5))),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -412,35 +599,82 @@ class _MissionCard extends StatelessWidget {
   final DailyMission mission;
   const _MissionCard({required this.mission});
 
+  static const _rarityColors = {
+    MissionDifficulty.easy: Color(0xFF66BB6A),
+    MissionDifficulty.medium: Color(0xFF42A5F5),
+    MissionDifficulty.hard: Color(0xFFAB47BC),
+    MissionDifficulty.elite: Color(0xFFFF7043),
+  };
+
+  static const _rarityLabels = {
+    MissionDifficulty.easy: 'FÁCIL',
+    MissionDifficulty.medium: 'MEDIO',
+    MissionDifficulty.hard: 'DIFÍCIL',
+    MissionDifficulty.elite: 'ÉLITE',
+  };
+
   @override
   Widget build(BuildContext context) {
     final done = mission.completed;
+    final color = _rarityColors[mission.difficulty] ?? Colors.white;
+    final label = _rarityLabels[mission.difficulty] ?? '';
+
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: done ? Colors.greenAccent.withValues(alpha: 0.06) : Colors.white.withValues(alpha: 0.03),
+        color: done ? Colors.greenAccent.withValues(alpha: 0.06) : color.withValues(alpha: 0.04),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: done ? Colors.greenAccent.withValues(alpha: 0.25) : Colors.white.withValues(alpha: 0.06)),
+        border: Border.all(
+          color: done ? Colors.greenAccent.withValues(alpha: 0.25) : color.withValues(alpha: 0.25),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(done ? Icons.check_circle : Icons.radio_button_unchecked, size: 18, color: done ? Colors.greenAccent : Colors.white38),
-              const SizedBox(width: 10),
-              Expanded(child: Text(mission.title, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: done ? Colors.greenAccent : Colors.white))),
-              Text('+${mission.xpReward} XP', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: done ? Colors.greenAccent : Colors.greenAccent.shade200)),
+              Icon(done ? Icons.check_circle : Icons.radio_button_unchecked,
+                  size: 16, color: done ? Colors.greenAccent : color),
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(label,
+                    style: TextStyle(fontSize: 8, fontWeight: FontWeight.w900,
+                        letterSpacing: 1, color: color)),
+              ),
+              const SizedBox(width: 6),
+              Expanded(child: Text(mission.title,
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14,
+                      color: done ? Colors.greenAccent : Colors.white))),
+              if (!done) ...[
+                Text('+${mission.xpReward} XP',
+                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,
+                        color: Colors.greenAccent.shade200)),
+                const SizedBox(width: 4),
+                Text('+${mission.soulsReward}',
+                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,
+                        color: Colors.amber.shade200)),
+              ],
             ],
           ),
           const SizedBox(height: 4),
-          Text(mission.description, style: const TextStyle(fontSize: 11, color: Colors.white54)),
+          Text(mission.description,
+              style: TextStyle(fontSize: 11, color: done ? Colors.greenAccent.withValues(alpha: 0.7) : Colors.white54)),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('${mission.progress} / ${mission.target}', style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-              if (done) const Text('COMPLETADO', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.greenAccent, letterSpacing: 1)),
+              Text('${mission.progress} / ${mission.target}',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold,
+                      color: done ? Colors.greenAccent : Colors.white)),
+              if (done)
+                _RewardPopup(xp: mission.xpReward, souls: mission.soulsReward)
+              else
+                const SizedBox.shrink(),
             ],
           ),
           const SizedBox(height: 4),
@@ -454,12 +688,50 @@ class _MissionCard extends StatelessWidget {
                 value: value,
                 minHeight: 6,
                 backgroundColor: Colors.white.withValues(alpha: 0.08),
-                valueColor: AlwaysStoppedAnimation<Color>(done ? Colors.greenAccent : Theme.of(context).primaryColor),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    done ? Colors.greenAccent : color),
               ),
             ),
           ),
         ],
       ),
     );
+  }
+}
+
+class _RewardPopup extends StatelessWidget {
+  final int xp;
+  final int souls;
+  const _RewardPopup({required this.xp, required this.souls});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFF2E7D32), Color(0xFF388E3C)],
+            ),
+            borderRadius: BorderRadius.circular(99),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('+$xp XP',
+                  style: const TextStyle(fontSize: 9, fontWeight: FontWeight.w900,
+                      color: Colors.white)),
+              const SizedBox(width: 4),
+              Text('+$souls',
+                  style: const TextStyle(fontSize: 9, fontWeight: FontWeight.w900,
+                      color: Colors.amberAccent)),
+            ],
+          ),
+        ),
+      ],
+    ).animate().scale(curve: Curves.easeOutBack, duration: 500.ms)
+        .then().shake(duration: 300.ms);
   }
 }
