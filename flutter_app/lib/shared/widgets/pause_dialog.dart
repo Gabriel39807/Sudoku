@@ -3,13 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../features/game/application/game_provider.dart';
 import '../../features/game/domain/session_stats.dart';
-import 'game_exit_dialog.dart';
 
 class PauseOverlayWidget extends ConsumerWidget {
   final String difficulty;
   final VoidCallback? onRestart;
+  final VoidCallback? onExit;
 
-  const PauseOverlayWidget({super.key, required this.difficulty, this.onRestart});
+  const PauseOverlayWidget({super.key, required this.difficulty, this.onRestart, this.onExit});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -75,8 +75,8 @@ class PauseOverlayWidget extends ConsumerWidget {
                           const SizedBox(height: 10),
                           SizedBox(
                             width: double.infinity,
-                            child: TextButton.icon(
-                              onPressed: () => showGameExitDialog(context, ref, difficulty),
+                            child:                           TextButton.icon(
+                              onPressed: onExit,
                               icon: const Icon(Icons.exit_to_app, size: 18, color: Colors.redAccent),
                               label: const Text('SALIR', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.5, color: Colors.redAccent)),
                               style: TextButton.styleFrom(

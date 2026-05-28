@@ -1,34 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import '../../features/game/application/game_provider.dart';
 import '../../features/game/domain/game_state.dart';
 import 'game_modal_card.dart';
 import 'gameplay_overlay_guard.dart';
 
-Future<void> showGameExitDialog(BuildContext context, WidgetRef ref, String difficulty) async {
+enum GameExitAction { save, abandon, cancel }
+
+Future<GameExitAction?> showGameExitDialog(BuildContext context, WidgetRef ref, String difficulty) async {
   final state = ref.read(gameProvider);
 
-  return showDialog(
+  return showDialog<GameExitAction>(
     context: context,
     barrierDismissible: false,
     builder: (ctx) => GameplayOverlayGuard(
       child: GameModalCard(
-        onClose: () => Navigator.pop(ctx),
+        onClose: () => Navigator.pop(ctx, GameExitAction.cancel),
         child: _GameExitBody(
           state: state,
-          onSave: () {
-            Navigator.pop(ctx);
-            ref.read(gameProvider.notifier).saveToGlobalSlot();
-            ref.read(gameProvider.notifier).abandonGame();
-            if (context.mounted) context.pop();
-          },
-          onAbandon: () {
-            Navigator.pop(ctx);
-            ref.read(gameProvider.notifier).abandonGame();
-            if (context.mounted) context.pop();
-          },
+          onSave: () => Navigator.pop(ctx, GameExitAction.save),
+          onAbandon: () => Navigator.pop(ctx, GameExitAction.abandon),
         ),
       ),
     ),

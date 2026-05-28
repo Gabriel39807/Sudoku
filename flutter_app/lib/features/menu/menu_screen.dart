@@ -14,9 +14,12 @@ import '../../shared/widgets/game_modal_card.dart';
 import '../../ui/currency/currency_widget.dart';
 import '../../ui/currency/currency_type.dart';
 import '../../features/wheel/presentation/roulette_modal.dart';
+import '../challenge/presentation/streak_button.dart';
 import '../challenge/presentation/streak_hub_modal.dart';
 import '../challenge/presentation/trophy_modal.dart';
 import '../challenge/domain/trophy_collection.dart';
+import '../cosmetics/application/avatar_inventory_provider.dart';
+import '../cosmetics/presentation/widgets/player_profile_avatar.dart';
 
 class MenuScreen extends ConsumerStatefulWidget {
   const MenuScreen({super.key});
@@ -26,7 +29,19 @@ class MenuScreen extends ConsumerStatefulWidget {
 }
 
 class _MenuScreenState extends ConsumerState<MenuScreen> {
-  bool _redirected = false;
+  @override
+  void initState() {
+    super.initState();
+    _checkFirstLaunch();
+  }
+
+  Future<void> _checkFirstLaunch() async {
+    final onboarding = await ref.read(onboardingProvider.notifier).waitForLoad();
+    if (!mounted) return;
+    if (onboarding.isFirstLaunch) {
+      context.pushReplacement('/intro');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +49,6 @@ class _MenuScreenState extends ConsumerState<MenuScreen> {
     final campaign = ref.watch(campaignProvider);
     final tutorialDone = onboarding.tutorialCompleted;
     final isNewUser = campaign.completedCount == 0 && !tutorialDone;
-
-    // First-launch redirect (once)
-    if (onboarding.isFirstLaunch && !_redirected) {
-      _redirected = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (context.mounted) context.pushReplacement('/intro');
-      });
-    }
 
     return Scaffold(
       body: SafeArea(
@@ -298,6 +305,7 @@ class _EconomyHeader extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final wallet = ref.watch(walletProvider);
     final streak = ref.watch(streakProvider);
+    final avatarInv = ref.watch(avatarInventoryProvider);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -305,11 +313,19 @@ class _EconomyHeader extends ConsumerWidget {
         height: 48,
         child: Row(
           children: [
-            CurrencyWidget(type: CurrencyType.souls, amount: wallet.souls, size: 16, animated: false),
+            CurrencyWidget(type: CurrencyType.gems, amount: wallet.gems, size: 16, animated: false),
             const SizedBox(width: 8),
             CurrencyWidget(type: CurrencyType.tokens, amount: wallet.tokens, size: 16, animated: false),
             const Spacer(),
-            StreakCircleBtn(
+            PlayerProfileAvatar(
+              avatarId: avatarInv.selectedAvatarId,
+              frameId: avatarInv.selectedFrameId,
+              size: 36,
+              onTap: () => context.push('/profile'),
+              showBreathing: true,
+            ),
+            const SizedBox(width: 8),
+            StreakButton(
               streak: streak.currentStreak,
               completedToday: streak.completedToday,
               onTap: () => showStreakHub(context),
@@ -655,7 +671,7 @@ class _MissionCard extends StatelessWidget {
                     style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,
                         color: Colors.greenAccent.shade200)),
                 const SizedBox(width: 4),
-                Text('+${mission.soulsReward}',
+                Text('+${mission.gemsReward}',
                     style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,
                         color: Colors.amber.shade200)),
               ],
@@ -672,7 +688,7 @@ class _MissionCard extends StatelessWidget {
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold,
                       color: done ? Colors.greenAccent : Colors.white)),
               if (done)
-                _RewardPopup(xp: mission.xpReward, souls: mission.soulsReward)
+                _RewardPopup(xp: mission.xpReward, gems: mission.gemsReward)
               else
                 const SizedBox.shrink(),
             ],
@@ -701,8 +717,8 @@ class _MissionCard extends StatelessWidget {
 
 class _RewardPopup extends StatelessWidget {
   final int xp;
-  final int souls;
-  const _RewardPopup({required this.xp, required this.souls});
+  final int gems;
+  const _RewardPopup({required this.xp, required this.gems});
 
   @override
   Widget build(BuildContext context) {
@@ -724,7 +740,7 @@ class _RewardPopup extends StatelessWidget {
                   style: const TextStyle(fontSize: 9, fontWeight: FontWeight.w900,
                       color: Colors.white)),
               const SizedBox(width: 4),
-              Text('+$souls',
+              Text('+$gems',
                   style: const TextStyle(fontSize: 9, fontWeight: FontWeight.w900,
                       color: Colors.amberAccent)),
             ],

@@ -14,7 +14,7 @@ import '../../features/challenge/presentation/daily_challenge_screen.dart';
 import '../../features/economy/presentation/shop_screen.dart';
 import '../../features/wheel/presentation/lucky_wheel_screen.dart';
 import '../../features/campaign/presentation/campaign_screen.dart';
-import '../../features/campaign/presentation/campaign_game_screen.dart';
+import '../../features/campaign/presentation/campaign_shell_screen.dart';
 import '../../features/campaign/domain/sudoku_variant.dart';
 import '../../features/onboarding/presentation/intro_screen.dart';
 import '../../features/onboarding/presentation/gradual_unlock_screen.dart';
@@ -91,12 +91,12 @@ final goRouter = GoRouter(
         assert(extra != null && extra is Map, '/campaign-game requires extra as Map');
         final data = extra as Map<String, dynamic>;
         if (data['restore'] == true) {
-          return const CampaignGameScreen(level: 1, variant: SudokuVariant.mini4, restore: true);
+          return const CampaignShellScreen(level: 1, variant: SudokuVariant.mini4, restore: true);
         }
         final level = data['level'] as int;
         final variantName = data['variant'] as String;
         final variant = SudokuVariant.values.firstWhere((v) => v.name == variantName);
-        return CampaignGameScreen(level: level, variant: variant);
+        return CampaignShellScreen(level: level, variant: variant);
       },
     ),
     GoRoute(
