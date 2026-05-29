@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:math' as math;
+import 'dart:ui' show ImageFilter;
 import 'package:flutter/material.dart';
 import 'avatar_def.dart';
 import '../models/background_cosmetic.dart';
+import '../presentation/widgets/player_profile_avatar.dart';
 
 // ── Reward Model ──────────────────────────────────────────────────────────
 
@@ -34,11 +37,10 @@ class UnlockReward {
   });
 
   static UnlockReward fromBackground(BackgroundCosmetic bg) {
-    final rarity = bg.rarity.toAvatarRarity();
     return UnlockReward(
       id: 'bg_reward_${bg.id}',
       type: RewardType.background,
-      rarity: rarity,
+      rarity: bg.rarity.toAvatarRarity(),
       title: bg.name,
       cosmeticId: bg.id,
       metadata: {'assetPath': bg.assetPath},
@@ -54,11 +56,10 @@ class UnlockReward {
     String description = '',
     Map<String, dynamic>? metadata,
   }) {
-    final rarity = _parseRarity(rarityName);
     return UnlockReward(
       id: id,
       type: type,
-      rarity: rarity,
+      rarity: _parseRarity(rarityName),
       title: title,
       description: description,
       cosmeticId: cosmeticId,
@@ -196,7 +197,7 @@ class RewardQueue {
         context: context,
         barrierDismissible: false,
         barrierColor: Colors.transparent,
-        builder: (_) => _CosmeticUnlockModalContent(reward: entry.reward),
+        builder: (_) => CosmeticUnlockModalContent(reward: entry.reward),
       );
       entry.completer.complete(result);
     }
@@ -206,17 +207,17 @@ class RewardQueue {
 
 // ── Modal Content ─────────────────────────────────────────────────────────
 
-class _CosmeticUnlockModalContent extends StatefulWidget {
+class CosmeticUnlockModalContent extends StatefulWidget {
   final UnlockReward reward;
-  const _CosmeticUnlockModalContent({required this.reward});
+  const CosmeticUnlockModalContent({super.key, required this.reward});
 
   @override
-  State<_CosmeticUnlockModalContent> createState() =>
-      _CosmeticUnlockModalContentState();
+  State<CosmeticUnlockModalContent> createState() =>
+      CosmeticUnlockModalContentState();
 }
 
-class _CosmeticUnlockModalContentState
-    extends State<_CosmeticUnlockModalContent>
+class CosmeticUnlockModalContentState
+    extends State<CosmeticUnlockModalContent>
     with TickerProviderStateMixin {
   late AnimationController _backdropCtrl;
   late AnimationController _cardCtrl;
@@ -349,8 +350,6 @@ class _CosmeticUnlockModalContentState
     );
   }
 
-  // ── Backdrop ────────────────────────────────────────────────────────────
-
   Widget _buildBackdrop(AvatarRarity rarity) {
     return Positioned.fill(
       child: Container(
@@ -374,8 +373,6 @@ class _CosmeticUnlockModalContentState
       ),
     );
   }
-
-  // ── Particles ───────────────────────────────────────────────────────────
 
   Widget _buildParticleLayer() {
     return Positioned.fill(
@@ -407,8 +404,6 @@ class _CosmeticUnlockModalContentState
       ),
     );
   }
-
-  // ── Header ──────────────────────────────────────────────────────────────
 
   Widget _buildHeader() {
     return Opacity(
@@ -442,8 +437,6 @@ class _CosmeticUnlockModalContentState
       ),
     );
   }
-
-  // ── Reward Card ─────────────────────────────────────────────────────────
 
   Widget _buildRewardCard(AvatarRarity rarity) {
     final cardScale = Curves.easeOutBack.transform(_cardCtrl.value);
@@ -532,8 +525,6 @@ class _CosmeticUnlockModalContentState
       ),
     );
   }
-
-  // ── Preview ─────────────────────────────────────────────────────────────
 
   Widget _buildPreview() {
     final reward = widget.reward;
@@ -758,8 +749,6 @@ class _CosmeticUnlockModalContentState
     }
   }
 
-  // ── Item Name ───────────────────────────────────────────────────────────
-
   Widget _buildItemName() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -775,8 +764,6 @@ class _CosmeticUnlockModalContentState
       ),
     );
   }
-
-  // ── Rarity Badge ────────────────────────────────────────────────────────
 
   Widget _buildRarityBadge(AvatarRarity rarity) {
     return Container(
@@ -810,8 +797,6 @@ class _CosmeticUnlockModalContentState
       ),
     );
   }
-
-  // ── Button Row ──────────────────────────────────────────────────────────
 
   Widget _buildButtonRow() {
     final btnOpacity = _cardCtrl.value;

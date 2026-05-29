@@ -17,7 +17,8 @@ import '../../customization/domain/game_background_theme.dart';
 import 'widgets/player_profile_avatar.dart';
 
 class CustomizationScreen extends ConsumerStatefulWidget {
-  const CustomizationScreen({super.key});
+  final int initialTab;
+  const CustomizationScreen({super.key, this.initialTab = 0});
 
   @override
   ConsumerState<CustomizationScreen> createState() =>
@@ -25,13 +26,17 @@ class CustomizationScreen extends ConsumerStatefulWidget {
 }
 
 class _CustomizationScreenState extends ConsumerState<CustomizationScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(
+      length: 4,
+      vsync: this,
+      initialIndex: widget.initialTab.clamp(0, 3),
+    );
   }
 
   @override
