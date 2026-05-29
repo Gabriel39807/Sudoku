@@ -1,7 +1,13 @@
+import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../campaign/application/campaign_provider.dart';
+import '../../campaign/domain/campaign_level.dart';
+import '../../campaign/domain/campaign_progress.dart';
+import '../../challenge/application/streak_provider.dart';
 import '../../unlock/unlock_service.dart';
 import '../application/stats_provider.dart';
+import '../data/stats_storage.dart';
 import '../domain/difficulty_stats.dart';
 import '../domain/stats_model.dart';
 import '../domain/unlock_progress.dart';
@@ -25,6 +31,8 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
     'Expert',
     'Evil',
     '???',
+    'CAMPAÑA',
+    'DIARIO',
     'Progreso',
   ];
 
@@ -37,7 +45,7 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
     'mythic',
   ];
 
-  static const _pageCount = 8;
+  static const _pageCount = 10;
 
   @override
   void dispose() {
@@ -93,6 +101,8 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
       }
       return _tabLabels[_currentPage].toUpperCase();
     }
+    if (_currentPage == 7) return 'CAMPANA';
+    if (_currentPage == 8) return 'DIARIO';
     return 'PROGRESO';
   }
 
@@ -109,6 +119,8 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
         unlockProgress: stats.unlockProgress[diff],
       );
     }
+    if (index == 7) return const _CampaignPage();
+    if (index == 8) return const _DailyPage();
     return _ProgressPage(stats: stats);
   }
 }
@@ -715,6 +727,427 @@ class _ProgressCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ── Campaign Page ────────────────────────────────────────────────────────────
+
+// ── DAILY PAGE ──────────────────────────────────────────────────────────────
+
+class _DailyPage extends ConsumerStatefulWidget {
+  const _DailyPage();
+
+  @override
+  ConsumerState<_DailyPage> createState() => _DailyPageState();
+}
+
+class _DailyPageState extends ConsumerState<_DailyPage> {
+  Map<String, int> _dailyStore = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDailyStore();
+  }
+
+  Future<void> _loadDailyStore() async {
+    final data = await StatsStorage.loadDailyStats();
+    if (mounted) setState(() => _dailyStore = data);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final streak = ref.watch(streakProvider);
+
+    final gamesPlayed = _dailyStore['gamesPlayed'] ?? 0;
+    final wins = _dailyStore['wins'] ?? 0;
+    final losses = _dailyStore['losses'] ?? 0;
+    final bestTime = _dailyStore['bestTime'] ?? 0;
+    final totalTime = _dailyStore['totalTime'] ?? 0;
+    final totalMistakes = _dailyStore['totalMistakes'] ?? 0;
+    final hintsUsed = _dailyStore['hintsUsed'] ?? 0;
+    final perfect = _dailyStore['perfect'] ?? 0;
+    final winRate = gamesPlayed > 0 ? (wins / gamesPlayed * 100) : 0.0;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _HeroMetric(
+            label: 'Racha',
+            value: '${streak.currentStreak}',
+            icon: Icons.local_fire_department,
+          ),
+          const SizedBox(height: 12),
+          _StatRow(label: 'Mejor racha', value: '${streak.bestStreak}'),
+          _DividerLine(),
+          _StatRow(label: 'Partidas jugadas', value: '$gamesPlayed'),
+          _StatRow(label: 'Victorias', value: '$wins'),
+          _StatRow(label: 'Derrotas', value: '$losses'),
+          _StatRow(label: 'Win rate', value: '${winRate.toStringAsFixed(1)}%'),
+          _DividerLine(),
+          _StatRow(label: 'Mejor tiempo', value: _fmtTime(bestTime)),
+          _StatRow(label: 'Tiempo total', value: _fmtTime(totalTime)),
+          _StatRow(label: 'Errores totales', value: '$totalMistakes'),
+          _StatRow(label: 'Pistas usadas', value: '$hintsUsed'),
+          _StatRow(label: 'Perfectas', value: '$perfect'),
+        ],
+      ),
+    );
+  }
+}
+
+class _CampaignPage extends ConsumerStatefulWidget {
+  const _CampaignPage();
+
+  @override
+  ConsumerState<_CampaignPage> createState() => _CampaignPageState();
+}
+
+class _CampaignPageState extends ConsumerState<_CampaignPage> {
+  Map<String, int> _campaignStore = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCampaignStore();
+  }
+
+  Future<void> _loadCampaignStore() async {
+    final data = await StatsStorage.loadCampaignStats();
+    if (mounted) setState(() => _campaignStore = data);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = ref.watch(campaignProvider);
+    final results = progress.results;
+
+    final completed = results.values.where((r) => r.completed).length;
+    final totalLevels = CampaignStage.totalLevels;
+    final totalStars = results.values.fold<int>(0, (s, r) => s + (r.completed ? r.stars : 0));
+    final maxStars = completed * 3;
+    final perfectCount = results.values.where((r) => r.completed && r.stars >= 3).length;
+    final twoStarCount = results.values.where((r) => r.completed && r.stars == 2).length;
+    final oneStarCount = results.values.where((r) => r.completed && r.stars == 1).length;
+    final bossesDefeated = results.values.where((r) => r.completed && r.isBoss).length;
+    final bossPerfects = results.values.where((r) => r.completed && r.isBoss && r.stars >= 3).length;
+    final completionPercent = totalLevels > 0 ? (completed / totalLevels * 100).round() : 0;
+
+    final storedWins = _campaignStore['wins'] ?? 0;
+    final storedLosses = _campaignStore['losses'] ?? 0;
+    final storedStreak = _campaignStore['streak'] ?? 0;
+    final storedBestStreak = _campaignStore['bestStreak'] ?? 0;
+    final storedMistakes = _campaignStore['totalMistakes'] ?? 0;
+    final storedBosses = _campaignStore['bossesDefeated'] ?? 0;
+    final storedBossPerfect = _campaignStore['bossPerfectWins'] ?? 0;
+
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 100),
+      children: [
+        _CampaignHeroCard(
+          completed: completed,
+          totalLevels: totalLevels,
+          completionPercent: completionPercent,
+          totalStars: totalStars,
+          maxStars: maxStars,
+        ),
+        const SizedBox(height: 16),
+        _CampaignSectionTitle(title: 'PROGRESO'),
+        const SizedBox(height: 8),
+        _CampaignStatRow(icon: Icons.auto_awesome, label: 'Completados', value: '$completed / $totalLevels'),
+        _CampaignStatRow(icon: Icons.star, label: 'Estrellas', value: '$totalStars / $maxStars'),
+        _CampaignStatRow(icon: Icons.military_tech, label: 'Platinados (★★★)', value: '$perfectCount'),
+        _CampaignStatRow(icon: Icons.star_half, label: '★★', value: '$twoStarCount'),
+        _CampaignStatRow(icon: Icons.star_border, label: '★', value: '$oneStarCount'),
+        _CampaignStatRow(icon: Icons.flag, label: '% Completado', value: '$completionPercent%'),
+        const SizedBox(height: 16),
+        _CampaignSectionTitle(title: 'BATALLA'),
+        const SizedBox(height: 8),
+        _CampaignStatRow(icon: Icons.shield, label: 'Jefes Derrotados', value: '$bossesDefeated'),
+        _CampaignStatRow(icon: Icons.workspace_premium, label: 'Jefes Perfectos', value: '$bossPerfects'),
+        _CampaignStatRow(icon: Icons.emoji_events, label: 'Victorias', value: '$storedWins'),
+        _CampaignStatRow(
+          icon: Icons.cancel_outlined,
+          label: 'Derrotas',
+          value: '$storedLosses',
+          color: Colors.redAccent,
+        ),
+        _CampaignStatRow(icon: Icons.local_fire_department, label: 'Racha Actual', value: '$storedStreak'),
+        _CampaignStatRow(icon: Icons.whatshot, label: 'Mejor Racha', value: '$storedBestStreak'),
+        _CampaignStatRow(icon: Icons.error_outline, label: 'Errores Totales', value: '$storedMistakes'),
+        if (storedBosses > 0)
+          _CampaignStatRow(
+            icon: Icons.auto_awesome,
+            label: 'Stats Boss (guardadas)',
+            value: '$storedBosses derrotados / $storedBossPerfect perfectos',
+          ),
+        const SizedBox(height: 16),
+        _CampaignSectionTitle(title: 'RECOMPENSAS'),
+        const SizedBox(height: 8),
+        _CampaignRewardSummary(results: results),
+      ],
+    );
+  }
+}
+
+class _CampaignHeroCard extends StatelessWidget {
+  final int completed, totalLevels, completionPercent, totalStars, maxStars;
+
+  const _CampaignHeroCard({
+    required this.completed,
+    required this.totalLevels,
+    required this.completionPercent,
+    required this.totalStars,
+    required this.maxStars,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            const Color(0xFF1A1A3E).withValues(alpha: 0.8),
+            const Color(0xFF2D1B4E).withValues(alpha: 0.6),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.map, color: Colors.amber.shade300, size: 28),
+              const SizedBox(width: 10),
+              const Text(
+                'CAMPAÑA',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 3,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          _CampaignProgressBar(value: completionPercent / 100),
+          const SizedBox(height: 12),
+          Text(
+            '$completionPercent%',
+            style: TextStyle(
+              fontSize: 42,
+              fontWeight: FontWeight.w900,
+              color: Colors.amber.shade300,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            '$completed / $totalLevels niveles completados',
+            style: TextStyle(fontSize: 13, color: Colors.white.withValues(alpha: 0.6)),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ...List.generate(5, (i) {
+                final starVal = (totalStars / (completed > 0 ? completed : 1) / 3 * 5).clamp(0, 5);
+                final filled = i < starVal.round();
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: Icon(
+                    filled ? Icons.star : Icons.star_border,
+                    color: filled ? Colors.amber : Colors.white24,
+                    size: 24,
+                  ),
+                );
+              }),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CampaignProgressBar extends StatelessWidget {
+  final double value;
+  const _CampaignProgressBar({required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(99),
+      child: Container(
+        height: 10,
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(99),
+        ),
+        child: FractionallySizedBox(
+          alignment: Alignment.centerLeft,
+          widthFactor: value.clamp(0.0, 1.0),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.amber.shade600, Colors.orange.shade400],
+              ),
+              borderRadius: BorderRadius.circular(99),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CampaignSectionTitle extends StatelessWidget {
+  final String title;
+  const _CampaignSectionTitle({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w900,
+        letterSpacing: 2,
+        color: Colors.amber.shade300.withValues(alpha: 0.8),
+      ),
+    );
+  }
+}
+
+class _CampaignStatRow extends StatelessWidget {
+  final IconData icon;
+  final String label, value;
+  final Color? color;
+
+  const _CampaignStatRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+    this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.04),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, size: 16, color: color ?? Colors.amber.shade300),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.white.withValues(alpha: 0.7),
+                ),
+              ),
+            ),
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: color ?? Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CampaignRewardSummary extends StatelessWidget {
+  final Map<int, CampaignLevelResult> results;
+  const _CampaignRewardSummary({required this.results});
+
+  @override
+  Widget build(BuildContext context) {
+    final totalXp = results.values.fold<int>(0, (s, r) => s + r.xpEarned);
+    final totalTokens = results.values.fold<int>(0, (s, r) => s + r.tokensEarned);
+    final totalGems = results.values.fold<int>(0, (s, r) => s + r.gemsEarned);
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            const Color(0xFF1A2A1A).withValues(alpha: 0.6),
+            const Color(0xFF1A1A2E).withValues(alpha: 0.6),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              _RewardBadge(icon: Icons.stars, label: 'XP', value: '$totalXp'),
+              const SizedBox(width: 8),
+              _RewardBadge(icon: Icons.monetization_on, label: 'Tokens', value: '$totalTokens'),
+              const SizedBox(width: 8),
+              _RewardBadge(icon: Icons.diamond, label: 'Gemas', value: '$totalGems'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _RewardBadge extends StatelessWidget {
+  final IconData icon;
+  final String label, value;
+  const _RewardBadge({required this.icon, required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.04),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            Icon(icon, size: 20, color: Colors.amber.shade300),
+            const SizedBox(height: 4),
+            Text(
+              value,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+            Text(
+              label,
+              style: TextStyle(fontSize: 10, color: Colors.white.withValues(alpha: 0.5)),
+            ),
+          ],
+        ),
       ),
     );
   }

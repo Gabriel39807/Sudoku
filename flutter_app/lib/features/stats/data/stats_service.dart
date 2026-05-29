@@ -1,11 +1,17 @@
 import 'dart:async';
 
+import '../domain/game_result.dart';
 import 'stats_storage.dart';
 
 class StatsService {
   static final _updates = StreamController<void>.broadcast();
 
   static Stream<void> get updates => _updates.stream;
+
+  static Future<void> recordGameResult(GameResult result) async {
+    await StatsStorage.recordGameResult(result);
+    _emit();
+  }
 
   static Future<void> onGameStart(String difficulty) async {
     await StatsStorage.recordGameStarted(difficulty);
