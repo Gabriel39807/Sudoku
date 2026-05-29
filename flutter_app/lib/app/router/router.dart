@@ -59,7 +59,11 @@ final goRouter = GoRouter(
         ),
         GoRoute(
           path: '/customization',
-          builder: (context, state) => const CustomizationScreen(),
+          builder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>?;
+            final initialTab = extra?['initialTab'] as int? ?? 0;
+            return CustomizationScreen(initialTab: initialTab);
+          },
         ),
         GoRoute(
           path: '/shop',

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/campaign_level.dart';
@@ -18,6 +17,20 @@ class CampaignReward {
     required this.playerXp,
     required this.tokens,
     required this.gems,
+  });
+}
+
+class CampaignResult {
+  final int levelsGained;
+  final List<String> unlockedBgIds;
+  final int stars;
+  final bool isBoss;
+
+  const CampaignResult({
+    required this.levelsGained,
+    required this.unlockedBgIds,
+    required this.stars,
+    required this.isBoss,
   });
 }
 
@@ -47,7 +60,7 @@ class CampaignNotifier extends Notifier<CampaignProgress> {
     await CampaignStorage.save(updated);
   }
 
-  Future<void> completeLevel(int level, int timeSeconds, int mistakes) async {
+  Future<CampaignResult> completeLevel(int level, int timeSeconds, int mistakes) async {
     final stage = CampaignStage.fromLevel(level);
     final rng = math.Random();
 
@@ -65,9 +78,10 @@ class CampaignNotifier extends Notifier<CampaignProgress> {
 
     final levelsGained = await ref.read(playerLevelProvider.notifier).addXp(finalXp);
 
+    List<String> unlockedBgIds = [];
     if (levelsGained > 0) {
       final newLevel = ref.read(playerLevelProvider).level;
-      ref.read(cosmeticInventoryProvider.notifier).checkNewUnlocksAtLevel(newLevel);
+      unlockedBgIds = ref.read(cosmeticInventoryProvider.notifier).checkNewUnlocksAtLevel(newLevel);
     }
 
     await ref.read(walletProvider.notifier).addTokens(finalTokens);
@@ -78,6 +92,8 @@ class CampaignNotifier extends Notifier<CampaignProgress> {
     state = updated;
     await CampaignStorage.save(updated);
     await ref.read(streakProvider.notifier).onDailyWin();
+
+    return CampaignResult(levelsGained: levelsGained, unlockedBgIds: unlockedBgIds, stars: stars, isBoss: isBoss);
   }
 
   int _computeStars(int timeSeconds, int mistakes, int level, CampaignStage stage) {

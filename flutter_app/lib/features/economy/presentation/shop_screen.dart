@@ -8,6 +8,7 @@ import '../domain/shop_catalog.dart';
 import '../../../features/cosmetics/application/cosmetic_inventory_provider.dart';
 import '../../../features/cosmetics/application/avatar_inventory_provider.dart';
 import '../../../features/cosmetics/presentation/widgets/player_profile_avatar.dart';
+import '../../../features/cosmetics/domain/unlock_reward.dart';
 import '../../../shared/widgets/game_modal_card.dart';
 import '../../../ui/currency/currency_assets.dart';
 import '../../../ui/currency/currency_type.dart';
@@ -108,6 +109,21 @@ class ShopScreen extends ConsumerWidget {
     if (item.type == 'background') {
       await inv.unlockBackground(item.id);
     }
+    if (!context.mounted) return;
+    final reward = UnlockReward.fromRarityString(
+      id: 'shop_${item.id}',
+      type: RewardType.background,
+      rarityName: item.rarity,
+      title: item.name,
+      cosmeticId: item.id,
+    );
+    final result = await RewardQueue.show(context, reward);
+    if (result == 'equip') {
+      ref.read(cosmeticInventoryProvider.notifier).equipBackground(item.id);
+    } else if (result == 'view') {
+      if (!context.mounted) return;
+      context.push('/customization', extra: {'initialTab': 2});
+    }
   }
 
   Future<void> _buyAvatar(BuildContext context, WidgetRef ref, ShopAvatar item) async {
@@ -124,9 +140,18 @@ class ShopScreen extends ConsumerWidget {
     await inv.unlockAvatar(item.id);
     await inv.selectAvatar(item.id);
     if (!context.mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('¡Avatar desbloqueado y equipado!')),
+    final reward = UnlockReward.fromRarityString(
+      id: 'shop_${item.id}',
+      type: RewardType.avatar,
+      rarityName: item.rarity,
+      title: item.name,
+      cosmeticId: item.id,
     );
+    final result = await RewardQueue.show(context, reward);
+    if (result == 'view') {
+      if (!context.mounted) return;
+      context.push('/customization', extra: {'initialTab': 0});
+    }
   }
 
   Future<void> _buyAvatarFrame(BuildContext context, WidgetRef ref, ShopAvatar item) async {
@@ -143,9 +168,18 @@ class ShopScreen extends ConsumerWidget {
     await inv.unlockFrame(item.id);
     await inv.selectFrame(item.id);
     if (!context.mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('¡Marco desbloqueado y equipado!')),
+    final reward = UnlockReward.fromRarityString(
+      id: 'shop_${item.id}',
+      type: RewardType.frame,
+      rarityName: item.rarity,
+      title: item.name,
+      cosmeticId: item.id,
     );
+    final result = await RewardQueue.show(context, reward);
+    if (result == 'view') {
+      if (!context.mounted) return;
+      context.push('/customization', extra: {'initialTab': 1});
+    }
   }
 
   Future<void> _buyConsumable(BuildContext context, WidgetRef ref, ShopConsumable item) async {

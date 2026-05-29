@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app/router/router.dart';
 import 'app/theme/theme.dart';
 import 'features/customization/application/customization_provider.dart';
+import 'features/rewards/presentation/reward_overlay_widget.dart';
 
 void main() {
   runApp(
@@ -23,6 +24,12 @@ class SudokuApp extends ConsumerWidget {
       theme: buildTheme(palette),
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
+      builder: (context, child) => Stack(
+        children: [
+          if (child != null) child,
+          const RewardOverlayWidget(),
+        ],
+      ),
     );
   }
 }
