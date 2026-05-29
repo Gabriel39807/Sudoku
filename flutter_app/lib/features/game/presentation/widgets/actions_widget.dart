@@ -6,11 +6,13 @@ import '../../domain/game_state.dart';
 import '../../../settings/application/settings_provider.dart';
 import '../../../settings/domain/settings_model.dart';
 import '../../../../shared/widgets/game_modal_card.dart';
+import '../../../../features/smart_hints/domain/hint_target_keys.dart';
 
 class ActionsWidget extends ConsumerWidget {
   final VoidCallback? onShopRequested;
+  final HintTargetKeys? hintKeys;
 
-  const ActionsWidget({super.key, this.onShopRequested});
+  const ActionsWidget({super.key, this.onShopRequested, this.hintKeys});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,17 +48,20 @@ class ActionsWidget extends ConsumerWidget {
       _ActionButton(
         icon: Icons.backspace_outlined,
         label: 'BORRAR',
+        key: hintKeys?.erase,
         onTap: () => ref.read(gameProvider.notifier).erase(),
       ),
       _ActionButton(
         icon: Icons.edit,
         label: 'PENCIL',
+        key: hintKeys?.notes,
         isActive: pencilMode,
         onTap: () => ref.read(gameProvider.notifier).togglePencil(),
       ),
       _ActionButton(
         icon: Icons.auto_awesome,
         label: 'ADV',
+        key: hintKeys?.advNotes,
         isActive: advancedNotes,
         onTap: () async {
           final ok = await ref.read(gameProvider.notifier).toggleAdvancedNotes();
@@ -110,6 +115,7 @@ class _ActionButton extends StatelessWidget {
   final bool isDisabled;
 
   const _ActionButton({
+    super.key,
     required this.icon,
     required this.label,
     required this.onTap,

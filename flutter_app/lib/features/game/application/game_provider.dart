@@ -17,9 +17,15 @@ import '../../stats/data/stats_storage.dart';
 import '../../progression/application/progression_provider.dart';
 import '../../progression/domain/xp_calculator.dart';
 import '../../progression/domain/achievement.dart';
-import '../../progression/domain/level_rewards.dart';
+import '../../progression/domain/level_rewards.dart' hide RewardType;
 import '../../progression/data/progression_storage.dart';
 import '../../cosmetics/application/cosmetic_inventory_provider.dart';
+import '../../cosmetics/domain/avatar_def.dart';
+import '../../cosmetics/domain/unlock_reward.dart';
+import '../../cosmetics/models/background_catalog.dart';
+import '../../rewards/application/reward_queue_provider.dart';
+import '../../stats/domain/game_result.dart';
+import '../../stats/data/stats_service.dart';
 import '../data/save/global_saved_game.dart';
 import '../../../shared/vibration_helper.dart';
 import '../../economy/application/wallet_provider.dart';
@@ -207,6 +213,7 @@ class GameNotifier extends Notifier<GameState> {
         completedDigits: _computeCompletedDigits(session),
       );
       await GameAutosave.clear();
+      await StatsService.onGameStart('campaign_$level');
       _startTimer();
     } catch (e, st) {
       dev.log('[GameProvider] initCampaign ERROR: $e\n$st');
@@ -628,15 +635,40 @@ class GameNotifier extends Notifier<GameState> {
       clearLockedNumber: true,
       undoStack: [...oldState.undoStack, _makeMove(r, c, oldValue, newValue, oldState.session!, {})],
     );
-    if (_isDailyContext || _isCampaignContext) {
-      if (_isCampaignContext && !won) {
-        CampaignAutosave.clear();
-      }
-      _gameOverEvent.add(won);
-      return;
+    final defeatMode = _isCampaignContext
+        ? GameMode.campaign
+        : _isDailyContext
+            ? GameMode.daily
+            : GameMode.normal;
+
+    if (_isCampaignContext) {
+      CampaignAutosave.clear();
+    } else if (defeatMode.isClassic) {
+      _timer?.cancel();
+      _overlayPauseCount = 0;
+      GameAutosave.clear();
+      unawaited(GlobalSaveStorage.delete());
+      ref.invalidate(globalSavedGameProvider);
+      unawaited(ref.read(missionsProvider.notifier).updateProgress('play_three', 1));
     }
-    if (won) _onWon(session.difficulty, session.elapsed.inSeconds, session.boardId);
-    else _onLost(session.difficulty, session.boardId);
+
+    final defeatResult = GameResult(
+      mode: defeatMode,
+      difficulty: session.difficulty,
+      won: false,
+      mistakes: session.mistakes,
+      elapsedSeconds: session.elapsed.inSeconds,
+      hintsUsed: session.hintsUsed,
+      maxCombo: state.maxCombo,
+      perfect: false,
+      totalNoteUsage: state.noteUsageCount,
+      xpEarned: 0,
+      boardId: session.boardId,
+      campaignLevel: _isCampaignContext ? _campaignLevel : null,
+      campaignStars: null,
+      isCampaignBoss: null,
+    );
+    unawaited(StatsService.recordGameResult(defeatResult));
     _gameOverEvent.add(won);
   }
 
@@ -935,26 +967,13 @@ class GameNotifier extends Notifier<GameState> {
     await GameAutosave.clear();
     state = state.copyWith(session: session.copyWith(status: GameStatus.won), clearLockedNumber: true);
 
-if (_isCampaignContext) {
-       await CampaignAutosave.clear();
-       await ref.read(campaignProvider.notifier).completeLevel(
-         _campaignLevel,
-         session.elapsed.inSeconds,
-         session.mistakes,
-       );
-      _gameOverEvent.add(true);
-      return;
-    }
-
-    // Compute base XP
+    // Compute base XP (shared by normal, daily, and campaign)
     var earnedXp = XpCalculator.compute(state).total;
 
-    // Daily challenge: +20%
     if (_isDailyContext) {
       earnedXp = (earnedXp * 1.20).round();
     }
 
-    // First win of day: +30% across all modes
     final hasFirstWin = await ProgressionStorage.hasClaimedFirstWinToday();
     if (!hasFirstWin) {
       earnedXp = (earnedXp * 1.30).round();
@@ -962,28 +981,155 @@ if (_isCampaignContext) {
     }
 
     _lastEarnedXp = earnedXp;
-    final levelUps = await ref.read(playerLevelProvider.notifier).addXp(earnedXp);
-    for (var i = 0; i < levelUps; i++) {
-      final newLevel = ref.read(playerLevelProvider).level;
-      _levelUpEvent.add(newLevel);
-      // Check for level rewards
-      final rewards = LevelRewardRegistry.unlockedAt(newLevel);
-      for (final r in rewards) {
-        _levelRewardEvent.add(r.id);
+
+    if (_isCampaignContext) {
+      await CampaignAutosave.clear();
+      final campaignResult = await ref.read(campaignProvider.notifier).completeLevel(
+        _campaignLevel,
+        session.elapsed.inSeconds,
+        session.mistakes,
+      );
+
+      if (campaignResult.levelsGained > 0) {
+        _enqueueLevelUpRewards(campaignResult.levelsGained);
+        _enqueueBackgroundUnlocks(campaignResult.unlockedBgIds);
       }
+
+      unawaited(GlobalSaveStorage.delete());
+      ref.invalidate(globalSavedGameProvider);
+
+      final campResult = GameResult(
+        mode: GameMode.campaign,
+        difficulty: session.difficulty,
+        won: true,
+        mistakes: session.mistakes,
+        elapsedSeconds: session.elapsed.inSeconds,
+        hintsUsed: session.hintsUsed,
+        maxCombo: state.maxCombo,
+        perfect: session.mistakes == 0 && session.hintsUsed == 0 && !state.completedWithAutocomplete,
+        completedWithAutocomplete: state.completedWithAutocomplete,
+        totalNoteUsage: state.noteUsageCount,
+        xpEarned: _lastEarnedXp,
+        boardId: session.boardId,
+        campaignLevel: _campaignLevel,
+        campaignStars: campaignResult.stars,
+        isCampaignBoss: campaignResult.isBoss,
+      );
+      unawaited(StatsService.recordGameResult(campResult));
+
+      _gameOverEvent.add(true);
+      return;
     }
+
+    final levelUps = await ref.read(playerLevelProvider.notifier).addXp(earnedXp);
+    _enqueueLevelUpRewards(levelUps);
     _awardCoins(session.difficulty);
     if (levelUps > 0) {
       final newLevel = ref.read(playerLevelProvider).level;
       final newBgIds = ref.read(cosmeticInventoryProvider.notifier).checkNewUnlocksAtLevel(newLevel);
+      _enqueueBackgroundUnlocks(newBgIds);
       for (final id in newBgIds) _backgroundUnlockEvent.add(id);
     }
     final achievementsToCheck = await _computeAchievements(state);
     final newlyUnlocked = await ref.read(achievementsProvider.notifier).checkBatch(achievementsToCheck);
+    _enqueueAchievements(newlyUnlocked);
     for (final id in newlyUnlocked) _achievementEvent.add(id);
     await _updateMissions(state);
-    _onWon(session.difficulty, session.elapsed.inSeconds, session.boardId);
+    unawaited(GlobalSaveStorage.delete());
+    ref.invalidate(globalSavedGameProvider);
+    final winResult = GameResult(
+      mode: _isDailyContext ? GameMode.daily : GameMode.normal,
+      difficulty: session.difficulty,
+      won: true,
+      mistakes: session.mistakes,
+      elapsedSeconds: session.elapsed.inSeconds,
+      hintsUsed: session.hintsUsed,
+      maxCombo: state.maxCombo,
+      perfect: session.mistakes == 0 && session.hintsUsed == 0 && !state.completedWithAutocomplete,
+      completedWithAutocomplete: state.completedWithAutocomplete,
+      totalNoteUsage: state.noteUsageCount,
+      xpEarned: _lastEarnedXp,
+      boardId: session.boardId,
+    );
+    unawaited(StatsService.recordGameResult(winResult));
     _gameOverEvent.add(true);
+  }
+
+  void _enqueueLevelUpRewards(int levelUps) {
+    final currentLevel = ref.read(playerLevelProvider).level;
+    final queue = ref.read(rewardQueueProvider.notifier);
+    for (var i = 0; i < levelUps; i++) {
+      final level = currentLevel - levelUps + 1 + i;
+      _levelUpEvent.add(level);
+
+      final reward = UnlockReward(
+        id: 'level_up_$level',
+        type: RewardType.levelUp,
+        rarity: level >= 25
+            ? AvatarRarity.legendary
+            : level >= 15
+                ? AvatarRarity.epic
+                : level >= 5
+                    ? AvatarRarity.rare
+                    : AvatarRarity.common,
+        title: '¡Nivel $level!',
+        cosmeticId: 'level_up_$level',
+        metadata: {'level': level},
+      );
+      queue.enqueue(reward);
+
+      final rewardItems = LevelRewardRegistry.unlockedAt(level);
+      for (final r in rewardItems) {
+        _levelRewardEvent.add(r.id);
+        queue.enqueue(UnlockReward(
+          id: r.id,
+          type: RewardType.background,
+          rarity: r.level >= 25
+              ? AvatarRarity.legendary
+              : r.level >= 15
+                  ? AvatarRarity.epic
+                  : r.level >= 5
+                      ? AvatarRarity.rare
+                      : AvatarRarity.common,
+          title: r.name,
+          description: r.description,
+          cosmeticId: r.id,
+        ));
+      }
+    }
+  }
+
+  void _enqueueBackgroundUnlocks(List<String> bgIds) {
+    final queue = ref.read(rewardQueueProvider.notifier);
+    for (final id in bgIds) {
+      final bg = BackgroundCatalog.byId(id);
+      if (bg != null) {
+        queue.enqueue(UnlockReward.fromBackground(bg));
+      }
+    }
+  }
+
+  void _enqueueAchievements(List<String> achievementIds) {
+    final queue = ref.read(rewardQueueProvider.notifier);
+    for (final id in achievementIds) {
+      final achievement = AchievementRegistry.byId(id);
+      if (achievement == null) continue;
+      final rarity = achievement.target >= 500
+          ? AvatarRarity.legendary
+          : achievement.target >= 250
+              ? AvatarRarity.epic
+              : achievement.target >= 100
+                  ? AvatarRarity.rare
+                  : AvatarRarity.common;
+      queue.enqueue(UnlockReward(
+        id: 'achievement_$id',
+        type: RewardType.achievement,
+        rarity: rarity,
+        title: achievement.title,
+        description: achievement.description,
+        cosmeticId: id,
+      ));
+    }
   }
 
   Future<Map<String, int>> _computeAchievements(GameState state) async {

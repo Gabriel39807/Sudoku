@@ -17,19 +17,14 @@ import '../data/game_autosave.dart';
 import 'widgets/sudoku_board.dart';
 import 'widgets/keypad_widget.dart';
 import 'widgets/actions_widget.dart';
-import '../../cosmetics/models/background_catalog.dart';
-import '../../cosmetics/models/background_cosmetic.dart';
-import '../../cosmetics/domain/unlock_reward.dart';
-import '../../progression/domain/achievement.dart';
-import '../../progression/domain/level_rewards.dart';
 import '../../../shared/widgets/gameplay_overlay_guard.dart';
-import '../../progression/application/progression_provider.dart';
-import '../../cosmetics/application/cosmetic_inventory_provider.dart';
-import '../../cosmetics/domain/avatar_def.dart';
 import '../data/save/global_saved_game.dart';
 import '../../../shared/widgets/game_modal_card.dart';
 import '../../../shared/widgets/game_exit_dialog.dart';
 import '../../../shared/widgets/pause_dialog.dart';
+import '../../smart_hints/domain/hint_target_keys.dart';
+import '../../smart_hints/application/hint_engine.dart';
+import '../../smart_hints/presentation/hint_overlay_manager.dart';
 
 class GameScreen extends ConsumerStatefulWidget {
   final String difficulty;
@@ -44,10 +39,11 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   OverlayEntry? _comboFeedback;
   StreamSubscription<int>? _comboSub;
   StreamSubscription<bool>? _gameOverSub;
-  StreamSubscription<String>? _bgUnlockSub;
-  StreamSubscription<String>? _achievementSub;
-  StreamSubscription<int>? _levelUpSub;
-  StreamSubscription<String>? _levelRewardSub;
+
+  final _hintKeys = HintTargetKeys();
+  final _hintOverlayManager = HintOverlayManager();
+  int _lastMistakeCount = 0;
+  StreamSubscription<int>? _digitSub;
 
   @override
   void initState() {
@@ -59,10 +55,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
       _listenToDigitCompleted();
       _listenToCombo();
       _listenToGameOver();
-      _listenToBackgroundUnlocks();
-      _listenToLevelUp();
-      _listenToAchievements();
-      _listenToLevelRewards();
+      _setupHintEngine();
     });
   }
 
@@ -244,7 +237,11 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
   void _listenToDigitCompleted() {
     final notifier = ref.read(gameProvider.notifier);
-    notifier.digitCompleted.listen(_showDigitFeedback);
+    _digitSub = notifier.digitCompleted.listen((digit) {
+      _showDigitFeedback(digit);
+      if (!mounted) return;
+      ref.read(hintEngineProvider.notifier).onNumberCompleted();
+    });
   }
 
   void _listenToCombo() {
@@ -274,102 +271,49 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     });
   }
 
-  void _listenToBackgroundUnlocks() {
-    _bgUnlockSub?.cancel();
-    _bgUnlockSub = ref.read(gameProvider.notifier).backgroundUnlockEvent.listen((id) {
-      if (!mounted) return;
-      final bg = BackgroundCatalog.byId(id);
-      if (bg == null) return;
-      _showUnlockForBackground(bg);
-    });
-  }
+  void _setupHintEngine() {
+    final engine = ref.read(hintEngineProvider.notifier);
 
-  Future<void> _showUnlockForBackground(BackgroundCosmetic bg) async {
-    final reward = UnlockReward.fromBackground(bg);
-    final result = await RewardQueue.show(context, reward);
-    if (result == 'equip') {
-      ref.read(cosmeticInventoryProvider.notifier).equipBackground(bg.id);
-    } else if (result == 'view') {
-      if (!context.mounted) return;
-      context.push('/customization', extra: {'initialTab': 2});
-    }
-  }
-
-  void _listenToLevelUp() {
-    _levelUpSub?.cancel();
-    _levelUpSub = ref.read(gameProvider.notifier).levelUpEvent.listen((level) {
+    engine.onShowHint = (event) {
       if (!mounted) return;
-      final reward = UnlockReward(
-        id: 'level_up_$level',
-        type: RewardType.levelUp,
-        rarity: level >= 25
-            ? AvatarRarity.legendary
-            : level >= 15
-                ? AvatarRarity.epic
-                : level >= 5
-                    ? AvatarRarity.rare
-                    : AvatarRarity.common,
-        title: '¡Nivel $level!',
-        cosmeticId: 'level_up_$level',
-        metadata: {'level': level},
+      _hintOverlayManager.show(
+        context: context,
+        event: event,
+        targetKeys: _hintKeys.asMap,
+        onDismiss: () {
+          engine.onHintDismissed();
+        },
       );
-      RewardQueue.show(context, reward);
-    });
-  }
+    };
 
-  void _listenToAchievements() {
-    _achievementSub?.cancel();
-    _achievementSub = ref.read(gameProvider.notifier).achievementEvent.listen((id) {
-      if (!mounted) return;
-      final achievement = AchievementRegistry.byId(id);
-      if (achievement == null) return;
-      final rarity = _rarityForAchievement(achievement.target);
-      final reward = UnlockReward(
-        id: 'achievement_$id',
-        type: RewardType.achievement,
-        rarity: rarity,
-        title: achievement.title,
-        description: achievement.description,
-        cosmeticId: id,
-      );
-      RewardQueue.show(context, reward);
-    });
-  }
+    engine.onHideHint = () {
+      _hintOverlayManager.hide();
+    };
 
-  void _listenToLevelRewards() {
-    _levelRewardSub?.cancel();
-    _levelRewardSub = ref.read(gameProvider.notifier).levelRewardEvent.listen((id) {
-      if (!mounted) return;
-      final allRewards = LevelRewardRegistry.all;
-      LevelReward? match;
-      try {
-        match = allRewards.firstWhere((r) => r.id == id);
-      } catch (_) {}
-      if (match == null) return;
-      final rarity = match.level >= 25
-          ? AvatarRarity.legendary
-          : match.level >= 15
-              ? AvatarRarity.epic
-              : match.level >= 5
-                  ? AvatarRarity.rare
-                  : AvatarRarity.common;
-      final reward = UnlockReward(
-        id: match.id,
-        type: RewardType.background,
-        rarity: rarity,
-        title: match.name,
-        description: match.description,
-        cosmeticId: match.id,
-      );
-      RewardQueue.show(context, reward);
-    });
-  }
+// Listen for game state changes to detect mistakes and actions
+    ref.listen(gameProvider, (prev, next) {
+      if (prev == null || next.session == null) return;
 
-  static AvatarRarity _rarityForAchievement(int target) {
-    if (target >= 500) return AvatarRarity.legendary;
-    if (target >= 250) return AvatarRarity.epic;
-    if (target >= 100) return AvatarRarity.rare;
-    return AvatarRarity.common;
+      if (next.errors > _lastMistakeCount) {
+        _lastMistakeCount = next.errors;
+        engine.onMistake();
+      }
+
+      if (next.pencilMode && !prev.pencilMode) {
+        engine.onPencilUsed();
+      }
+
+      if (next.advancedNotesEnabled && !prev.advancedNotesEnabled) {
+        engine.onAdvancedNotesToggled();
+      }
+
+      if (next.totalMoves > prev.totalMoves) {
+        engine.resetStuckTimer();
+      }
+    });
+
+    engine.onGameInit();
+    engine.startStuckDetection();
   }
 
   void _showDigitFeedback(int digit) {
@@ -485,10 +429,8 @@ class _GameScreenState extends ConsumerState<GameScreen> {
     _comboFeedback?.remove();
     _comboSub?.cancel();
     _gameOverSub?.cancel();
-    _bgUnlockSub?.cancel();
-    _achievementSub?.cancel();
-    _levelUpSub?.cancel();
-    _levelRewardSub?.cancel();
+    _digitSub?.cancel();
+    _hintOverlayManager.hide();
     super.dispose();
   }
 
@@ -541,6 +483,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
                               child: ControlsAreaWidget(
                                 showAutoComplete: showAutoComplete,
                                 onAutoComplete: () => ref.read(gameProvider.notifier).autoComplete(),
+                                hintKeys: _hintKeys,
                               ),
                             ),
                           ],
@@ -601,11 +544,13 @@ class BoardAreaWidget extends StatelessWidget {
 class ControlsAreaWidget extends ConsumerWidget {
   final bool showAutoComplete;
   final VoidCallback onAutoComplete;
+  final HintTargetKeys? hintKeys;
 
   const ControlsAreaWidget({
     super.key,
     required this.showAutoComplete,
     required this.onAutoComplete,
+    this.hintKeys,
   });
 
   @override
@@ -617,6 +562,7 @@ class ControlsAreaWidget extends ConsumerWidget {
             const SizedBox(height: 8),
             ActionsWidget(
               onShopRequested: () => context.push('/shop'),
+              hintKeys: hintKeys,
             ),
             Expanded(
               child: Padding(
